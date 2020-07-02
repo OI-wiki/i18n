@@ -11,7 +11,7 @@ Locality refers to a program's tendency to refer to data items that are adjacent
     // better:
     for (int i = 0, len = strlen(s); i < len; ++i);
     ```
--   The loop unfolds. The number of operations on the critical path in the entire calculation can be reduced by using appropriate loop expansion.
+-   Loop unrolling. The number of operations on the critical path in the entire calculation can be reduced by using appropriate loop expansion.
     ```cpp
     for (int i = 0; i < n; ++i) {
       res = res OP a[i];
@@ -142,7 +142,7 @@ The general program framework is this:
 #endif
 ```
 
-`#ifdef` will check whether there is a corresponding identifier defined by `#define` in the program, if there is, it will execute the following content, `#ifndef`, on the other hand, will be executed without defining the corresponding identifier The following statement.
+`#ifdef` will check whether there is a corresponding identifier defined by `#define` in the program, if there is, it will keep the following content, `#ifndef`, on the other hand, will be kept without defining the corresponding identifier The following statement.
 
 In this case, when submitting the program, we only need to comment out the `#define DEBUG` line.
 
@@ -172,7 +172,7 @@ The general framework of the double compare is as follows:
 int main() {
   // For Windows
   // Do not use file input and output
-  // Of course, this program can also be rewritten into a batch form
+  // Of course, this program can also be rewritten into a batch file or a shellscript file
   while (1) {
     system("gen > test.in");  // The data generator writes the generated data to the input file
     system("test1.exe < test.in > a.out");  // Get program 1 output
@@ -193,11 +193,11 @@ int main() {
 
 When we need to allocate memory dynamically, frequent use of new/malloc will occupy a lot of time and space, and even generate a lot of memory fragments to reduce the performance of the program, which may make the originally correct program TLE/MLE.
 
-In this case, we need to use the "memory pool" technique: before actually using the memory, first we apply for the allocation of a certain size of memory as a spare. When dynamic allocation is needed, we can directly allocate a block from the spare memory.
+In this case, we need to use the "memory pool" technique: before actually using the memory, we first allocate of a certain size of memory as a memory pool. When dynamic allocation is needed, we can directly fetch a block from it.
 
 Of course, in most OI problems, we can calculate the maximum memory required in advance and apply for allocation at one time.
 
-For example, the code to dynamically allocate $32$ signed integer array:
+For example, the code to dynamically allocate a 32-bit signed integer array:
 
 ```cpp
 inline int* newarr(int sz) {
