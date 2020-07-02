@@ -1,22 +1,22 @@
-本页面主要分享一下在竞赛中的小技巧。
+This page mainly shares some common tricks used in the competition.
 
-## 利用局部性
+## Use locality
 
-局部性是指程序倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。局部性分为时间局部性和空间局部性。
+Locality refers to a program's tendency to refer to data items that are adjacent to other recently referenced data items, or those that were recently referenced themselves. Locality is divided into temporal locality and spatial locality.
 
--   消除循环中的低效率，比如遍历字符串的时候：
+-   Eliminate inefficiencies in loops, such as when traversing strings:
     ```cpp
     /* clang-format off */
     for (int i = 0; i < strlen(s); ++i);
-    // 不如
+    // better:
     for (int i = 0, len = strlen(s); i < len; ++i);
     ```
--   循环展开。通过适当的循环展开可以减少整个计算中关键路径上的操作数量
+-   The loop unfolds. The number of operations on the critical path in the entire calculation can be reduced by using appropriate loop expansion.
     ```cpp
     for (int i = 0; i < n; ++i) {
       res = res OP a[i];
     }
-    // 不如
+    // better:
     int i;
     for (i = 0; i < n; i += 2) {
       res = res OP a[i];
@@ -26,51 +26,49 @@
       res = res OP a[i];
     }
     ```
--   重新结合变换，增加了可以并行执行的运算数量
+-   Reintegration of transforms increases the number of operations that can be performed in parallel:
     ```cpp
-    // 当然，加号可以换成其他的运算符
+    // Of course, the plus sign can be replaced with other operators
     for (int i = 0; i < n; ++i) res = (res + a[i]) + a[i + 1];
-    // 不如
+    // better:
     for (int i = 0; i < n; ++i) res = res + (a[i] + a[i + 1]);
     ```
 
-## 循环宏定义
+## Loop macro definition
 
-我们写代码时，像下面这样的循环代码写得会非常多：
+When we are writing the code, there will be a lot of loop code like the following:
 
 ```cpp
 for (int i = 0; i < N; i++) {
 }
 ```
 
-为了简化这样的循环代码，我们可以使用宏定义：
+To simplify such code, we can use macro definition:
 
 ```cpp
 #define f(x, y, z) for (int x = (y), __ = (z); x < __; ++x)
 ```
 
-这样写循环代码时，就可以简化成 `f(i, 0, N)` 。例如：
+When writing loop code in this way, it can be simplified to `f(i, 0, N)`. E.g:
 
 ```cpp
 // a is a STL container
 f(i, 0, a.size()) { ... }
 ```
 
-另外推荐一个比较有用的宏定义：
+Another recommended macro definition:
 
 ```cpp
 #define _rep(i, a, b) for (int i = (a); i <= (b); ++i)
 ```
 
-> 注：参考《算法竞赛入门经典 习题与解答》
+## Make good use of namespace
 
-## 善用 namespace
+Using namespace can make the program more readable and easy to debug.
 
-使用 namespace 能使程序可读性更好，便于调试。
-
-??? note "示例代码"
+??? note "Sample code"
     ```cpp
-    // NOI 2018 屠龙勇士 40分部分分代码
+    // NOI 2018 Dragon Warrior 40 points partial code
     #include <algorithm>
     #include <cmath>
     #include <cstring>
@@ -78,7 +76,7 @@ f(i, 0, a.size()) { ... }
     using namespace std;
     long long n, m, a[100005], p[100005], aw[100005], atk[100005];
     namespace one_game {
-    // 其实namespace里也可以声明变量
+    // We could actually declare variables in the namespace
     void solve() {
       for (int y = 0;; y++)
         if ((a[1] + p[1] * y) % atk[1] == 0) {
@@ -125,13 +123,13 @@ f(i, 0, a.size()) { ... }
     }
     ```
 
-## 善用标识符进行调试
+## Use identifiers for debugging
 
-我们在本地测试的时候，往往要加入一些调试语句。要提交到 OJ 的时候，就要把他们全部删除，有些麻烦。
+While testing locally, we often add some debugging statements. But we have to delete them all when submitting to OJ. This could be a bit inconvenient.
 
-我们可以通过定义标识符的方式来进行本地调试。
+We can do local debugging by defining identifiers.
 
-大致的程序框架是这样的：
+The general program framework is this:
 
 ```cpp
 #define DEBUG
@@ -144,61 +142,62 @@ f(i, 0, a.size()) { ... }
 #endif
 ```
 
- `#ifdef` 会检查程序中是否有通过 `#define` 定义的对应标识符，如果有定义，就会执行下面的内容， `#ifndef` 恰恰相反，会在没有定义相应标识符的情况下执行后面的语句。
+`#ifdef` will check whether there is a corresponding identifier defined by `#define` in the program, if there is, it will execute the following content, `#ifndef`, on the other hand, will be executed without defining the corresponding identifier The following statement.
 
-我们提交程序的时候，只需要将 `#define DEBUG` 一行注释掉即可。
+In this case, when submitting the program, we only need to comment out the `#define DEBUG` line.
 
-当然，我们也可以不在程序中定义标识符，而是通过 `-DDEBUG` 的编译选项在编译的时候定义 `DEBUG` 标识符。这样就可以在提交的时候不用修改程序了。
+Of course, we can also not define the identifier in the program, but define the DEBUG identifier at compile time through the compilation option of `-DDEBUG`. This way you don't need to modify the program when submitting.
 
-不少 OJ 都开启了 `-DONLINE_JUDGE` 这一编译选项，善用这一特性可以节约不少时间。
+Many OJs have turned on the `-DONLINE_JUDGE` compilation option, which could save a lot of time.
 
-## 对拍
+## Double Compare
 
-有的时候我们写了一份代码，但是不知道它是不是正确的。这时候就可以用对拍的方法来进行检验或调试。
+Sometimes we don't know if the code we write is correct or not. At this time, we can use the "double compare" method to verify or debug.
 
-什么是对拍呢？具体而言，就是通过对比两个程序的输出来检验程序的正确性。你可以将自己程序的输出与其他程序（打的暴力或者其他 dalao 的标程）的输出进行对比，从而判断自己的程序是否正确。
+What is "Double Compare"? Specifically, the correctness of the program is verified by comparing the output of the two programs. You can compare the output of your program with the output of other programs (brute force or other contestants') to judge whether your program is correct.
 
-当然，对拍过程要多次进行，我们需要通过批处理的方法来实现对拍的自动化。
+Of course, since the "Double Compare" process needs to be carried out many times, we need to automate it by batch processing.
 
-具体而言，我们需要一个数据生成器，两个要进行对拍的程序。
+Specifically, we need a data generator, and two programs to be compared with.
 
-每次运行一次 [数据生成器](../topic/problemsetting/#_17) ，将生成的数据写入输入文件，通过重定向的方法使两个程序读入数据，并将输出写入指定文件，利用 Windows 下的 `fc` 命令比对文件（Linux 下为 `diff` 命令），从而检验程序的正确性。
+Run [Data Generator](../topic/problemsetting/#_17) once each time, write the generated data to the input file, make the two programs read the data through the redirection method, and write the output to the specified file , Use the `fc` command under Windows to compare files (`diff` command under Linux) to verify the correctness of the program.
 
-如果发现程序出错，可以直接利用刚刚生成的数据进行调试啦。
+If you find an error in the program, you can use the data you just generated for debugging.
 
-对拍程序的大致框架如下：
+The general framework of the double compare is as follows:
 
 ```cpp
 #include <stdio.h>
 #include <stdlib.h>
 int main() {
   // For Windows
-  // 对拍时不开文件输入输出
-  // 当然，这段程序也可以改写成批处理的形式
+  // Do not use file input and output
+  // Of course, this program can also be rewritten into a batch form
   while (1) {
-    system("gen > test.in");  // 数据生成器将生成数据写入输入文件
-    system("test1.exe < test.in > a.out");  // 获取程序1输出
-    system("test2.exe < test.in > b.out");  // 获取程序2输出
+    system("gen > test.in");  // The data generator writes the generated data to the input file
+    system("test1.exe < test.in > a.out");  // Get program 1 output
+    system("test2.exe < test.in > b.out");  // Get program 2 output
     if (system("fc a.out b.out")) {
-      // 该行语句比对输入输出
-      // fc返回0时表示输出一致，否则表示有不同处
-      system("pause");  // 方便查看不同处
+      // This line of statements compares input and output
+      // When fc returns 0, it means that the output is consistent
+      // otherwise there is a difference
+      system("pause");  // Easy to check the difference
       return 0;
-      // 该输入数据已经存放在test.in文件中，可以直接利用进行调试
+      // The input data has been stored in the test.in file and can be used directly for debugging
     }
   }
 }
 ```
 
-## <span id="mempool">内存池</span>
+## <span id="mempool">Memory pool</span>
 
-当我们需要动态分配内存的时候，频繁使用 new/malloc 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE。
+When we need to allocate memory dynamically, frequent use of new/malloc will occupy a lot of time and space, and even generate a lot of memory fragments to reduce the performance of the program, which may make the originally correct program TLE/MLE.
 
-这时候我们就需要使用到「内存池」这种技巧：在真正使用内存之前，先申请分配一定大小的内存作为备用，当需要动态分配时则直接从备用内存中分配一块即可。
+In this case, we need to use the "memory pool" technique: before actually using the memory, first we apply for the allocation of a certain size of memory as a spare. When dynamic allocation is needed, we can directly allocate a block from the spare memory.
 
-当然在大多数 OI 题当中，我们可以预先算出需要使用到的最大内存并一次性申请分配。
+Of course, in most OI problems, we can calculate the maximum memory required in advance and apply for allocation at one time.
 
-如申请动态分配 $32$ 位有符号整数数组的代码：
+For example, the code to dynamically allocate $32$ signed integer array:
 
 ```cpp
 inline int* newarr(int sz) {
@@ -207,7 +206,7 @@ inline int* newarr(int sz) {
 }
 ```
 
-线段树动态开点的代码：
+Code for dynamic allocating nodes of the segment tree:
 
 ```cpp
 inline Node* newnode() {
@@ -216,4 +215,4 @@ inline Node* newnode() {
 }
 ```
 
-注：本页面 [部分内容](https://github.com/OI-wiki/OI-wiki/commit/e9fa69af9d7f1583cb5ddad837c04bb1b03d7939) 最初发表于 [洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers) ，由原作者整理并搬运至此，略有删改。
+Note: [part of this page(CN Version)](https://github.com/OI-wiki/OI-wiki/commit/e9fa69af9d7f1583cb5ddad837c04bb1b03d7939) was originally published in [洛谷日报#86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers), sorted, slightly modified, and published by the original author to this point.
