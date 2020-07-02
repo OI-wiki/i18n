@@ -1,115 +1,115 @@
-可以使用 Docker 部署环境。
+You can use the Docker deployment environment.
 
-以下步骤须在 root 用户下或 docker 组用户下执行
+The following steps must be performed under root user or docker group user
 
-## 拉取 oi-wiki 镜像
+## Pull oi-wiki mirror
 
 ```bash
-# 以下命令在主机中运行其中一个即可
-# Docker Hub 镜像（官方镜像仓库）
+# Run one of the following commands in the host
+# Docker Hub image (official image repository)
 docker pull 24oi/oi-wiki
-# DaoCloud Hub 镜像（国内镜像仓库）
+# DaoCloud Hub mirror (domestic mirror warehouse, for mainland China user)
 docker pull daocloud.io/sirius/oi-wiki
-# Tencent Hub 镜像（国内镜像仓库）
+# Tencent Hub mirror (domestic mirror warehouse, for mainland China user)
 docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 ```
 
-## 运行容器
+## Run the container
 
 ```bash
-# 以下命令在主机中运行
+# The following command runs in the host
 docker run -d -it [image]
 ```
 
--   设置 `[image]` （必须）以设置镜像，如从 Docker Hub 拉取的则为 `24oi/oi-wiki` ，DaoCloud Hub 拉取的则为 `daocloud.io/sirius/oi-wiki` 
--   设置 `--name [name]` （默认空，若想查看容器 id，则输入 `docker ps` ，若设置请替换 `[name]` 为自定义的容器名字）以设置容器名字
--   设置 `-p [port]:8000` （必须）（不写该语句则默认为不暴露端口，若设置请替换 `[port]` 为主机端口）以映射容器端口至主机端口（可以在主机使用 `http://127.0.0.1:[port]` 访问 **OI Wiki** ）
+-   Configure `[image]` (required) to set up the image. For example, if you pull from Docker Hub, it is `24oi/oi-wiki`, and if you pull from DaoCloud Hub, it is `daocloud.io/sirius/oi-wiki`
+-   Configure `--name [name]` (default is empty, if you want to view the container id, enter `docker ps`, if you want to change it, please replace `[name]` with a custom name) to set the container name
+-   Configure `-p [port]:8000` (required) (If you don’t write this statement, the default is to not expose the port. If you want to set it, please replace `[port]` as the host port) to map the container port to the host port (**OI Wiki** can be accessed on the host using `http://127.0.0.1:[port]`)
 
-## 使用
+## Usage
 
-基于 Ubuntu 16.04 部署
+Based on Ubuntu 16.04 deployment
 
-进入容器：
+Enter the container:
 
 ```bash
-# 以下命令在主机中运行
+# The following command runs in the host
 docker exec -it [name] /bin/bash
 ```
 
-若在上述运行容器中去掉 `-d` ，则可以直接进入容器 bash，退出后容器停止，加上 `-d` 则后台运行，请手动停止。上述进入容器针对加上 `-d` 的方法运行。
+If you remove `-d` from the above running container, you can directly enter the container bash. After exiting, the container will stop. If you add `-d`, it will run in the background. Please stop it manually. The above entry container operates against the method of adding `-d`.
 
-特殊用法：
+Special usage:
 
 ```bash
-# 以下命令在容器中运行
-# 更新 git 仓库
+# The following command runs in the container
+# Update git repository
 wiki-upd
 
-# 使用我们的自定义主题
+# Use our custom theme
 wiki-theme
 
-# 构建 mkdocs ，会在 site 文件夹下得到静态页面
+# Build mkdocs and you will get static pages under the site folder
 wiki-bld
 
-# 构建 mkdocs 并渲染 MathJax ，会在 site 文件夹下得到静态页面
+# Build mkdocs and render MathJax, you will get static pages in the site folder
 wiki-bld-math
 
-# 运行一个服务器，访问容器中 http://127.0.0.1:8000 或访问主机中 http://127.0.0.1:[port] 可以查看效果
+# Run a server, visit http://127.0.0.1:8000 in the container or visit http://127.0.0.1:[port] in the host to see the effect
 wiki-svr
 
-# 修正 Markdown
+# Correct Markdown
 wiki-o
 ```
 
-退出容器：
+Exit the container:
 
 ```bash
-# 以下命令在容器中运行
-# 退出
+# The following command runs in the container
+# Exit
 exit
 ```
 
-## 停止容器
+## Stop the container
 
 ```bash
-# 以下命令在主机中运行
+# The following command runs in the host
 docker stop [name]
 ```
 
-## 启动容器
+## Start the container
 
 ```bash
-# 以下命令在主机中运行
+# The following command runs in the host
 docker start [name]
 ```
 
-## 重启容器
+## Restart the container
 
 ```bash
-# 以下命令在主机中运行
+# The following command runs in the host
 docker restart [name]
 ```
 
-## 删除容器
+## Delete container
 
 ```bash
-# 以下命令在主机中运行
-# 删除前请先停止容器
+# The following command runs in the host
+# Please stop the container before deleting
 docker rm [name]
 ```
 
-## 更新镜像
+## Update mirror
 
-重新再 `pull` 一次即可，通常不会更新
+Just pull again, usually not updated
 
-## 删除镜像
+## Delete mirror
 
 ```bash
-# 以下命令在主机中运行
-# 删除前请先删除使用 oi-wiki 镜像构建的容器
+# The following command runs in the host
+# Please delete the container built with oi-wiki image before deleting
 docker rmi [image]
 ```
 
-## 疑问
+## Doubt
 
-如果您有疑问，欢迎提出 issue！
+If you have any questions, please feel free to open an issue!
