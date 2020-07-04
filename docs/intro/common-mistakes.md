@@ -2,15 +2,15 @@ This page mainly shares the mistakes commonly made in the competition.
 
 ## Could Cause Compile Error
 
-Because this type of error is too simple(any normal person knows how to fix it;-), it is abbreviated.
+We left the detailed explanation out since this type of errors is pretty straightforward and self-explanatory.
 
 -   Use `int mian()` instead of `int main()` .
 
 -   Forget to write a semicolon after `struct` or `class`.
 
--   If the array is too large, (on OJ) an illegal function (such as multithreading) is used, or the function is declared but undefined, it will cause a link error.
+-   If the array size is too large, or an illegal function (such as multithreading) is used on OJ, or the function is declared but undefined, it will cause the `LinkError`.
 
--   When using the `max` function in `algorithm`, one parameter type is `int` and the other parameter type is `long long`.
+-   When using the `max` function in `algorithm`, one parameter type is defined as `int` and the other one is defined as `long long`.
     -   Example:
         ```cpp
         printf("%lld\n", max(0, query(1, 1, n, l, r)); // query returns long long type
@@ -22,7 +22,7 @@ Because this type of error is too simple(any normal person knows how to fix it;-
 
 ## Does not cause Compile Error but will cause Warning error
 
-This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter, so you should learn to use the `-W{warningtype}` parameter. Common ones are `-Wall`, `- Wextra`, `-Wshadow`, etc.
+This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter. You should familiarize yourself with the [Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html). Common ones in `-W{warningtype}` include `-Wall`, `- Wextra`, `-Wshadow`, etc.
 
 -   Error caused by operator priority.
     -    `1 << 1 + 1` : 1 is shifted to the left by 2, that is, the value returned by the expression is 4.
@@ -39,7 +39,7 @@ This kind of error is hard to find, but it will be pointed out by the compiler w
             else
               puts("No");
             ```
-            No matter what the previous value of $n$ was, the output must be `Yes`.
+            No matter what the previous value of `n` was, the output must be `Yes`.
         **Tips**: If you really want to use the assignment operator (such as `while (foo = bar)`) directly in `if` / `while`, and you do not want to receive Warning, you can use **double brackets**: `while ((foo = bar))`.
 
 -   When reading using `scanf`, the address character `&` is not added. More generally, when using `scanf` or `printf`, the parameter type does not match the format specifier.
@@ -56,15 +56,15 @@ This kind of error is hard to find, but it will be pointed out by the compiler w
 
 ## Neither causes Compile Error nor Warning error
 
-Such errors cannot be discovered by the compiler, so you can only rely on yourself when debugging.
+Such errors cannot be discovered by the compiler, so you need to rely on yourself when debugging.
 
 ### Could Cause WA
 
 -   Multiple sets of data have not cleared the array.
 
--   Reading optimization did not check negative numbers.
+-   Reading optimization forgets to check negative numbers.
 
--   The data type used is not large enough, causing overflow, which means that because the use of `long long` (opening `long long`) leads to a large number of points lost and the season is invalid .
+-   The data type used is not large enough, causing overflow, which means that because the usage of `long long` (opening `long long`) leads to losing huge points.
 
 -   When saving the graph, the node number starts from 0, and the number of the two endpoints in the edge starts from 1, and forgets -1 when reading it.
 
@@ -104,7 +104,7 @@ Such errors cannot be discovered by the compiler, so you can only rely on yourse
 
 -   When hashing, `unsigned` is not used, because the right shift operation for negative numbers will be complemented by 1 at the highest bit. For details, see [Bit Operation](../math/bit.md) 
 
--   The debugging information was not deleted.
+-   Forgets to delete the debugging information.
 
 -   Add `;` by mistake.
     -   Example:
@@ -114,7 +114,7 @@ Such errors cannot be discovered by the compiler, so you can only rely on yourse
             printf("OI Wiki!\n");
         ```
 
--   The sentinel value is not correctly set. For example, the `0` node of a balanced tree.
+-   The sentinel value is not set correctly. For example, the `0` node of a balanced tree.
 
 -   In the constructor of a class or structure, use `:` to initialize the variable, and the variable declaration order does not meet the dependency at the time of initialization. Because the order of initialization of member variables is only related to the order in which they are declared in the class, not the order in the initialization list.
 
@@ -132,7 +132,7 @@ f[find(a)] = find(b);  // wrong
 
 -   Forgets file deletion operation (for some OJ).
 
--   Errors in comparison functions when sorting, `std::sort` requires comparison functions to be strictly weakly ordered: `a<a` is `false`; if `a<b` is `true`, then `b<a` is `false`; if `a<b` is `true` and `b<c` is` true`, then `a<c` is `true`. Pay special attention to the second point.
+-   Errors in comparison functions when sorting. `std::sort` requires comparison functions to be strictly weakly ordered: `a<a` is `false`; if `a<b` is `true`, then `b<a` is `false`; if `a<b` is `true` and `b<c` is` true`, then `a<c` is `true`. Pay special attention to the second point.
     If the above requirements are not met, it is likely to be RE when sorting.
     For example, when writing the parity order of the Mo's Algorithm, this is wrong:
     ```cpp
@@ -152,7 +152,7 @@ f[find(a)] = find(b);  // wrong
         return block[a.l] < block[b.l];
     ```
 
--   Dereference the null pointer.
+-   Dereference of the null pointer.
 
 ### Could Cause TLE
 
@@ -166,9 +166,9 @@ f[find(a)] = find(b);  // wrong
 
 -   BFS does not mark whether a state has been visited.
 
--   Use macro expansion to write min/max
+-   Use macro expansion to write min/max.
 
-    Although this approach technically is not a "error", it still needs to be mentioned here.
+    Although this approach technically is not an "error", it still needs to be mentioned here.
 
     The common way of writing looks like this:
 
@@ -213,7 +213,7 @@ f[find(a)] = find(b);  // wrong
 
 -   Too many elements are inserted in the STL container.
 
-    -   It is often an endless loop in a loop that inserts elements into the STL.
+    -   It is often an endless loop that inserts elements into the STL.
 
     -   It may also be stuck.
 
@@ -223,7 +223,7 @@ f[find(a)] = find(b);  // wrong
 
     -   Fail to set the initial value of the loop correctly, leading to the access to the value with index -1.
 
-    -   The undirected graph edge table is not declared twice.
+    -   The undirected graph edge table is not declared twice the size.
 
     -   The segment tree does not declare 4 times the space.
 
@@ -247,7 +247,7 @@ f[find(a)] = find(b);  // wrong
 
 -   When converting recursion into iteration, a lot of extra operations are introduced.
 
-### Errors that only affect when the program is running locally
+### Errors that only take effect when the program is running locally
 
 -   Errors that may occur during file operations:
 
