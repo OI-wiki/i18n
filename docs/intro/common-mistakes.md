@@ -8,24 +8,24 @@ We left the detailed explanation out since this type of errors is pretty straigh
 
 -   Forget to write a semicolon after `struct` or `class`.
 
--   If the array size is too large, or an illegal function (such as multithreading) is used on OJ, or the function is declared but undefined, it will cause the `LinkError`.
+-   If the array size is too large, or an illegal function (such as multithreading) is used on OJ, or the function is declared but undefined, it will cause the link error.
 
--   When using the `max` function in `algorithm`, one parameter type is defined as `int` and the other one is defined as `long long`.
+-   When using the `max` function in `algorithm`, one parameter has `int` type and the other one has `long long` type.
     -   Example:
         ```cpp
         printf("%lld\n", max(0, query(1, 1, n, l, r)); // query returns long long type
         ```
 
--    Skipped the initialization of some local variables while `goto`.
+-    Skipped the initialization of some local variables while using `goto`.
 
     -    Skipped the initialization of some local variables while `switch-case`.
 
-## Does not cause Compile Error but will cause Warning error
+## Does not cause Compile Error but will cause Warning
 
-This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter. You should familiarize yourself with the [Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html). Common ones in `-W{warningtype}` include `-Wall`, `- Wextra`, `-Wshadow`, etc.
+This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter. You might want to check out the [Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html) in the official documentation. Common ones in `-W{warningtype}` include `-Wall`, `- Wextra`, `-Wshadow`, etc.
 
--   Error caused by operator priority.
-    -    `1 << 1 + 1` : 1 is shifted to the left by 2, that is, the value returned by the expression is 4.
+-   Error caused by operator precedence .
+    -    `1 << 1 + 1` : 1 is left shift by 2, that is, the value returned by the expression is 4.
 
 -   The `static` modifier is used incorrectly.
 
@@ -39,8 +39,8 @@ This kind of error is hard to find, but it will be pointed out by the compiler w
             else
               puts("No");
             ```
-            No matter what the previous value of `n` was, the output must be `Yes`.
-        **Tips**: If you really want to use the assignment operator (such as `while (foo = bar)`) directly in `if` / `while`, and you do not want to receive Warning, you can use **double brackets**: `while ((foo = bar))`.
+            No matter what the previous value of $n$ was, the output must be `Yes`.
+        **Tips**: If you really want to use the assignment operator (such as `while (foo = bar)`) directly in `if` / `while`, and you do not want to receive warnings, you can use **double brackets**: `while ((foo = bar))`.
 
 -   When reading using `scanf`, the address character `&` is not added. More generally, when using `scanf` or `printf`, the parameter type does not match the format specifier.
 
