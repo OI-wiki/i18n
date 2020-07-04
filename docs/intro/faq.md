@@ -4,13 +4,13 @@ This project mainly uses [Issues](https://github.com/OI-wiki/i18n/issues) for co
 
 Ww will open an English telegram channel soon. Please stay tuned! Meanwhile, if you wish to join the discussion in Chinese, you can join [@OIwiki](https://t.me/OIwiki).
 
-## Contribution
+## Contributing
 
 Please refer to the [How to Contribute](./htc.md) page.
 
 ## F.A.Q.
 
-### Where is the directory
+### Where is the table of contents
 
 The directory is in the [mkdocs.yml](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17) under the project root directory.
 
@@ -31,29 +31,6 @@ Or you can read the directory [(mkdocs.yml)](https://github.com/OI-wiki/i18n/blo
 ### How to write a commit message
 
 We recommend using [commitizen/cz-cli](https://github.com/commitizen/cz-cli) to standardize the commit message (not mandatory).
-
-### I encountered difficulties when trying to access GitHub
-
-It is recommended to add the following lines to the hosts file: (Source: [GoogleHosts-919f34e](https://github.com/googlehosts/hosts/blob/919f34e53c1099241af7d0b5e730b60899af7d18/hosts-files/hosts#L1467-#L1472))
-
-```text
-# GitHub Start
-13.250.177.223	gist.github.com
-13.250.177.223	github.com
-13.229.188.59	www.github.com
-151.101.56.133	raw.githubusercontent.com
-# GitHub End
-```
-
-You can learn more on [GoogleHosts Homepage](https://github.com/googlehosts/hosts).
-
-### pip is too slow
-
-If you currently live in China. You can choose to replace the mirrors. Please refer to: [Change pip source to domestic mirror-L Yu-CSDN blog](https://blog.csdn.net/lambert310/article/details/52412059), or:
-
-```bash
-pip install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
-```
 
 ### The cloned project on client is too slow
 
@@ -99,11 +76,11 @@ pip install -U -r requirements.txt
 
 You can refer to [MkDocs instructions](https://www.mkdocs.org/).
 
-We are currently using [remark-lint](https://github.com/remarkjs/remark-lint) to automate the format correction. There may be some problems with the [configuration](https://github.com/OI-wiki/i18n/blob/master/.remarkrc). You are welcome to suggest the edit.
+We are currently using [remark-lint](https://github.com/remarkjs/remark-lint) to automate the format correction. There may be some problems with the [configuration](https://github.com/OI-wiki/i18n/blob/master/.remarkrc). You are welcome to suggest the edits.
 
 #### GitHub does not display my mathematical formulas?
 
-Yes, the GitHub preview does not show mathematical formulas. But please be assured that mkdocs supports them and can be used normally. All sentences supported by MathJax can be used.
+Yes, the GitHub preview does not show mathematical formulas. But please be assured that mkdocs supports them and can be used normally. All syntax supported by MathJax can be used.
 
 #### Why is my math formula garbled
 
@@ -147,7 +124,7 @@ copyright: SATA
 
 Note: The default is ‘CC BY-SA 4.0 and SATA’.
 
-### How to turn off word count for a page (now closed by default)
+### How to turn off word count for a page (now turned off default)
 
 Please refer to the usage of [Metadata](https://squidfunk.github.io/mkdocs-material/extensions/metadata/#usage). Just add a line at the beginning of the page.
 
@@ -161,7 +138,7 @@ pagetime:
 
 This is because the GitHub API cannot track statistics after the file directory changes. To solve this problem, We are manually maintaining a list of authors in the file header. If you have contributed to a part of a page, but not recorded by the author of the page, you can add your GitHub ID to the `author` field of the file header in the format of `author: Ir1d, cjsoft`. The two adjacent IDs are separated by `,·` (comma and space).
 
-Note: The ID recorded here is the address corresponding to the GitHub Profile (that is, the homepage after clicking the upper right corner profile of the GitHub)
+Note: The ID recorded here is the address corresponding to the GitHub Profile (that is, the url after clicking the upper right corner profile on the GitHub)
 
 ### How to use redirect file
 
