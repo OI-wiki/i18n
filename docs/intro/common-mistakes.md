@@ -6,7 +6,7 @@ We left the detailed explanation out since this type of errors is pretty straigh
 
 -   Use `int mian()` instead of `int main()` .
 
--   Forget to write a semicolon after `struct` or `class`.
+-   Forgets to write a semicolon after `struct` or `class`.
 
 -   If the array size is too large, or an illegal function (such as multithreading) is used on OJ, or the function is declared but undefined, it will cause the link error.
 
@@ -25,7 +25,7 @@ We left the detailed explanation out since this type of errors is pretty straigh
 This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter. You might want to check out the [Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html) in the official documentation. Common ones in `-W{warningtype}` include `-Wall`, `- Wextra`, `-Wshadow`, etc.
 
 -   Error caused by operator precedence .
-    -    `1 << 1 + 1` : 1 is left shift by 2, that is, the value returned by the expression is 4.
+    -    `1 << 1 + 1` : 1 is left shifted by 2, that is, the value returned by the expression is 4.
 
 -   The `static` modifier is used incorrectly.
 
@@ -42,31 +42,31 @@ This kind of error is hard to find, but it will be pointed out by the compiler w
             No matter what the previous value of $n$ was, the output must be `Yes`.
         **Tips**: If you really want to use the assignment operator (such as `while (foo = bar)`) directly in `if` / `while`, and you do not want to receive warnings, you can use **double brackets**: `while ((foo = bar))`.
 
--   When reading using `scanf`, the address character `&` is not added. More generally, when using `scanf` or `printf`, the parameter type does not match the format specifier.
+-   Forgets to add the address character `&` when reading using `scanf`. More generally, when using `scanf` or `printf`, the parameter type does not match the format specifier.
 
--   Did not consider the case where the array index appears negative.
+-   Did not consider the case of negative array index.
 
 -   Use both bitwise and logical operators (`==`) without parentheses (eg `(x>>j)&3==2` ).
 
 -   `int` literal overflow, for example: `long long x = 0x7f7f7f7f7f7f7f7f`, `1<<62`.
 
--   Uninitialized local variables, causing local variables to be assigned with initial garbage values.
+-   Uninitialized local variables, causing local variables to be assigned with initial undefined values.
 
 -   The local and global variables have the same name, causing the global variables to be accidentally overwritten. (Open `-Wshadow` to check for such errors.)
 
-## Neither causes Compile Error nor Warning error
+## Causes neither Compile Error nor Warning
 
 Such errors cannot be discovered by the compiler, so you need to rely on yourself when debugging.
 
 ### Could Cause WA
 
--   Multiple sets of data have not cleared the array.
+-   Forgets to clear all for multiple sets of array input.
 
--   Reading optimization forgets to check negative numbers.
+-   Forgets to check negative numbers when using reading optimization.
 
--   The data type used is not large enough, causing overflow, which means that because the usage of `long long` (opening `long long`) leads to losing huge points.
+-   The data type used is not large enough, causing overflow, which means that the usage of `long long` (opening `long long`) leads to losing a large number of points.
 
--   When saving the graph, the node number starts from 0, and the number of the two endpoints in the edge starts from 1, and forgets -1 when reading it.
+-   Forgets about -1 when reading input graph whose endpoint number starts from 1 but those defined in your graph starts from 0.
 
 -   > or < sign are wrong or reversed.
 
@@ -80,7 +80,7 @@ Such errors cannot be discovered by the compiler, so you need to rely on yoursel
         int main() {
           std::ios::sync_with_stdio(false);
           // After the synchronization is turned off, 
-          // cin/cout will use a separate buffer 
+          // cin/cout will use separate buffers 
           // instead of synchronizing the output to the scanf/printf buffer, 
           // thereby reducing IO time
           std::cout << "a\n";
@@ -118,7 +118,7 @@ Such errors cannot be discovered by the compiler, so you need to rely on yoursel
 
 -   In the constructor of a class or structure, use `:` to initialize the variable, and the variable declaration order does not meet the dependency at the time of initialization. Because the order of initialization of member variables is only related to the order in which they are declared in the class, not the order in the initialization list.
 
--   When merging two union-find sets, forgets to merge the ancestors of the two elements;
+-   Forgets to merge the ancestors of the two elements when merging two union-find sets, 
 
 ```cpp
 f[a] = b;              // right
@@ -130,7 +130,7 @@ f[find(a)] = find(b);  // wrong
 -   Divide the integer by $0$.
     -  Reverse $0$.
 
--   Forgets file deletion operation (for some OJ).
+-   Forgets the file deletion operation (for some OJ).
 
 -   Errors in comparison functions when sorting. `std::sort` requires comparison functions to be strictly weakly ordered: `a<a` is `false`; if `a<b` is `true`, then `b<a` is `false`; if `a<b` is `true` and `b<c` is` true`, then `a<c` is `true`. Pay special attention to the second point.
     If the above requirements are not met, it is likely to be RE when sorting.
@@ -203,7 +203,7 @@ f[find(a)] = find(b);  // wrong
 
     Will be stuck to a single query $\Theta(n)$ leading to TLE.
 
--   Forgets file deletion operation (for some OJ).
+-   Forgets the file deletion operation (for some OJ).
 
 -    `for (int i = 0; i < strlen(s); ++i)`: Repeatedly execute functions with complexity other than $O(1)$ in the loop. (Strictly speaking, this may cause a change in time complexity.)
 
@@ -255,4 +255,4 @@ f[find(a)] = find(b);  // wrong
 
     -    The file names in `freopen()` are not added with `.in` / `.out`.
 
--   Forget about `delete` or `free` while using the heap space. 
+-   Forgets about `delete` or `free` while using the heap space. 
