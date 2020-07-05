@@ -66,7 +66,7 @@ Such errors cannot be discovered by the compiler, so you need to rely on yoursel
 
 -   The data type used is not large enough, causing overflow, which means that the usage of `long long` (opening `long long`) leads to losing a large number of points.
 
--   Forgets about -1 when reading input graph whose endpoint number starts from 1 but those defined in your graph starts from 0.
+-   Forgets to -1 when reading input graph whose endpoint number starts from 1 but those defined in your graph starts from 0.
 
 -   > or < sign are wrong or reversed.
 
@@ -128,13 +128,16 @@ f[find(a)] = find(b);  // wrong
 ### Could Cause RE
 
 -   Divide the integer by $0$.
-    -  Reverse $0$.
+    -  Inverse $0$.
 
--   Forgets the file deletion operation (for some OJ).
+-   Forgets to delete the file operations (for some OJs).
 
 -   Errors in comparison functions when sorting. `std::sort` requires comparison functions to be strictly weakly ordered: `a<a` is `false`; if `a<b` is `true`, then `b<a` is `false`; if `a<b` is `true` and `b<c` is` true`, then `a<c` is `true`. Pay special attention to the second point.
+    
     If the above requirements are not met, it is likely to be RE when sorting.
+    
     For example, when writing the parity order of the Mo's Algorithm, this is wrong:
+    
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -142,8 +145,11 @@ f[find(a)] = find(b);  // wrong
       else
         return block[a.l] < block[b.l];
     ```
-    In the above code, `(block[a.l]&1)^(a.r<b.r)` does not meet the strict weak order requirement 2.
+
+    In the code above, `(block[a.l]&1)^(a.r<b.r)` does not meet the strict weak order in requirement 2.
+
     Changed to this would be correct.
+
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -162,9 +168,9 @@ f[find(a)] = find(b);  // wrong
 
     -   Use the same name for the loop variable.
 
-    -   The direction of circulation is reversed.
+    -   The direction of loop is reversed.
 
--   BFS does not mark whether a state has been visited.
+-   Forgets to mark whether a state has been visited in BFS.
 
 -   Use macro expansion to write min/max.
 
@@ -186,7 +192,7 @@ f[find(a)] = find(b);  // wrong
 
     int query(int t, int l, int r, int ql, int qr) {
       if (ql <= l && qr >= r) {
-        ++ti[t];  // Record the number of node visits for easy testing
+        ++ti[t];  // Record the number of node visits for easy debugging
         return vi[t];
       }
 
@@ -203,13 +209,13 @@ f[find(a)] = find(b);  // wrong
 
     Will be stuck to a single query $\Theta(n)$ leading to TLE.
 
--   Forgets the file deletion operation (for some OJ).
+-   Forgets to delete the file operations (for some OJ).
 
 -    `for (int i = 0; i < strlen(s); ++i)`: Repeatedly execute functions with complexity other than $O(1)$ in the loop. (Strictly speaking, this may cause a change in time complexity.)
 
 ### Could Cause MLE
 
--   The array is too large.
+-   The size of the array is too large.
 
 -   Too many elements are inserted in the STL container.
 
@@ -219,7 +225,7 @@ f[find(a)] = find(b);  // wrong
 
 ###  [Undefined behavior](https://en.cppreference.com/w/cpp/language/ub) 
 
--   The array is out of bounds. Both count up and down. (Mostly RE.)
+-   The array is out of boundary. Either the starting point or ending point. (Mostly RE.)
 
     -   Fail to set the initial value of the loop correctly, leading to the access to the value with index -1.
 
@@ -227,7 +233,7 @@ f[find(a)] = find(b);  // wrong
 
     -   The segment tree does not declare 4 times the space.
 
-    -   Reading the data range wrong, miss a zero in declaration.
+    -   Miss a zero in delcaration because reading the data range wrong.
 
     -   Miscalculate the space complexity of the algorithm.
 
@@ -239,7 +245,7 @@ f[find(a)] = find(b);  // wrong
 
     -   The area pointed to by the pointer is already `free` or `delete`.
 
-### Cause constant to be too large
+### Cause time complexity constant to be too large
 
 -   When defining the modulus, a global variable (such as `int mod = 998244353` is used. For the convenience of compiler processing by constants, the correct practice is `const int mod = 998244353` ).
 
@@ -251,7 +257,7 @@ f[find(a)] = find(b);  // wrong
 
 -   Errors that may occur during file operations:
 
-    -   If the file pointer is not cleared during the beat, that is, `fclose(fp)`, then `fp = fopen()`, which will cause a large number of file pointers in the process.
+    -   If the file pointer is not cleared during the double compare, that is, `fclose(fp)`, then `fp = fopen()`, which will cause a large number of file pointers in the process.
 
     -    The file names in `freopen()` are not added with `.in` / `.out`.
 
