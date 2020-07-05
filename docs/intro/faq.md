@@ -56,7 +56,7 @@ python -m pip install --upgrade pip
 
 ### I failed to install dependencies
 
-You might want to check the following setup: network? permissions? error message?
+You might want to check the following setup: network? permissions? error messages?
 
 ### I have cloned the project, why can't it be deployed
 
@@ -66,7 +66,7 @@ Check if the dependencies are installed?
 
 Reference: <https://help.github.com/articles/syncing-a-fork/> 。
 
-### How to update if the previous dependencies are installed
+### How to update if the old dependencies are installed
 
 ```bash
 pip install -U -r requirements.txt
@@ -94,7 +94,7 @@ $$
 // Blank line
 ```
 
-#### Why is my formula not displayed properly in the table of contents?
+#### Why is my formula not displayed properly in the sidebar?
 
 Yes, this is a bug in python-markdown and would probably be fixed in the near future.
 
@@ -104,13 +104,13 @@ If you want to avoid double formulas in the table of contents now, you can refer
 ### ending position <script type="math/tex">endpos</script>
 ```
 
-In the table of contents it will become:
+In the sidebar it will become:
 
 ```text
 ending position endpos
 ```
 
-Note: Please try to avoid introducing MathJax formulas in the catalog now.
+Note: Please try to avoid introducing MathJax formulas in the sidebar now.
 
 ### How to individually declare copyright information for a page
 
