@@ -235,7 +235,7 @@ f[find(a)] = find(b);  // wrong
 
     -   Miss a zero in delcaration because reading the data range wrong.
 
-    -   Miscalculate the space complexity of the algorithm.
+    -   Miscalculates the space complexity of the algorithm.
 
     -   When writing a segment tree, `pushup` or `pushdown` leaf nodes.
 
