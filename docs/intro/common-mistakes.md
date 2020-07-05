@@ -116,7 +116,7 @@ Such errors cannot be discovered by the compiler, so you need to rely on yoursel
 
 -   The sentinel value is not set correctly. For example, the `0` node of a balanced tree.
 
--   In the constructor of a class or structure, use `:` to initialize the variable, and the variable declaration order does not meet the dependency at the time of initialization. Because the order of initialization of member variables is only related to the order in which they are declared in the class, not the order in the initialization list.
+-   In the constructor of a class or structure, use `:` to initialize the variable, and the variable declaration order does not meet the dependency at the time of initialization. This is because the order of initialization of member variables is only related to the order in which they are declared in the class, but not the order in the initialization list.
 
 -   Forgets to merge the ancestors of the two elements when merging two union-find sets, 
 
