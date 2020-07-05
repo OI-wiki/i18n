@@ -12,18 +12,18 @@ Please refer to the [How to Contribute](./htc.md) page.
 
 ### Where is the table of contents
 
-The directory is in the [mkdocs.yml](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17) under the project root directory.
+The table of contents is in the [mkdocs.yml](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17) under the project root directory.
 
 ### How to modify the content of a topic
 
 In top right corner of the page, there is an edit button <i class="md-icon">edit</i>. Click it and confirm you have read [how to contribute](./htc.md), and it will jump to the corresponding file on GitHub.
 
-Or you can read the directory [(mkdocs.yml)](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17) to find the file location.
+Or you can read the table of contents in [(mkdocs.yml)](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17) to find the file location.
 
 ### How to add a topic
 
 1.  You can open an issue, indicating what you want to add.
-2.  You can open a pull request, add a new topic in the directory [(mkdocs.yml)](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17), and Create an empty `.md` file in the corresponding location under the [docs](https://github.com/OI-wiki/i18n/tree/master/docs) folder.
+2.  You can open a pull request, add a new topic in the table of contents in [(mkdocs.yml)](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17), and Create an empty `.md` file in the corresponding location under the [docs](https://github.com/OI-wiki/i18n/tree/master/docs) folder.
 
 !!! warning "Warning"
     When editing an .md file, do not write a title at the beginning.
@@ -94,17 +94,17 @@ $$
 // Blank line
 ```
 
-#### Why is my formula not displayed properly in the catalog?
+#### Why is my formula not displayed properly in the table of contents?
 
 Yes, this is a bug in python-markdown and would probably be fixed in the near future.
 
-If you want to avoid double formulas in the catalog now, you can refer to <https://github.com/OI-wiki/OI-wiki/blame/master/docs/string/sam.md#L82>
+If you want to avoid double formulas in the table of contents now, you can refer to <https://github.com/OI-wiki/OI-wiki/blame/master/docs/string/sam.md#L82>
 
 ```text
 ### ending position <script type="math/tex">endpos</script>
 ```
 
-In the directory will become
+In the table of contents it will become:
 
 ```text
 ending position endpos
