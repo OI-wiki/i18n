@@ -16,7 +16,7 @@
 
 **A**: Some retired OIer started doing this. Then, they met many like-minded friends: active OIers, retired players, and friends who have never participated in **OI**. Currently, this project is mainly maintained by **OI Wiki** Team. (Here is a group photo)
 
-<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 
 Of course, it is very difficult to complete this project with our own strength. We sincerely invite you to help us improve **OI Wiki**.
 
