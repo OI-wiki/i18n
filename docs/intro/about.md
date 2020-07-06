@@ -22,7 +22,7 @@ Of course, it is very difficult to complete this project with our own strength. 
 
 **Q**: I heard about nocow, How can **OI Wiki**  ensure that the content we contribute will not disappear suddenly like it?
 
-**A**: We host the content on [GitHub](https://github.com/24OI/OI-wiki). Even if our server crashes, the content will not be lost. In addition, we will regularly back up everyone’s efforts, even if [GitHub](https://github.com/24OI/OI-wiki) goes bankrupt (?), our content will not be lost.
+**A**: We host the content on [GitHub](https://github.com/24OI/OI-wiki). Even if our server crashes, the content will not be lost. In addition, we will regularly back up everyone’s efforts, so even in the worst-case scenario where GitHub is out of service, our content will not be lost.
 
 **Q**: It seems that most of the content of **OI Wiki** is empty?
 
