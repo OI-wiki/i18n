@@ -25,6 +25,7 @@ Or you can read the table of contents in [(mkdocs.yml)](https://github.com/OI-wi
 1.  You can open an issue, indicating what you want to add.
 2.  You can open a pull request, add a new topic in the table of contents in [(mkdocs.yml)](https://github.com/OI-wiki/i18n/blob/master/mkdocs.yml#L17), and Create an empty `.md` file in the corresponding location under the [docs](https://github.com/OI-wiki/i18n/tree/master/docs) folder.
 
+
 !!! warning "Warning"
     When editing an .md file, do not write a title at the beginning.
 
