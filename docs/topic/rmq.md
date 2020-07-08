@@ -1,115 +1,111 @@
-## 简介
+## Introduction
 
-RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。
+RMQ is the abbreviation of [Range Maximum/Minimum Query](https://en.wikipedia.org/wiki/Range_minimum_query), which means the maximum (minimum) value of the interval.
 
-在笔者接下来的描述中，默认初始数组大小为 $n$ 。
+In the following descriptions, the default initial array size is $n$ , and the default time complexity is $O($ data precomputation $)-O($ single query $)$ .
 
-在笔者接下来的描述中，默认时间复杂度标记方式为 $O($ 数据预处理 $)-O($ 单次询问 $)$ 。
+## Monotonic stack
 
-## 单调栈
+Since Oi wiki already has a detailed [description](../ds/monotonous-stack.md) of monotonic stack, we will not get into details here.
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/monotonous-stack.md) 。这部分不再展开。
+Time Complexity $O(m\log m)-O(\log n)$ 
 
-时间复杂度 $O(m\log m)-O(\log n)$ 
+Space Complexity $O(n)$ 
 
-空间复杂度 $O(n)$ 
+## Sparse Table
 
-## ST 表
+Since Oi wiki already has a detailed [description](../ds/sparse-table.md) of sparse table, we will not get into details here.
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md) 。这部分不再展开。
+Time Complexity $O(n\log n)-O(1)$ 
 
-时间复杂度 $O(n\log n)-O(1)$ 
+Space Complexity $O(n\log n)$ 
 
-空间复杂度 $O(n\log n)$ 
+## Segment Tree
 
-## 线段树
+Since Oi wiki already has a detailed [description](../ds/seg.md) of segment tree, we will not get into details here.
 
-由于 Oi wiki 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md) 。这部分不再展开。
+Time Complexity $O(n)-O(\log n)$ 
 
-时间复杂度 $O(n)-O(\log n)$ 
-
-空间复杂度 $O(n\log n)$ 
+Space Complexity $O(n\log n)$ 
 
 ## Four Russian
 
-Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基于 ST 表的算法。
+The [Method of Four Russians](https://en.wikipedia.org/wiki/Method_of_Four_Russians) is an algorithm based on ST table proposed by four Russian computer scientists.
 
-在 ST 表的基础上 Four russian 算法对其做出的改进是序列分块。
+The improvement made by the Four Russians algorithm based on the ST table is sequence blocking.
 
-具体来说，我们将原数组——我们将其称之为数组 A——每 $S$ 个分成一块，总共 $n/S$ 块。
+Specifically speaking, we divide the original array, let's call it array A, into blocks of every $S$, for a total of $n/S$ blocks.
 
-对于每一块我们预处理出来块内元素的最小值，建立一个长度为 $n/S$ 的数组 B，并对数组 B 采用 ST 表的方式预处理。
+For each block, we precomputate it to get the minimum value of the block, then create an array B with a length of $n/S$, and precomputate the array B using the ST table.
 
-同时，我们对于数组 A 的每一个零散块也建立一个 ST 表。
+At the same time, we also create a ST table for each fragmented block of array A.
 
-询问的时候，我们可以将询问区间划分为不超过 1 个数组 B 上的连续块区间和不超过 2 个数组 A 上的整块内的连续区间。显然这些问题我们通过 ST 表上的区间查询解决。
+When accessing the array, we can divide the query interval into no more than one continuous block interval of array B and no more than two continuous intervals within the entire block of array A. Obviously, these problems can be solved by interval query in the ST table.
 
-在 $S=\log n$ 时候，预处理复杂度达到最优，为 $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$ 。
+When $S=\log n$ , the precomputation complexity reaches the optimal, $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$ 。
 
-时间复杂度 $O(n\log \log n)-O(1)$ 
+Time complexity $O(n\log \log n)-O(1)$ 
 
-空间复杂度 $O(n\log \log n)$ 
+Space complexity $O(n\log \log n)$ 
 
-当然询问由于要跑三个 ST 表，该实现方法的常数较大。
+Of course, because we need to run three ST tables, the constant of this method is relatively large.
 
-!!! note "一些小小的算法改进"
-    我们发现，在询问的两个端点在数组 A 中属于不同的块的时候，数组 A 中块内的询问是关于每一块前缀或者后缀的询问。
+!!! note "Some minor algorithm optimizations"
+    We found that when the two endpoints of the query belong to different blocks in array A, the query in the blocks of array A is about the prefix or suffix of each block.
 
-    显然这些询问可以通过预处理答案在 $O(n)$ 的时间复杂度内被解决。
+    Obviously, these queries can be solved within the time complexity of $O(n)$ by preprocessing the answers.
 
-    这样子我们只需要在询问的时候进行至多一次 ST 表上的查询操作了。
+    In this way, we only need to perform the query operation on the ST table at most once.
 
-!!! note "一些玄学的算法改进"
-    由于 Four russian 算法以 ST 表为基础，而算法竞赛一般没有非常高的时间复杂度要求，所以 Four russian 算法一般都可以被 ST 表代替，在算法竞赛中并不实用。这里提供一种在算法竞赛中更加实用的 Four russian 改进算法。
+!!! note "Some algorithm optimizations[ONLY FOR REFERENCE]"
+    Because the Four Russians algorithm is based on the ST table, and the algorithm contests does not generally have a very strict requirement about time complexity, it can generally be replaced by the ST table, which is not practical in the algorithm competition. Here we offer an improved version that is more practical in the contests.
 
-    我们将块大小设为 $\sqrt n$，然后预处理出每一块内前缀和后缀的 RMQ，再暴力预处理出任意连续的整块之间的 RMQ，时间复杂度为 $O(n)$。
+    We set the block size to $\sqrt n$, precompute the RMQ of the prefix and suffix within each block, and then brute force to precompute the RMQ between any consecutive blocks. For this solution, the time complexity is $O(n)$ .
 
-    查询时，对于左右端点不在同一块内的询问，我们可以直接 $O(1)$ 得到左端点所在块的后缀 RMQ，左端点和右端点之间的连续整块 RMQ，和右端点所在块的前缀 RMQ，答案即为三者之间的最值。
+    When querying, for those where the left and right endpoints are not in the same block, we can directly get the suffix RMQ of the block where left endpoint is located, the RMQ of the continuous block between the left and right endpoints, and the prefix RMQ of the block where right endpoint is located. The answer is the max/min value among the three.
 
-    而对于左右端点在同一块内的询问，我们可以暴力求出两点之间的 RMQ，时间复杂度为 $O(\sqrt n)$，但是单个询问的左右端点在同一块内的期望为 $O(\frac{\sqrt n}{n})$，所以这种方法的时间复杂度为期望 $O(n)$。
+    For queries of the block with both left and right endpoints, we can brute-force to find the RMQ between the two points. The time complexity is $O(\sqrt n)$, but the expected value of a single query to the block containing both left and right endpoints is $ O(\frac{\sqrt n}{n})$, so the time complexity of this method is the expected to be $O(n)$.
 
-    而在算法竞赛中，我们并不用非常担心出题人卡掉这种算法，因为我们可以通过在 $\sqrt n$ 的基础上随机微调块大小，很大程度上避免算法在根据特定块大小构造的数据中出现最坏情况。并且如果出题人想要卡掉这种方法，则暴力有可能可以通过。
+    In the algorithm competition, we don’t have to worry about the person who gets stuck getting this algorithm, because we can fine-tune the block size randomly on the basis of $\sqrt n$, which largely prevents the algorithm from being constructed according to a specific block size. The worst case appears in the data. And if the person who made the question wants to get rid of this method, the violence may pass.
 
-    这是一种期望时间复杂度达到下界，并且代码实现难度和算法常数均较小的算法，因此在算法竞赛中比较实用。
+    This is an algorithm that expects the time complexity to reach the lower bound, and the difficulty of the code implementation and time complexity constant are relatively small. So it is more practical in the algorithm competitions.
 
-    以上做法参考了[P3793 由乃救爷爷](https://www.luogu.com.cn/problem/P3793)中的题解。
+    Note: The above algorithm refers to the solution in [P3793 Yuno rescues grandpa] (https://www.luogu.com.cn/problem/P3793)(original post in Chinese).
 
-## 笛卡尔树在 RMQ 上的应用
+## The application of Cartesian tree on RMQ
 
-不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md) 。
+If you don't really know about Cartesian tree, please check out the [description here](../ds/cartesian-tree.md) 。
 
-我们发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值。
+We find that the min/max value between two points on the original sequence is equal to the LCA weight of the two points on the Cartesian tree, which means that what we need to solve now is find the LCA between two points on the $O(n)-O(1)$ tree.
 
-这也说明，我们现在需要去解决的是如何 $O(n)-O(1)$ 树上两个点之间的 LCA 的。
+How to find the LCA of the tree already has a description in the [LCA](../graph/lca.md) section, so we will not get into details here.
 
-树上 LCA 在 [LCA](../graph/lca.md) 部分已经有描述，这里不再展开。
+What we need to use here is the LCA algorithm based on RMQ.
 
-这里我们需要采用的是基于 RMQ 的树上 LCA 算法。
+Some of you might be wondering: wait, why do we circle back to the RMQ question again?
 
-可能会有同学会问：为什么我们在绕了一圈之后，又回到了 RMQ 问题呢？
+Don't worry, let's find out the special nature of this RMQ problem:
 
-别着急，我们来找一找这个 RMQ 问题的特殊性质：
+Because the two adjacent nodes of the tree's dfs traversal sequence have the parent-child relationship, the depth difference between the two adjacent nodes is $\pm 1$. We generally refer to this type of the RMQ problem where the difference between two adjacent elements is 1 as the $\pm 1$ RMQ problem.
 
-因为树的 dfs 序列的相邻两个节点互为父子关系，也就是说相邻两个节点深度差为 $\pm 1$ 。我们一般称这种相邻两个元素差为 1 的 RMQ 问题为 $\pm 1$ RMQ 问题。
+Based on this characteristic, we can now improve the Four Russians algorithm.
 
-根据这个特性我们就可以改进 Four Russian 算法了。
+Since the bottleneck of the Four Russian algorithm is the RMQ problem within the blocks, we focus on the optimization of it.
 
-由于 Four russian 算法的瓶颈在于块内 RMQ 问题，我们重点去讨论块内 RMQ 问题的优化。
+Because the difference between two adjacent numbers is $\pm 1$, the number of the right sequence types whose length does not exceed $\log n$ when fixing the left endpoint number is $\sum_{i=1}^{i \ leq \log n} 2^{i-1}$, and this formula obviously does not exceed $n$.
 
-由于相邻两个数字的差值为 $\pm 1$ ，所以在固定左端点数字时 长度不超过 $\log n$ 的右侧序列种类数为 $\sum_{i=1}^{i \leq \log n} 2^{i-1}$ ，而这个式子显然不超过 $n$ 。
+This suggests that we can precompute the minimum value of all cases that do not exceed $n$, that is, the value of the first element.
 
-这启示我们可以预处理所有不超过 $n$ 种情况的 最小值 - 第一个元素 的值。
+During precomputation, we need to precompute the difference between two adjacent numbers in the same block, and use binary to represent it.
 
-在预处理的时候我们需要去预处理同一块内相邻两个数字之间的差，并且使用二进制将其表示出来。
+When querying, we can find the binary representation corresponding to the query interval, and look up the answer in the table.
 
-在询问的时候我们找到询问区间对应的二进制表示，查表得出答案。
+In this way, the time complexity of Four Russians precomputation is optimized to $O(n)$.
 
-这样子 Four russian 预处理的时间复杂度就被优化到了 $O(n)$ 。
+Combining the Cartesian tree part, we can realize the RMQ problem of $O(n)-O(1)$.
 
-结合笛卡尔树部分我们就可以实现 $O(n)-O(1)$ 的 RMQ 问题了。
+The code and sample questions have already been given [here] (../graph/lca.md) in the LCA section, so we won't repeat it here.
 
-代码和例题由于在 LCA 部分已经给出 [链接](../graph/lca.md) ，这里不再赘述。
+Of course, due to the large number of conversion steps, the $O(n)-O(1)$ RMQ runs relatively slower.
 
-当然由于转化步数较多， $O(n)-O(1)$ RMQ 跑的比较慢。
-
-如果数据随机，则我们还可以暴力在笛卡尔树上查找。此时的时间复杂度为期望 $O(n)-O(\log n)$ ，并且实际使用时这种算法的常数往往很小。
+If the data is random, we can also do a brute-force search on the Cartesian tree. The time complexity is the expected value of $O(n)-O(\log n)$, and the complexity constant of this algorithm in the actualy implementation is often small.
