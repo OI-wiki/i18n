@@ -1,6 +1,6 @@
 ## Introduction
 
-RMQ is the abbreviation of [Range Maximum/Minimum Query](https://en.wikipedia.org/wiki/Range_minimum_query), which means the maximum (minimum) value of the interval.
+RMQ is the abbreviation of [Range Maximum/Minimum Query](https://en.wikipedia.org/wiki/Range_minimum_query), which means the maximum (minimum) value of an interval.
 
 In the following descriptions, the default initial array size is $n$ , and the default time complexity is $O($ data precomputation $)-O($ single query $)$ .
 
@@ -8,7 +8,7 @@ In the following descriptions, the default initial array size is $n$ , and the d
 
 Since Oi wiki already has a detailed [description](../ds/monotonous-stack.md) of monotonic stack, we will not get into details here.
 
-Time Complexity $O(m\log m)-O(\log n)$ 
+Time Complexity: $O(m\log m)-O(\log n)$ 
 
 Space Complexity $O(n)$ 
 
@@ -34,7 +34,7 @@ The [Method of Four Russians](https://en.wikipedia.org/wiki/Method_of_Four_Russi
 
 The improvement made by the Four Russians algorithm based on the ST table is sequence blocking.
 
-Specifically speaking, we divide the original array, let's call it array A, into blocks of every $S$, for a total of $n/S$ blocks.
+Specifically speaking, we divide the original array, let's call it array A, into blocks with equal length $S$, for a total of $n/S$ blocks.
 
 For each block, we precomputate it to get the minimum value of the block, then create an array B with a length of $n/S$, and precomputate the array B using the ST table.
 
@@ -51,7 +51,7 @@ Space complexity $O(n\log \log n)$
 Of course, because we need to run three ST tables, the constant of this method is relatively large.
 
 !!! note "Some minor algorithm optimizations"
-    We found that when the two endpoints of the query belong to different blocks in array A, the query in the blocks of array A is about the prefix or suffix of each block.
+    We found that when the two endpoints of a query belong to different blocks in array A, the query in the blocks of array A is about the prefix or suffix of each block.
 
     Obviously, these queries can be solved within the time complexity of $O(n)$ by preprocessing the answers.
 
@@ -60,7 +60,7 @@ Of course, because we need to run three ST tables, the constant of this method i
 !!! note "Some algorithm optimizations[ONLY FOR REFERENCE]"
     Because the Four Russians algorithm is based on the ST table, and the algorithm contests does not generally have a very strict requirement about time complexity, it can generally be replaced by the ST table, which is not practical in the algorithm competition. Here we offer an improved version that is more practical in the contests.
 
-    We set the block size to $\sqrt n$, precompute the RMQ of the prefix and suffix within each block, and then brute force to precompute the RMQ between any consecutive blocks. For this solution, the time complexity is $O(n)$ .
+    We set the block size to $\sqrt n$, precompute the RMQ of the prefix and suffix within each block, and then use brute force to precompute the RMQ between any consecutive blocks. For this solution, the time complexity is $O(n)$ .
 
     When querying, for those where the left and right endpoints are not in the same block, we can directly get the suffix RMQ of the block where left endpoint is located, the RMQ of the continuous block between the left and right endpoints, and the prefix RMQ of the block where right endpoint is located. The answer is the max/min value among the three.
 
@@ -70,7 +70,7 @@ Of course, because we need to run three ST tables, the constant of this method i
 
     This is an algorithm that expects the time complexity to reach the lower bound, and the difficulty of the code implementation and time complexity constant are relatively small. So it is more practical in the algorithm competitions.
 
-    Note: The above algorithm refers to the solution in [P3793 Yuno rescues grandpa] (https://www.luogu.com.cn/problem/P3793)(original post in Chinese).
+    Note: The algorithm above refers to the solution of [P3793 Yuno rescues grandpa](https://www.luogu.com.cn/problem/P3793) (original post in Chinese).
 
 ## The application of Cartesian tree on RMQ
 
