@@ -36,13 +36,13 @@ The improvement made by the Four Russians algorithm based on the ST table is seq
 
 Specifically speaking, we divide the original array, let's call it array A, into blocks with equal length $S$, for a total of $n/S$ blocks.
 
-For each block, we preprocess the elements within to get the minimum value of the block, then create an array B with a length of $n/S$, and precomputate the array B using the ST table.
+For each block, we preprocess the elements within to get the minimum value of the block, then create an array B with a length of $n/S$, and preprocess the array B using the ST table.
 
 At the same time, we also create a ST table for each fragmented block of array A.
 
 When making queries, we can divide the query interval into no more than one continuous block interval of array B and no more than two continuous intervals within the entire block of array A. Obviously, these problems can be solved by interval query in the ST table.
 
-When $S=\log n$ , the precomputation complexity reaches the optimal, $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$ 。
+When $S=\log n$ , the preprocessing complexity reaches the optimal, $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$ 。
 
 Time complexity: $O(n\log \log n)-O(1)$ 
 
@@ -60,7 +60,7 @@ Of course, because we need to run three ST tables, the constant of this method i
 !!! note "Some algorithm optimizations[ONLY FOR REFERENCE]"
     Because the Four Russians algorithm is based on the ST table, and the competitive programming competition does not generally have a very strict requirement about time complexity, it can generally be replaced by the ST table(which is not very practical in algorithm competitions). Here we offer an improved version that is more practical in the contests.
 
-    We set the block size to $\sqrt n$, precompute the RMQ of the prefix and suffix within each block, and then use brute force to precompute the RMQ between any consecutive blocks. For this solution, the time complexity is $O(n)$ .
+    We set the block size to $\sqrt n$, preprocess the RMQ of the prefix and suffix within each block, and then use brute force to preprocess the RMQ between any consecutive blocks. For this solution, the time complexity is $O(n)$ .
 
     When querying, for those queries which the left and right endpoints are not in the same block, we can directly get the suffix RMQ of the block where left endpoint is located, the RMQ of the continuous block between the left and right endpoints, and the prefix RMQ of the block where right endpoint is located. The answer is the max/min value among the three.
     
@@ -88,19 +88,19 @@ Don't worry, let's find out the special nature of this RMQ problem:
 
 Because the two adjacent nodes of the tree's dfs traversal sequence have the parent-child relationship, the depth difference between the two adjacent nodes is $\pm 1$. We generally refer to this type of the RMQ problem where the difference between two adjacent elements is 1 as the $\pm 1$ RMQ problem.
 
-Based on this characteristic, we can now improve the Four Russians algorithm.
+Based on this feature, we can now improve the Four Russians algorithm.
 
 Since the bottleneck of the Four Russian algorithm is the RMQ problem within the blocks, we focus on the optimization of it.
 
 Because the difference between two adjacent numbers is $\pm 1$, the number of the right sequence types whose length does not exceed $\log n$ when fixing the left endpoint number is $\sum_{i=1}^{i \ leq \log n} 2^{i-1}$, and this formula obviously does not exceed $n$.
 
-This suggests that we can precompute the minimum value of all cases that do not exceed $n$, that is, the value of the first element.
+This suggests that we can preprocess the minimum value of all cases that do not exceed $n$ , that is, the value of the first element.
 
-During precomputation, we need to precompute the difference between two adjacent numbers in the same block, and use binary to represent it.
+During preprocessing, we need to preprocess the difference between two adjacent numbers in the same block, and use binary to represent it.
 
 When querying, we can find the binary representation corresponding to the query interval, and look up the answer in the table.
 
-In this way, the time complexity of Four Russians precomputation is optimized to $O(n)$.
+In this way, the time complexity of Four Russians preprocessing is optimized to $O(n)$.
 
 Combining the Cartesian tree part, we can realize the RMQ problem in $O(n)-O(1)$.
 
@@ -108,4 +108,4 @@ The code and sample questions have already been given [here] (../graph/lca.md) i
 
 Of course, due to the large number of conversion steps, the $O(n)-O(1)$ RMQ runs relatively slower.
 
-If the data is random, we can also do a brute-force search on the Cartesian tree. The time complexity is the expected value of $O(n)-O(\log n)$, and the complexity constant of this algorithm in the actualy implementation is often small.
+If the data is random, we can also do a brute-force search on the Cartesian tree. The expected time complexity is $O(n)-O(\log n)$, and the complexity constant of this algorithm in the actualy implementation is often small.
