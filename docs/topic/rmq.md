@@ -82,7 +82,7 @@ How to find the LCA of the tree already has a description in the [LCA](../graph/
 
 What we need to use here is the LCA algorithm based on RMQ.
 
-Some of you might be wondering: wait, why do we circle back to the RMQ question again?
+Some of you might be wondering: wait, why do we turn back to the RMQ question again?
 
 Don't worry, let's find out the special nature of this RMQ problem:
 
@@ -102,7 +102,7 @@ When querying, we can find the binary representation corresponding to the query 
 
 In this way, the time complexity of Four Russians precomputation is optimized to $O(n)$.
 
-Combining the Cartesian tree part, we can realize the RMQ problem of $O(n)-O(1)$.
+Combining the Cartesian tree part, we can realize the RMQ problem in $O(n)-O(1)$.
 
 The code and sample questions have already been given [here] (../graph/lca.md) in the LCA section, so we won't repeat it here.
 
