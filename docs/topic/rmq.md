@@ -32,11 +32,11 @@ Space Complexity: $O(n\log n)$
 
 The [Method of Four Russians](https://en.wikipedia.org/wiki/Method_of_Four_Russians) is an algorithm based on ST table proposed by four Russian computer scientists.
 
-The improvement made by the Four Russians algorithm based on the ST table is sequence blocking.
+The improvement made by the Four Russians algorithm, which is based on the ST table, is dividing a sequence into multiple blocks.
 
 Specifically speaking, we divide the original array, let's call it array A, into blocks with equal length $S$, for a total of $n/S$ blocks.
 
-For each block, we preprocess the elements within to get the minimum value of the block, then create an array B with a length of $n/S$, and preprocess the array B using the ST table.
+For each block, we preprocess the elements within to get the minimum value of the block, then use these values to create an array B with a length of $n/S$, and preprocess the array B using the ST table.
 
 At the same time, we also create a ST table for each fragmented block of array A.
 
