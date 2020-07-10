@@ -64,7 +64,7 @@ Of course, because we need to run three ST tables, the constant of this method i
 
     When querying, for those queries which the left and right endpoints are not in the same block, we can directly get the suffix RMQ of the block where left endpoint is located, the RMQ of the continuous block between the left and right endpoints, and the prefix RMQ of the block where right endpoint is located. The answer is the max/min value among the three.
     
-    For those queries which the left and right endpoints are in the same block, we can brute-force to find the RMQ between the two points. The time complexity is $O(\sqrt n)$, but the expected value of a single query to the block containing both left and right endpoints is $ O(\frac{\sqrt n}{n})$, so the expected time complexity of this method is $O(n)$.
+    For those queries which the left and right endpoints are in the same block, we can brute-force to find the RMQ between the two vertices. The time complexity is $O(\sqrt n)$, but the expected value of a single query to the block containing both left and right endpoints is $ O(\frac{\sqrt n}{n})$, so the expected time complexity of this method is $O(n)$.
 
     In the competitive programming competitions, we don’t have to worry about the people in charge of creating problems abandon this algorithm, because we can fine-tune the block size randomly on the basis of $\sqrt n$, which largely prevents the worst case from happening when the algorithm being constructed according to a specific block size. And if the person who made the question wants to get rid of this method, the brute force solution might be enough to pass.
 
@@ -76,9 +76,9 @@ Of course, because we need to run three ST tables, the constant of this method i
 
 If you don't really know about Cartesian tree, please check out the [description here](../ds/cartesian-tree.md) 。
 
-We find that the min/max value between two points on the original sequence is equal to the LCA weight of the two points on the Cartesian tree, which means that what we need to solve now is find the LCA between two points on the $O(n)-O(1)$ tree.
+We find that the min/max value between two vertices on the original sequence is equal to the LCA weight of the two nodes on the Cartesian tree, which means that what we need to solve now is find the LCA between two nodes on the $O(n)-O(1)$ tree.
 
-How to find the LCA of the tree already has a description in the [LCA](../graph/lca.md) section, so we will not get into details here.
+How to find the LCA on the tree already has a description in the [LCA](../graph/lca.md) section, so we will not get into details here.
 
 What we need to use here is the LCA algorithm based on RMQ.
 
