@@ -2,7 +2,7 @@
 
 RMQ is the abbreviation of [Range Maximum/Minimum Query](https://en.wikipedia.org/wiki/Range_minimum_query), which means the maximum (minimum) value of an interval.
 
-In the following descriptions, the uniform standard of initial array size is $n$ , and the default time complexity is $O($ data preprocessing $)-O($ single query $)$ .
+In the following descriptions, we assume that the uniform standard of initial array size is $n$ , and the default time complexity is $O($ data preprocessing $)-O($ single query $)$ .
 
 ## Monotonic stack
 
