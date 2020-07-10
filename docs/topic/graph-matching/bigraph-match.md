@@ -1,32 +1,40 @@
 author: accelsao
 
-# 二分图最大匹配
+# Maximum Bipartite Matching
 
-为了描述方便将两个集合分成左和右两个部分，所有匹配边都是横跨左右两个集合，可以假想成男女配对。
+A **matching** of a graph is a sub set of edges such that no two edges share a vertex. A **maximum matching** of a graph is a matching with the maximum number of edges(matching as many vertices as possible).  
 
-假设图有 $n$ 个顶点， $m$ 条边。
+For the convenience of description, we partition the graph into two disjoint sets - left and right. All matching edges connects to both left and right sets. One common example of bipartite graph matching is matching a group of men and women.
 
-## 增广路算法 Augmenting Path Algorithm
+Assume the graph has $n$ vertices and $m$ edges.
 
-因为增广路长度为奇数，路径起始点非左即右，所以我们先考虑从左边的未匹配点找增广路。
-注意到因为交错路的关系，增广路上的第奇数条边都是非匹配边，第偶数条边都是匹配边，于是左到右都是非匹配边，右到左都是匹配边。
-于是我们给二分图 **定向** ，问题转换成，有向图中从给定起点找一条简单路径走到某个未匹配点，此问题等价给定起始点 $s$ 能否走到终点 $t$ 。
-那么只要从起始点开始 DFS 遍历直到找到某个未匹配点， $O(m)$ 。
-未找到增广路时，我们拓展的路也称为 **交错树** 。
+## Augmenting Path Algorithm
 
-因为要枚举 $n$ 个点，总复杂度为 $O(nm)$ 。
+Because the length of augmenting path is odd, and the starting vertex of the path is either on the left or right, we first consider finding the augmenting path from the unmatched vertices on the left.
 
-### 代码
+Please note that because of the [alternating path](./augment.md), the odd-numbered edges on the augmenting path are all unmatched edges, and the even-numbered edges are all matched edges. So left-to-right are unmatched edges, and right-to-left are matched edges.
+
+So we define the **direction** for the bipartite graph, and the problem is converted to finding a directed path starting from a given vertex to a certain unmatched vertex in the directed graph, which is actually equivalent to whether the given starting vertex $s$ can reach the ending vertex $t$.
+
+This means that we can just do the DFS traversal from the starting vertex until a certain unmatched vertex is found. The time complexity for this step is $O(m)$ .
+
+When the augmenting path has not been found. we call the path we create the **alternating tree**.
+
+> **alternating tree**: a tree whose root is an unmatched vertex. All root-to-leaf paths in an alternating tree are alternating paths with respect to M.  If we can add an unmatched vertex, other than the root, to an alternating tree, we have found an augmenting path.
+
+Because we want to enumerate $n$ points, the overall time complexity is $O(nm)$ .
+
+### Code
 
 ```cpp
 struct augment_path {
   vector<vector<int> > g;
-  vector<int> pa;  // 匹配
+  vector<int> pa;  // pair
   vector<int> pb;
-  vector<int> vis;  // 访问
-  int n, m;         // 顶点数量
-  int dfn;          // 时间戳记
-  int res;          // 匹配数
+  vector<int> vis;  // visit
+  int n, m;         // number of vertices
+  int dfn;          // time stamp
+  int res;          // result: number of matched paris
 
   augment_path(int _n, int _m) : n(_n), m(_m) {
     assert(0 <= n && 0 <= m);
@@ -81,52 +89,55 @@ struct augment_path {
 };
 ```
 
-## Dinic 算法
+## Dinic's algorithm
 
-二分图最大匹配可以转换成网络流模型。
-将左边所有点接上源点，右边所有点接上汇点，容量皆为 $1$ 。
-原来的每条边从左往右连边，容量也皆为 $1$ ，最大流即最大匹配，可在 $O(\sqrt{n}m)$ 求出。
+Bipartite graph maximum matching can be converted into the flow network model. And the **Dinic's algorithm** is used to compute the maximum flow in a flow network.
 
-Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流，第二步是 $O(nm)$ 时间 DFS 进行增广。
-但因为容量为 $1$ ，所以实际时间复杂度为 $O(m)$ 。
-接下来前 $O(\sqrt{n})$ 轮，复杂度为 $O(\sqrt{n}m)$ 。 $O(\sqrt{n})$ 轮以后，每条增广路径长度至少 $\sqrt{n}$ ，而这样的路径不超过 $\sqrt{n}$ ，
-所以此时最多只需要跑 $\sqrt{n}$ 轮，整体复杂度为 $O(\sqrt{n}m)$ 。
+Connect all vertices on the left to the source vertex, and all points on the right to the sink vertex. The capacity is $1$ . Each original edge is connected from left to right, and the capacity is also $1$ . The maximum flow is the maximum match, which can be found in $O(\sqrt{n}m)$ .
 
-### 代码
+Dinic's algorithm contains two parts. The first part uses BFS to construct network flow in $O(m)$ time complexity; The second part performs DFS for augmentation in $O(nm)$ time complexity.
 
-待补。
+But because the capacity is $1$ , the actual time complexity is $O(m)$ .
 
-## 补充
+Next, for the first $O(\sqrt{n})$ rounds, the time complexity is $O(\sqrt{n}m)$ . After $O(\sqrt{n})$ rounds, the length of each augmenting path is at least $\sqrt{n}$ , and such path does not exceed $\sqrt{n}$ .
 
-### 二分图最大独立集
+So it only needs to run $\sqrt{n}$ rounds. The overall time complexity is $O(\sqrt{n}m)$ .
 
-选最多的点，满足两两之间没有边相连。
+### Code
 
-二分图中，最大独立集 = $n$ - 最大匹配。
+TBC.
 
-### 二分图最小点覆盖
+## Additional information
 
-选最少的点，满足每条边至少有一个端点被选，不难发现补集是独立集。
+### Maximum independent set in bipartite graph
 
-二分图中，最小点覆盖 = $n$ - 最大独立集。
+Choose the maximum vertices to satisfy the requirement that there are no connected edges between each other.
 
-## 习题
+In bipartite graphs, the maximum independent set = $n$ - maximum matching.
 
-??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78) "
+### Minimum vertex cover in bipartite graph
 
-    模板题
+Choose the minimum vertices to satisfy the requirement that at least one endpoint of each edge is selected. It is not difficult to find that the complement set is an independent set.
+
+In bipartite graphs, the minimum vertex cover = $n$ - maximum independent set.
+
+## Practice questions
+
+??? note "[UOJ #78. Bipartite graph maximum matching(original link in Chinese)](https://uoj.ac/problem/78) "
+
+    Template question
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
 
     struct augment_path {
       vector< vector<int> > g;
-      vector<int> pa; // 匹配
+      vector<int> pa; // pair
       vector<int> pb;
-      vector<int> vis; // 访问
-      int n, m; // 顶点数量
-      int dfn; // 时间戳记
-      int res; // 匹配数
+      vector<int> vis; // visited
+      int n, m; // number of vertices
+      int dfn; // time stamp
+      int res; // result: number of matched pairs
 
       augment_path(int _n, int _m) : n(_n), m(_m) {
       assert(0 <= n && 0 <= m);
@@ -199,7 +210,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
     ```
 
-??? note "[P1640 [SCOI2010]连续攻击游戏](https://www.luogu.com.cn/problem/P1640) "
+??? note "[P1640 [SCOI2010]Continuous attack game(link in Chinese)](https://www.luogu.com.cn/problem/P1640) "
 
     None
 
