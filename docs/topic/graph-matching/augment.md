@@ -7,7 +7,7 @@ author: accelsao
 - Alternating path: a path that begins with an unmatched vertex and whose edges belong alternately to the matching and not to the matching. 
 - Augmenting path: an alternating path that starts from and ends on free (unmatched) vertices.
 
-The number of unmatched edges on the augmenting path is one more than the number of matched edges. If the matched edges are changed to unmatched edges, and vice versa, the matching size will increase by one and still be the alternating path.
+The number of unmatched edges on an augmenting path is one more than the number of matched edges. If the matched edges are changed to unmatched edges, or vice versa, the matching size will increase by one and still be an alternating path.
 
 ![augment-1](./images/augment-1.png)
 
