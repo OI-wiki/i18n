@@ -1,29 +1,30 @@
 author: accelsao
 
-# 增广路定理 Berge's lemma
+# Berge's lemma
 
-这是最大匹配的一个重要理论。
+[Berge's lemma](https://en.wikipedia.org/wiki/Berge%27s_lemma) is an important theory of [maximum matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)#:~:text=A%20maximal%20matching%20is%20a,least%20one%20edge%20in%20M.). 
 
--   交错路（alternating path) 始于非匹配点且由匹配边与非匹配边交错而成。
--   增广路（augmenting path）是始于非匹配点且终于非匹配点的交错路。
+- Alternating path: a path that begins with an unmatched vertex and whose edges belong alternately to the matching and not to the matching. 
+- Augmenting path: an alternating path that starts from and ends on free (unmatched) vertices.
 
-增广路上非匹配边比匹配边数量多一，如果将匹配边改为未匹配边，反之亦然，则匹配大小会增加一且依然是交错路。
+The number of unmatched edges on an augmenting path is one more than the number of matched edges. If the matched edges are changed to unmatched edges, or vice versa, the matching size will increase by one and still be an alternating path.
 
 ![augment-1](./images/augment-1.png)
 
-如图 匹配数从 2 增加为 3，我们称此过程为 **增广** 。
+As shown in the figure, the number of matches increases from 2 to 3 - we call this **augmentation**.
 
-根据 Berge's lemma 当找不到增广路的时候，得到最大匹配。
+According to Berge's lemma, the maximum matching is found when there's no augmenting path.
 
-由此定理可知我们求最大匹配的核心思路。
+From this theorem, we can understand the core idea of maximum matching.
 
-!!! 核心思路
+!!! core idea
 
-    枚举所有未匹配点，找增广路径，直到找不到增广路径。
+    Enumerate all unmatched vertices and find the augmenting path until there's no one to be found.
 
-事实上，对于每个点只要枚举一次就好。
+In fact, we only need to enumerate once for each vertex.
 
 ![augment-2](./images/augment-2.png)
 
-假设某一轮沿着增广路 $a - b$ 增广后，出现了以 $x$ 为起点的增广路 $P_x$ ，则 $P_x$ 必相交 $a - b$ 。
-假设 $P_x$ 第一次碰上 $a - b$ ，由于 $a - b$ 是交错路，意味着相交点是不同类型的（图中以红和蓝表示），那增广前 $x$ 就能走到 $a - b$ 中的某个未匹配点，说明早已存在从 $x$ 出发的增广路。
+Suppose that after a round of augmentation along the augmenting path $a-b$ , there's an augmenting path $P_x$ starting from $x$ , then $P_x$ must intersect $a-b$ .
+
+Suppose $P_x$ intersects $a-b$ for the first time. Remebering that $a-b$ is an alternating path, which means that the intersection points are of different types (marked by red and blue in the figure), then $x$ can reach an unmatched vertex in $a-b$ before the augmentation, which indicates that there already exists an augmenting path starting from $x$ .
