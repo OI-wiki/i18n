@@ -27,4 +27,4 @@ In fact, we only need to enumerate once for each vertex.
 
 Suppose that after a round of augmentation along the augmenting path $a-b$ , there's an augmenting path $P_x$ starting from $x$ , then $P_x$ must intersect $a-b$ .
 
-Suppose $P_x$ intersects $a-b$ for the first time, because $a-b$ is an alternating path, which means that the intersection points are of different types (marked by red and blue in the figure),  $x$ can reach an unmatched vertex in $a-b$ before the augmentation. This indicates that there already exists an augmenting path starting from $x$ .
+Suppose $P_x$ intersects $a-b$ for the first time. Remebering that $a-b$ is an alternating path, which means that the intersection points are of different types (marked by red and blue in the figure), then $x$ can reach an unmatched vertex in $a-b$ before the augmentation, which indicates that there already exists an augmenting path starting from $x$ .
