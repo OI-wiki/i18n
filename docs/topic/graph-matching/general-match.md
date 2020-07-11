@@ -8,7 +8,7 @@ author: accelsao
 
 After some modifications, it can also be used to solve the maximum weight matching of general graphs.
 
-This algorithm is the first confirmation to prove that maximum matching has multiple complexity.
+This algorithm is the first confirmation to prove that maximum matching has multiple complexities.
 
 The difference between general graph matching and bipartite matching is that there may exist odd cycle.
 
@@ -20,9 +20,9 @@ For bipartite graph, each time an unmatched node is enumerated, set the starting
 
 Assume the current node is $v$ , and the adjacent node is $u$ .
 
-case 1: $u$ has never been visited. When $u$ is the unmatched node, find the augmenting path, otherwise find the augmenting path from the matching of $u$ .
+Case 1: $u$ has never been visited. When $u$ is the unmatched node, find the augmenting path, otherwise find the augmenting path from the matching of $u$ .
 
-case 2: $u$ has been visited. Marked "o" means the need to **shrink blossom**, otherwise it means the odd cycle, skip.
+Case 2: $u$ has been visited. Marked "o" means the need to **shrink blossom**, otherwise it means the odd cycle, skip.
 
 
 In the case of an even cycle, treat it as a bipartite graph, so it can be ignored. After **shrinking blossom**, continue to find augmenting path in the new graph.
@@ -110,7 +110,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     aux_time++;
     while (true) {
       if (v != -1) {
-        if (aux[v] == aux_time) {  // find the node visited, that is, LCA
+        if (aux[v] == aux_time) {  // node visited found, that is, LCA
           return v;
         }
         aux[v] = aux_time;
@@ -162,21 +162,21 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       for (int id : g.g[v]) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
-        if (label[u] == -1) {  // find unvisited node
+        if (label[u] == -1) {  // unvisited node found
           label[u] = 1;        // label "i"
           parent[u] = v;
-          if (match[u] == -1) {  // find unmatched node
-            augment(u);          // find augmenting path
+          if (match[u] == -1) {  // unmatched node found
+            augment(u);          // augmenting path found
             return true;
           }
-          // find matched node and push its matching node in the queue, extending alternating tree
+          // matched node found and push its matching node in the queue, extending alternating tree
           label[match[u]] = 0;
           q.push(match[u]);
           continue;
         } else if (label[u] == 0 && orig[v] != orig[u]) {
-          // find visited node & the label is also "o", meaning the "blossom" has been found
+          // visited node found & the label is also "o", meaning the "blossom" has been found
           int a = lca(orig[v], orig[u]);
-          // find LCA, then shrink blossom
+          // LCA found, then shrink blossom
           blossom(u, v, a);
           blossom(v, u, a);
         }
@@ -277,7 +277,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         aux_time++;
         while (true) {
           if (v != -1) {
-            if (aux[v] == aux_time) {  // find the visited node, LCA
+            if (aux[v] == aux_time) {  // visited node found, LCA
               return v;
             }
             aux[v] = aux_time;
@@ -329,14 +329,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           for (int id : g.g[v]) {
             auto &e = g.edges[id];
             int u = e.from ^ e.to ^ v;
-            if (label[u] == -1) {  // find unlabled node
+            if (label[u] == -1) {  // unlabled node found
               label[u] = 1;        // label "i"
               parent[u] = v;
-              if (match[u] == -1) {  // find unmatched node
-                augment(u);          // find augmenting path
+              if (match[u] == -1) {  // unmatched node found
+                augment(u);          // augmenting path found
                 return true;
               }
-              // find matched node, push matched node into queue, and extend alternating tree
+              // matched node found, push matched node into queue, and extend alternating tree
               label[match[u]] = 0;
               q.push(match[u]);
               continue;
@@ -344,7 +344,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
                        orig[v] !=
                            orig[u]) {  // finding visited node with label of "o" meaning the "blossom" has been found
               int a = lca(orig[v], orig[u]);
-              // find LCA, then shrink blossom
+              // LCA found, then shrink blossom
               blossom(u, v, a);
               blossom(v, u, a);
             }
