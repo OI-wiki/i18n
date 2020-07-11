@@ -2,7 +2,7 @@ author: accelsao
 
 # Maximum Bipartite Matching
 
-A **matching** of a graph is a sub set of edges such that no two edges share a vertex. A **maximum matching** of a graph is a matching with the maximum number of edges(matching as many vertices as possible).  
+A **matching** of a graph is a sub set of edges such that no two edges share a vertex. A **maximum matching** of a graph is a matching with the maximum number of edges (matching as many vertices as possible).  
 
 For the convenience of description, we partition the graph into two disjoint sets - left and right. All matching edges connects to both left and right sets. One common example of bipartite graph matching is matching a group of men and women.
 
@@ -12,15 +12,15 @@ Assume the graph has $n$ vertices and $m$ edges.
 
 Because the length of augmenting path is odd, and the starting vertex of the path is either on the left or right, we first consider finding the augmenting path from the unmatched vertices on the left.
 
-Please note that because of the [alternating path](./augment.md), the odd-numbered edges on the augmenting path are all unmatched edges, and the even-numbered edges are all matched edges. So left-to-right are unmatched edges, and right-to-left are matched edges.
+Please note that because of the [alternating path](./augment.md), the odd-numbered edges on the augmenting path are all unmatched edges, and the even-numbered edges are all matched edges. So left-to-right edges are all unmatched, and right-to-left edges are all matched.
 
-So we define the **direction** for the bipartite graph, and the problem is converted to finding a directed path starting from a given vertex to a certain unmatched vertex in the directed graph, which is actually equivalent to whether the given starting vertex $s$ can reach the ending vertex $t$.
+So we define the **direction** for the bipartite graph, and the problem is converted to finding a directed path starting from a given vertex to an unmatched vertex in a directed graph, which is actually equivalent to whether the given starting vertex $s$ can reach the ending vertex $t$.
 
 This means that we can just do the DFS traversal from the starting vertex until a certain unmatched vertex is found. The time complexity for this step is $O(m)$ .
 
-When the augmenting path has not been found. we call the path we create the **alternating tree**.
+When the augmenting path has not been found, the path formed was called an **alternating tree**.
 
-> **alternating tree**: a tree whose root is an unmatched vertex. All root-to-leaf paths in an alternating tree are alternating paths with respect to M.  If we can add an unmatched vertex, other than the root, to an alternating tree, we have found an augmenting path.
+> **alternating tree**: a tree whose root is an unmatched vertex. All root-to-leaf paths in an alternating tree are alternating paths with respect to $M$.  If we can add an unmatched vertex other than the root vertex to an alternating tree, we have found an augmenting path.
 
 Because we want to enumerate $n$ points, the overall time complexity is $O(nm)$ .
 
@@ -32,7 +32,7 @@ struct augment_path {
   vector<int> pa;  // pair
   vector<int> pb;
   vector<int> vis;  // visit
-  int n, m;         // number of vertices
+  int n, m;         // number of vertices and edges
   int dfn;          // time stamp
   int res;          // result: number of matched paris
 
@@ -91,7 +91,7 @@ struct augment_path {
 
 ## Dinic's algorithm
 
-Bipartite graph maximum matching can be converted into the flow network model. And the **Dinic's algorithm** is used to compute the maximum flow in a flow network.
+Bipartite graph maximum matching can be converted into the flow network model. The **Dinic's algorithm** can also be used to compute the maximum flow in a network.
 
 Connect all vertices on the left to the source vertex, and all points on the right to the sink vertex. The capacity is $1$ . Each original edge is connected from left to right, and the capacity is also $1$ . The maximum flow is the maximum match, which can be found in $O(\sqrt{n}m)$ .
 
