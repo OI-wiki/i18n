@@ -121,7 +121,7 @@ In bipartite graphs, the minimum vertex cover = $n$ - maximum independent set.
 
 ## Practice problems
 
-??? note "[UOJ #78. Bipartite graph maximum matching(original link in Chinese)](https://uoj.ac/problem/78) "
+??? note "[UOJ #78. Bipartite graph maximum matching](https://uoj.ac/problem/78)(original link in Chinese) "
 
     Template problems
     ```cpp
