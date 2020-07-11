@@ -1,55 +1,62 @@
 author: accelsao
 
-# 一般图最大匹配
+# Maximum matching in general graphs
 
-## 带花树算法（Blossom Algorithm）
+## Blossom Algorithm
 
-开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings)。此算法由 Jack Edmonds 在 1961 年提出。
-经过一些修改后也可以解决一般图最大权匹配问题。
-此算法是第一个给出证明说最大匹配有多项式复杂度。
+**Blossom Algorithm** can solve the maximum matching problem（[maximum cardinality matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)#Maximum-cardinality_matching)) in general graphs. This algorithm was proposed by Jack Edmonds in 1961.
 
-一般图匹配和二分图匹配（bipartite matching）不同的是，图可能存在奇环。
+After some modifications, it can also be used to solve the maximum weight matching of general graphs.
 
-以此图为例，若直接取反（匹配边和未匹配边对调），会使得取反后的 $M$ 不合法，某些点会出现在两条匹配上，而问题就出在奇环。
+This algorithm is the first confirmation to prove that maximum matching has multiple complexity.
 
-下面考虑一般图的增广算法。
-从二分图的角度出发，每次枚举一个未匹配点，设出发点为根，标记为 **"o"** ，接下来交错标记 **"o"** 和 **"i"** ，不难发现 **"i"** 到 **"o"** 这段边是匹配边。
+The difference between general graph matching and bipartite matching is that there may exist odd cycle.
 
-假设当前点是 $v$ ，相邻点为 $u$ 。
+Taking this graph as an example, if directly inverted (swap matched edge and unmatched edge), it will make the inverted $M$ illegal, and some nodes will appear in both matching. The reason for this to happen is the odd cycle.
 
-case 1: $u$ 未拜访过，当 $u$ 是未匹配点，则找到增广路径，否则从 $u$ 的配偶找增广路。
+Now, consider the augmenting algorithm for general graphs.
 
-case 2: $u$ 已拜访过，遇到标记 "o" 代表需要 **缩花** ，否则代表遇到偶环，跳过。
+For bipartite graph, each time an unmatched node is enumerated, set the starting node as the root, labeled with **"o"**. Then label **"o"** and **"i"**. It is not hard to notice that the edges from **"i"** to **"o"** are matching edge.
 
-遇到偶环的情况，将他视为二分图解决，故可忽略。 **缩花** 后，再新图中继续找增广路。
+Assume the current node is $v$ , and the adjacent node is $u$ .
+
+case 1: $u$ has never been visited. When $u$ is the unmatched node, find the augmenting path, otherwise find the augmenting path from the matching of $u$ .
+
+case 2: $u$ has been visited. Marked "o" means the need to **shrink blossom**, otherwise it means the odd cycle, skip.
+
+
+In the case of an even cycle, treat it as a bipartite graph, so it can be ignored. After **shrinking blossom**, continue to find augmenting path in the new graph.
 
 ![general-matching-2](./images/general-matching-2.png)
 
-设原图为 $G$ ， **缩花** 后的图为 $G'$ ，我们只需要证明：
+Suppose the original graph is $G$ , and the graph after **shrinking blossom** is $G$ , we only need to prove:
 
-1.  若 $G$ 存在增广路， $G'$ 也存在。
-2.  若 $G'$ 存在增广路， $G$ 也存在。
+1.  If $G$ has augmenting path, then $G'$ also has.
+2.  If $G'$ has augmenting path, then $G$ also has.
 
 ![general-matching-3](./images/general-matching-3.png)
 
-设非树边（形成环的那条边）为 $(u,v)$ ，定义花根 $h=LCA(u,v)$ 。
-奇环是交替的，有且仅有 $h$ 的两条邻边类型相同，都是非匹配边。
-那么进入 $h$ 的树边肯定是匹配边，环上除了 $h$ 以外其他点往环外的边都是非匹配边。
+Let the non-tree edge (the edge forming the cycle) be $(u,v)$ and define the blossom root $h=LCA(u,v)$ .
 
-观察可知，从环外的边出去有两种情况，顺时针或逆时针。
+Odd cycles are alternating, and the two adjacent edges with only $h$ are of the same type and are both non-matching edges.
+
+Then the tree edge entering $h$ must be a matching edge. The edges out of the cycle other than $h$ are all non-matching edges.
+
+Based on observation, it shows that there are two cases of starting from the edge that is out of the ring, clockwise or counterclockwise.
 
 ![general-matching-4](./images/general-matching-4.png)
 
-于是 **缩花** 与 **不缩花** 都不影响正确性。
+So **shrink blossom** and **NOT shrink blossom** does not affect the correctness.
 
-实作上找到 **花** 以后我们不需要真的 **缩花** ，可以用数组纪录每个点在以哪个点为根的那朵花中。
+In fact, after finding the **blossom** we do not actually need to **shrink blossom**. We can use array to keep track of which node is in the blossom that has itself as the root.
 
-### 复杂度分析 Complexity Analysis
+### Time Complexity Analysis
 
-每次找增广路，遍历所有边，遇到 **花** 会维护 **花** 上的点， $O(|E|^2)$ 。
-枚举所有未匹配点做增广路，总共 $O(|V||E|^2)$ 。
+Each time finding augmenting path, traversing all edges, maintaing the nodes on the **blossom**, would take $O(|E|^2)$ .
 
-### 代码
+Enumerating all unmatched nodes to find augmenting path would take overall $O(|V||E|^2)$ .
+
+### Code
 
 ```cpp
 // graph
@@ -91,11 +98,11 @@ class undirectedgraph : public graph<T> {
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
   std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-  vector<int> match(g.n, -1);   // 匹配
-  vector<int> aux(g.n, -1);     // 时间戳记
+  vector<int> match(g.n, -1);   // matching
+  vector<int> aux(g.n, -1);     // time stamp
   vector<int> label(g.n);       // "o" or "i"
-  vector<int> orig(g.n);        // 花根
-  vector<int> parent(g.n, -1);  // 父节点
+  vector<int> orig(g.n);        // original node
+  vector<int> parent(g.n, -1);  // parent node
   queue<int> q;
   int aux_time = -1;
 
@@ -103,14 +110,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     aux_time++;
     while (true) {
       if (v != -1) {
-        if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+        if (aux[v] == aux_time) {  // find the node visited, that is, LCA
           return v;
         }
         aux[v] = aux_time;
         if (match[v] == -1) {
           v = -1;
         } else {
-          v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
+          v = orig[parent[match[v]]];  // continue searching using the matched parent node
         }
       }
       swap(v, u);
@@ -121,11 +128,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     while (orig[v] != a) {
       parent[v] = u;
       u = match[v];
-      if (label[u] == 1) {  // 初始点设为"o" 找增广路
+      if (label[u] == 1) {  // set the source node as "o" to find an augmenting path
         label[u] = 0;
         q.push(u);
       }
-      orig[v] = orig[u] = a;  // 缩花
+      orig[v] = orig[u] = a;  // shrink blossom
       v = parent[u];
     }
   };  // blossom
@@ -147,7 +154,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       q.pop();
     }
     q.push(root);
-    // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+    // set the source node as "o", replacing "o" with "0 and "i" with "1"
     label[root] = 0;
     while (!q.empty()) {
       int v = q.front();
@@ -155,21 +162,21 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       for (int id : g.g[v]) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
-        if (label[u] == -1) {  // 找到未拜访点
-          label[u] = 1;        // 标记 "i"
+        if (label[u] == -1) {  // find unvisited node
+          label[u] = 1;        // label "i"
           parent[u] = v;
-          if (match[u] == -1) {  // 找到未匹配点
-            augment(u);          // 寻找增广路径
+          if (match[u] == -1) {  // find unmatched node
+            augment(u);          // find augmenting path
             return true;
           }
-          // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+          // find matched node and push its matching node in the queue, extending alternating tree
           label[match[u]] = 0;
           q.push(match[u]);
           continue;
         } else if (label[u] == 0 && orig[v] != orig[u]) {
-          // 找到已拜访点 且标记同为"o" 代表找到"花"
+          // find visited node & the label is also "o", meaning the "blossom" has been found
           int a = lca(orig[v], orig[u]);
-          // 找LCA 然后缩花
+          // find LCA, then shrink blossom
           blossom(u, v, a);
           blossom(v, u, a);
         }
@@ -180,11 +187,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 
   auto greedy = [&]() {
     vector<int> order(g.n);
-    // 随机打乱 order
+    // randomize order
     iota(order.begin(), order.end(), 0);
     shuffle(order.begin(), order.end(), rng);
 
-    // 将可以匹配的点匹配
+    // matched vertices that can be matched
     for (int i : order) {
       if (match[i] == -1) {
         for (auto id : g.g[i]) {
@@ -200,9 +207,9 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     }
   };  // greedy
 
-  // 一开始先随机匹配
+  // randomize first
   greedy();
-  // 对未匹配点找增广路
+  // then find augmenting path for unmatched node
   for (int i = 0; i < g.n; i++) {
     if (match[i] == -1) {
       bfs(i);
@@ -212,9 +219,9 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
 }
 ```
 
-## 习题
+## Practice problems
 
-??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79) "
+??? note "[UOJ #79. maximum matching in general graph](https://uoj.ac/problem/79) (original link in Chinese)"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -258,11 +265,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-      vector<int> match(g.n, -1);   // 匹配
-      vector<int> aux(g.n, -1);     // 时间戳记
+      vector<int> match(g.n, -1);   // match
+      vector<int> aux(g.n, -1);     // time stamp
       vector<int> label(g.n);       // "o" or "i"
-      vector<int> orig(g.n);        // 花根
-      vector<int> parent(g.n, -1);  // 父节点
+      vector<int> orig(g.n);        // blossom root
+      vector<int> parent(g.n, -1);  // parent node
       queue<int> q;
       int aux_time = -1;
     
@@ -270,14 +277,14 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         aux_time++;
         while (true) {
           if (v != -1) {
-            if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+            if (aux[v] == aux_time) {  // find the visited node, LCA
               return v;
             }
             aux[v] = aux_time;
             if (match[v] == -1) {
               v = -1;
             } else {
-              v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
+              v = orig[parent[match[v]]];  // continue searching using the parent node of the matched node
             }
           }
           swap(v, u);
@@ -288,11 +295,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         while (orig[v] != a) {
           parent[v] = u;
           u = match[v];
-          if (label[u] == 1) {  // 初始点设为"o" 找增广路
+          if (label[u] == 1) {  // set source node as "o", find augmenting path
             label[u] = 0;
             q.push(u);
           }
-          orig[v] = orig[u] = a;  // 缩花
+          orig[v] = orig[u] = a;  // shrink bloosom
           v = parent[u];
         }
       };  // blossom
@@ -314,7 +321,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           q.pop();
         }
         q.push(root);
-        // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+        // set starting node as "o", and replace "o" with "0", "i" with "1"
         label[root] = 0;
         while (!q.empty()) {
           int v = q.front();
@@ -322,22 +329,22 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           for (int id : g.g[v]) {
             auto &e = g.edges[id];
             int u = e.from ^ e.to ^ v;
-            if (label[u] == -1) {  // 找到未拜访点
-              label[u] = 1;        // 标记 "i"
+            if (label[u] == -1) {  // find unlabled node
+              label[u] = 1;        // label "i"
               parent[u] = v;
-              if (match[u] == -1) {  // 找到未匹配点
-                augment(u);          // 寻找增广路径
+              if (match[u] == -1) {  // find unmatched node
+                augment(u);          // find augmenting path
                 return true;
               }
-              // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+              // find matched node, push matched node into queue, and extend alternating tree
               label[match[u]] = 0;
               q.push(match[u]);
               continue;
             } else if (label[u] == 0 &&
                        orig[v] !=
-                           orig[u]) {  // 找到已拜访点 且标记同为"o" 代表找到"花"
+                           orig[u]) {  // finding visited node with label of "o" meaning the "blossom" has been found
               int a = lca(orig[v], orig[u]);
-              // 找LCA 然后缩花
+              // find LCA, then shrink blossom
               blossom(u, v, a);
               blossom(v, u, a);
             }
@@ -348,11 +355,11 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     
       auto greedy = [&]() {
         vector<int> order(g.n);
-        // 随机打乱 order
+        // randomize order
         iota(order.begin(), order.end(), 0);
         shuffle(order.begin(), order.end(), rng);
     
-        // 将可以匹配的点匹配
+        // match nodes that can be matched
         for (int i : order) {
           if (match[i] == -1) {
             for (auto id : g.g[i]) {
@@ -368,9 +375,9 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         }
       };  // greedy
     
-      // 一开始先随机匹配
+      // first randomize matching
       greedy();
-      // 对未匹配点找增广路
+      // find augmenting path for unmatched node
       for (int i = 0; i < g.n; i++) {
         if (match[i] == -1) {
           bfs(i);
