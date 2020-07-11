@@ -2,11 +2,9 @@ author: accelsao
 
 # Maximum Bipartite Matching
 
-A **matching** of a graph is a sub set of edges such that no two edges share a vertex. A **maximum matching** of a graph is a matching with the maximum number of edges (matching as many vertices as possible).  
+A **matching** of a graph is a subset of edges such that no two edges share a vertex. A **maximum matching** of a graph is a matching with the maximum number of edges (matching as many vertices as possible).  
 
-For the convenience of description, we partition the graph into two disjoint sets - left and right. All matching edges connects to both left and right sets. One common example of bipartite graph matching is matching a group of men and women.
-
-Assume the graph has $n$ vertices and $m$ edges.
+For the convenience of description, we assume ( $n$ vertices and $m$ edges, and a set $M$ if no two edges in $M$ have a common vertex) and partition the graph into two disjoint sets - left and right. All matching edges connects to both left and right sets. One common example of bipartite graph matching is matching a group of men and women.
 
 ## Augmenting Path Algorithm
 
@@ -20,7 +18,7 @@ This means that we can just do the DFS traversal from the starting vertex until 
 
 When the augmenting path has not been found, the path formed was called an **alternating tree**.
 
-> **alternating tree**: a tree whose root is an unmatched vertex. All root-to-leaf paths in an alternating tree are alternating paths with respect to $M$.  If we can add an unmatched vertex other than the root vertex to an alternating tree, we have found an augmenting path.
+> **alternating tree**: a tree whose root is an unmatched vertex. All root-to-leaf paths in an alternating tree are alternating paths with respect to $M$ . If we can add an unmatched vertex other than the root vertex to an alternating tree, we have found an augmenting path.
 
 Because we want to enumerate $n$ points, the overall time complexity is $O(nm)$ .
 
@@ -121,11 +119,11 @@ Choose the minimum vertices to satisfy the requirement that at least one endpoin
 
 In bipartite graphs, the minimum vertex cover = $n$ - maximum independent set.
 
-## Practice questions
+## Practice problems
 
 ??? note "[UOJ #78. Bipartite graph maximum matching(original link in Chinese)](https://uoj.ac/problem/78) "
 
-    Template question
+    Template problems
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -210,7 +208,7 @@ In bipartite graphs, the minimum vertex cover = $n$ - maximum independent set.
 
     ```
 
-??? note "[P1640 [SCOI2010]Continuous attack game(link in Chinese)](https://www.luogu.com.cn/problem/P1640) "
+??? note "[P1640 [SCOI2010]Continuous attack game](https://www.luogu.com.cn/problem/P1640) (original link in Chinese)"
 
     None
 
