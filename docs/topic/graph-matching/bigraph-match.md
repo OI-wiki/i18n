@@ -91,13 +91,13 @@ struct augment_path {
 
 Bipartite graph maximum matching can be converted into the flow network model. The **Dinic's algorithm** can also be used to compute the maximum flow in a network.
 
-Connect all vertices on the left to the source vertex, and all points on the right to the sink vertex. The capacity is $1$ . Each original edge is connected from left to right, and the capacity is also $1$ . The maximum flow is the maximum match, which can be found in $O(\sqrt{n}m)$ .
+Connect all vertices on the left to the source vertex, and all points on the right to the sink vertex. All of these edges have a capacity of $1$. Each original edge is connected from left to right with capacity $1$ as well . The maximum flow is the maximum match, which can be found in $O(\sqrt{n}m)$ .
 
 Dinic's algorithm contains two parts. The first part uses BFS to construct network flow in $O(m)$ time complexity; The second part performs DFS for augmentation in $O(nm)$ time complexity.
 
 But because the capacity is $1$ , the actual time complexity is $O(m)$ .
 
-Next, for the first $O(\sqrt{n})$ rounds, the time complexity is $O(\sqrt{n}m)$ . After $O(\sqrt{n})$ rounds, the length of each augmenting path is at least $\sqrt{n}$ , and such path does not exceed $\sqrt{n}$ .
+Next, for the first $O(\sqrt{n})$ rounds, the time complexity is $O(\sqrt{n}m)$ . After $O(\sqrt{n})$ rounds, the length of each augmenting path is at least $\sqrt{n}$ , and the number of such path does not exceed $\sqrt{n}$ .
 
 So it only needs to run $\sqrt{n}$ rounds. The overall time complexity is $O(\sqrt{n}m)$ .
 
