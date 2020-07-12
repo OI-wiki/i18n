@@ -1,73 +1,78 @@
 author: accelsao
 
- **匹配** 或是 **独立边集** 是一张图中没有公共边的集合。
-在二分图中求匹配等价于网路流问题。
+**Matching** or **independent set of edges** is a set with no common edges in a graph. Finding a match in a bipartite graph is equivalent to the network flow problem.
 
-图匹配算法是信息学竞赛中常用的算法，总体分为最大匹配以及最大权匹配，先从二分图开始介绍，在进一步提出一般图的作法。
+Graph matching algorithm is a commonly used algorithm in informatics competitions. It can be generally divided into maximum matching and maximum weight matching. We will first introduce the bipartite graph, and then propose solutions for general graph.
 
-# 匹配
+# Matching
 
-在图论中，假设图 $G=(V,E)$ ，其中 $V$ 是点集， $E$ 是边集。
-一组两两没有公共点的边集 $(M(M\in E))$ 称为这张图的 **匹配** 。
-定义匹配的大小为其中边的数量 $|M|$ ，边数最大的 $M$ 为 **最大匹配** 。
-当图中带权的时候，边权和最大的为 **最大权匹配** 。
-匹配中的边称为 **匹配边** ，反之称为 **未匹配边** 。
-一个点如果属于 $M$ 且为至多一条边的端点，称为 **匹配点** ，反之称为 **未匹配点** 。
+In graph theory, suppose the graph $G=(V,E)$ , where $V$ is vertex point set and $E$ is the edge set.
 
-> maximal matching: 无法再增加匹配边的匹配。不见得是最大匹配。
-> 最大匹配（maximum matching): 匹配数最多的匹配。
-> 完美匹配（perfect matching): 所有点都属于匹配，同时也符合最大匹配。
-> 近完美匹配（near-perfect matching): 发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
+A set of edges that have no common vertices in pairs $(M(M\in E))$ is called the **matching** of this graph.
 
- **maximal matching** ![graph-match-1](./images/graph-match-1.png) **最大匹配** ![graph-match-2](./images/graph-match-2.png)
+Define the size of the match as the number of edges $|M|$ , and the largest number of edges $M$ is the **maximum match**.
 
-# 二分图匹配
+When the graph is weighted, the maximum sum of edge weight is **maximum weight matching**.
 
-一张二分图上的匹配称作二分匹配。![graph-match-3](./images/graph-match-3.png)
+The edges in the match are called **matched edges**, and the opposite are called **unmatched edges**.
 
-设 $G$ 为二分图，若在 $G$ 的子图 $M$ 中，任意两条边都没有公共节点，那么称 $M$ 为二分图 $G$ 的一个匹配，且 $M$ 的边数为匹配数。
+If a vertex belongs to $M$ and is the end point of at most one edge, it is called **matched vertex**, otherwise it is called **unmatched vertex**.
 
-## 完备匹配
+> Maximal matching: No more matching edges can be added. It may not be the maximum match.
+> Maximum matching: The match with the maximum number of matches.
+> Perfect matching/Complete matching/1-factor: All vertices belong to the matching, and also meet the maximum match.
+> Near-perfect matching: The number of vertices in the graph is odd, and there is exactly one vertex that is not in the match. The graph after removing this vertex is called factor-critical graph.
 
-设 $G=<V_1, V_2, E>$ 为二分图， $|V_1| \leq |V_2|$ ， $M$ 为 $G$ 中一个最大匹配，且 $|M|=2|V_1|$ ，则称 $M$ 为 $V_1$ 到 $V_2$ 的完备匹配。
+ **Maximal matching** ![graph-match-1](./images/graph-match-1.png) **maximum matching** ![graph-match-2](./images/graph-match-2.png)
 
-## 霍尔定理
+# Bipartite graph matching
 
-设二分图 $G=<V_1, V_2, E>, |V_1| \leq |V_2|$ ，则 $G$ 中存在 $V_1$ 到 $V_2$ 的完备匹配当且仅当对于任意的 $S \subset V_1$ ，均有 $|S|\leq|N(S)|$ ，其中 $N(S)=\Cup_{v_i \in S}{N(V_i)}$ ，是 $S$ 的邻域。
+The matching on a bipartite graph is called bipartite matching. ![graph-match-3](./images/graph-match-3.png)
 
-## 最大匹配
+Let $G$ be a bipartite graph. If there are no common vertices in any two edges in the subgraph $M$ of $G$ , then $M$ is called a match of the bipartite graph $G$ , and the number of edges in $M$ is the number of matches.
 
-寻找二分图边数最大的匹配称为最大匹配问题。
+## Complete match
 
-# 算法
+Let $G=<V_1, V_2, E>$ be a bipartite graph, $|V_1| \leq |V_2|$ , $M$ is a maximum matching in $G$ , and $|M|=2|V_1|$ , then $M$ is called a complete match from $V_1$ to $V_2$ .
 
-组合优化中的一个基本问题是求 **最大匹配（maximum matching)** 。
+## Hall's Theorem
 
-## 二分图最大匹配
+Let bipartite graph $G=<V_1, V_2, E> , |V_1| \leq |V_2|$ , then there is a complete match between $V_1$ and $V_2$ in $G$ if and only for any $S \ subset V_1$ , both have $|S|\leq|N(S)|$ , where $N(S)=\Cup_{v_i \in S}{N(V_i)}$ is the neighborhood of $S$ .
 
-在无权二分图中，Hopcroft-Karp 算法可在 $O(\sqrt{V}E)$ 解决。
+## Maximum matching
 
-## 二分图最大权匹配
+Finding maximum number of matching edges in bipartite graph is called the maximum matching problem.
 
-在带权二分图中，可用 Hungarian 算法解决。
-如果在最短路搜寻中用 Bellman–Ford 算法，时间复杂度为 $O(V^2E)$ ，
-如果用  Dijkstra 算法或 Fibonacci heap，可用 $O(V^{2}\log {V}+VE)$ 解决。
+# Algorithm
 
-## 一般图最大匹配
+A basic problem in combinatorial optimization is to find **maximum matching**.
 
-无权一般图中，Edmonds' blossom 算法可在 $O(V^2E)$ 解决。
+## Bipartite graph maximum matching
 
-## 一般图最大权匹配
+In the unweighted bipartite graph, the [Hopcroft-Karp algorithm](https://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm) can be used to solve the problem in $O(\sqrt{V}E)$.
 
-带权一般图中，Edmonds' blossom 算法可在 $O(V^2E)$ 解决。
+## Bipartite graph maximum weight matching
 
-# 参考资料
+In the weighted bipartite graph, it can be solved by [Hungarian algorithm](https://en.wikipedia.org/wiki/Hungarian_algorithm#:~:text=Hungarian%20algorithm%20%2D%20Wikipedia-,Hungarian%20algorithm,anticipated%20later%20primal%2Ddual%20methods.).
+
+If the [Bellman–Ford algorithm](https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm) is used to find the shortest path, the time complexity is $O(V^2E)$ . If [Dijkstra algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) or [Fibonacci heap](https://en.wikipedia.org/wiki/Fibonacci_heap#:~:text=In%20computer%20science%2C%20a%20Fibonacci,binary%20heap%20and%20binomial%20heap.) is used, it can be solved in $O(V^{2}\log {V}+VE)$ .
+
+
+## General graph maximum matching
+
+In the unweighted general graph, the Edmonds' [blossom algorithm](https://en.wikipedia.org/wiki/Blossom_algorithm) can be used to solve the problem in $O(V^2E)$.
+
+## General graph maximum weight matching
+
+In the weighted general graph, the Edmonds' [blossom algorithm](https://en.wikipedia.org/wiki/Blossom_algorithm) can be used to solve the problem in $O(V^2E)$.
+
+# References
 
 -   [1][Wikiwand - Matching (graph theory)]( <https://www.wikiwand.com/en/Matching_(graph_theory)> )
 -   [2][Wikiwand - Blossom algorithm]( <https://www.wikiwand.com/en/Blossom_algorithm> )
--   [3]2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
--   [4][演算法笔记 - Matching]( <http://www.csie.ntnu.edu.tw/~u91029/Matching.html> )
+-   [3]2015 Talking about the matching algorithm of graph and its application"- Chen Yinbo
+-   [4][Algorithm notes - Matching]( <http://www.csie.ntnu.edu.tw/~u91029/Matching.html> )
 -   [5][the-tourist/algo]( <https://github.com/the-tourist/algo> )
--   [6][Bill Yang's Blog - 带花树学习笔记]( <https://blog.bill.moe/blossom-algorithm-notes/> )
--   [7][二分图的最大匹配、完美匹配和匈牙利算法]( <https://www.renfei.org/blog/bipartite-matching.html> )
+-   [6][Bill Yang's Blog - Blossom Algorithm learning notes]( <https://blog.bill.moe/blossom-algorithm-notes/> ) (original link in Chinese)
+-   [7][Bipartite graph maximum matching, perfect matching and Hungarian algorithm]( <https://www.renfei.org/blog/bipartite-matching.html> ) (original link in Chinese)
 -   [8][Wikiwand - Hopcroft–Karp algorithm]( <https://www.wikiwand.com/en/Hopcroft%E2%80%93Karp_algorithm> )
