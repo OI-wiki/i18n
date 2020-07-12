@@ -2,21 +2,21 @@ author: accelsao
 
 **Matching** or **independent set of edges** is a set with no common edges in a graph. Finding a match in a bipartite graph is equivalent to the network flow problem.
 
-Graph matching algorithm are commonly used in informatics competitions. It can be generally divided into maximum matching and maximum weight matching. We will first introduce the bipartite graph, and then propose solutions for general graphs.
+Graph matching algorithm are commonly used in OI. It can be generally divided into maximum matching and maximum weight matching. We will first introduce the bipartite graph, and then propose solutions for general graphs.
 
 # Matching
 
-In graph theory, suppose the graph $G=(V,E)$ , where $V$ is vertex point set and $E$ is the edge set.
+In graph theory, suppose the graph $G=(V,E)$ , where $V$ is vertex set and $E$ is the edge set.
 
 A set of edges that have no common vertices in pairs $(M(M\in E))$ is called the **matching** of this graph.
 
 Define the size of the match as the number of edges $|M|$ , and the largest number of edges $M$ is the **maximum match**.
 
-When the graph is weighted, the maximum sum of edge weight is **maximum weight matching**.
+When the graph is weighted, the match with maximum sum of edges' weights is **maximum weight matching**.
 
 The edges in the match are called **matched edges**, and the opposite are called **unmatched edges**.
 
-If a vertex belongs to $M$ and is the end point of at most one edge, it is called **matched vertex**, otherwise it is called **unmatched vertex**.
+If a vertex belongs to $M$ and is the end vertex of at most one edge, it is called **matched vertex**, otherwise it is called **unmatched vertex**.
 
 > Maximal matching: No more matching edges can be added. It may not be the maximum match.
 > Maximum matching: The match with the maximum number of matches.
