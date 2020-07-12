@@ -2,7 +2,7 @@ author: accelsao
 
 **Matching** or **independent set of edges** is a set with no common edges in a graph. Finding a match in a bipartite graph is equivalent to the network flow problem.
 
-Graph matching algorithm is a commonly used algorithm in informatics competitions. It can be generally divided into maximum matching and maximum weight matching. We will first introduce the bipartite graph, and then propose solutions for general graph.
+Graph matching algorithm are commonly used in informatics competitions. It can be generally divided into maximum matching and maximum weight matching. We will first introduce the bipartite graph, and then propose solutions for general graphs.
 
 # Matching
 
