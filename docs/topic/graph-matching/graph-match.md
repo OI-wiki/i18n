@@ -33,11 +33,11 @@ Let $G$ be a bipartite graph. If there are no common vertices in any two edges i
 
 ## Complete match
 
-Let $G=<V_1, V_2, E>$ be a bipartite graph, $|V_1| \leq |V_2|$ , $M$ is a maximum matching in $G$ , and $|M|=2|V_1|$ , then $M$ is called a complete match from $V_1$ to $V_2$ .
+Let $G=<V_1, V_2, E>$ be a bipartite graph, where $|V_1| \leq |V_2|$ . $M$ is a maximum matching in $G$ , and $|M|=2|V_1|$ . In this case, $M$ is called a complete match from $V_1$ to $V_2$ .
 
 ## Hall's Theorem
 
-Let bipartite graph $G=<V_1, V_2, E> , |V_1| \leq |V_2|$ , then there is a complete match between $V_1$ and $V_2$ in $G$ if and only for any $S \ subset V_1$ , both have $|S|\leq|N(S)|$ , where $N(S)=\Cup_{v_i \in S}{N(V_i)}$ is the neighborhood of $S$ .
+Let bipartite graph $G=<V_1, V_2, E> , where |V_1| \leq |V_2|$ . Then there exists a complete match between $V_1$ and $V_2$ in $G$ if and only for any $S \ subset V_1$ , $|S|\leq|N(S)|$ , where $N(S)=\Cup_{v_i \in S}{N(V_i)}$ is the [neighborhood](https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)) of $S$ .
 
 ## Maximum matching
 
