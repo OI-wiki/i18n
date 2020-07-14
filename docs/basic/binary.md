@@ -1,87 +1,87 @@
-## 二分法
+## Bisection method
 
-### 二分查找
+### Binary Search
 
-二分搜索，也称折半搜索、二分查找，是用来在一个有序数组中查找某一元素的算法。
+[Binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm#:~:text=In%20computer%20science%2C%20binary%20search,middle%20element%20of%20the%20array.), also known as half-interval search, logarithmic search, or binary chop, is a search algorithm used to find an element in an ordered array.
 
-以在一个升序数组中查找一个数为例。
+Take the example of finding a number in an ascending array.
 
-它每次考察数组当前部分的中间元素，如果中间元素刚好是要找的，就结束搜索过程；如果中间元素小于所查找的值，那么左侧的只会更小，不会有所查找的元素，只需要到右侧去找就好了；如果中间元素大于所查找的值，同理，右侧的只会更大而不会有所查找的元素，所以只需要到左侧去找。
+Each time it examines the middle element of the current interval. If the middle element is just what we are looking for, then the search process is ended; if the middle element is less than the target value, which means the left side is smaller and no elements will be found there, it just needs to move to the right side; if the middle element is greater than the value found, same as above, the right side will only be larger and there will be no search elements. So it only needs to move to the left.
 
-在二分搜索过程中，每次都把查询的区间减半，因此对于一个长度为 $n$ 的数组，至多会进行 $O(\log n)$ 次查找。
+In the binary search process, the query interval is halved each time, so for an array of length $n$ , at most $O(\log n)$ searches will be performed.
 
 ```cpp
 int binary_search(int start, int end, int key) {
-  int ret = -1;  // 未搜索到数据返回-1下标
+  int ret = -1;  // if not foud, return -1
   int mid;
   while (start <= end) {
-    mid = start + ((end - start) >> 1);  // 直接平均可能会溢出，所以用这个算法
+    mid = start + ((end - start) >> 1);  // directly to get the medium might cause overflow. (e.g. sum(start, end) > SYS.MAX)
     if (arr[mid] < key)
       start = mid + 1;
     else if (arr[mid] > key)
       end = mid - 1;
-    else {  // 最后检测相等是因为多数搜索情况不是大于就是小于
+    else {  // The last test is equal because most search cases are either greater than or less than
       ret = mid;
       break;
     }
   }
-  return ret;  // 单一出口
+  return ret;  // single output
 }
 ```
 
 ??? note
-    对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时， `n >> 1` 比 `n / 2` 指令数更少。
+    For the case where $n$ is a signed number, when you can guarantee $n\ge 0$ , `n >> 1` has fewer instructions than `n / 2`.
 
-注意，这里的有序是广义的有序，如果一个数组中的左侧或者右侧都满足某一种条件，而另一侧都不满足这种条件，也可以看作是一种有序（如果把满足条件看做 $1$ ，不满足看做 $0$ ，至少对于这个条件的这一维度是有序的）。换言之，二分搜索法可以用来查找满足某种条件的最大（最小）的值。
+Please note that the order ew mention here is generalized. If the left or right side of an array meets a certain condition, and the other side does not, it can also be seen as an order ( e.g. If the satisfying condition is regarded as $1$ and the unsatisfying condition is regarded as $0$ , at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (smallest) value that satisfies a certain condition.
 
-如果我们要求满足某种条件的最大值的最小可能情况（最大值最小化）呢？首先的想法是从小到大枚举这个作为答案的「最大值」，然后去判断是否合法。要是这个答案是单调的就好了，那样就可以使用二分搜索法来更快地找到答案。
+What if we ask for the smallest maximum value that meets a certain condition(minimizing maximum value)? The first idea is to enumerate the "maximum value" as the answer from small to large, and then check whether it is legal. If the answer is monotonous, then you can use the binary search to find the answer faster.
 
-要想使用二分搜索法来解这种「最大值最小化」的题目，需要满足以下三个条件：
+If you want to use the binary search algorithm to solve this "minimize maximum" problem, it needs to meet the following three conditions:
 
-1.  答案在一个固定区间内；
-2.  可能查找一个符合条件的值不是很容易，但是要求能比较容易地判断某个值是否是符合条件的；
-3.  可行解对于区间满足一定的单调性。换言之，如果 $x$ 是符合条件的，那么有 $x + 1$ 或者 $x - 1$ 也符合条件。（这样下来就满足了上面提到的单调性）
+1.  The answer is within a fixed interval;
+2.  It may not be very easy to find a value that meets the condition, but it is required to be able to easily check whether a value is eligible
+3.  The feasible solution satisfies a certain monotonicity for the interval. In other words, if $x$ is eligible, then $x + 1$ or $x-1$ is also eligible. (In this way, the monotony mentioned above is satisfied)
 
-当然，最小值最大化是同理的。
+Of course, maximizing the minimum value follows the same rule.
 
-二分法把一个寻找极值的问题转化成一个判定的问题（用二分搜索来找这个极值）。类比枚举法，我们当时是枚举答案的可能情况，现在由于单调性，我们不再需要一个个枚举，利用二分的思路，就可以用更优的方法解决「最大值最小」、「最小值最大」。这种解法也成为是「二分答案」，常见于解题报告中。
+The bisection method turns a problem of finding extreme values into a decision problem (use a binary search to find it). Like enumeration, we are enumerating all  possible answers. Now because of the monotonicity, we no longer need to enumerate one by one, using the bisection method, we can have a more optimal method to solve the "maximizing minimum" and "minimizing maximum" problems. This solution has also become a "bisection answer", commonly seen in problem-solving reports.
 
-### STL 的二分查找
+### Binary Search in STL
 
-补充一个小知识点，对于一个有序的 array 你可以使用 `std::lower_bound()` 来找到第一个大于等于你的值的数， `std::upper_bound()` 来找到第一个大于你的值的数。
+One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first greater than The number of your values](https://en.cppreference.com/w/cpp/algorithm/upper_bound).
 
-请注意，必须是有序数组，否则答案是错误的。
+Please note that it must be an ordered array, otherwise the answer is wrong.
 
-关于具体使用方法，请参见 [STL 页面](../lang/csl/index.md) 。
+For detailed usage, please refer to [STL](../lang/csl/index.md) 。
 
-### 二分答案
+### Bisection solution
 
-解题的时候往往会考虑枚举答案然后检验枚举的值是否正确。如果我们把这里的枚举换成二分，就变成了“二分答案”。
+When solving questions, we often consider enumerating answers and then check whether the value is correct. If we replace the enumeration here with a bisection method, it becomes a "bisection answer".
 
-来看一看一道例题 [Luogu P1873 砍树](https://www.luogu.com.cn/problem/P1873) ，我们可以在 1 到 1000000000（10 亿）中枚举答案，但是这种朴素写法肯定拿不到满分，因为从 1 跑到 10 亿太耗时间。我们可以对答案进行 1 到 10 亿的二分，其中，每次都对其进行检查可行性（一般都是使用贪心法）。 **这就是二分答案。** 
+Let’s take a look at a sample question [Luogu P1873 Cut Tree](https://www.luogu.com.cn/problem/P1873) (original link in Chinese). We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive solution certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 100 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
 
-下面就是例题的参考答案。
+The example solution for practice question is listed below: 
 
 ```cpp
 int a[1000005];
 int n, m;
-bool check(int k) {  // 检查可行性，k为锯片高度
+bool check(int k) {  // check eligibility，k is the height of the saw
   long long sum = 0;
-  for (int i = 1; i <= n; i++)       // 检查每一棵树
-    if (a[i] > k)                    // 如果树高于锯片高度
-      sum += (long long)(a[i] - k);  // 累加树木长度
-  return sum >= m;                   // 如果满足最少长度代表可行
+  for (int i = 1; i <= n; i++)       // check each tree
+    if (a[i] > k)                    // if tree is higher than blade
+      sum += (long long)(a[i] - k);  // add tree height
+  return sum >= m;                   // if the minimum length is met, it is feasible
 }
 int find() {
-  int l = 1, r = 1000000001;  // 因为是左闭右开的，所以10亿要加1
-  while (l + 1 < r) {         // 如果两点不相邻
-    int mid = (l + r) / 2;    // 取中间值
-    if (check(mid))           // 如果可行
-      l = mid;                // 升高锯片高度
+  int l = 1, r = 1000000001;  // Because left side is closed, 1 is added to 1 billion
+  while (l + 1 < r) {         // If two vertices are not adjacent
+    int mid = (l + r) / 2;    // get the mid value
+    if (check(mid))           // if possible 
+      l = mid;                // increase blade height
     else
-      r = mid;  // 否则降低锯片高度
+      r = mid;  // otherwise decrease
   }
-  return l;  // 返回左边值
+  return l;  // return the left side value
 }
 int main() {
   cin >> n >> m;
@@ -91,48 +91,52 @@ int main() {
 }
 ```
 
-看完了上面的代码，你肯定会有两个疑问：
+After reading the above code, you might be wondering about these 2 questions:
 
-1.  为何搜索区间是左闭右开的？
+1.  Why is the search interval left-closed and right-open?
 
-    因为搜到最后，会这样（以合法的最大值为例）：
+    Because in the end of search, it will look like this (take the legal maximum value as an example):
 
     ![](./images/binary-final-1.png)
 
-    然后会
+    then it will
 
     ![](./images/binary-final-2.png)
 
-    合法的最小值恰恰相反。
+    The legal minimum value would just be the opposite.
 
-2.  为何返回左边值？
+2.  Why return the left value?
 
-    如上图
+    As shown above
 
-## 三分法
+## Ternary search
 
 ```cpp
 lmid = left + (right - left >> 1);
-rmid = lmid + (right - lmid >> 1);  // 对右侧区间取半
+rmid = lmid + (right - lmid >> 1);  // halve right side interval 
 if (cal(lmid) > cal(rmid))
   right = rmid;
 else
   left = lmid;
 ```
 
-三分法可以用来查找凸函数的最大（小）值。
+[Ternary search](https://en.wikipedia.org/wiki/Ternary_search) can be used to find the maximum (minimum) value of a [convex function](https://en.wikipedia.org/wiki/Convex_function).
 
-画一下图好理解一些（图待补）
+Draw a picture would help you understand easier (Picture to be added)
 
--   如果 `lmid` 和 `rmid` 在最大（小）值的同一侧：
-    那么由于单调性，一定是二者中较大（小）的那个离最值近一些，较远的那个点对应的区间不可能包含最值，所以可以舍弃。
--   如果在两侧：
-    由于最值在二者中间，我们舍弃两侧的一个区间后，也不会影响最值，所以可以舍弃。
+-   
+    If `lmid` and `rmid` are on the same side of the maximum (minimum) value:
+    Then, due to the monotonicity, it must be either the larger (smaller) of the two that is closer to the maximum value, and the further interval cannot contain the maximum value, so it can be discarded.
 
-## 分数规划
+-   
+    If on both sides:
+    Since the maximum value is in the middle of the two, after we discard an interval on both sides, it will not affect the maximum value, so we can discard it.
 
-分数规划是这样一类问题，每个物品有两个属性 $c_i$ ， $d_i$ ，要求通过某种方式选出若干个，使得 $\frac{\sum{c_i}}{\sum{d_i}}$ 最大或最小。
 
-经典的例子有 最优比率环、最优比率生成树 等等。
+## Factorial programming
 
-分数规划可以用二分法来解决，详情参见 [分数规划](../misc/frac-programming.md) 页面。
+Fractional programming is a problem that each item has two attributes $c_i$ , $d_i$ , and it requires a certain amount of selected number, so that $\frac{\sum{c_i}}{\sum{d_i} }$ is the maximum or minimum.
+
+Classic examples include optimal ratio loops, optimal ratio spanning trees, and so on.
+
+Factorial programming can be solved using binary search. For details, please refer to [factorial programming](../misc/frac-programming.md).
