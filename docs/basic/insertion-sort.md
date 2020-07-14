@@ -1,10 +1,10 @@
-插入排序将数列划分为“已排序的”和“未排序的”两部分，每次从“未排序的”元素中选择一个插入到“已排序的”元素中的正确位置。
+Insertion sort divides the sequence into two parts, "sorted" and "unsorted," and selects one from the "unsorted" element to insert into the correct position of the "sorted".
 
-插入排序的最坏情况时间复杂度和平均情况时间复杂度都为 $O(n^2)$ ，但其在数列几乎有序时效率很高。
+The worst case time complexity and average case time complexity of insertion sort are both $O(n^2)$ , but their efficiency is very high when the sequence is almost ordered.
 
-插入排序是一个稳定排序。
+Insertion sort is a stable sort.
 
-伪代码：
+Pseudocode:
 
 $$
 \begin{array}{ll}
@@ -21,11 +21,11 @@ $$
 \end{array}
 $$
 
-C++ 代码：
+C++ code
 
 ```cpp
 void insertion_sort(int* a, int n) {
-  // 对 a[1],a[2],...,a[n] 进行插入排序
+  // perform insertiono sort on a[1],a[2],...,a[n]
   for (int i = 2; i <= n; ++i) {
     int key = a[i];
     int j = i - 1;
