@@ -1,5 +1,5 @@
-对所有记录建 [堆](../ds/heap.md) 。
+Create [heap](../ds/heap.md) for all records.
 
-依次取出堆顶元素，就可以得到排好序的序列。
+You can get the sorted sequence by taking the top elements of the heap one by one.
 
-时间复杂度为 $O(n\log n)$ 。
+Time complexity is $O(n\log n)$ .
