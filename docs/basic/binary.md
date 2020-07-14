@@ -73,15 +73,15 @@ bool check(int k) {  // check eligibility，k is the height of the saw
   return sum >= m;                   // if the minimum length is met, it is feasible
 }
 int find() {
-  int l = 1, r = 1000000001;  // Because it is closed from left to right, 1 is added to 1 billion
-  while (l + 1 < r) {         // 如果两点不相邻
-    int mid = (l + r) / 2;    // 取中间值
-    if (check(mid))           // 如果可行
-      l = mid;                // 升高锯片高度
+  int l = 1, r = 1000000001;  // Because left side is closed, 1 is added to 1 billion
+  while (l + 1 < r) {         // If two vertices are not adjacent
+    int mid = (l + r) / 2;    // get the mid value
+    if (check(mid))           // if possible 
+      l = mid;                // increase blade height
     else
-      r = mid;  // 否则降低锯片高度
+      r = mid;  // otherwise decrease
   }
-  return l;  // 返回左边值
+  return l;  // return the left side value
 }
 int main() {
   cin >> n >> m;
@@ -91,23 +91,23 @@ int main() {
 }
 ```
 
-看完了上面的代码，你肯定会有两个疑问：
+After reading the above code, you might be wondering about these 2 questions:
 
-1.  为何搜索区间是左闭右开的？
+1.  Why is the search interval left-closed and right-open?
 
-    因为搜到最后，会这样（以合法的最大值为例）：
+    Because in the end of search, it will look like this (take the legal maximum value as an example):
 
     ![](./images/binary-final-1.png)
 
-    然后会
+    then it will
 
     ![](./images/binary-final-2.png)
 
-    合法的最小值恰恰相反。
+    The legal minimum value would just be the opposite.
 
-2.  为何返回左边值？
+2.  Why return the left value?
 
-    如上图
+    As shown above
 
 ## Ternary search
 
@@ -122,17 +122,21 @@ else
 
 [Ternary search](https://en.wikipedia.org/wiki/Ternary_search) can be used to find the maximum (minimum) value of a [convex function](https://en.wikipedia.org/wiki/Convex_function).
 
-画一下图好理解一些（图待补）
+Draw a picture would help you understand easier (Picture to be added)
 
--   如果 `lmid` 和 `rmid` 在最大（小）值的同一侧：
-    那么由于单调性，一定是二者中较大（小）的那个离最值近一些，较远的那个点对应的区间不可能包含最值，所以可以舍弃。
--   如果在两侧：
-    由于最值在二者中间，我们舍弃两侧的一个区间后，也不会影响最值，所以可以舍弃。
+-   
+    If `lmid` and `rmid` are on the same side of the maximum (minimum) value:
+    Then, due to the monotonicity, it must be either the larger (smaller) of the two that is closer to the maximum value, and the further interval cannot contain the maximum value, so it can be discarded.
 
-## 分数规划
+-   
+    If on both sides:
+    Since the maximum value is in the middle of the two, after we discard an interval on both sides, it will not affect the maximum value, so we can discard it.
 
-分数规划是这样一类问题，每个物品有两个属性 $c_i$ ， $d_i$ ，要求通过某种方式选出若干个，使得 $\frac{\sum{c_i}}{\sum{d_i}}$ 最大或最小。
 
-经典的例子有 最优比率环、最优比率生成树 等等。
+## Factorial programming
 
-分数规划可以用二分法来解决，详情参见 [分数规划](../misc/frac-programming.md) 页面。
+Fractional programming is a problem that each item has two attributes $c_i$ , $d_i$ , and it requires a certain amount of selected number, so that $\frac{\sum{c_i}}{\sum{d_i} }$ is the maximum or minimum.
+
+Classic examples include optimal ratio loops, optimal ratio spanning trees, and so on.
+
+Factorial programming can be solved using binary search. For details, please refer to [factorial programming](../misc/frac-programming.md).
