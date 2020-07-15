@@ -25,7 +25,7 @@ C++ code
 
 ```cpp
 void insertion_sort(int* a, int n) {
-  // perform insertiono sort on a[1],a[2],...,a[n]
+  // perform insertion sort on a[1],a[2],...,a[n]
   for (int i = 2; i <= n; ++i) {
     int key = a[i];
     int j = i - 1;
