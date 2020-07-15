@@ -1,15 +1,15 @@
-模拟。顾名思义，就是用计算机来模拟题目中要求的操作，比如 NOIP 2014 的 [生活大爆炸版石头剪刀布](https://uoj.ac/problem/15) ，只需要按照题面的意思来写就可以了。
+Simulation, as the name implies, is the operation that computers use to simulate the process required in the question. Similar to NOIP 2014's [Big Bang version rock paper scissors] (https://uoj.ac/problem/15) (original link in Chinese), coding according to the meaning of the title would be fine.
 
-当然，模拟并不总是很好写，参见经典题目 [魔兽世界](http://bailian.openjudge.cn/practice/3750/) 和 [猪国杀](https://loj.ac/problem/2885) 。
+Of course, simulations are not always easy to write. See classic questions like [World of Warcraft] (http://bailian.openjudge.cn/practice/3750/) and [pig kingdom kill] (https://loj.ac/problem /2885) for reference.
 
-模拟题目通常具有码量大、操作多、思路繁复的特点。并且由于它码量大，会导致很难查错，如果在考试中写错是相当浪费时间的。
+Simulation questions usually have large code size, many operations, and complicated ideas. And because of its large amount of code, the debugging process is really difficult. If you write errors during the competition, it would be quite a waste of time.
 
-所以写模拟题，遵循以下的建议有可能会帮助你提升做题速度：
+Therefore, for simulation questions, following the suggestions below may help you improve the speed:
 
-1.  在动手写代码之前，在草纸上尽可能地写好要实现的流程；
-2.  在代码中，尽量把每个部分模块化、写成函数、结构体或类；
-3.  对于一些可能重复用到的概念，可以统一转化，方便处理：如，某题给你 "YY-MM-DD 时：分" 把它扔到一个函数处理成秒，会减少概念混淆；
-4.  调试时分块调试，模块化的好处就是可以方便的单独调某一部分；
-5.  写代码的时候一定要思路清晰，不要想到什么写什么，要按照落在纸上的步骤写。
+1. Before writing the code, write as much as possible on the scratch paper to implement the process;
+2. In the code, try to modularize each part as a function, structure, or class;
+3. For some concepts that may be reused, they can be transformed in a unified way so they are easier to handle: for example, if a question gives you "YY-MM-DD hour:minute", processing it in a function into seconds format will help reduce confusion;
+4. When debugging, debug in blocks. The advantage of modularity is that it is convenient to adjust a certain part separately;
+5. When writing the code, think clearly. Do not think intuitively, instead, write the solution step by step on paper and follow it.
 
-实际上，上述步骤在解决其它类型的题目时也是很有帮助的。
+In fact, the above steps are also very helpful in solving other types of problems.
