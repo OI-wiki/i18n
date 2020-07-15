@@ -30,11 +30,11 @@ int binary_search(int start, int end, int key) {
 ```
 
 ??? note
-    For the case where $n$ is a signed number, when you can guarantee $n\ge 0$ , `n >> 1` has fewer instructions than `n / 2`.
+    For the case where $n$ is a signed number, when $n\ge 0$ is guaranteed, `n >> 1` has fewer instructions than `n / 2`.
 
 Please note that the order we mention here is generalized. If the left or right side of an array meets a certain condition, and the other side does not, it can also be seen as an order (e.g. If the satisfying condition is regarded as $1$ and the unsatisfying condition is regarded as $0$ , at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (smallest) value that satisfies a certain condition.
 
-What if we ask for the smallest maximum value that meets a certain condition (minimizing maximum value)? The first idea is to enumerate the "maximum value" as the answer from small to large, and then check whether it is legal. If the answer is monotonous, then you can use the binary search to find the answer faster.
+What if we ask for the smallest maximum value that meets a certain condition (minimizing maximum value)? The first idea is to enumerate the "maximum value" as the answer from small to large, and then check whether it is legal. If the answer is monotonous, then you can use the binary search to find it faster.
 
 If you want to use the binary search algorithm to solve this "minimize maximum" problem, it needs to meet the following three conditions:
 
@@ -44,23 +44,23 @@ If you want to use the binary search algorithm to solve this "minimize maximum" 
 
 Of course, maximizing the minimum value follows the same rule.
 
-The bisection method turns a problem of finding extreme values into a decision problem (use a binary search to find it). Like enumeration, we are enumerating all possible answers. Now because of the monotonicity, we no longer need to enumerate one by one. Instead, using the bisection method, we can have a more optimal method to solve the "maximizing minimum" and "minimizing maximum" problems. This solution has also called "bisectioning answers", and will commonly seen in problem-solving reports.
+The bisection method turns a problem of finding extreme values into a decision problem (use a binary search to find it). Like enumeration, we are enumerating all possible answers. Now because of the monotonicity, we no longer need to enumerate one by one. Instead, using the bisection method, we can have a more optimal method to solve the "maximizing minimum" and "minimizing maximum" problems. This method was also called "bisection answer", and is commonly seen in solutions.
 
 ### Binary Search in STL
 
 One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first greater than the number of your value](https://en.cppreference.com/w/cpp/algorithm/upper_bound).
 
-Please note that it must be an ordered array, otherwise the answer is wrong.
+Please note that it must be an ordered array, otherwise the solution is wrong.
 
 For detailed usage, please refer to [STL](../lang/csl/index.md) 。
 
-### Bisection solution
+### Bisection answer
 
-When solving questions, we often consider enumerating answers and then check whether the value is correct. If we replace the enumeration here with a bisection method, it becomes a "bisection answer".
+When solving problems, we often consider enumerating answers and then check whether the value is correct. If we replace the enumeration here with a bisection method, it becomes a "bisection answer".
 
-Let’s take a look at a sample question [Luogu P1873 Cut Tree](https://www.luogu.com.cn/problem/P1873) (original link in Chinese). We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive solution certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 100 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
+Let’s take a look at a sample problem [Luogu P1873 Cut Tree](https://www.luogu.com.cn/problem/P1873) (original link in Chinese). We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive approach certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 100 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
 
-The example solution for practice question is listed below: 
+The example answer for practice problem is listed below: 
 
 ```cpp
 int a[1000005];
@@ -73,7 +73,7 @@ bool check(int k) {  // check eligibility, where k is the height of the saw
   return sum >= m;                   // if the minimum length is met, it is feasible
 }
 int find() {
-  int l = 1, r = 1000000001;  // Because left side is closed, 1 is added to 1 billion
+  int l = 1, r = 1000000001;  // Because left side of the interval is closed, 1 is added to 1 billion
   while (l + 1 < r) {         // If two vertices are not adjacent
     int mid = (l + r) / 2;    // get the mid value
     if (check(mid))           // if possible 
