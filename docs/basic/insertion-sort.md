@@ -1,4 +1,4 @@
-Insertion sort divides the sequence into two parts, "sorted" and "unsorted," and selects one from the "unsorted" element to insert into the correct position of the "sorted".
+Insertion sort divides the sequence into two parts, "sorted" and "unsorted". Each time, it selects one from the "unsorted" elements to insert into the correct position of the "sorted" part.
 
 The worst case time complexity and average case time complexity of insertion sort are both $O(n^2)$ , but their efficiency is very high when the sequence is almost ordered.
 
