@@ -1,12 +1,12 @@
-基数排序是将待排序的元素拆分为 $k$ 个关键字（比较两个元素时，先比较第一关键字，如果相同再比较第二关键字……），然后先对第 $k$ 关键字进行稳定排序，再对第 $k-1$ 关键字进行稳定排序，再对第 $k-2$ 关键字进行稳定排序……最后对第一关键字进行稳定排序，这样就完成了对整个待排序序列的稳定排序。
+[Radix sort](https://en.wikipedia.org/wiki/Radix_sort) is an algorithm that splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stable sort the $k$ th keywords, the $k-1$ th keywords, and then sort the $k-2$ th keywords...Finally, sort the first keywords stably, and the stable  pairing of the entire sequence is completed.
 
-基数排序的正确性可以自己感性理解一下，也可以参考 <https://walkccc.github.io/CLRS/Chap08/8.3/#83-3> 。
+For the correctness of radix sort, you can refer to <https://walkccc.github.io/CLRS/Chap08/8.3/#83-3>.
 
-一般来说，每个关键字的值域都不大，就可以使用 [计数排序](./counting-sort.md) 作为内层排序，复杂度为 $O(nk+\sum\limits_{i=1}^k w_i)$ ，其中 $w_i$ 为第 $i$ 关键字的值域大小。
+In general, if the range of each keyword is not large, you can use [count sort](./counting-sort.md) as the inner sorting. The time complexity is $O(nk+\sum\limits_{i= 1}^k w_i)$ , where $w_i$ is the range of the $i$ th keyword.
 
-（如果关键字值域很大，就可以直接使用基于比较的 $O(nk\log n)$ 排序而无需使用基数排序了。）
+(If the key value range is large, you can directly use the comparison-based sorting with $O(nk\log n)$ time complexity without using radix sort.
 
-伪代码：
+Pseudocode:
 
 $$
 \begin{array}{ll}
@@ -18,7 +18,7 @@ $$
 \end{array}
 $$
 
-C++ 代码：
+C++ code:
 
 ```cpp
 const int N = 100010;
@@ -30,7 +30,7 @@ int n, w[K], k, cnt[W];
 struct Element {
   int key[K];
   bool operator<(const Element& y) const {
-    // shows how two elements are compared
+    // how two elements are compared
     for (int i = 1; i <= k; ++i) {
       if (key[i] == y.key[i]) continue;
       return key[i] < y.key[i];
