@@ -1,12 +1,12 @@
-计数排序是一种复杂度为 $O(n+w)$ 的稳定排序，其中 $w$ 代表待排序数据的值域大小。
+Counting sort is a stable sorting algorithm with a time complexity of $O(n+w)$ , where $w$ represents the size of the range of data to be sorted.
 
-计数排序分为三个步骤：
+The counting sort consists of three steps:
 
-1. 计算每个数出现了几次。
-2. 求出每个数出现次数的前缀和。
-3. 利用出现次数的前缀和，从右至左计算每个数的排名。
+1. Count how many times each number appears.
+2. Find the prefix sum of the occurrence of each number.
+3. Using the prefix sum of the number of occurrences, calculate the ranking of each number from right to left.
 
-伪代码：
+Pseudocode:
 
 $$
 \begin{array}{ll}
@@ -26,7 +26,7 @@ $$
 \end{array}
 $$
 
-C++ 代码：
+C++ code
 
 ```cpp
 const int N = 100010;
