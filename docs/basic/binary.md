@@ -6,16 +6,16 @@
 
 Take the example of finding a number in an ascending array.
 
-Each time it examines the middle element of the current interval. If the middle element is just what we are looking for, then the search process is ended; if the middle element is less than the target value, which means the left side is smaller and no elements will be found there, it just needs to move to the right side; if the middle element is greater than the value found, same as above, the right side will only be larger and there will be no search elements. So it only needs to move to the left.
+Each time it examines the middle element of the current interval, if the middle element is just what we are looking for, then the search process is ended; if the middle element is less than the target value, which means the left side is smaller and no elements will be found there, it just needs to search in the right side; if the middle element is greater than the value found, same as above, the right side will only be larger and there will be no target element. So it only needs to search in the left side.
 
 In the binary search process, the query interval is halved each time, so for an array of length $n$ , at most $O(\log n)$ searches will be performed.
 
 ```cpp
 int binary_search(int start, int end, int key) {
-  int ret = -1;  // if not foud, return -1
+  int ret = -1;  // if not found, return -1
   int mid;
   while (start <= end) {
-    mid = start + ((end - start) >> 1);  // directly to get the medium might cause overflow. (e.g. sum(start, end) > SYS.MAX)
+    mid = start + ((end - start) >> 1);  // getting the medium directly might cause overflow. (e.g. start + end > INT_MAX)
     if (arr[mid] < key)
       start = mid + 1;
     else if (arr[mid] > key)
