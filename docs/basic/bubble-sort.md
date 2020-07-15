@@ -1,10 +1,10 @@
-Bubble sorting is a stable sorting algorithm.
+Bubble sorting is a [stable sorting algorithm](https://en.m.wikipedia.org/wiki/Category:Stable_sorts).
 
 Taking ascending order as an example, the bubble sort checks two adjacent elements each time. If the previous element is larger than the following element, the adjacent two elements are swapped. When no adjacent elements need to be exchanged, the sorting is complete.
 
 After $i$ scans, the $i$-th item at the end of the sequence must be among the largest $i$ items, so at most $n-1$ scans through the array is needed to complete the sorting.
 
-When the sequence is completely ordered, the algorithm only needs to traverse the array once, without performing any swap operation, and the time complexity is $O(n)$ . In the worst case, bubble sorting needs to perform $\frac{(n-1)n}{2}$ exchange operations, and the time complexity is $O(n^2)$ . In the average case, the time complexity of bubble sort is also $O(n^2)$ .
+When the sequence is completely ordered, the algorithm only needs to traverse the array once, without performing any swap operation, and the time complexity is $O(n)$ . In the worst case, bubble sorting needs to perform $\frac{(n-1)n}{2}$ exchange operations, and the time complexity is $O(n^2)$ . In average, the time complexity of bubble sort is also $O(n^2)$ .
 
 Pseudocode：
 
