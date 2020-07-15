@@ -6,10 +6,12 @@ Simulation questions usually have large code size, many operations, and complica
 
 Therefore, for simulation questions, following the suggestions below may help you improve the speed:
 
+
 1. Before writing the code, write as much as possible on the scratch paper to implement the process;
 2. In the code, try to modularize each part as a function, structure, or class;
 3. For some concepts that may be reused, they can be transformed in a unified way so they are easier to handle: for example, if a question gives you "YY-MM-DD hour:minute", processing it in a function into seconds format will help reduce confusion;
 4. When debugging, debug in blocks. The advantage of modularity is that it is convenient to adjust a certain part separately;
 5. When writing the code, think clearly. Do not think intuitively, instead, write the solution step by step on paper and follow it.
+
 
 In fact, the above steps are also very helpful in solving other types of problems.
