@@ -20,7 +20,7 @@ int binary_search(int start, int end, int key) {
       start = mid + 1;
     else if (arr[mid] > key)
       end = mid - 1;
-    else {  // The last test is equal because most search cases are either greater than or less than
+    else {  // This equality test is put in the end because most cases are either greater than or less than the value to find.
       ret = mid;
       break;
     }
@@ -32,9 +32,9 @@ int binary_search(int start, int end, int key) {
 ??? note
     For the case where $n$ is a signed number, when you can guarantee $n\ge 0$ , `n >> 1` has fewer instructions than `n / 2`.
 
-Please note that the order ew mention here is generalized. If the left or right side of an array meets a certain condition, and the other side does not, it can also be seen as an order ( e.g. If the satisfying condition is regarded as $1$ and the unsatisfying condition is regarded as $0$ , at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (smallest) value that satisfies a certain condition.
+Please note that the order we mention here is generalized. If the left or right side of an array meets a certain condition, and the other side does not, it can also be seen as an order (e.g. If the satisfying condition is regarded as $1$ and the unsatisfying condition is regarded as $0$ , at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (smallest) value that satisfies a certain condition.
 
-What if we ask for the smallest maximum value that meets a certain condition(minimizing maximum value)? The first idea is to enumerate the "maximum value" as the answer from small to large, and then check whether it is legal. If the answer is monotonous, then you can use the binary search to find the answer faster.
+What if we ask for the smallest maximum value that meets a certain condition (minimizing maximum value)? The first idea is to enumerate the "maximum value" as the answer from small to large, and then check whether it is legal. If the answer is monotonous, then you can use the binary search to find the answer faster.
 
 If you want to use the binary search algorithm to solve this "minimize maximum" problem, it needs to meet the following three conditions:
 
@@ -44,11 +44,11 @@ If you want to use the binary search algorithm to solve this "minimize maximum" 
 
 Of course, maximizing the minimum value follows the same rule.
 
-The bisection method turns a problem of finding extreme values into a decision problem (use a binary search to find it). Like enumeration, we are enumerating all  possible answers. Now because of the monotonicity, we no longer need to enumerate one by one, using the bisection method, we can have a more optimal method to solve the "maximizing minimum" and "minimizing maximum" problems. This solution has also become a "bisection answer", commonly seen in problem-solving reports.
+The bisection method turns a problem of finding extreme values into a decision problem (use a binary search to find it). Like enumeration, we are enumerating all possible answers. Now because of the monotonicity, we no longer need to enumerate one by one. Instead, using the bisection method, we can have a more optimal method to solve the "maximizing minimum" and "minimizing maximum" problems. This solution has also called "bisectioning answers", and will commonly seen in problem-solving reports.
 
 ### Binary Search in STL
 
-One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first greater than The number of your values](https://en.cppreference.com/w/cpp/algorithm/upper_bound).
+One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first greater than the number of your value](https://en.cppreference.com/w/cpp/algorithm/upper_bound).
 
 Please note that it must be an ordered array, otherwise the answer is wrong.
 
@@ -65,7 +65,7 @@ The example solution for practice question is listed below:
 ```cpp
 int a[1000005];
 int n, m;
-bool check(int k) {  // check eligibility，k is the height of the saw
+bool check(int k) {  // check eligibility, where k is the height of the saw
   long long sum = 0;
   for (int i = 1; i <= n; i++)       // check each tree
     if (a[i] > k)                    // if tree is higher than blade
