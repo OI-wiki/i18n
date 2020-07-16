@@ -2,9 +2,9 @@
 
 For the correctness of radix sort, you can refer to <https://walkccc.github.io/CLRS/Chap08/8.3/#83-3>.
 
-In general, if the range of each keyword is not large, you can use [count sort](./counting-sort.md) as the inner sorting. The time complexity is $O(nk+\sum\limits_{i= 1}^k w_i)$ , where $w_i$ is the range of the $i$ th keyword.
+In general, if the range of each keyword is not large, you can use [counting sort](./counting-sort.md) as the inner sorting. The time complexity is $O(nk+\sum\limits_{i= 1}^k w_i)$ , where $w_i$ is the range of the $i$ th keyword.
 
-(If the key value range is large, you can directly use the comparison-based sorting with $O(nk\log n)$ time complexity without using radix sort.
+If the key value range is large, you can directly use the comparison-based sorting with $O(nk\log n)$ time complexity without using radix sort.
 
 Pseudocode:
 
