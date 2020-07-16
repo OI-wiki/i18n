@@ -1,4 +1,4 @@
-[Radix sort](https://en.wikipedia.org/wiki/Radix_sort) is an algorithm that splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stable sort the $k$ th keywords, the $k-1$ th keywords, and then sort the $k-2$ th keywords...Finally, sort the first keywords stably, and the stable  pairing of the entire sequence is completed.
+[Radix sort](https://en.wikipedia.org/wiki/Radix_sort) is an algorithm that splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stable sort the $k$ th keywords, the $k-1$-th keywords, and then sort the $k-2$-th keywords... Finally, sort the first keywords stably, and the stable pairing of the entire sequence is completed.
 
 For the correctness of radix sort, you can refer to <https://walkccc.github.io/CLRS/Chap08/8.3/#83-3>.
 
