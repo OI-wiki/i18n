@@ -58,7 +58,7 @@ For detailed usage, please refer to [STL](../lang/csl/index.md) 。
 
 When solving problems, we often consider enumerating answers and then check whether the value is correct. If we replace the enumeration here with a bisection method, it becomes a "bisection answer".
 
-Let’s take a look at a sample problem [Luogu P1873 Cut Tree](https://www.luogu.com.cn/problem/P1873) (original link in Chinese). We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive approach certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 100 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
+Let’s take a look at a sample problem [Luogu P1873 Cut Tree](https://www.luogu.com.cn/problem/P1873) (original link in Chinese). We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive approach certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 1 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
 
 The example solution for practice problem is listed below: 
 
