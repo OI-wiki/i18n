@@ -2,7 +2,7 @@ Simulation, as the name implies, is the operation that computers use to simulate
 
 Of course, simulations are not always easy to write. See classic questions like [World of Warcraft] (http://bailian.openjudge.cn/practice/3750/) and [pig kingdom kill] (https://loj.ac/problem /2885) for reference.
 
-Simulation questions usually have large code size, many operations, and complicated ideas. And because of its large amount of code, the debugging process is really difficult. If you write errors during the competition, it would be quite a waste of time.
+Simulation questions usually have large code size, many operations, and complicated logics. And because of its large amount of code, the debugging process is really difficult. Therefore, it would be quite time-consuming if you made mistakes during contests.
 
 Therefore, for simulation questions, following the suggestions below may help you improve the speed:
 
