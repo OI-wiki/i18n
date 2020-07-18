@@ -1,23 +1,23 @@
- **排序算法多种多样** ，性质也大多不同。
+**There are many sorting algorithms**, and most of them are different in nature.
 
-## 稳定性
+## Stability
 
-稳定性是指相等的元素经过排序之后相对顺序是否发生了改变。
+Stability refers to whether the relative order of equal elements has changed after sorting.
 
-基数排序、计数排序、插入排序、冒泡排序、归并排序是稳定排序。
+Radix sort, counting sort, insertion sort, bubble sort, and merging sort are stable sorting algorithms.
 
-选择排序、堆排序、快速排序不是稳定排序。
+Selection sort, heap sort, and quick sort are not stable sorting algorithms.
 
-## 时间复杂度
+## Time complexity
 
-时间复杂度用来衡量一个算法的运行时间和输入规模的关系，类似的有空间复杂度，用来描述算法的空间消耗的规模。
+Time complexity is used to measure the relationship between the running time of an algorithm and the input scale. Similarly, there is space complexity, which is used to describe the scale of the space consumption of the algorithm.
 
-简单计算复杂度的方法一般是统计“简单操作”的执行次数，有时候也可以直接数循环的层数来近似估计。
+The simple method of calculating the complexity is generally to count the number of executions of "simple operations", and sometimes it can be approximated by directly counting the number of cycles.
 
-时间复杂度分为最坏时间复杂度、平均时间复杂度、最好时间复杂度等等。OI 竞赛中要考虑的一般是最坏时间复杂度，因为它代表的是算法运行水平的下界，在评测中不会出现更差的结果了。
+Time complexity is divided into worst time complexity, average time complexity, best time complexity and so on. The worst time complexity usually needs to be considered in the OI competitions, because it represents the lower bound of the algorithm's operation, and there will be no worse results in the evaluation.
 
-基于比较的排序算法的时间复杂度下限是 $O(n\log n)$ 的。
+The lower bound of the time complexity of the comparison-based sorting algorithms is $O(n\log n)$ .
 
-当然也有不是 $O(n\log n)$ 的，计数排序的时间复杂度是 $O(n+w)$ ，其中 $w$ 代表输入数据的值域大小。
+Of course, there are ones without $O(n\log n)$ . The time complexity of counting sort is $O(n+w)$ , where $w$ represents the size of the input data.
 
-当待排序的关键码序列基本有序时，插入排序最快。
+When the key sequence is relatively ordered, the insertion sort is the fastest.
