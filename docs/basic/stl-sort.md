@@ -4,7 +4,7 @@ The standard C library implements quick sort, which is `qsort` in `stdlib.h`.
 
 But in OI-related competitions, the library sorting function more commonly used is the `std::sort` from the C++ `algorithm` library.
 
-The C++ standard does not strictly require the algorithm implemented of this function; the specific implementation depends on the compiler.
+The C++ standard does not strictly specify the implementation of this function and it depends on the compiler used.
 
 The old version of the C++ standard only requires its **average** time complexity to reach $O(n\log n)$ , but the C++11 standard requires its **worst** time complexity to reach $O( n\log n)$ . You can refer to [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort).
 
@@ -16,7 +16,7 @@ Introsort limits the divide and conquer depth of quicksort. When divide and conq
 
 This limitation of Introsort makes its worst time complexity $O(n\log n)$ .
 
-Implementation:
+Usage:
 
 ```cpp
 // a[0] .. a[n - 1]: array needs to be sorted
@@ -32,7 +32,7 @@ The function is to find with the $k$-th largest number in the selected interval,
 
 The principle is the unfinished quick sort.
 
-Implementation:
+Usage:
 
 ```cpp
 std::nth_element(begin, mid, end);
@@ -47,7 +47,7 @@ Often used to build [K-D Tree](https://en.wikipedia.org/wiki/K-d_tree).
 
 Stable $O(n\log n)$ sort means that the relative positions of equal elements after the sorting are the same as the original sequence.
 
-Implementation:
+Usage:
 
 ```cpp
 std::stable_sort(begin, end);
@@ -56,11 +56,11 @@ std::stable_sort(begin, end, cmp);
 
 ## partial_sort
 
-Place the top $k$ smallest elements in the first $k$ positions in order in the sequence, and the order following that is not guaranteed.
+Place the top $k$ smallest elements in the first $k$ positions in the sequence (the order of equal of elements is not guarnteed), and the order of the remaining elements is not specified.
 
 Time complexity: $O(n\log k)$ 
 
-Implementation:
+Usage:
 
 ```cpp
 std::partial_sort(begin, begin + k, end);
