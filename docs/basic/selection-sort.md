@@ -1,10 +1,10 @@
-每次找出第 $i$ 小的元素（也就是 $A_{i..n}$ 中最小的元素），将这个元素与数组第 $i$ 个位置上的元素交换。
+Every time you find the smallest element of $i$ (that is, the smallest element in $A_{i..n}$), swap this element with the element at position $i$ of the array.
 
-时间复杂度为 $O(n^2)$ 。
+Time complexity is $O(n^2)$ .
 
-由于 swap（交换两个元素）操作的存在，选择排序是一个不稳定排序。
+Because of the swap (swap two elements) operation, the selection sort is an unstable sort.
 
-伪代码：
+Pseudocode:
 
 $$
 \begin{array}{ll}
@@ -20,7 +20,7 @@ $$
 \end{array}
 $$
 
-C++ 代码：
+C++ code:
 
 ```cpp
 void selection_sort(int* a, int n) {
