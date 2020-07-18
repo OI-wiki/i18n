@@ -56,7 +56,7 @@ std::stable_sort(begin, end, cmp);
 
 ## partial_sort
 
-Place the top $k$ smallest elements in the first $k$ positions in the sequence (the order of equal of elements is not guarnteed), and the order of the remaining elements is not specified.
+Place the top $k$ smallest elements in the first $k$ positions in the sequence (the order of equal elements is not guarnteed), and the order of the remaining elements is not specified.
 
 Time complexity: $O(n\log k)$ 
 
