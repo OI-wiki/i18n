@@ -18,6 +18,6 @@ Time complexity is divided into worst time complexity, average time complexity, 
 
 The lower bound of the time complexity of the comparison-based sorting algorithms is $O(n\log n)$ .
 
-Of course, there are ones without $O(n\log n)$ . The time complexity of counting sort is $O(n+w)$ , where $w$ represents the size of the input data.
+Of course, there are ones that are not $O(n\log n)$ . The time complexity of counting sort is $O(n+w)$ , where $w$ represents the size of the range of input data.
 
 When the key sequence is relatively ordered, the insertion sort is the fastest.
