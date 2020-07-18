@@ -10,7 +10,7 @@ The old version of the C++ standard only requires its **average** time complexit
 
 在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort) 。
 
-In both s[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) and [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm), [introsort](https://en.wikipedia.org/wiki/Introsort) is used.
+In both [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) and [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm), [introsort](https://en.wikipedia.org/wiki/Introsort) is used.
 
 Introsort limits the divide and conquer depth of quicksort. When divide and conquer reaches a certain depth, use a sorting algorithm (such as heap sort) with the worst time complexity of $O(n\log n)$ to sort the sub-arrays.
 
@@ -69,11 +69,11 @@ std::partial_sort(begin, begin + k, end, cmp);
 
 Principle:
 
-The principle of implementing `partial_sort` is: perform the `make_heap()` operation on the elements from the interval of $[first, middle)$ in the original sequence to construct a max heap, and then take each element in $[middle, last)$ to compare with the $first$ - the element in $first$ is the maximum value in the heap. If it is less than the maximum value, the element positions are swapped, and the elements in $[first, middle)$ are adjusted to maintain the max heap. After the comparison, the elements in $[first, middle)$ are sorted by `sort_heap()` in ascending order. Please note that heap order and ascending order are different.
+The principle of implementing `partial_sort` is to perform the `make_heap()` operation on the elements in the interval $[first, middle)$ in the original sequence to construct a max heap, and then take each element in $[middle, last)$ to compare with the $first$ — the maximum value in the heap. If it is less than the maximum value, the two elements are swapped, and the elements in $[first, middle)$ are adjusted to maintain the max heap. After the comparison, the elements in $[first, middle)$ are sorted by `sort_heap()` in ascending order. Please note that heap order is different ascending order.
 
 ## Define operator
 
-For both built-in types (such as `int`) and user-defined structures, you can define the **less than operator** when calling the STL sorting function. You can pass a comparison operator function (usually the last item) when calling the function, or directly override the default operator of this type. See [cppreference](https://en.cppreference.com/w/cpp/language/operators).
+For both built-in types (such as `int`) and user-defined structures, you can define the **less than operator** when calling the STL sorting function. You can pass a comparison operator function (usually the last parameter) when calling the function, or directly override the default operator of this type. See [cppreference](https://en.cppreference.com/w/cpp/language/operators).
 
 Here are a few examples:
 
@@ -108,7 +108,7 @@ The requirements of the strict weak order:
 1. $x \not< x$ (non-reflexive)
 2. If $x < y$ , then $y \not< x$ (asymmetry)
 3. If $x < y, y < z$ , then $x < z$ (transitivity)
-4. If $x \not< y, y \not< x, y \not< z, z \not< y$ , then $x \not< z, z \not< x$ (incomparable transitivity )
+4. If $x \not< y, y \not< x, y \not< z, z \not< y$ , then $x \not< z, z \not< x$ (incomparable transitivity)
 
 Common mistakes:
 
