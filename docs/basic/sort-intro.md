@@ -10,7 +10,7 @@ Selection sort, heap sort, and quick sort are not stable sorting algorithms.
 
 ## Time complexity
 
-Time complexity is used to measure the relationship between the running time of an algorithm and the input scale. Similarly, there is space complexity, which is used to describe the scale of the space consumption of the algorithm.
+Time complexity is used to measure the relationship between the running time of an algorithm and the input scale. Similarly, there is space complexity, which is used to describe the scale of the memory consumption of the algorithm.
 
 The simple method of calculating the complexity is generally to count the number of executions of "simple operations", and sometimes it can be approximated by directly counting the number of cycles.
 
