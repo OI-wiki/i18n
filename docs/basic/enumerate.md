@@ -1,34 +1,34 @@
 author: frank-xjh
 
-枚举是基于已有知识来猜测答案的一种问题求解策略。
+Enumeration is a problem-solving technique that guesses the answer based on existing knowledge.
 
-!!! 例题
-    求小于 N 的最大素数
+!!! Sample problem
+    Find the largest prime number less than N
 
-找不到合适的一个数学公式来直接计算答案，不妨依次尝试一个数是否是答案。
+If you cannot find a suitable mathematical formula to directly calculate the answer, you may wish to try whether a number is the answer.
 
-如果我们从大到小枚举小于 $N$ 的数，那么原问题转化为如何判断一个数是不是素数。
+If we enumerate numbers less than $N$ from large to small, then the original problem is transformed into how to check whether a number is a prime number.
 
-注意到素数的性质要求不能被 $1$ 和它本身之外的数整除，可以直接用于判断。
+Note that the nature of prime numbers requires that they cannot be divided by $1$ and numbers other than itself, and this can be directly used for decision.
 
-枚举的思想是不断地猜测，从可能的集合中一一尝试，然后再判断题目的条件是否成立。
+The idea of enumeration is to constantly guess, try one by one from the possible set, and then determine whether the condition of the problem is met.
 
-## 给出解空间
+## Give solution space
 
-建立简洁的数学模型。
+Construct a concise mathematical model.
 
-枚举的时候要想清楚可能的情况是什么，要枚举哪些要素？
+When enumerating, think about what are the possible situations and what elements should be enumerated?
 
-## 减少枚举的空间
+## Reduce the space for enumeration
 
-枚举的范围是什么？是所有的内容都需要枚举吗？
+What is the range of the enumeration? Does all content need to be enumerated?
 
-在用枚举法解决问题的时候，一定要想清楚这两件事，否则会带来不必要的时间开销。
+When using the enumeration to solve the problem, we must think clearly about these two things, otherwise it will bring unnecessary time overhead.
 
-!!! 例题
-    一个数组中的数互不相同，求其中和为 $0$ 的数对的个数
+!!! Sample problem
+    The numbers in an array are different from each other, find the number of pairs whose sum is $0$
 
-枚举两个数的代码很容易就可以写出来。
+The code for enumerating two numbers is easy to write.
 
 ```cpp
 for (int i = 0; i < n; ++i)
@@ -36,9 +36,9 @@ for (int i = 0; i < n; ++i)
     if (a[i] + a[j] == 0) ++ans;
 ```
 
-我们来看看枚举的范围如何优化。原问题的答案由两部分构成，两个数相等的情况和不相等的情况。相等的情况只需要枚举每一个数判断一下是否合法。至于不相等的情况，由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。我们对于这种情况只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
+Let's see how to optimize the range of enumeration. The answer to the original problem consists of two parts, the case where the two numbers are equal and the case where the they are not. In the case of equality, it is only necessary to enumerate each number to determine whether it is legal. As for the case of inequality, since the number pairs are not required to be ordered in the problem, the answer is twice that of the ordered case (consider that if `(a, b)` is the answer, then `(b, a)` is also the answer). In this case, we only need to count the answers that are  required in order, and multiply it by $2$ .
 
-我们不妨要求第一个数要出现在靠前的位置。代码如下：
+We may as well require the first number to appear in the front position. Code is shown below:
 
 ```cpp
 for (int i = 0; i < n; ++i)
@@ -46,24 +46,24 @@ for (int i = 0; i < n; ++i)
     if (a[i] + a[j] == 0) ++ans;
 ```
 
-不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
+It is not difficult to find that the enumeration range of $j$ has been reduced here, reducing the time cost of this section of code.
 
-然而这并不是最优的结果。
+However, this is not the optimal result.
 
-两个数是否都一定要枚举出来呢？这里我们发现枚举其中一个数之后，题目的条件已经帮我们确定了其他的要素（另一个数），如果能找到一种方法直接判断题目要求的那个数是否存在，就可以省掉枚举后一个数的时间了。
+Do both numbers have to be enumerated? Here we find that after enumerating one of the numbers, the condition of the question has helped us determine the other element (another number). If we can find a way to directly determine whether the number required by the question exists, we can save the time of enumerating another number.
 
 ```cpp
-// 要求 a 数组中的数的绝对值都小于 MAXN
+// Is is required that the absolute values of the numbers in the a array are all less than MAXN
 bool met[MAXN * 2];
-// 初始化 met 数组为 0；
+// Initialize the met array to 0
 memset(met, 0, sizeof(met));
 for (int i = 0; i < n; ++i) {
   if (met[MAXN - a[i]]) ++ans;
-  // 为了避免负数下标
+  // To avoid negative index
   met[a[i] + MAXN] = 1;
 }
 ```
 
-## 选择合适的枚举顺序
+## Choose the appropriate enumeration order
 
-比如第一个例题中要求的是最大的符合条件的素数。自然是从大到小枚举比较合适。
+For example, in the first example, the largest eligible prime number is required. Naturally, it is more appropriate to enumerate from large to small.
