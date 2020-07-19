@@ -1,29 +1,29 @@
-贪心算法顾名思义就是用计算机来模拟一个“贪心”的人做出决策的过程。
+Greedy algorithm, as the name suggests, is using a computer to simulate the decision-making process of a "greedy" person.
 
-这个人每一步行动总是按某种指标选取最优的操作，他总是 **只看眼前，并不考虑以后可能造成的影响** 。
+This person always chooses the best operation according to certain criteria for every movement, who always **looks at current situation, and does not consider the possible impact in the future**.
 
-可想而知，并不是所有的时候贪心法都能获得最优解，所以一般使用贪心法的时候，都要确保自己能证明其正确性。
+It is conceivable that the greedy algorithm cannot obtain the optimal solution all the time, so in general, when using the greedy algorithm, you must ensure that you can prove its correctness.
 
-## 常见做法
+## Common practice
 
-在提高组难度以下的题目中，最常见的贪心有两种。一种是：「我们将 XXX 按照某某顺序排序，然后按某种顺序（例如从小到大）处理」。另一种是：「我们每次都取 XXX 中最大/小的东西，并更新 XXX」，有时「XXX 中最大/小的东西」可以优化，比如用优先队列维护。
+There are two types of greedy problems commonly seen in the questions of difficulty level below improve group. One is: "We sort XXX in a certain order and then process it in a certain order (for example, from small to large)." The other is: "We take the largest/smallest element from XXX and update it every time." Sometimes "the largest/smallest thing in XXX" can be optimized, such as maintaining a priority queue.
 
-为啥分成两种？你可以发现，一种是离线的，一种是在线的。
+Why there are two types? You may find that one is offline and the other is online.
 
-## 证明方法
+## Proof method
 
-以下套路请按照题目自行斟酌，一般情况下一道题只会用到其中的一种方法来证明。
+Please consider the following methods according to the problems. Under normal circumstances, only one method will be used to prove a question.
 
-1.  运用反证法，如果交换方案中任意两个元素/相邻的两个元素后，答案不会变得更好，那么可以发现目前的解已经是最优解了。
-2.  运用归纳法，先手算得出边界情况（例如 $n = 1$ ）的最优解 $F_1$ ，然后再证明：对于每个 $n$ ， $F_{n+1}$ 都可以由 $F_{n}$ 推导出结果。
+1. Use the [proof by contradiction](https://en.wikipedia.org/wiki/Proof_by_contradiction). If the answer is not better after any/adjacent two elements in the exchange, then you can find that the current solution is already the optimal solution.
+2. Use the [induction](https://en.wikipedia.org/wiki/Mathematical_induction) technique. First calculate the optimal solution $F_1$ for the boundary condition (eg $n = 1$ ), and then prove that for each $n$ , result of $F_{n+1}$ can be derived by $ F_{n}$ .
 
-## 排序法
+## Sorting method
 
-用排序法常见的情况是输入一个包含几个（一般一到两个）权值的数组，通过排序然后遍历模拟计算的方法求出最优值。
+The common case of sorting is to input an array containing several (usually one to two) weights, and then find the optimal value by sorting and then traversing the simulation calculation.
 
-有些题的排序方法非常显然，如 [「USACO1.3」修理牛棚 Barn Repair](https://www.luogu.com.cn/problem/P1209) 就是将输入数组差分后排序模拟求值。
+The sorting method of some problems is very obvious. For example, [USACO1.3 Barn Repair](https://www.luogu.com.cn/problem/P1209) (original link in Chinese) is to get the difference value of the input array, sort and simulate.
 
-然而有些时候很难直接一下子看出排序方法，比如 [NOIP 2012 国王游戏](https://vijos.org/p/1779) 就很容易凭直觉而错误地以 $a$ 或 $b$ 为关键字排序，过样例之后提交就发现 WA 了 QAQ。一个常见办法就是尝试交换数组相邻的两个元素来 **推导** 出正确的排序方法。我们假设这题输入的俩个数用一个结构体来保存
+However, sometimes it is difficult to directly see the sorting method at once, such as [NOIP 2012 King Game](https://vijos.org/p/1779) (original link in Chinese), it is easy to mistakenly use $a$ or $b$ as an intuitive sorting keyword. After submission, you will find WA(Wrong Answer). A common approach here is to try to swap two adjacent elements of the array to **derive** the correct sorting method. We assume that the two numbers in input are saved in one structure.
 
 ```cpp
 struct {
@@ -31,49 +31,49 @@ struct {
 } v[n];
 ```
 
-用 $m$ 表示 $i$ 前面所有的 $a$ 的乘积，那么第 $i$ 个大臣得到的奖赏就是
+Use $m$ to represent the product of all $a$ before $i$ , then the reward for the $i$-th minister is
 
 $$
 \frac{m} {v[i].b}
 $$
 
-第 $i + 1$ 个大臣得到的奖赏就是
+The reward for the first $i + 1$-th minister is
 
 $$
 \frac{m \cdot v[i].a} {v[i + 1].b}
 $$
 
-如果我们交换第 $i$ 个大臣与第 $i + 1$ 个大臣的位置，那么第 $i + 1$ 个大臣得到的奖赏就是
+If we exchange the positions of the $i$-th minister and the $i + 1$-th minister, then the reward for the $i + 1$-th minister is
 
 $$
 \frac{m} {v[i + 1].b}
 $$
 
-第 $i + 1$ 个大臣得到的奖励就是
+The reward for the $i + 1$-th minister is
 
 $$
 \frac{m \cdot v[i + 1].a} {v[i].b}
 $$
 
-如果交换前更优当且仅当
+If it is more optimal before swap, if and only if
 
 $$
 \max (\frac{m} {v[i].b}, \frac{m \times v[i].a} {v[i + 1].b})  < \max (\frac{m} {v[i + 1].b}, \frac{m \times v[i + 1].a} {v[i].b})
 $$
 
-提取出相同的 $m$ 并约分得到
+Extract the same $m$ and get the fraction
 
 $$
 \max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})
 $$
 
-然后分式化成整式得到
+Then devide the fraction into equation
 
 $$
 \max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)
 $$
 
-于是我们就成功得到排序函数了！
+Then we successfully get the sorting function!
 
 ```cpp
 struct uv {
@@ -84,21 +84,21 @@ struct uv {
 };
 ```
 
-如果看懂了就可以尝试下一道类似的题： [Luogu P2123 皇后游戏](https://www.luogu.com.cn/problem/P2123) 
+If you have understood the above method, you can try this one: [Luogu P2123 Queens Game](https://www.luogu.com.cn/problem/P2123) (original link in Chinese).
 
-## 后悔法
+## Regret method
 
-???+note "例题[「USACO09OPEN」工作调度 Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
-    约翰的工作日从 $0$ 时刻开始，有 $10^9$ 个单位时间。在任一单位时间，他都可以选择编号 $1$ 到 $N$ 的 $N(1 \leq N \leq 10^5)$ 项工作中的任意一项工作来完成。工作 $i$ 的截止时间是 $D_i(1 \leq D_i \leq 10^9)$ ，完成后获利是 $P_i( 1\leq P_i\leq 10^9 )$ 。在给定的工作利润和截止时间下，求约翰能够获得的利润最大为多少。
+???+note "Sample problem[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949) (original link in Chinese)"
+    John's workday starts at $0$ and has $10^9$ units of time. In any unit of time, he can choose any of the tasks numbered $1$ to $N$ $N(1 \leq N \leq 10^5)$ to complete. The deadline for work $i$ is $D_i(1 \leq D_i \leq 10^9)$ , and the profit after completion is $P_i( 1\leq P_i\leq 10^9 )$ . Given the working profit and deadline, what is the maximum profit John can get?
 
-贪心思想：
+Greedy method:
 
--    **1** . 先假设每一项工作都做，将各项工作按截止时间排序后入队。
--    **2** . 在判断第 i 项工作做与不做时，若其截至时间符合条件，则将其与队中报酬最小的元素比较，若第 i 项工作报酬较高（后悔），则 ans+=a[i].p-q.top()。
+-    **1** . Let's assume that every job will be done, sort the jobs according to the deadline and push to queue.
+-    **2** . When deciding whether to do or not to do the i-th work, if the deadline meets the condition, compare it with the element with the smallest pay in the team. If the i-th work pays higher (regret), then ans+=a[i].pq.top().
 
-     **PS** ：用优先队列（小根堆）来维护队首元素最小。
+     **PS** ：Use priority queue (min heap) to maintain the smallest element on the top.
 
-### 代码
+### Code
 
 ```cpp
 #include <algorithm>
