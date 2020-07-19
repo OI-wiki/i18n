@@ -1,10 +1,10 @@
-桶排序适用于待排序数据值域较大但分布比较均匀的情况，是一个期望时间复杂度为 $O(n)$ 的排序算法。
+[Bucket sort](https://en.wikipedia.org/wiki/Bucket_sort#:~:text=Bucket%20sort%2C%20or%20bin%20sort,applying%20the%20bucket%20sorting%20algorithm.) is suitable for cases where the range of data to be sorted is large but the distribution is relatively uniform. It is a sorting algorithm with an expected time complexity of $O(n)$ .
 
-其大致思想是对值域进行分块，每块分别排序。由于每块元素不多，一般使用插入排序。如果使用稳定的内层排序，并且将元素插入桶中时不改变相对顺序，那么桶排序就是稳定的。
+The general idea is to divide the range into blocks and sort each block separately. Since there are not many elements in each block, insertion sort is generally used. If a stable algorithm is used for inner sorting, and the relative order is not changed when the elements are inserted into the bucket, then the bucket sort is stable.
 
-如果待排序数据是随机生成的，将值域平均分成 $n$ 块的期望时间复杂度是 $O(n)$ ，证明可以参考算法导论或 [维基百科](https://en.wikipedia.org/wiki/Bucket_sort) 。
+If the data to be sorted is randomly generated, the expected time complexity of dividing the range into $n$ blocks is $O(n)$ . The proof can be found in the [introduction to algorithms](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) or [analysis of time complexity](https://en.wikipedia.org/wiki/Bucket_sort#Analysis).
 
-C++ 代码：
+C++ code:
 
 ```cpp
 const int N = 100010;
