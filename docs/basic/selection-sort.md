@@ -1,8 +1,8 @@
-Every time you find the smallest element of $i$ (that is, the smallest element in $A_{i..n}$), swap this element with the element at position $i$ of the array.
+Find the $i$-th smallest element (that is, the smallest element in $A_{i..n}$) each time, and then swap this element with the element at position $i$ of the array.
 
 Time complexity is $O(n^2)$ .
 
-Because of the swap (swap two elements) operation, the selection sort is an unstable sort.
+Because of the operation of swapping two elements, the selection sort is an unstable sort.
 
 Pseudocode:
 
