@@ -5,7 +5,7 @@ Enumeration is a problem-solving technique that guesses the answer based on exis
 !!! Sample problem
     Find the largest prime number less than N
 
-If you cannot find a suitable mathematical formula to directly calculate the answer, you may wish to try whether a number is the answer.
+If you cannot find a suitable mathematical formula to directly calculate the answer, you may want to try whether a number is the answer in order.
 
 If we enumerate numbers less than $N$ from large to small, then the original problem is transformed into how to check whether a number is a prime number.
 
@@ -13,7 +13,7 @@ Note that the nature of prime numbers requires that they cannot be divided by $1
 
 The idea of enumeration is to constantly guess, try one by one from the possible set, and then determine whether the condition of the problem is met.
 
-## Give solution space
+## Find solution space
 
 Construct a concise mathematical model.
 
