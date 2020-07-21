@@ -2,7 +2,7 @@ author: Dev-jqe, HeRaNO
 
 ## Common usage
 
-In OI competitions, we sometimes need to maintain multi-dimensional information and we often need nested trees to record it around this time. When we need to maintain the predecessor, the successor, the largest $k$ , the ranking of a certain number, insertion/deletion, we usually need to use a balanced tree to meet our needs, that is, a segment tree nesting a balanced tree.
+In algorithmic programming competitions, we sometimes need to maintain multi-dimensional information and we often need nested trees to record it around this time. When we need to maintain the predecessor, the successor, the largest $k$ , the ranking of a certain number, insertion/deletion, we usually need to use a balanced tree to meet our needs, that is, a segment tree nesting a balanced tree.
 
 ## Principle of implementation 
 
