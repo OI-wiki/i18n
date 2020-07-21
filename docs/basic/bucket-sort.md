@@ -2,7 +2,7 @@
 
 The general idea is to divide the range into blocks and sort each block separately. Since there are not many elements in each block, insertion sort is generally used. If a stable algorithm is used for inner sorting, and the relative order is not changed when the elements are inserted into the bucket, then the bucket sort is stable.
 
-If the data to be sorted is randomly generated, the expected time complexity of dividing the range into $n$ blocks is $O(n)$ . The proof can be found in the [introduction to algorithms](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) or [analysis of time complexity](https://en.wikipedia.org/wiki/Bucket_sort#Analysis).
+If the data to be sorted is randomly generated, the expected time complexity of dividing the range into $n$ blocks is $O(n)$ . The proof can be found in the [introduction to algorithms](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) or [analysis of time complexity in wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Analysis).
 
 C++ code:
 
