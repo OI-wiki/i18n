@@ -15,7 +15,7 @@ Why there are two types? You may find that one is offline and the other is onlin
 Please consider the following methods according to the problems. Under normal circumstances, only one method will be used to prove a question.
 
 1. Use the [proof by contradiction](https://en.wikipedia.org/wiki/Proof_by_contradiction). If the answer is not better after any/adjacent two elements in the exchange, then you can find that the current solution is already the optimal solution.
-2. Use the [induction](https://en.wikipedia.org/wiki/Mathematical_induction) technique. First calculate the optimal solution $F_1$ for the boundary condition (eg $n = 1$ ), and then prove that for each $n$ , result of $F_{n+1}$ can be derived by $ F_{n}$ .
+2. Use the [induction](https://en.wikipedia.org/wiki/Mathematical_induction) technique. First calculate the optimal solution $F_1$ for the boundary condition (e.g. $n = 1$ ), and then prove that for each $n$ , result of $F_{n+1}$ can be derived by $ F_{n}$ .
 
 ## Sorting method
 
