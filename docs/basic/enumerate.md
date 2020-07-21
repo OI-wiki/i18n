@@ -11,7 +11,7 @@ If we enumerate numbers less than $N$ from large to small, then the original pro
 
 Note that the nature of prime numbers requires that they cannot be divided by $1$ and numbers other than itself, and this can be directly used for decision.
 
-The idea of enumeration is to constantly guess, try one by one from the possible set, and then determine whether the condition of the problem is met.
+The idea of enumeration is to constantly guess, try one by one from the possible set of solutions, and then determine whether the condition of the problem is met.
 
 ## Find solution space
 
