@@ -84,12 +84,12 @@ struct uv {
 };
 ```
 
-If you have understood the above method, you can try this one: [Luogu P2123 Queens Game](https://www.luogu.com.cn/problem/P2123) (original link in Chinese).
+If you have understood the method above, you can try this one: [Luogu P2123 Queens Game](https://www.luogu.com.cn/problem/P2123) (original link in Chinese).
 
 ## Regret method
 
 ???+note "Sample problem[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949) (original link in Chinese)"
-    John's workday starts at $0$ and has $10^9$ units of time. In any unit of time, he can choose any of the tasks numbered $1$ to $N$ $N(1 \leq N \leq 10^5)$ to complete. The deadline for work $i$ is $D_i(1 \leq D_i \leq 10^9)$ , and the profit after completion is $P_i( 1\leq P_i\leq 10^9 )$ . Given the working profit and deadline, what is the maximum profit John can get?
+    John's workdays starts at $0$ and has $10^9$ units of time. In any unit of time, he can choose any of the tasks numbered $1$ to $N$ $N(1 \leq N \leq 10^5)$ to complete. The deadline for work $i$ is $D_i(1 \leq D_i \leq 10^9)$ , and the profit after completion is $P_i( 1\leq P_i\leq 10^9 )$ . Given the working profit and deadline, what is the maximum profit John can get?
 
 Greedy method:
 
