@@ -36,7 +36,7 @@ for (int i = 0; i < n; ++i)
     if (a[i] + a[j] == 0) ++ans;
 ```
 
-Let's see how to optimize the range of enumeration. The answer to the original problem consists of two parts, the case where the two numbers are equal and the case where the they are not. In the case of equality, it is only necessary to enumerate each number to determine whether it is legal. As for the case of inequality, since the number pairs are not required to be ordered in the problem, the answer is twice that of the ordered case (consider that if `(a, b)` is the answer, then `(b, a)` is also the answer). In this case, we only need to count the answers that are  required in order, and multiply it by $2$ .
+Let's see how to optimize the range of enumeration. The answer to the original problem consists of two parts, the case where i and j are equal and the case where the they are not. In the case of equality, it is only necessary to enumerate each number to determine whether it is legal. As for the case of inequality, since the number pairs are not required to be ordered in the problem, the answer is twice that of the ordered case (consider that if `(a, b)` is the answer, then `(b, a)` is also the answer). In this case, we only need to count the answers that are  required in order, and multiply it by $2$ .
 
 We may as well require the first number to appear in the front position. Code is shown below:
 
@@ -46,9 +46,9 @@ for (int i = 0; i < n; ++i)
     if (a[i] + a[j] == 0) ++ans;
 ```
 
-It is not difficult to find that the enumeration range of $j$ has been reduced here, reducing the time cost of this section of code.
+It is not difficult to find that the enumeration range of $j$ has been reduced here, reducing the time cost of this piece of code.
 
-However, this is not the optimal result.
+However, this is not the optimal solution.
 
 Do both numbers have to be enumerated? Here we find that after enumerating one of the numbers, the condition of the question has helped us determine the other element (another number). If we can find a way to directly determine whether the number required by the question exists, we can save the time of enumerating another number.
 
@@ -59,7 +59,7 @@ bool met[MAXN * 2];
 memset(met, 0, sizeof(met));
 for (int i = 0; i < n; ++i) {
   if (met[MAXN - a[i]]) ++ans;
-  // To avoid negative index
+  // To avoid negative indexes
   met[a[i] + MAXN] = 1;
 }
 ```
