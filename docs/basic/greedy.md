@@ -6,9 +6,9 @@ It is conceivable that the greedy algorithm cannot obtain the optimal solution a
 
 ## Common practice
 
-There are two types of greedy problems commonly seen in the questions of difficulty level below improve group. One is: "We sort XXX in a certain order and then process it in a certain order (for example, from small to large)." The other is: "We take the largest/smallest element from XXX and update it every time." Sometimes "the largest/smallest thing in XXX" can be optimized, such as maintaining a priority queue.
+There are two types of greedy problems commonly seen in the problems of difficulty level below senior division in [NOIP](https://en.wikipedia.org/wiki/National_Olympiad_in_Informatics). One is: "We sort XXX in a certain order and then process it in a certain order (for example, from small to large)." The other is: "We take the largest/smallest element from XXX and update it every time." Sometimes "the largest/smallest thing in XXX" can be optimized, such as maintaining a priority queue.
 
-Why there are two types? You may find that one is offline and the other is online.
+Why there are two types? You may find that one is [offline](https://en.wikipedia.org/wiki/Online_algorithm#:~:text=In%20contrast%2C%20an%20offline%20algorithm,developed%20is%20called%20online%20optimization.) and the other is [online](https://en.wikipedia.org/wiki/Online_algorithm).
 
 ## Proof method
 
