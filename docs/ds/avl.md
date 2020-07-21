@@ -3,7 +3,7 @@
 ## Property
 
 1. The empty binary tree is an AVL tree
-2. If T is an AVL tree, then its left and right subtrees are also AVL trees, and $|h(ls) - h(rs)| \leq 1$ , h is the height of its left and right subtrees
+2. If T is an AVL tree, then its left and right subtrees are also AVL trees, and $|h(ls) - h(rs)| \leq 1$ , where h is the height of its left and right subtrees
 3. The tree height is $O(\log n)$
 
 Balance factor: right subtree height - left subtree height
