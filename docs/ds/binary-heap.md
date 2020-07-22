@@ -10,8 +10,6 @@ Due to the nature of the heap, the root of the tree stores the maximum value (wh
 
 ### Insertion operation
 
-插入之后可能会不满足堆性质？
-
 The insertion operation refers to inserting an element into the binary heap, and it is required to still be a complete binary tree after insertion.
 
 The easiest way is to insert after the rightmost leaf in the bottom layer.
