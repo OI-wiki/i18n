@@ -2,59 +2,61 @@ auhor: HeRaNO, Xeonacid
 
 ### Structure
 
-从二叉堆的结构说起，它是一棵二叉树，并且是完全二叉树，每个结点中存有一个元素（或者说，有个权值）。
+For the structure of the binary heap, it is a binary tree, and a complete binary tree, where each node stores an element (or a weight).
 
-堆性质：父亲的权值不小于儿子的权值（大根堆）。同样的，我们可以定义小根堆。本文以大根堆为例。
+Property of heap: the weight of parent node is not less than the weight of child node (max heap). Similarly, we can define a min heap. This article takes the max heap as an example. 
 
-由堆性质，树根存的是最大值（getmax 操作就解决了）。
+Due to the nature of the heap, the root of the tree stores the maximum value (which can be obtained using getmax operation).
 
-### 插入操作
-
-插入操作是指向二插堆中插入一个元素，要保证插入后也是一棵完全二叉树。
-
-最简单的方法就是，最下一层最右边的叶子之后插入。
-
-如果最下一层已满，就新增一层。
+### Insertion operation
 
 插入之后可能会不满足堆性质？
 
- **向上调整** ：如果这个结点的权值大于它父亲的权值，就交换，重复此过程直到不满足或者到根。
+The insertion operation refers to inserting an element into the binary heap, and it is required to still be a complete binary tree after insertion.
 
-可以证明，插入之后向上调整后，没有其他结点会不满足堆性质。
+The easiest way is to insert after the rightmost leaf in the bottom layer.
 
-向上调整的时间复杂度是 $O(\log n)$ 的。
+If the bottom layer is full, then add another layer.
 
-### 删除操作
+If cannot satisfy the property of heap after insertion?
 
-删除操作指删除堆中最大的元素，即删除根结点。
+ **Upward adjustment**: If the weight of this node is greater than the weight of its parent node, swap and repeat this process until this condition is no longer satisfied or reaches the root.
 
-但是如果直接删除，则变成了两个堆，难以处理。
+It can be proved that after the upward adjustment in insertion operation, no other node will not satisfy the heap property.
 
-所以不妨考虑插入操作的逆过程，设法将根结点移到最后一个结点，然后直接删掉。
+The time complexity of the upward adjustment is $O(\log n)$ .
 
-然而实际上不好做，我们通常采用的方法是，把根结点和最后一个结点直接交换。
+### Deletion operation
 
-于是直接删掉（在最后一个结点处的）根结点，但是新的根结点可能不满足堆性质……
+Deletion operation refers to deleting the largest element in the heap, that is, deleting the root node.
 
- **向下调整** ：在该结点的儿子中，找一个最大的，与该结点交换，重复此过程直到底层。
+But if deleted directly, there will be two heaps, which is difficult to handle.
 
-可以证明，删除并向下调整后，没有其他结点不满足堆性质。
+So consider the reverse process of the insertion operation, try to move the root to the last node, and then delete it directly.
 
-时间复杂度 $O(\log n)$ 。
+However, it is difficult to do in practice. The method we usually use is to directly swap the root node with the last node.
 
-### 减小某个点的权值
+So the root node (at the last node) is deleted directly, but the new root node may not satisfy the heap property...
 
-很显然，直接修改后，向上调整一次即可，时间复杂度为 $O(\log n)$ 。
+ **Downward adjustment**: Find the largest one among the child nodes, swap it with the root node, and repeat this process to the bottom.
 
-### 实现
+It can be proved that after deletion and downward adjustment, no other node does not satisfy the heap property.
 
-我们发现，上面介绍的几种操作主要依赖于两个核心：向上调整和向下调整。
+Time complexity is $O(\log n)$ .
 
-考虑使用一个序列 $h$ 来表示堆。 $h_i$ 的两个儿子分别是 $h_{2i}$ 和 $h_{2i+1}$ ， $1$ 是根结点：
+### Decrease the weight of a node
 
-![h 的堆结构](./images/binary-heap1.png)
+Obviously, after direct changes, you can adjust it upward once, and the time complexity is $O(\log n)$ .
 
-参考代码：
+### Implementation
+
+We found that several operations described above mainly rely on two principles: upward adjustment and downward adjustment.
+
+Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i$ are $h_{2i}$ and $h_{2i+1}$ respectively, and $1$ is the root node:
+
+![heap structure of h](./images/binary-heap1.png)
+
+Code sample:
 
 ```cpp
 void up(int x) {
@@ -74,15 +76,15 @@ void down(int x) {
 }
 ```
 
-### 建堆
+### Building a heap
 
-考虑这么一个问题，从一个空的堆开始，插入 $n$ 个元素，不在乎顺序。
+Consider this problem: starting from an empty heap, insert $n$ elements regardless of its order.
 
-直接一个一个插入需要 $O(n \log n)$ 的时间，有没有更好的方法？
+Inserting directly one by one takes $O(n \log n)$ time. Is there a better way?
 
-#### 方法一：使用 decreasekey（即，向上调整）
+#### Method 1: Use decreasekey (ie, upward adjustment)
 
-从根开始，按 BFS 序进行。
+Starting from the root, proceed in the order of BFS.
 
 ```cpp
 void build_heap_1() {
@@ -90,15 +92,15 @@ void build_heap_1() {
 }
 ```
 
-为啥这么做：对于第 $k$ 层的结点，向上调整的复杂度为 $O(k)$ 而不是 $O(\log n)$ 。
+Why doing this: For the nodes of the $k$-th level, the time complexity of upward adjustment is $O(k)$ instead of $O(\log n)$ .
 
-总复杂度： $\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)$ 。
+Overall time complexity: $\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)$ .
 
-（在「基于比较的排序」中证明过）
+(Proved in "Comparison-based sorting")
 
-#### 方法二：使用向下调整
+#### Method 2: downward adjustment
 
-这时换一种思路，从叶子开始，逐个向下调整
+Now, let's change our mind and start from the leaves and adjust downward one by one
 
 ```cpp
 void build_heap_2() {
@@ -106,13 +108,13 @@ void build_heap_2() {
 }
 ```
 
-换一种理解方法，每次「合并」两个已经调整好的堆，这说明了正确性。
+Another way of understanding is to "merge" the two adjusted heaps each time, which shows the correctness.
 
-注意到向下调整的复杂度，为 $O(\log n - k)$ 。
+Note that the time complexity of the downward adjustment is $O(\log n - k)$ .
 
 $$
 \begin{aligned}
-总复杂度 & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
+Overall time complexity & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
 & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
 & = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
 & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\
@@ -120,6 +122,6 @@ $$
 \end{aligned}
 $$
 
-之所以能 $O(n)$ 建堆，是因为堆性质很弱，二叉堆并不是唯一的。
+The reason why building a heap in $O(n)$ is possible is because the property of the heap is very weak, and the binary heap is not unique.
 
-要是像排序那样的强条件就难说了。
+It's hard to say if there are strong conditions like sorting.
