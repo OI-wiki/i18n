@@ -10,13 +10,13 @@ Due to the nature of the heap, the root of the tree stores the maximum value (wh
 
 ### Insertion operation
 
-The insertion operation refers to inserting an element into the binary heap, and it is required to still be a complete binary tree after insertion.
+The insertion operation refers to inserting an element into the binary heap, and it is required that the tree remains a complete binary tree after insertion.
 
 The easiest way is to insert after the rightmost leaf in the bottom layer.
 
 If the bottom layer is full, then add another layer.
 
-If cannot satisfy the property of heap after insertion?
+How about the property of heap cannot be satisfied after insertion?
 
  **Upward adjustment**: If the weight of this node is greater than the weight of its parent node, swap and repeat this process until this condition is no longer satisfied or reaches the root.
 
@@ -30,7 +30,7 @@ Deletion operation refers to deleting the largest element in the heap, that is, 
 
 But if deleted directly, there will be two heaps, which is difficult to handle.
 
-So consider the reverse process of the insertion operation, try to move the root to the last node, and then delete it directly.
+So consider the reverse process of the insertion operation. That is, try to move the root to the last node, and then delete it directly.
 
 However, it is difficult to do in practice. The method we usually use is to directly swap the root node with the last node.
 
@@ -50,7 +50,7 @@ Obviously, after direct changes, you can adjust it upward once, and the time com
 
 We found that several operations described above mainly rely on two principles: upward adjustment and downward adjustment.
 
-Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i$ are $h_{2i}$ and $h_{2i+1}$ respectively, and $1$ is the root node:
+Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i$ are $h_{2i}$ and $h_{2i+1}$, respectively, and $1$ is the root node:
 
 ![heap structure of h](./images/binary-heap1.png)
 
