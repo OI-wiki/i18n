@@ -33,7 +33,7 @@ For the $3$ operation, one more binary process is $\log^3{n}$ .
 
 ## Sample code
 
-Please refer to [Splay](./splay.md) and other list items for part of the code implementation of segment tree.
+Please refer to [Splay](./splay.md) and other list items for part of the code implementation of balanced trees.
 
 Operation one
 
