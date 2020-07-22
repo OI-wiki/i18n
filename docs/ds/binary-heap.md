@@ -2,7 +2,7 @@ auhor: HeRaNO, Xeonacid
 
 ### Structure
 
-For the structure of the binary heap, it is a binary tree, and a complete binary tree, where each node stores an element (or a weight).
+For the structure of the binary heap, it is a complete binary tree, in which each node stores an element (or a weight).
 
 Property of heap: the weight of parent node is not less than the weight of child node (max heap). Similarly, we can define a min heap. This article takes the max heap as an example. 
 
@@ -48,16 +48,16 @@ Obviously, after direct changes, you can adjust it upward once, and the time com
 
 ### Implementation
 
-We found that several operations described above mainly rely on two principles: upward adjustment and downward adjustment.
+We found that several operations described above mainly rely on two principles: upward and downward adjustment.
 
-Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i$ are $h_{2i}$ and $h_{2i+1}$, respectively, and $1$ is the root node:
+Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i$ are $h_{2i}$ and $h_{2i+1}$ , respectively, and $1$ is the root node:
 
 ![heap structure of h](./images/binary-heap1.png)
 
-Code sample:
+Sample code:
 
 ```cpp
-void up(int x) {
+void up(inst xs) {
   while (x > 1 && h[x] > h[x / 2]) {
     swap(h[x], h[x / 2]);
     x /= 2;
@@ -80,7 +80,7 @@ Consider this problem: starting from an empty heap, insert $n$ elements regardle
 
 Inserting directly one by one takes $O(n \log n)$ time. Is there a better way?
 
-#### Method 1: Use decreasekey (ie, upward adjustment)
+#### Method 1: Use decreasekey(i.e. upward adjustment)
 
 Starting from the root, proceed in the order of BFS.
 
