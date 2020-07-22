@@ -1,41 +1,41 @@
-# 关于本项目
+# About this project
 
-Q：你们是为什么想要做这个 Wiki 的呢？
+**Q**: Why do you want to make this Wiki?
 
-A：不知道你在学 **OI** 的时候，面对庞大的知识体系，有没有感到过迷茫无助的时候？ **OI Wiki** 想要做的事情可能类似于“让更多竞赛资源不充裕的同学能方便地接触到训练资源”。当然这么表述也不完全，做 Wiki 的动机可能也很纯粹，只是简单地想要对 **OI** 的发展做出一点点微小的贡献吧。XD
+**A**: Ever felt confused and helpless when you are learning **OI**, facing the massive knowledge system? What **OI Wiki** wants to do might be similar to "let more students with insufficient competition resources have easy access to training resources". Of course, this statement may not be entirely true, and the motivation for this Wiki may be very pure. We just simply want to make a small contribution to the development of **OI**. XD
 
-Q：我很感兴趣，怎么参与呢？
+**Q**: I am very interested, how do I contribute?
 
-A： **OI Wiki** 现在托管在 [GitHub](https://github.com/24OI/OI-wiki) 上，你可以直接访问这个 [repo](https://github.com/24OI/OI-wiki) 来查看最新进展。参与的途径包括在 [GitHub](https://github.com/24OI/OI-wiki) 上面开 Issue、Pull Request，或者在交流群中分享你的想法、直接向管理员投稿。目前，我们使用的框架是用 Python 开发的 [mkdocs](https://mkdocs.readthedocs.io) ，支持 Markdown 格式（也支持插入数学公式）。
+**A**: **OI Wiki** is now hosted on [GitHub](https://github.com/24OI/OI-wiki),  you can directly access this [repo](https://github.com/24OI/OI-wiki) to chcek the latest update. Ways to contribute include opening issues, pull requests on [GitHub](https://github.com/24OI/OI-wiki), share your ideas in the discussion group, or submit directly to the administrator. Currently, the framework we use is developed in Python [mkdocs](https://mkdocs.readthedocs.io), which supports the Markdown format (also supports the insertion of mathematical formulas).
 
-Q：可是我比较弱……不知道我能做点什么？
+**Q**: But I am really new to this... I don’t know what I could do?
 
-A：一切源于热爱。你可以协助其他人审核修改稿件，帮助我们宣传 **OI Wiki** ，为社区营造良好学习交流氛围！
+**A**: Everything comes from passion. You can help others review and modify the scripts, help us promote **OI Wiki**, and create a good learning and communication atmosphere for the community!
 
-Q：现在主要是谁在做这件事啊？感觉这是个大坑，真的能做好吗？
+**Q**: Who is maintaining this now? I feel this is a huge project, can it really be done?？
 
-A：最开始主要是一些退役老年选手在做这件事，后来遇到了很多志同道合的小伙伴：有现役选手，退役玩家，也有从未参加过 **OI** 的朋友。目前，这个项目主要是由 **OI Wiki** Team 来维护。（下面是一张合影）
+**A**: Some retired OIer started doing this. Then, they met many like-minded friends: active OIers, retired players, and friends who have never participated in **OI**. Currently, this project is mainly maintained by **OI Wiki** Team. (Here is a group photo)
 
-<a href="https://github.com/24OI/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 
-当然，这个项目只靠我们的力量是很难做得十全十美的，我们诚挚地邀请你一起来完善 **OI Wiki** 。
+Of course, it is very difficult to complete this project with our own strength. We sincerely invite you to help us improve **OI Wiki**.
 
-Q：听说过 nocow 吧， **OI Wiki** 怎么保证我们添加的内容不会像 nocow 那样突然间就不见了呢？
+**Q**: I heard about nocow, How can **OI Wiki**  ensure that the content we contribute will not disappear suddenly like it?
 
-A：我们把内容托管在 [GitHub](https://github.com/24OI/OI-wiki) 上面，即使我们的服务器翻车了，内容也不会丢失。另外，我们也会定期备份大家的心血，即使有一天 [GitHub](https://github.com/24OI/OI-wiki) 倒闭了（？），我们的内容也不会丢失。
+**A**: We host the content on [GitHub](https://github.com/24OI/OI-wiki). Even if our server crashes, the content will not be lost. In addition, we will regularly back up everyone’s efforts, so even in the worst-case scenario where GitHub is out of service, our content will not be lost.
 
-Q： **OI Wiki** 好像现在大部分内容都是空的啊？
+**Q**: It seems that most of the content of **OI Wiki** is empty?
 
-A：是的，目前进度只完成了 88%（重新统计于 2019.08），还远远称不上是一个合格的 Wiki。在过去的几个月里，主要添加的内容也比较基础。所以在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把 **OI Wiki** 完善起来。
+**A**: Yes, the current progress is only 88% completed (re-counted on 2019.08), which is far from being a qualified Wiki. In the past few months, the main additions have been relatively basic. Therefore, we are soliciting and recruiting here. We hope we can meet friends who have the same ideas and we could improve **OI Wiki** together.
 
-Q：为什么不直接去写 [中文维基](https://zh.wikipedia.org/) 呢？
+**Q**: Why not just write [Wiki](https://wikipedia.org/)?
 
-A：因为我们希望可以真正帮到更多的选手或者对这些内容感兴趣的人，由于众所周知的原因，中文维基上的内容并不是无门槛就可以获取到的。
+**A**: Because we hope that we can really help more players or people who are genuinely interested in these contents. For well-known reasons, the content on the wiki cannot be accessed without any effort.
 
 * * *
 
-感谢你看到了最后，我们现在急需的，就是你的帮助。
+Thank you for reading to the end. We would be happy to have your contribution.
 
- **OI Wiki** Team
+**OI Wiki** Team
 
 2018.8
