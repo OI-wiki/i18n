@@ -94,7 +94,7 @@ If you have understood the method above, you can try this one: [Luogu P2123 Quee
 Greedy method:
 
 -    **1** . Let's assume that every job will be done, sort the jobs according to the deadline and push to queue.
--    **2** . When deciding whether to do or not to do the i-th work, if the deadline meets the condition, compare it with the element with the smallest pay in the team. If the i-th work pays higher (regret), then ans+=a[i].pq.top().
+-    **2** . When deciding whether to do or not to do the i-th work, if the deadline meets the condition, compare it with the element with the smallest pay in the queue. If the i-th work pays higher (regret), then ans+=a[i].pq.top().
 
      **PS** ：Use priority queue (min heap) to maintain the smallest element on the top.
 
