@@ -12,9 +12,9 @@ Regarding the nested trees, we normally build an segment tree in outer layer. Fo
 
 Operation 1: Find the ranking of a certain value in a certain interval: We operate normally for the segment tree in outer layer, and for the balanced tree of nodes in a certain interval, we return the number of elements in the balanced tree that are smaller than this value. When merging intervals, We simply sum the number of small elements. Finally, return the value $+1$ , which is the ranking of a certain value in a certain range.
 
-Operation two, find the value of rank $k$ in a certain interval: we can use the bisection method. Because there may be more than one element, its ranking is a range, and some elements do not exist in the original sequence. So we adopt a similar idea to operation one, we use the number of elements less than this value as a reference for the bisection method, and the solution can be obtained.
+Operation 2, find the value of rank $k$ in a certain interval: we can use the bisection method. Because there may be more than one element, its ranking is a range, and some elements do not exist in the original sequence. So we adopt a similar idea to operation one, we use the number of elements less than this value as a reference for the bisection method, and the solution can be obtained.
 
-Operation three, replace a certain number with another number: we only need to delete a certain number in all balanced trees, and then insert another one. The outer layer still operates as a normal segment tree.
+Operation 3, replace a certain number with another number: we only need to delete a certain number in all balanced trees, and then insert another one. The outer layer still operates as a normal segment tree.
 
 Operation 4: Find the predecessor of a value in a certain interval: we operate normally for the outer segment tree. For the balanced tree of nodes in a certain interval, we return the predecessor of a value in the balanced tree. When merging the intervals of segment tree, take the maximum value would be fine.
 
@@ -24,7 +24,7 @@ We add each element to $\log n$ balanced trees, so the space complexity is $(n +
 
 ## Time complexity
 
-For $1,2,4$ operations, consider that we perform $\log{n}$ operations on the segment tree in the outer layer, and each operation will be performed in $\log{n}$ time complexity on an inner balanced tree. So the overall time complexity is $\log^2{n}$ .
+For operations $1,2,4$ , consider that we perform $\log{n}$ operations on the segment tree in the outer layer, and each operation will be performed in $\log{n}$ time complexity on an inner balanced tree. So the overall time complexity is $\log^2{n}$ .
 For the $3$ operation, one more binary process is $\log^3{n}$ .
 
 ## Classic problem
