@@ -1,8 +1,12 @@
-## 建立块状数组
+## Building block arrays
 
 块状数组，即把一个数组分为几个块，块内信息整体保存，若查询时遇到两边不完整的块直接暴力查询。一般情况下，块的长度为 $O(\sqrt{n})$ 。详细分析可以阅读 2017 年国家集训队论文中徐明宽的《非常规大小分块算法初探》。
 
 下面直接给出一种建立块状数组的代码。
+
+Block array is an array divided into several blocks, and the information within the block is stored as a whole. If you encounter incomplete blocks on both sides of the query, you can directly query brute-force. In general, the length of the block is $O(\sqrt{n})$ . For detailed analysis, you can read "A Preliminary Study on Unconventional Size Blocking Algorithms" by Xu Mingkuan in the 2017 National Training Team Paper.
+
+The code for building a block array is directly given below.
 
 ```cpp
 num = sqrt(n);
@@ -17,13 +21,13 @@ for (int i = 1; i <= num; i++) {
 }
 ```
 
-其中 `st[i] ed[i]` 为块的起点和终点， `size[i]` 为块的大小。
+`st[i] ed[i]` is the start and end of the block, and `size[i]` is the size of the block.
 
-## 保存与修改块内信息
+## Save and modify information in the block
 
-### 例题 1： [教主的魔法](https://www.luogu.com.cn/problem/P2801) 
+### Sample problem 1： [Master's Magic](https://www.luogu.com.cn/problem/P2801) (original link in Chinese)
 
-我们要询问一个块内大于等于一个数的数的个数，所以需要一个 `t` 数组对块内排序。对于整块的修改，使用类似于标记永久化的方式保存。时间复杂度 $O(n\sqrt{n}\log n)$ 
+We need to query the number of numbers greater than or equal to a number in a block, so we need a `t` array to sort the blocks. For the modification of the whole block, it is saved in a way similar to the permanent mark. Time complexity is $O(n\sqrt{n}\log n)$
 
 ```cpp
 void Sort(int k) {
@@ -60,14 +64,14 @@ int Answer(int l, int r, int c) {
 }
 ```
 
-### 例题 2：寒夜方舟
+### Sample problem 2: Cold Night Ark
 
-两种操作：
+Two operations:
 
-1.  区间 $[x,y]$ 每个数都变成 $z$ 
-2.  查询区间 $[x,y]$ 内小于等于 $z$ 的数的个数
+1. Every number in the interval $[x,y]$ becomes $z$
+2. Query the number of numbers less than or equal to $z$ in the interval $[x,y]$
 
-用 `dlt` 保存现在块内是否被整体赋值了。用一个值表示没有。对于边角块，查询前要 `pushdown` ，把块内存的信息下放到每一个数上。赋值之后记得重新 `sort` 一遍。其他方面同上题。
+Use `dlt` to save whether the entire block has been assigned. Use a value to indicate no. For corner blocks, you must `pushdown` before querying, and put the block information on each number. Remember to `sort` again after assignment. Other aspects are the same as above.
 
 ```cpp
 void Sort(int k) {
@@ -128,11 +132,13 @@ int Answer(int l, int r, int c) {
 }
 ```
 
-## 练习
+## Practices
 
-1.   [单点修改，区间查询](https://loj.ac/problem/130) 
-2.   [区间修改，区间查询](https://loj.ac/problem/132) 
-3.   [【模板】线段树 2](https://www.luogu.com.cn/problem/P3373) 
-4.   [「Ynoi2019 模拟赛」Yuno loves sqrt technology III](https://www.luogu.com.cn/problem/P5048) 
-5.   [「Violet」蒲公英](https://www.luogu.com.cn/problem/P4168) 
-6.   [作诗](https://www.luogu.com.cn/problem/P4135) 
+> Following problems are written in Chinese.
+
+1.   [Single point modification, interval query](https://loj.ac/problem/130) 
+2.   [Interval modification, interval query](https://loj.ac/problem/132) 
+3.   [[Template]Segment tree 2](https://www.luogu.com.cn/problem/P3373) 
+4.   [「Ynoi2019 Mock competition」Yuno loves sqrt technology III](https://www.luogu.com.cn/problem/P5048) 
+5.   [「Violet」Dandelion](https://www.luogu.com.cn/problem/P4168) 
+6.   [Writing poems](https://www.luogu.com.cn/problem/P4135) 
