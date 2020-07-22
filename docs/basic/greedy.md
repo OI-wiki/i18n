@@ -23,7 +23,7 @@ The common case of sorting is to input an array containing several (usually one 
 
 The sorting method of some problems is very obvious. For example, [USACO1.3 Barn Repair](https://www.luogu.com.cn/problem/P1209) (original link in Chinese) is to get the difference value of the input array, sort and simulate.
 
-However, sometimes it is difficult to directly see the sorting method at once, such as [NOIP 2012 King Game](https://vijos.org/p/1779) (original link in Chinese), it is easy to mistakenly use $a$ or $b$ as an intuitive sorting keyword. After submission, you will find WA(Wrong Answer). A common approach here is to try to swap two adjacent elements of the array to **derive** the correct sorting method. We assume that the two numbers in input are saved in one structure.
+However, sometimes it is difficult to directly see the sorting method at once, such as [NOIP 2012 King Game](https://vijos.org/p/1779) (original link in Chinese), it is easy to mistakenly use $a$ or $b$ as an intuitive sorting keyword. After submission, you will find WA(Wrong Answer). A common approach here is to try to swap two adjacent elements of the array to **derive** the correct sorting method. We assume that the two numbers in input are saved in a structure.
 
 ```cpp
 struct {
@@ -67,7 +67,7 @@ $$
 \max(\frac{1} {v[i].b}, \frac{v[i].a} {v[i + 1].b}) < \max(\frac{1} {v[i + 1].b}, \frac{v[i + 1].a} {v[i].b})
 $$
 
-Then devide the fraction into equation
+Then transform the fraction into integral expression
 
 $$
 \max(v[i + 1].b, v[i].a \times v[i].b) < \max(v[i].b, v[i + 1].a \times v[i + 1].b)
@@ -88,8 +88,8 @@ If you have understood the method above, you can try this one: [Luogu P2123 Quee
 
 ## Regret method
 
-???+note "Sample problem[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949) (original link in Chinese)"
-    John's workdays starts at $0$ and has $10^9$ units of time. In any unit of time, he can choose any of the tasks numbered $1$ to $N$ $N(1 \leq N \leq 10^5)$ to complete. The deadline for work $i$ is $D_i(1 \leq D_i \leq 10^9)$ , and the profit after completion is $P_i( 1\leq P_i\leq 10^9 )$ . Given the working profit and deadline, what is the maximum profit John can get?
+???+note "Sample problem[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
+    John's workdays starts at $0$ and has $10^9$ units of time. In any unit of time, he can choose from any of the tasks numbered $1$ to $N$ $N(1 \leq N \leq 10^5)$ to complete. The deadline for work $i$ is $D_i(1 \leq D_i \leq 10^9)$ , and the profit after completion is $P_i( 1\leq P_i\leq 10^9 )$ . Given the working profit and deadline, what is the maximum profit John can get?
 
 Greedy method:
 
