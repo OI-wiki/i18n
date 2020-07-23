@@ -3,8 +3,8 @@ author: HeRaNO, konnyakuxzy
  [![./images/block_linked_list.png](./images/block_linked_list.png "./images/block_linked_list.png")](./images/block_linked_list.png "./images/block_linked_list.png") 
 
 It is not hard to find that the block linked list is a linked list, and each node points to an array.
-We divide the original array with length n into $\sqrt{n}$ nodes, and the size of the array corresponding to each node is $\sqrt{n}$ .
-So we define the structure like this, see the code below.
+We divide the original array of length n into $\sqrt{n}$ nodes, and the size of the array corresponding to each node is $\sqrt{n}$ .
+So we define the structure as the code below shows.
 Among them, `sqn` means `sqrt(n)` that is $\sqrt{n}$ , and `pb` means `push_back`, that is, adding an element to this `node`.
 
 ```cpp
