@@ -20,7 +20,7 @@ struct node {
 Block linked lists should at least support these operations: split, insert, and lookup.
 What is split? It is to split a `node` into two small `nodes` to ensure that the size of each `node` is close to $\sqrt{n}$ (otherwise it may degenerate into an ordinary array). When the size of a `node` exceeds $2\times \sqrt{n}$ , the split operation is performed.
 
-How to do the split operation? First create a new node, and then `copy` the last $\sqrt{n}$ values of the split node to the new node, and then delete the last $\sqrt{n}$ values of the split node (` size--` ), and finally insert the new node after the split node.
+How to do the split operation? First create a new node, and then `copy` the last $\sqrt{n}$ values of the split node to the new node, and then delete the last $\sqrt{n}$ values of the split node (` size--` ), and finally insert the new node after the node being splited.
 
 The time complexity of all operations of the block linked list is $\sqrt{n}$ .
 
@@ -39,7 +39,7 @@ list<vector<char> > orz_list;
 [Big String POJ - 2887](http://poj.org/problem?id=2887)
 
 Solution:
-This is a very simple template problem. Code is shown as below:
+This is a very simple template problem. The code is shown below:
 
 ```cpp
 #include <cctype>
