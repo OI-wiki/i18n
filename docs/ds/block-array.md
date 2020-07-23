@@ -1,9 +1,5 @@
 ## Building block arrays
 
-块状数组，即把一个数组分为几个块，块内信息整体保存，若查询时遇到两边不完整的块直接暴力查询。一般情况下，块的长度为 $O(\sqrt{n})$ 。详细分析可以阅读 2017 年国家集训队论文中徐明宽的《非常规大小分块算法初探》。
-
-下面直接给出一种建立块状数组的代码。
-
 Block array is an array divided into several blocks, and the information within the block is stored as a whole. If you encounter incomplete blocks on both sides while handling queries, you can directly query with brute-force. In general, the length of the block is $O(\sqrt{n})$ . For detailed analysis, you can read "A Preliminary Study on Unconventional Size Blocking Algorithms" by Xu Mingkuan in the 2017 National Training Team Papers.
 
 The code for building a block array is directly given below.
@@ -27,7 +23,7 @@ for (int i = 1; i <= num; i++) {
 
 ### Sample problem 1： [Master's Magic](https://www.luogu.com.cn/problem/P2801) (original link in Chinese)
 
-We need to query the number of numbers greater than or equal to a number in a block, so we need a `t` array to sort the blocks. For the modification of the whole block, it is saved in a way similar to the permanent mark. Time complexity is $O(n\sqrt{n}\log n)$
+We need to query the number of numbers greater than or equal to a number in a block, so we need a `t` array to sort the blocks. For the modification of the whole block, it is saved in a way similar to making the mark permanent. Time complexity is $O(n\sqrt{n}\log n)$
 
 ```cpp
 void Sort(int k) {
@@ -68,7 +64,7 @@ int Answer(int l, int r, int c) {
 
 Two operations:
 
-1. Every number in the interval $[x,y]$ becomes $z$
+1. Every number in the interval $[x,y]$ is changed into $z$
 2. Query the number of numbers less than or equal to $z$ in the interval $[x,y]$
 
 Use `dlt` to save whether the entire block has been assigned. Use a value to indicate no. For corner blocks, you must `pushdown` before querying, and put the block information on each number. Remember to `sort` again after assignment. Other aspects are the same as above.
