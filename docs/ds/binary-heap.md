@@ -48,7 +48,7 @@ Obviously, after direct changes, you can adjust it upward once, and the time com
 
 ### Implementation
 
-We found that several operations described above mainly rely on two principles: upward and downward adjustment.
+We found that several operations described above mainly rely on two principles: upward and downward adjustments.
 
 Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i$ are $h_{2i}$ and $h_{2i+1}$ , respectively, and $1$ is the root node:
 
@@ -57,7 +57,7 @@ Consider using a sequence $h$ to represent the heap. The two child nodes of $h_i
 Sample code:
 
 ```cpp
-void up(inst xs) {
+void up(inst x) {
   while (x > 1 && h[x] > h[x / 2]) {
     swap(h[x], h[x / 2]);
     x /= 2;
