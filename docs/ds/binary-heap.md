@@ -80,7 +80,7 @@ Consider this problem: starting from an empty heap, insert $n$ elements regardle
 
 Inserting directly one by one takes $O(n \log n)$ time. Is there a better way?
 
-#### Method 1: Use decreasekey(i.e. upward adjustment)
+#### Method 1: Use decreasekey (i.e. upward adjustment)
 
 Starting from the root, proceed in the order of BFS.
 
