@@ -4,7 +4,7 @@
 
 下面直接给出一种建立块状数组的代码。
 
-Block array is an array divided into several blocks, and the information within the block is stored as a whole. If you encounter incomplete blocks on both sides of the query, you can directly query brute-force. In general, the length of the block is $O(\sqrt{n})$ . For detailed analysis, you can read "A Preliminary Study on Unconventional Size Blocking Algorithms" by Xu Mingkuan in the 2017 National Training Team Paper.
+Block array is an array divided into several blocks, and the information within the block is stored as a whole. If you encounter incomplete blocks on both sides while handling queries, you can directly query with brute-force. In general, the length of the block is $O(\sqrt{n})$ . For detailed analysis, you can read "A Preliminary Study on Unconventional Size Blocking Algorithms" by Xu Mingkuan in the 2017 National Training Team Papers.
 
 The code for building a block array is directly given below.
 
@@ -21,7 +21,7 @@ for (int i = 1; i <= num; i++) {
 }
 ```
 
-`st[i] ed[i]` is the start and end of the block, and `size[i]` is the size of the block.
+`st[i]` here `ed[i]`  are the start and end point of the block, and `size[i]` is the size of the block.
 
 ## Save and modify information in the block
 
@@ -134,7 +134,7 @@ int Answer(int l, int r, int c) {
 
 ## Practices
 
-> Following problems are written in Chinese.
+> The Following problems are written in Chinese.
 
 1.   [Single point modification, interval query](https://loj.ac/problem/130) 
 2.   [Interval modification, interval query](https://loj.ac/problem/132) 
