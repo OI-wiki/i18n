@@ -4,7 +4,7 @@ A [heap](https://en.wikipedia.org/wiki/Heap_(data_structure)) is a tree, each no
 
 The heap whose value of each node is greater than or equal to its parent value is called the min heap, otherwise it is called the max heap. The `priority_queue` in [STL](https://en.cppreference.com/w/cpp/container/priority_queue) is actually a max heap.
 
-The main operations supported by the (min) heap are: insert a number, query the minimum value, delete the minimum value, merge two heaps, and reduce the value of an element.
+The main operations supported by the (min) heap are: insert a number, query or delete the minimum value, merge two heaps, and reduce the value of an element.
 
 Some powerful heaps (parallel heaps) can also (efficiently) support operations such as merge.
 
