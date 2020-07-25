@@ -14,7 +14,7 @@ The time spent on basic operations on a binary search tree is proportional to th
 
 ## Basic operations
 
-In the following code, we assume that $n$ is the number of nodes, $h$ is the height, `val[x]` is the value stored at node $x$, `cnt[x]` is the number of occurrences of the value stored in $x$ , and `lc[x]` and `rc[x]` are the left and right child nodes of node $x$ respectively.
+In the following code, we assume that $n$ is the number of nodes, $h$ is the height, `val[x]` is the value stored at node $x$, `cnt[x]` is the number of occurrences of the value stored in $x$ , and `lc[x]` and `rc[x]` are the left and right child nodes of node $x$, respectively.
 
 ### Traverse binary search tree
 
