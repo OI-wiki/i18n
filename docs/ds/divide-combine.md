@@ -20,8 +20,8 @@ Before introducing the divide-combine tree, we first define some preconditions. 
 
  **Permutation** : Define a $n$ permutation $P$ to be a sequence of size $n$ such that $P_i$ goes over $1,2,\cdots,n$ . To put it more formally, $n$ permutation $P$ is an ordered set that satisfies:
 
-1.   $|P|=n$ .
-2.   $\forall i,P_i\in[1,n]$ .
+1.  $|P|=n$ .
+2.  $\forall i,P_i\in[1,n]$ .
 3.   $\nexists i,j\in[1,n],P_i=P_j$ .
 
      **Continuous segment** : For permutation $P$ , define a continuous segment $(P,[l,r])$ to represent an interval $[l,r]$ , requiring the range of $P_{l\sim r}$ to be continuous. To put it more formally, for permutation $P$ , a continuous segment represents an interval $[l,r]$ satisfies:
@@ -40,11 +40,11 @@ The continuous segment is defined by the interval and the range, so we can defin
 
 Define $A=(P,[a,b]),B=(P,[x,y])$ and $A,B\in I_P$ . So the relationship and operation of continuous segments can be represented as:
 
-1.   $A\subseteq B\Leftrightarrow x\le a\wedge b\le y$ .
-2.   $A=B\Leftrightarrow a=x\wedge b=y$ .
-3.   $A\cap B=(P,[\max(a,x),\min(b,y)])$ .
-4.   $A\cup B=(P,[\min(a,x),\max(b,y)])$ .
-5.   $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$ .
+1.  $A\subseteq B\Leftrightarrow x\le a\wedge b\le y$ .
+2.  $A=B\Leftrightarrow a=x\wedge b=y$ .
+3.  $A\cap B=(P,[\max(a,x),\min(b,y)])$ .
+4.  $A\cup B=(P,[\min(a,x),\max(b,y)])$ .
+5.  $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$ .
 
 In fact, these operations are just ordinary intersect/union/minus placed on the interval.
 
