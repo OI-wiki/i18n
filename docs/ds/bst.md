@@ -4,9 +4,9 @@ Binary search tree is a tree-shape data structure of binary tree, which is defin
 
 1. The empty tree is a binary search tree.
 
-2. If the left subtree of the binary search tree is not empty, the accumulated weights of all points on the left subtree are less than the value of its root node.
+2. If the left subtree of the binary search tree is not empty, the weight sum of all nodes on the left subtree are less than the value of its root node.
 
-3. If the right subtree of the binary search tree is not empty, the accumulated weights of all points on the right subtree are greater than the value of its root node.
+3. If the right subtree of the binary search tree is not empty, the weight sum of all nodes on the right subtree are greater than the value of its root node.
 
 4. The left and right subtrees of the binary search tree are both binary search trees.
 
@@ -20,7 +20,7 @@ In the following code, we assume that $n$ is the number of nodes, $h$ is the hei
 
 According to the recursive definition of the binary search tree, the sequence of the in-order traversal of the binary search tree is a non-decreasing sequence. The time complexity is $O(n)$ .
 
-The code to traverse a binary search tree is as follows:
+The code to traverse a binary search tree is shown below:
 
 ```cpp
 void print(int o) {
@@ -34,7 +34,7 @@ void print(int o) {
 
 ### Find min/max value
 
-Based on the definition of the binary search tree, the minimum value on the binary search tree is the leftmost vertex of the left chain in the binary search tree, and the maximum value is the rightmost vertex of the right chain in the binary search tree. The time complexity is $O(h)$ .
+Based on the property of the binary search tree, the minimum value on the binary search tree is the leftmost vertex of the left chain in the binary search tree, and the maximum value is the rightmost vertex of the right chain in the binary search tree. The time complexity is $O(h)$ .
 
 The findmin and findmax functions respectively return the node number $o$ corresponding to the minimum and maximum values. Use `val[o]` to get the corresponding minimum/maximum values.
 
@@ -135,7 +135,7 @@ void del(int& o, int v) {
 
 The ranking is defined as the number of numbers before the first identical element after sorting the array elements $+1$ .
 
-Maintain the subtree size $siz$ of each root node. To find the ranking of an element, first move from the root node to this element. If you move to the right, the answer is the number of left child node of the root plus the number of duplicates of the current node, and the size of the left child subtree at the end point $+ 1$ .
+Maintain the subtree size $siz$ of each root node. To find the ranking of an element, first move from the root node to this element. If you move to the right, the answer is the number of left child node of the root plus the number of duplicates of the current node, and the size of the left child subtree at the end node $+ 1$ .
 
 Time complexity is $O(h)$ .
 
