@@ -147,7 +147,7 @@ int queryrnk(int o, int v) {
 }
 ```
 
-### Find the kth element
+### Find the k-th element
 
 In a subtree, the ranking of the root node depends on the size of its left subtree.
 
@@ -165,6 +165,6 @@ int querykth(int o, int k) {
   if (siz[lc[o]] < k - cnt[o])
     return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
   return val[o];
-  // To find the node corresponding to the kth element, just return o directly
+  // To find the node corresponding to the k-th element, just return o directly
 }
 ```
