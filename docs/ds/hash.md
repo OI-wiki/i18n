@@ -1,6 +1,6 @@
 ## Hash table
 
-[Hash table](https://en.wikipedia.org/wiki/Hash_table), also known as hash map, is a data structure that stores data in the form of "key-value". The so-called storage of data in the form of "key-value" means that any key corresponds uniquely to a certain location in memory. You only need to enter the searched value key to quickly find its corresponding value. The hash table can be understood as a kind of advanced array. The index of this array can be a large integer, floating point number, string or even a structure.
+[Hash table](https://en.wikipedia.org/wiki/Hash_table), also known as hash map, is a data structure that stores data in the form of "key-value". The so-called storage of data in the form of "key-value" means that any key corresponds uniquely to a certain location in memory. You only need to enter the searched value key to quickly find its corresponding value. The hash table can be understood as a kind of advanced array. The index of this array can be a large integer, a floating point number, a string, or even a structure.
 
 ## Hash function
 
@@ -8,11 +8,11 @@ To make the key correspond to the location in the memory, it is necessary to cal
 
 In OI, the most common case is using key as an integer. When the range of the key is relatively small, you can directly use it as the index of the array, but when the range is relatively large, such as using an integer in the range of $10^9$ as the key, a hash table is needed. Generally, the key modulo a larger prime number is used as the index, that is, $f(x)=x \bmod M$ is used as the hash function. Another common situation is when the key is a string. In OI, the general case is that string is not directly used as the key, but the hash value of the string is calculated first, and then the hash value is inserted into the hash table as the key.
 
-After we calculate the index for the key, we can know where each value should be placed. Suppose we use array a to store data, and the hash function is f, then the key-value pair (key, value) should be placed on a[f(key)]. No matter what type of key is and how large the range is, f(key) is an integer within the acceptable range and can be used as the index of the array.
+After we calculate the index for the key, we can know where each value should be placed. Suppose we use array $a$ to store data, and the hash function is $f$, then the key-value pair $(\text{key}, \text{value})$ should be placed on $a[f(\text{key})]$. No matter what type of key is and how large the range is, $f(\text{key})$ is an integer within the acceptable range and can be used as the index of the array.
 
 ## Hash collision
 
-If the index calculated by the hash function is different for any key, then just put (key, value) in the corresponding position according to the index. But in fact, there are often two different keys, and their indexes calculated by the hash function are the same. At this time, we would be needing some methods to deal with collisions. In OI, the most commonly used one is the zipper method.
+If the index calculated by the hash function is different for any key, then just put (key, value) in the corresponding position according to the index. But in fact, there are often two different keys, but their indexes calculated by the hash function are the same. At this time, we would need some methods to deal with collisions. In OI, the most commonly used one is the zipper method.
 
 ### Zipper method
 
@@ -24,7 +24,7 @@ The zipper method is to open a linked list in each place where data is stored. I
 
 The closed hashing method stores all records directly in the hash table. If there is a collision, it will continue probing in a certain way.
 
-For example, linear probing method: if there is a conflict at `d`, check `d + 1`, `d+2` in turn...
+For example, linear probing method: if there is a conflict at `d`, check `d+1`, `d+2` in turn...
 
 ## Implementation
 
@@ -65,7 +65,7 @@ struct hash_map {  // hash table template
     long long u;
     int v, nex;
   };                // forward star list: see reference below
-  data e[SZ << 1];  // SZ is const int, representing the size
+  data e[SZ << 1];  // SZ is a const int representing the size
   int h[SZ], cnt;
   int hash(long long u) { return u % SZ; }
   int& operator[](long long u) {
