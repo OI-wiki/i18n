@@ -6,7 +6,7 @@ The dividing tree is a data structure to solve the largest $K$ interval, and its
 
 ## Tree construction
 
-The construction of the dividing tree is relatively simple, but it is more complicated than other trees. ![](./images/dividing1.png)
+The construction of the dividing tree is relatively simple, but it is more complicated than other trees. ![](./images/dividing1-en.png)
 
 As shown in the figure, each layer has a seemingly unordered array. In fact, every number marked in red is **to be assigned to the left child**. And the rules of distribution? It is compared with the median in this level, $\leq$ is on the left, otherwise it is on the right. But here we should pay attention: it is not strictly $\leq$ **left, otherwise right**. Because the median may be the same, and it has a certain relationship with the parity of $N$ . The following code would demonstrate a clever usage for your reference.
  
