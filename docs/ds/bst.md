@@ -2,13 +2,13 @@
 
 Binary search tree is a tree-shape data structure of binary tree, which is defined as follows:
 
-1. The empty tree is a binary search tree.
+1. An empty tree is a binary search tree.
 
 2. If the left subtree of the binary search tree is not empty, the weight sum of all nodes on the left subtree are less than the value of its root node.
 
 3. If the right subtree of the binary search tree is not empty, the weight sum of all nodes on the right subtree are greater than the value of its root node.
 
-4. The left and right subtrees of the binary search tree are both binary search trees.
+4. The left and right subtrees of a binary search tree are both binary search trees.
 
 The time spent on basic operations on a binary search tree is proportional to the height of the tree. For a binary search tree with $n$ nodes, the optimal time complexity of these operations is $O(\log n)$ and the worst is $O(n)$ . The expected height of a binary search tree that is randomly built is $O(\log n)$ .
 
@@ -51,7 +51,7 @@ int findmax(int o) {
 
 ### Insert an element
 
-Define `insert(o,v)` as the operation to insert a new node with value $v$ into the binary search tree with $o$ as the root node.
+Define `insert(o,v)` as the operation to insert a new node with value $v$ into the binary search tree whose root node is $o$.
 
 It can be classified as follows:
 
@@ -153,9 +153,9 @@ In a subtree, the ranking of the root node depends on the size of its left subtr
 
 If the size of the left subtree is greater than or equal to $k$ , then the element is in the left subtree;
 
-If the size of the left subtree is in the interval $[k-cnt,k-1]$ ( $cnt$ is the number of occurrences of the value of the current node), then this element is the root node of the subtree;
+If the size of the left subtree is in the interval $[k-\text{cnt},k-1]$ , where $cnt$ is the number of occurrences of the value of the current node, then this element is the root node of the subtree;
 
-If the size of the left subtree is less than $k-cnt$ , then the element is in the right subtree.
+If the size of the left subtree is less than $k-\text{cnt}$ , then the element is in the right subtree.
 
 Time complexity is $O(h)$ .
 
