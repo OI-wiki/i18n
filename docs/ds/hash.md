@@ -18,7 +18,7 @@ If the index calculated by the hash function is different for any key, then just
 
 Zipper method can also be called open hashing.
 
-The zipper method is to open a linked list in each place where data is stored. If there are multiple keys with the same index, just put them all in the linked list at that location. When querying, you need to scan the entire linked list at the corresponding location, and compare whether the key is consistent with the query key for each data. If the range of the index is 1~M and the size of the hash table is N, then an insert/query needs to perform comparisons in expected time complexity of $O(\frac{N}{M})$ .
+The zipper method is to create a linked list in each place where data is stored. If there are multiple keys with the same index, just put them all in the linked list at that location. When querying, you need to scan the entire linked list at the corresponding location, and compare whether the key is consistent with the query key for each data. If the range of the index is 1~M and the size of the hash table is N, then an insert/query needs to perform comparisons in expected time complexity of $O(\frac{N}{M})$ .
 
 ### Closed hashing 
 
