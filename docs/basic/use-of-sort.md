@@ -1,9 +1,9 @@
-借助排序，我们可以降低求解问题所需要的时间复杂度。
+Using sort, we can reduce the time complexity required to solve the problem.
 
-考虑一个数列，你需要检查其中是否有元素相等。
+Consider a sequence of numbers and you need to check whether there are any equal elements.
 
-一个朴素的做法是检查每一个数对，并判断这一对数是否相等。时间复杂度是 $O(n^2)$ 。
+A naive solution is to check each pair of elements and determine whether they are equal. The time complexity is $O(n^2)$ .
 
-我们不妨先对这一列数排序，之后不难发现：如果有相等的两个数，它们一定在新数列中处于相邻的位置上。这时，只需要 $O(n)$ 地扫一遍新数列了。总的时间复杂度是排序的复杂度（ $O(n\log n)$ ）。
+We might as well sort this sequence of numbers first, and then it is not difficult to find that if there are two equal numbers, they must be in adjacent positions in the new sequence. At this point, you only need to scan the new sequence for $O(n)$ . The total time complexity is the sorting time complexity( $O(n\log n)$ ).
 
-排序也是 [二分查找](./binary.md) 所要做的预处理工作。在排序后使用二分查找，我们可以在 $O(\log n)$ 的时间内在序列中查找指定的元素。
+Sorting is also the preprocessing work for [binary search](./binary.md). By making binary searches after sorting, we can find the specified element in the sequence within the time of $O(\log n)$ .
