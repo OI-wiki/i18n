@@ -19,7 +19,7 @@ f_n=
 \end{cases}
 $$
 
-Obviously $\{f_n+1\}$ is a Fibonacci sequence. As we all know, the Fibonacci sequence grows exponentially, so the height of the AVL tree is $O(\log n)$ .
+It is obvious that $\{f_n+1\}$ is a Fibonacci sequence. As we all know, the Fibonacci sequence grows exponentially, so the height of the AVL tree is $O(\log n)$ .
 
 ## Insert node
 
@@ -33,7 +33,7 @@ Deletion will cause the tree height and the balance factor to change. At this ti
 
 ## Maintain Balance
 
-After inserting or deleting nodes, the property of the AVL tree 2 may be destroyed. Therefore, the tree needs to be maintained along the path from the inserted/deleted node to the root. If for a node, property 2 is no longer satisfied, since we only insert/delete a node, and the impact on the tree height does not exceed 1, the absolute value of the balance factor of the node is at most 2. Due to symmetry, we only discuss the case where the left subtree is 2 higher than the right subtree, that is, $h(B)-h(E)=2$ in the figure below. At this time, we need to discuss the two situations according to the relationship between $h(A)$ and $h(C)$ . It should be noted that because we maintain balance from bottom to top, for all descendants of node D, property 2 is still satisfied.
+After inserting or deleting nodes, the property of the AVL tree 2 may no longer be statisfied. Therefore, the tree needs to be maintained along the path from the inserted/deleted node to the root. If for a node, property 2 is no longer satisfied, the absolute value of the balance factor of the node is at most 2 because we only insert/delete a node, and the impact on the tree height does not exceed 1. Due to symmetry, we only discuss the case where the left subtree is higher than the right subtree by 2, that is, $h(B)-h(E)=2$ in the figure below. At this time, we need to discuss the two situations according to the relationship between $h(A)$ and $h(C)$ . It should be noted that because we maintain balance from bottom to top, for all descendants of node D, property 2 is still satisfied.
 
 ![](./images/avl1.jpg)
 
@@ -49,7 +49,7 @@ $$
 \end{cases}
 $$
 
-$h(C)\geq x$ is because node B satisfies property 2, so the difference between $h(C)$ and $h(A)$ will not exceed 1. At this time, we perform a right rotation on node D (the rotation operation is the same as other types of balanced binary search trees), as shown in the following figure.
+The reason why $h(C)\geq x$ is because node B satisfies property 2, which means the difference between $h(C)$ and $h(A)$ will not exceed 1. At this time, we perform a right rotation on node D (the rotation operation is the same as other types of balanced binary search trees), as shown in the following figure.
 
 ![](./images/avl2.jpg)
 
@@ -94,7 +94,7 @@ $$
 \end{cases}
 $$
 
-Therefore, the rotated nodes B, C, and D also satisfy property 2. The pseudocode for maintaining a balanced operation for a node is given.
+Therefore, the rotated nodes B, C, and D also satisfy property 2. The pseudocode for maintaining a balanced operation for a node is given below.
 
 ```text
 Maintain-Balanced(p)
@@ -112,7 +112,7 @@ Maintain-Balanced(p)
             Left-Rotate(p)
 ```
 
-Like other balanced binary search trees, the height of nodes in the AVL tree, the size of the subtree, and other information need to be maintained during the rotation.
+Like other balanced binary search trees, the height of nodes in the AVL tree, the size of the subtree, and other information need to be maintained during the rotation operation.
 
 ## Other operations
 
