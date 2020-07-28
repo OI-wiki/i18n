@@ -2,85 +2,88 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 ## 简介
 
-树状数组和下面的线段树可是亲兄弟了，但他俩毕竟还有一些区别：  
-树状数组能有的操作，线段树一定有；  
-线段树有的操作，树状数组不一定有。
+The [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree)(or, binary indexed tree) and the segment tree are always mentioned together, but there are still some differences between them after all:
 
-这么看来选择线段树不就 **「得天下了」** ？
+The operations that Fenwick tree can have, the segment tree must have;
+The operations that segment tree have, the Fenwick tree does not necessarily have.
 
-事实上，树状数组的代码要比线段树短得多，思维也更清晰，在解决一些单点修改的问题时，树状数组是不二之选。
+So it seems that choosing segment tree would be **"having it all"**?
+
+In fact, the code of Fenwick tree is much shorter, and the thinking process is clearer. When solving some single-node modification problems, the Fenwick tree is the best choice.
 
 * * *
 
-## 原理
+## Principle
 
-如果要具体了解树状数组的工作原理，请看下面这张图：
+If you want to understand the principle of the fenwick tree, please refer to the following figure:
 
 ![](./images/fenwick1.png)
 
-这个结构的思想和线段树有些类似：用一个大节点表示一些小节点的信息，进行查询的时候只需要查询一些大节点而不是更多的小节点。
+The idea of this structure is somewhat similar to the segment tree: a large node is used to represent the information of some small nodes, and only some large nodes are required to be queried instead of more small nodes.
 
-最下面的八个方块就代表存入 $a$ 中的八个数，现在都是十进制。
+The bottom eight squares represent the eight numbers stored in $a$ , which are all decimal.
 
-他们上面的参差不齐的剩下的方块就代表 $a$ 的上级—— $c$ 数组。
+The remaining uneven squares above represent the parent of $a$-the $c$ array.
 
-很显然看出：  
- $c[2]$ 管理的是 $a[1]$ & $a[2]$ ；  
- $c[4]$ 管理的是 $a[1]$ & $a[2]$ & $a[3]$ & $a[4]$ ；  
- $c[6]$ 管理的是 $a[5]$ & $a[6]$ ； $c[8]$ 则管理全部 $8$ 个数。
+Obviously we can find:
+ $c[2]$ manages $a[1]$ & $a[2]$ ;
+ $c[4]$ manages $a[1]$ & $a[2]$ & $a[3]$ & $a[4]$ ;
+ $c[6]$ manages $a[5]$ & $a[6]$ ; $c[8]$ manages all $8$ .
 
-所以，如果你要算区间和的话，比如说要算 $a[51]$ ~ $a[91]$ 的区间和，暴力算当然可以，那上百万的数，那就 RE 喽。
+Then the principle of continuously jumping to the center nodes and scores keep increasing is the same (multiplication).
 
-那么这种类似于跳一跳的连续跳到中心点而分值不断变大的原理是一样的（倍增）。
+So, if you want to calculate the sum of intervals, for example, the sum of intervals from $a[51]$ ~ $a[91]$ , brute-force is of course possible. But if there are millions of numbers, we might be getting RE.
 
-你从 $91$ 开始往前跳，发现 $c[n]$ （ $n$ 我也不确定是多少，算起来太麻烦，就意思一下）只管 $a[91]$ 这个点，那么你就会找 $a[90]$ ，发现 $c[n - 1]$ 管的是 $a[90]$ & $a[89]$ ；那么你就会直接跳到 $a[88]$ ， $c[n - 2]$ 就会管 $a[81]$ ~ $a[88]$ 这些数，下次查询从 $a[80]$ 往前找，以此类推。
+Then the principle of continuously jumping to the center node, which is similar to jumping to the center point, is the same (multiplication).
+
+You jump forward from $91$ and find that $c[n]$ . Just focus on $a[91]$ , then you will find $a[90]$ and that $c[n-1]$ manages $a[90]$ & $a[89]$ ; then you will jump directly to $a[88]$ , where $c [n-2]$ will take care of the numbers $a[81]$ ~ $a[88]$ , and the next query will look from $a[80]$ forwards, and so on.
 
 * * *
 
-## 用法及操作
+## Usage and operation
 
-那么问题来了，你是怎么知道 $c$ 管的 $a$ 的个数分别是多少呢？你那个 $1$ 个， $2$ 个， $8$ 个……是怎么来的呢？
-这时，我们引入一个函数—— `lowbit` ：
+So the question is, how do you know the number of $a$ $c$ manages? The $1$ , $2$ , $8$... how did you get it?
+Here, we introduce a function - `lowbit`:
 
 ```cpp
 int lowbit(int x) {
-  // 算出x二进制的从右往左出现第一个1以及这个1之后的那些0组成数的二进制对应的十进制的数
+  // find the decimal number corresponding to the binary number of the first 1 and the 0 after this 1 from right to left of x
   return x & -x;
 }
 ```
 
- `lowbit` 的意思注释说明了，咱们就用这个说法来证明一下 $a[88]$ ：  
+ The meaning of `lowbit` is explained, let’s use this statement to prove it $a[88]$ :  
  $88_{(10)}=1011000_{(2)}$   
-发现第一个 $1$ 以及他后面的 $0$ 组成的二进制是 $1000$   
+Found that the binary composed of the first $1$ and the following $0$ is $1000$   
  $1000_{(2)} = 8_{(10)}$   
- $1000$ 对应的十进制是 $8$ ，所以 $c$ 一共管理 $8$ 个 $a$ 。
+ The decimal system corresponding to $1000$ is $8$ , so $c$ manages a total of $8$ $a$ .
 
-这就是 `lowbit` 的用处，仅此而已（但也相当有用）。
+So this is what the `lowbit` is used for.
 
- **你可能又问了：x & -x 是什么意思啊？** 
+ **You might be wondering: what does x & -x mean?** 
 
-> 在一般情况下，对于 int 型的正数，最高位是 0，接下来是其二进制表示；而对于负数 (-x)，表示方法是把 x 按位取反之后再加上 1。
+> In general, for a positive number of int type, the highest bit is 0, followed by its binary representation; for negative numbers (-x), the representation method is to invert x and add 1 bitwise.
 
-例如 :  
+For example:
  $x =88_{(10)}=01011000_{(2)}$ ；  
  $-x = -88_{(10)} = (10100111_{(2)} + 1_{(2)}) =10101000_{(2)}$ ；  
  $x\ \& \ (-x) = 1000_{(2)} = 8_{(10)}$ 。
 
-那么对于 **单点修改** 就更轻松了：
+Then it is easier for **single node modification**:
 
 ```cpp
 void add(int x, int k) {
-  while (x <= n) {  // 不能越界
+  while (x <= n) {  // cannot cross the boundary
     c[x] = c[x] + k;
     x = x + lowbit(x);
   }
 }
 ```
 
-每次只要在他的上级那里更新就行，自己就可以不用管了。
+Every time updating from the parent, then you can leave it alone.
 
 ```cpp
-int getsum(int x) {  // a[1]……a[x]的和
+int getsum(int x) {  // sum of a[1] ... a[x]
   int ans = 0;
   while (x >= 1) {
     ans = ans + c[x];
@@ -90,20 +93,20 @@ int getsum(int x) {  // a[1]……a[x]的和
 }
 ```
 
-## 区间加 & 区间求和
+## Interval addition & interval sum
 
-若维护序列 $a$ 的差分数组 $b$ ，此时我们对 $a$ 的一个前缀 $r$ 求和，即 $\sum_{i=1}^{r} a_i$ ，由差分数组定义得 $a_i=\sum_{j=1}^i b_j$ 
+If we maintain the [finite difference](https://en.wikipedia.org/wiki/Finite_difference) array $b$ of the sequence $a$ , then we sum a prefix $r$ of $a$ , that is, $\sum_{i=1}^{r} a_i$ , which is defined by the difference array $a_i=\sum_{j=1}^i b_j$ .
 
-进行推导
+Derive:
 
 $$
 \sum_{i=1}^{r} a_i\\=\sum_{i=1}^r\sum_{j=1}^i b_j\\=\sum_{i=1}^r b_i\times(r-i+1)
 \\=\sum_{i=1}^r b_i\times (r+1)-\sum_{i=1}^r b_i\times i
 $$
 
-区间和可以用两个前缀和相减得到，因此只需要用两个树状数组分别维护 $\sum b_i$ 和 $\sum i \times b_i$ ，就能实现区间求和。
+The interval sum can be obtained by subtracting two prefix sums, so we only need two fenwick trees to maintain $\sum b_i$ and $\sum i \times b_i$ respectively to find the interval sum.
 
-代码如下
+Code is shown below:
 
 ```cpp
 int t1[MAXN], t2[MAXN], n;
@@ -128,7 +131,7 @@ int getsum(int *t, int k) {
 }
 
 void add1(int l, int r, int v) {
-  add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
+  add(l, v), add(r + 1, -v);  // split the interval sum into two prefix sum
 }
 
 long long getsum1(int l, int r) {
@@ -139,12 +142,12 @@ long long getsum1(int l, int r) {
 
 ## Tricks
 
- $O(n)$ 建树：
+ build the tree in $O(n)$:
 
-每一个节点的值是由所有与自己直接相连的儿子的值求和得到的。因此可以倒着考虑贡献，即每次确定完儿子的值后，用自己的值更新自己的直接父亲。
+The value of each node is obtained by summing the values of all the children nodes directly connected to it. Therefore, you can consider the contribution backwards, that is, every time you determine the value of the child, update the direct parent with your own value.
 
 ```cpp
-// O(n)建树
+// O(n) build the tree
 void init() {
   for (int i = 1; i <= n; ++i) {
     t[i] += a[i];
@@ -154,39 +157,41 @@ void init() {
 }
 ```
 
- $O(\log n)$ 查询第 $k$ 小/大元素。在此处只讨论第 $k$ 小，第 $k$ 大问题可以通过简单计算转化为第 $k$ 小问题。
+ Query the $k$-th smallest/largest element in $O(\log n)$ . Here we only discuess the $k$-th smallest element problem. The $k$-th largest can be transformed into finding $k$-th smallest element problem through simple calculations.
 
-参考 "可持久化线段树" 章节中，关于求区间第 $k$ 小的思想。将所有数字看成一个可重集合，即定义数组 $a$ 表示值为 $i$ 的元素在整个序列重出现了 $a_i$ 次。找第 $k$ 大就是找到最小的 $x$ 恰好满足 $\sum_{i=1}^{x}a_i \geq k$ 
 
-因此可以想到算法：如果已经找到 $x$ 满足 $\sum_{i=1}^{x}a_i \le k$ ，考虑能不能让 $x$ 继续增加，使其仍然满足这个条件。找到最大的 $x$ 后， $x+1$ 就是所要的值。
-在树状数组中，节点是根据 2 的幂划分的，每次可以扩大 2 的幂的长度。令 $sum$ 表示当前的 $x$ 所代表的前缀和，有如下算法找到最大的 $x$ ：
+Refer to the "Persistent Segment Tree" chapter for the idea of finding the smallest $k$-th interval. Treat all numbers as a repetitive set, that is, define the array $a$ to indicate that the element of value $i$ reappears $a_i$ times in the entire sequence. Finding the largest $k$ is to find the smallest $x$ that satisfies $\sum_{i=1}^{x}a_i \geq k$
 
-1.  求出 $depth=\left \lfloor \log_2n \right \rfloor$ 
-2.  计算 $t=\sum_{i=x+1}^{x+2^{depth}}a_i$ 
-3.  如果 $sum+t \le k$ ，则此时扩展成功，将 $2^{depth}$ 累加到 $x$ 上；否则扩展失败，对 $x$ 不进行操作
-4.  将 $depth$ 减 1，回到步骤 2，直至 $depth$ 为 0
+Therefore, we can think of the algorithm: if we have found that $x$ satisfies $\sum_{i=1}^{x}a_i \le k$ , consider whether $x$ can continue increasing so that it still meets this condition. After finding the largest $x$ , $x+1$ is the value we want.
+
+In the Fenwick tree, the nodes are divided according to the power of 2, which can be expanded each time. Let $sum$ denote the sum of the prefixes represented by the current $x$, then the following algorithm finds the largest $x$:
+
+1. Find $depth=\left \lfloor \log_2n \right \rfloor$
+2. Calculate $t=\sum_{i=x+1}^{x+2^{depth}}a_i$
+3. If $sum+t \le k$ , it means the expansion is successful. Add $2^{depth}$ to $x$ ; otherwise, the expansion fails and no operation is performed on $x$
+4. Decrease $depth$ by 1 and go back to step 2 until $depth$ is 0
 
 ```cpp
-//权值树状数组查询第k小
+// Weighted fenwick tree query k-th smallest
 int kth(int k) {
   int cnt = 0, ret = 0;
-  for (int i = log2(n); ~i; --i) {      // i与上文depth含义相同
-    ret += 1 << i;                      // 尝试扩展
-    if (ret >= n || cnt + t[ret] >= k)  // 如果扩展失败
+  for (int i = log2(n); ~i; --i) {      // i has the same meaning as depth above
+    ret += 1 << i;                      // Try to expand
+    if (ret >= n || cnt + t[ret] >= k)  // If the expansion fails
       ret -= 1 << i;
     else
-      cnt += t[ret];  // 扩展成功后 要更新之前求和的值
+      cnt += t[ret];  // After the expansion is successful, the previously summed value must be updated
   }
   return ret + 1;
 }
 ```
 
-时间戳优化：
+Time stamp optimization:
 
-对付多组数据很常见的技巧。如果每次输入新数据时，都暴力清空树状数组，就可能会造成超时。因此使用 $tag$ 标记，存储当前节点上次使用时间（即最近一次是被第几组数据使用）。每次操作时判断这个位置 $tag$ 中的时间和当前时间是否相同，就可以判断这个位置应该是 0 还是数组内的值。
+A common technique for dealing with multiple sets of data. If the Fenwick tree is brute-forece cleared every time new data comes in, it may cause a timeout. Therefore, the $tag$ is used to store the last time the current node is used (that is, the last time used by the first set of data). Each time we check whether the time in this position $tag$ is the same as the current time, and then we will know whether this position should be 0 or the value in the array.
 
 ```cpp
-//时间戳优化
+// Time stamp optimization
 int tag[MAXN], t[MAXN], Tag;
 void reset() { ++Tag; }
 void add(int k, int v) {
@@ -206,10 +211,10 @@ int getsum(int k) {
 }
 ```
 
-## 例题
+## Sample problems
 
--    [树状数组 1：单点修改，区间查询](https://loj.ac/problem/130) 
--    [树状数组 2：区间修改，单点查询](https://loj.ac/problem/131) 
--    [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132) 
--    [二维树状数组 1：单点修改，区间查询](https://loj.ac/problem/133) 
--    [二维树状数组 3：区间修改，区间查询](https://loj.ac/problem/135) 
+-    [Fenwick tree 1: single node modification, interval query](https://loj.ac/problem/130) 
+-    [Fenwick tree 2: interval modification, single node query](https://loj.ac/problem/131) 
+-    [Fenwick tree 3: interval modification, interval query](https://loj.ac/problem/132) 
+-    [2D Fenwick tree 1: single node modification, interval query](https://loj.ac/problem/133) 
+-    [2D Fenwick tree 3: interval modification, interval query](https://loj.ac/problem/135) 
