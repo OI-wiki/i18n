@@ -6,7 +6,7 @@ In algorithmic programming competitions, we sometimes need to maintain multi-dim
 
 ## Principle of implementation 
 
-We take **erbi** as an example to explain the implementation principle.
+We take the problem ***erbi* balanced tree** as an example to explain the implementation principle.
 
 Regarding the nested trees, we normally build an segment tree in outer layer. For a node on the segment tree, build a balanced tree, including the sequence covered by the node. In the specific operation, we can insert sequence elements one by one, and the element is added to the node's balanced tree while passing a segment tree each time.
 
@@ -29,7 +29,7 @@ For the $3$ operation, one more binary process is $\log^3{n}$ .
 
 ## Classic problem
 
- [erbi](https://loj.ac/problem/106)(original link in Chinese): outer layer is segment tree, and inner layer is balanced tree.
+ [erbi balanced tree](https://loj.ac/problem/106)(original link in Chinese): outer layer is segment tree, and inner layer is balanced tree.
 
 ## Sample code
 
