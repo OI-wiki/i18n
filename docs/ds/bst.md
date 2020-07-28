@@ -6,7 +6,7 @@ Binary search tree is a tree-shape data structure of binary tree, which is defin
 
 2. If the left subtree of the binary search tree is not empty, the weight sum of all nodes on the left subtree are less than the value of its root node.
 
-3. If the right subtree of the binary search tree is not empty, the weight sum of all nodes on the right subtree are greater than the value of its root node.
+3. If the right subtree of the binary search tree is not empty, the weight of all nodes on the right subtree are greater than the value of its root node.
 
 4. The left and right subtrees of a binary search tree are both binary search trees.
 
