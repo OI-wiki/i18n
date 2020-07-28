@@ -2,7 +2,7 @@ author: Xarfa
 
 The dividing tree is a data structure to solve the largest $K$ interval, and its time complexity constant and the difficulty of understanding are much lower than the [persistent segment tree](../persistent-seg/#_1). At the same time, the dividing tree closely adheres to the "largest $K$ ", so it is a sort-based data structure.
 
- **It is recommended to finish learning [Persistent Segment Tree](../persistent-seg/#_1) and then look at the dividing tree**
+ **It is recommended to finish learning [Persistent Segment Tree](../persistent-seg/#_1) before learning dividing tree**
 
 ## Tree construction
 
@@ -15,7 +15,7 @@ We cannot sort each layer every time, because the theoretical complexity would n
 There are two key arrays:
 
 ```text
-tree[log(N),N]   : That is, the tree needs to store all the values, space complexity is $O(n\log n)$ .
+tree[log(N),N]   : The tree, in which stores all the values, space complexity is $O(n\log n)$ .
 toleft[log(N),n] : That is, the number of left child entered in each layer 1~i. Here we need to understand that this is a prefix sum.
 ```
 
@@ -39,7 +39,7 @@ begin
     if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // condition to be assigned to the left
     begin
       flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
-      if tree[deep,i]=num[mid] then // balance the number of left and right 
+      if tree[deep,i]=num[mid] then // balance the number nodes in left and right sides
         dec(same);
     end
     else
