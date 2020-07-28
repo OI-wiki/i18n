@@ -29,7 +29,7 @@ Similar to BST (Binary Search Tree), a failed search is performed first to deter
 
 Deletion is similar to BST, and the node is swapped with the successor before deleting.
 
-Deletion will cause the tree height and balance factor to change. At this time, you need to adjust this change along the path from the deleted node to the root.
+Deletion will cause the tree height and the balance factor to change. At this time, you need to adjust this change along the path from the deleted node to the root.
 
 ## Maintain Balance
 
