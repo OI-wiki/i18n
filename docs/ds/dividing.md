@@ -20,7 +20,7 @@ toleft[log(N),n] : That is, the number of left child entered in each layer 1~i. 
 ```
 
 ```pascal
-procedure Build(left,right,deep:longint); // left,right are the left, right interval; deep is which layer
+procedure Build(left,right,deep:longint); // left and ight are intervals; deep is which layer we are currently on
 var
   i,mid,same,ls,rs,flag:longint; // flag is used to balance the amount on the left and right
 begin
@@ -90,4 +90,4 @@ Testing results: persistent segment tree: $1482 \text{ms}$ , dividing tree: $889
 
 ## Notes
 
-You may also want to try implementing a non-recursive version. [Reference](https://blog.csdn.net/littlewhite520/article/details/70250722) .
+You may also want to try implementing a [non-recursive version](https://blog.csdn.net/littlewhite520/article/details/70250722). (Original link in Chinese)
