@@ -1,6 +1,6 @@
 ## Hash table
 
-[Hash table](https://en.wikipedia.org/wiki/Hash_table), also known as hash map, is a data structure that stores data in the form of "key-value". The so-called storage of data in the form of "key-value" means that any key corresponds uniquely to a certain location in memory. You only need to enter the searched value key to quickly find its corresponding value. The hash table can be understood as a kind of advanced array. The index of this array can be a large integer, a floating point number, a string, or even a structure.
+[Hash table](https://en.wikipedia.org/wiki/Hash_table), also known as hash map, is a data structure that stores data in the form of "key-value", which means that any key corresponds uniquely to a certain location in memory. You only need to enter the searched value key to quickly find its corresponding value. The hash table can be understood as a kind of advanced array. The index of this array can be a large integer, a floating point number, a string, or even a structure.
 
 ## Hash function
 
