@@ -1,34 +1,34 @@
-## 哈希表
+## Hash table
 
-哈希表是又称散列表，一种以 "key-value" 形式存储数据的数据结构。所谓以 "key-value" 形式存储数据，是指任意的 key 都唯一对应到内存中的某个位置。只需要输入查找的值 key，就可以快速地找到其对应的 value。可以把哈希表理解为一种高级的数组，这种数组的下标可以是很大的整数，浮点数，字符串甚至结构体。
+[Hash table](https://en.wikipedia.org/wiki/Hash_table), also known as hash map, is a data structure that stores data in the form of "key-value", which means that any key corresponds uniquely to a certain location in memory. You only need to enter the searched value key to quickly find its corresponding value. The hash table can be understood as a kind of advanced array. The index of this array can be a large integer, a floating point number, a string, or even a structure.
 
-## 哈希函数
+## Hash function
 
-要让 key 对应到内存中的位置，就要为 key 计算索引，也就是计算这个数据应该放到哪里。这个根据 key 计算索引的函数就叫做哈希函数，也称散列函数。举个例子，比如 key 是一个人的身份证号码，哈希函数就可以是号码的后四位，当然也可以是号码的前四位。生活中常用的“手机尾号”也是一种哈希函数。在实际的应用中，key 可能是更复杂的东西，比如浮点数、字符串、结构体等，这时候就要根据具体情况设计合适的哈希函数。哈希函数应当易于计算，并且尽量使计算出来的索引均匀分布。
+To make the key correspond to the location in the memory, it is necessary to calculate the index for the key, that is, calculate where it should be placed. The function that calculates the index based on the key is called the [hash function](https://en.wikipedia.org/wiki/Hash_function). For example, if the key is a person's ID number, the hash function can be the last four digits of the number, or the first four digits. The "tail of phone number" commonly used in life can also be a hash function. In actual applications, the key could be more complex, such as floating-point numbers, strings, and structures, etc. At this time, it is necessary to design a suitable hash function according to the specific situation. The hash function should be easy to calculate, and the calculated index should be as evenly distributed as possible.
 
-在 OI 中，最常见的情况应该是 key 为整数的情况。当 key 的范围比较小的时候，可以直接把 key 作为数组的下标，但当 key 的范围比较大，比如以 $10^9$ 范围内的整数作为 key 的时候，就需要用到哈希表。一般把 key 模一个较大的质数作为索引，也就是取 $f(x)=x \bmod M$ 作为哈希函数。另一种比较常见的情况是 key 为字符串的情况，在 OI 中，一般不直接把字符串作为 key，而是先算出字符串的哈希值，再把其哈希值作为 key 插入到哈希表里。
+In OI, the most common case is using key as an integer. When the range of the key is relatively small, you can directly use it as the index of the array, but when the range is relatively large, such as using an integer in the range of $10^9$ as the key, a hash table is needed. Generally, the key modulo a larger prime number is used as the index, that is, $f(x)=x \bmod M$ is used as the hash function. Another common situation is when the key is a string. In OI, the general case is that string is not directly used as the key, but the hash value of the string is calculated first, and then the hash value is inserted into the hash table as the key.
 
-能为 key 计算索引之后，我们就可以知道每个 value 应该放在哪里了。假设我们用数组 a 存放数据，哈希函数是 f，那键值对 (key,value) 就应该放在 a[f(key)]上。不论 key 是什么类型，范围有多大，f(key) 都是在可接受范围内的整数，可以作为数组的下标。
+After we calculate the index for the key, we can know where each value should be placed. Suppose we use array $a$ to store data, and the hash function is $f$, then the key-value pair $(\text{key}, \text{value})$ should be placed on $a[f(\text{key})]$. No matter what type of key is and how large the range is, $f(\text{key})$ is an integer within the acceptable range and can be used as the index of the array.
 
-## 冲突
+## Hash collision
 
-如果对于任意的 key，哈希函数计算出来的索引都不相同，那只用根据索引把 (key,value) 放到对应的位置就行了。但实际上，常常会出现两个不同的 key，他们用哈希函数计算出来的索引是相同的。这时候就需要一些方法来处理冲突。在 OI 中，最常用的方法是拉链法。
+If the index calculated by the hash function is different for any key, then just put (key, value) in the corresponding position according to the index. But in fact, there are often two different keys, but their indexes calculated by the hash function are the same. At this time, we would need some methods to deal with collisions. In OI, the most commonly used one is the zipper method.
 
-### 拉链法
+### Zipper method
 
-拉链法也称开散列法（open hashing）。
+Zipper method can also be called open hashing.
 
-拉链法是在每个存放数据的地方开一个链表，如果有多个 key 索引到同一个地方，只用把他们都放到那个位置的链表里就行了。查询的时候需要把对应位置的链表整个扫一遍，对其中的每个数据比较其 key 与查询的 key 是否一致。如果索引的范围是 1~M，哈希表的大小为 N，那么一次插入/查询需要进行期望 $O(\frac{N}{M})$ 次比较。
+The zipper method is to create a linked list in each place where data is stored. If there are multiple keys with the same index, just put them all in the linked list at that location. When querying, you need to scan the entire linked list at the corresponding location, and compare whether the key is consistent with the query key for each data. If the range of the index is 1~M and the size of the hash table is N, then an insert/query needs to perform comparisons in expected time complexity of $O(\frac{N}{M})$ .
 
-### 闭散列法
+### Closed hashing 
 
-闭散列方法把所有记录直接存储在散列表中，如果发生冲突则根据某种方式继续进行探查。
+The closed hashing method stores all records directly in the hash table. If there is a collision, it will continue probing in a certain way.
 
-比如线性探查法：如果在 `d` 处发生冲突，就依次检查 `d + 1` ， `d+2` ……
+For example, linear probing method: if there is a conflict at `d`, check `d+1`, `d+2` in turn...
 
-## 实现
+## Implementation
 
-### 拉链法
+### Zipper method
 
 ```cpp
 const int SIZE = 1000000;
@@ -57,19 +57,19 @@ struct HashTable {
 };
 ```
 
-这边再为大家提供一个封装过的模板，可以像 map 一样用，并且较短
+Here we will provide you with a encapsulated template. It can be used like a map and is shorter.
 
 ```cpp
-struct hash_map {  // 哈希表模板
+struct hash_map {  // hash table template
   struct data {
     long long u;
     int v, nex;
-  };                // 前向星结构
-  data e[SZ << 1];  // SZ 是 const int 表示大小
+  };                // forward star list: see reference below
+  data e[SZ << 1];  // SZ is a const int representing the size
   int h[SZ], cnt;
   int hash(long long u) { return u % SZ; }
   int& operator[](long long u) {
-    int hu = hash(u);  // 获取头指针
+    int hu = hash(u);  // get head pointer
     for (int i = h[hu]; i; i = e[i].nex)
       if (e[i].u == u) return e[i].v;
     return e[++cnt] = (data){u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
@@ -81,8 +81,10 @@ struct hash_map {  // 哈希表模板
 };
 ```
 
-解释一下，hash 函数是针对 key 的类型设计的，并且返回一个链表头指针用于查询。在这个模板中我们写了一个 $\text{(long long , int)}$ 式的 hash 表，并且当某个 key 不存在的时侯初始化对应的 val 成 -1。hash_map() 函数是在定义的时侯初始化用的。
+> [forward star list](https://zh.wikipedia.org/wiki/%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F) is a data structure used to store graph. It was named by [Malash](https://malash.me/200910/linked-forward-star/) but the actual inventor of the algorithm remains unknown.
 
-## 例题
+To explain, the hash function is designed for the type of key and returns a linked list head pointer for query. In this template, we write a hash table of the type like $\text{(long long , int)}$ , and initialize the corresponding val to -1 when a key does not exist. The hash_map() function is initialized when it is defined.
 
- [「JLOI2011」不重复数字](https://www.luogu.com.cn/problem/P4305) 
+## Sample problem
+
+ [「JLOI2011」non-repeating number](https://www.luogu.com.cn/problem/P4305) (original link in Chinese)
