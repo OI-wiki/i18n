@@ -20,7 +20,7 @@ toleft[log(N),n] : That is, the number of left child entered in each layer 1~i. 
 ```
 
 ```pascal
-procedure Build(left,right,deep:longint); // left and ight are intervals; deep is which layer we are currently on
+procedure Build(left,right,deep:longint); // left and right are intervals; deep is which layer we are currently on
 var
   i,mid,same,ls,rs,flag:longint; // flag is used to balance the amount on the left and right
 begin
