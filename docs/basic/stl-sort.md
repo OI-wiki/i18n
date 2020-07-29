@@ -1,51 +1,53 @@
 ## sort
 
-C 标准库实现了快速排序，即 `stdlib.h` 当中的 `qsort` 。
+The standard C library implements quick sort, which is `qsort` in `stdlib.h`.
 
-但在 OI 相关比赛当中，更为常见的库排序函数是 C++ `algorithm` 库中的 `std::sort` 函数。
+But in OI-related competitions, the library sorting function more commonly used is the `std::sort` from the C++ `algorithm` library.
 
-C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器。
+The C++ standard does not strictly specify the implementation of this function and it depends on the compiler used.
 
-旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$ ，但 C++11 标准要求它的 **最坏** 时间复杂度是达到 $O(n\log n)$ 。可以查阅 [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort) 
+The old version of the C++ standard only requires its **average** time complexity to reach $O(n\log n)$ , but the C++11 standard requires its **worst** time complexity to reach $O( n\log n)$ . You can refer to [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort).
 
 在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort) 。
 
-Introsort 限制了快速排序的分治深度，当分治达到一定深度之后，改用最坏时间复杂度为 $O(n\log n)$ 的排序算法（比如堆排序）来给子数组排序。
+In both [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) and [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm), [introsort](https://en.wikipedia.org/wiki/Introsort) is used.
 
-Introsort 的这个限制使得它的最坏时间复杂度是 $O(n\log n)$ 的。
+Introsort limits the divide and conquer depth of quicksort. When divide and conquer reaches a certain depth, use a sorting algorithm (such as heap sort) with the worst time complexity of $O(n\log n)$ to sort the sub-arrays.
 
-用法：
+This limitation of Introsort makes its worst time complexity $O(n\log n)$ .
+
+Usage:
 
 ```cpp
-// a[0] .. a[n - 1] 为需要排序的数列
+// a[0] .. a[n - 1]: array needs to be sorted
 std::sort(a, a + n);
-// 上面这句代码直接修改 a 数组里的元素顺序，使得现在它是从小到大排列的
+// The above code directly modifies the order of elements in the array so that it is now sorted ascendingly.
 
-std::sort(a, a + n, cmp);  // cmp 为自定义的比较函数
+std::sort(a, a + n, cmp);  // cmp is a custom comparison function
 ```
 
 ## nth_element
 
-作用是找到选定区间内第 $k$ 大的数，并将所有比它小的数与比它大的数分别置于两侧，返回它的地址。
+The function is to find with the $k$-th largest number in the selected interval, put all the elements smaller and larger than it on both sides respectively, and return its address.
 
-原理是未完成的快速排序。
+The principle is the unfinished quick sort.
 
-用法：
+Usage:
 
 ```cpp
 std::nth_element(begin, mid, end);
 std::nth_element(begin, mid, end, cmp);
 ```
 
-时间复杂度：期望 $O(n)$ 。
+Time complexity: Expected value of $O(n)$.
 
-常用于构建 K-DTree。
+Often used to build [K-D Tree](https://en.wikipedia.org/wiki/K-d_tree).
 
 ## stable_sort
 
-稳定的 $O(n\log n)$ 排序，即保证相等元素排序后的相对位置与原序列相同。
+Stable $O(n\log n)$ sort means that the relative positions of equal elements after the sorting are the same as the original sequence.
 
-用法
+Usage:
 
 ```cpp
 std::stable_sort(begin, end);
@@ -54,31 +56,32 @@ std::stable_sort(begin, end, cmp);
 
 ## partial_sort
 
-将序列中前 $k$ 小元素按顺序置于前 $k$ 个位置，后面的元素不保证顺序。
+Place the top $k$ smallest elements in the first $k$ positions in the sequence (the order of equal elements is not guarnteed), and the order of the remaining elements is not specified.
 
-复杂度： $O(n\log k)$ 
+Time complexity: $O(n\log k)$ 
 
-用法：
+Usage:
 
 ```cpp
 std::partial_sort(begin, begin + k, end);
 std::partial_sort(begin, begin + k, end, cmp);
 ```
 
-原理：
+Principle:
 
-实现 partial_sort 的思想是：对原始容器内区间为 $[first, middle)$ 的元素执行 make_heap() 操作构造一个大根堆，然后拿 $[middle, last)$ 中的每个元素和 $first$ 进行比较， $first$ 内的元素为堆内的最大值。如果小于该最大值，则互换元素位置，并对 $[first, middle)$ 内的元素进行调整，使其保持最大堆序。比较完之后在对 $[first, middle)$ 内的元素做一次对排序 sort_heap() 操作，使其按增序排列。注意，堆序和增序是不同的。
+The principle of implementing `partial_sort` is to perform the `make_heap()` operation on the elements in the interval $[first, middle)$ in the original sequence to construct a max heap, and then take each element in $[middle, last)$ to compare with the $first$ — the maximum value in the heap. If it is less than the maximum value, the two elements are swapped, and the elements in $[first, middle)$ are adjusted to maintain the max heap. After the comparison, the elements in $[first, middle)$ are sorted by `sort_heap()` in ascending order. Please note that heap order is different ascending order.
 
-## 定义运算符
+## Define operator
 
-对于内置类型（如 `int` ）和用户定义的结构体，你都可以定义调用 STL 排序函数时使用的 **小于运算符** 。你可以在调用函数时同时传入一个比较运算符的函数（一般是最后一项），也可以直接重载该类型的默认运算符。参见 [cppreference](https://zh.cppreference.com/w/cpp/language/operators) 。
-下面是几个例子：
+For both built-in types (such as `int`) and user-defined structures, you can define the **less than operator** when calling the STL sorting function. You can pass a comparison operator function (usually the last parameter) when calling the function, or directly override the default operator of this type. See [cppreference](https://en.cppreference.com/w/cpp/language/operators).
+
+Here are a few examples:
 
 ```cpp
 int a[1009], n = 10;
 // ......
-std::sort(a + 1, a + 1 + n);                  // 从小到大排序。
-std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序。
+std::sort(a + 1, a + 1 + n);                  // sort ascendingly
+std::sort(a + 1, a + 1 + n, greater<int>());  // sort descendingly
 ```
 
 ```cpp
@@ -92,23 +95,23 @@ bool cmp(const data u1, const data u2) {
   return (u1.a == u2.a) ? (u1.b > u2.b) : (u1.a > u2.a);
 }
 // ......
-std::sort(da + 1, da + 1 + 10);  // 使用结构体中定义的 < 运算符，从小到大排序。
-std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大到小排序。
+std::sort(da + 1, da + 1 + 10);  // use the <operator defined in the structure to sort ascendingly
+std::sort(da + 1, da + 1 + 10, cmp);  // use cmp function to compare, sort descendingly
 ```
 
-### 严格弱序
+### Strictly weak order
 
-进行排序的运算符必须满足严格弱序（ [Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings) ），否则会出现不可预料的情况（如运行时错误、无法正确排序）。
+The sorting operator must satisfy the [strict weak ordering](https://en.wikipedia.org/wiki/Weak_ordering#:~:text=A%20strict%20weak%20ordering%20is,b%20%3C%20a%22%20is%20transitive.&text=For%20all%20x%2C%20y%2C%20z,x%20%3C%20z%20(transitivity).), otherwise there will be unpredictable situations (such as runtime error, can not be sorted correctly, etc).
 
-严格弱序的要求：
+The requirements of the strict weak order:
 
-1.   $x \not< x$ （非自反性）
-2.  若 $x < y$ ，则 $y \not< x$ （非对称性）
-3.  若 $x < y, y < z$ ，则 $x < z$ （传递性）
-4.  若 $x \not< y, y \not< x, y \not< z, z \not< y$ ，则 $x \not< z, z \not< x$ （不可比性的传递性）
+1. $x \not< x$ (non-reflexive)
+2. If $x < y$ , then $y \not< x$ (asymmetry)
+3. If $x < y, y < z$ , then $x < z$ (transitivity)
+4. If $x \not< y, y \not< x, y \not< z, z \not< y$ , then $x \not< z, z \not< x$ (incomparable transitivity)
 
-常见的错误做法：
+Common mistakes:
 
--   使用 `<=` 来定义排序中的小于运算符。
--   在调用排序运算符时，读取外部数值可能会改变的数组。（常见于最短路算法）
--   将多个数的最大最小值进行比较的结果作为排序运算符。（如，皇后游戏/加工生产调度 中的经典错误，可以参考文章 [浅谈邻项交换排序的应用以及需要注意的问题](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) ）。
+- Use `<=` to define the less-than operator in sorting.
+- When calling the sorting operator, reading the external value may change the array. (commonly seen in the shortest path algorithm)
+- The result of comparing the maximum and minimum values of multiple numbers is used as a sorting operator. (For example, the classic error in queens game/processing production scheduling, you may refer to the article [Talking about the application of neighbor exchange sorting and problems that need attention](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) (Original link in Chinese).

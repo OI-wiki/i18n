@@ -50,8 +50,6 @@ We use two stacks F and S to simulate a queue, where F is the stack at the end o
 1. Push: insert into stack F.
 2. Pop: if S is not empty, pop S; otherwise, turn the elements of F upside down and push them into S (which just means pop them one by one and insert, so that the first position is reversed after completion), and then pop S.
 
-有人问这个东西有什么用吗？参见下面这道题。这道题顺便可以给大家一个 **双栈模拟双端队列** 的方法。
-
 It is easy to prove that each element will only enter/transfer/pop once, and the amortized time complexity is $O(1)$ .
 
 Someone might be wondering why this is usaful? Please see the problem below. It can also help you understand the **double stacks simulate deque** method.

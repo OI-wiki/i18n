@@ -1,43 +1,43 @@
-## 算法
+## Algorithm
 
-快速排序是 [分治](./divide-and-conquer.md) 地来将一个数组排序。
+Quick sort is used to sort an array using [divide and conquer](./divide-and-conquer.md).
 
-快速排序分为三个过程：
+Quick sort contains three steps:
 
-1.  将数列划分为两部分（不是直接分，要求保证相对大小关系）
-2.  递归到两个子序列中分别进行快速排序
-3.  不用合并，因为此时数列已经完全有序
+1. Divide the sequence into two parts (not to divide directly, but to ensure the relationship of relative size)
+2. Recurse into two subsequences for quick sorting separately
+3. No need to merge, because the sequence is already completely ordered
 
-和归并排序不同，第一步并不是直接分成前后两个序列，而是在分的过程中要保证相对大小关系。
+Unlike merge sort, first step of quick sort is not to directly divide into two sequences, but to ensure the relative size relationship during the division process.
 
-第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
+The sequences in the third step are already ordered and the numbers in the first sequence are smaller than those in the second, so joining them together would be fine.
 
-具体来说，第一步要是要把数列分成两个部分，然后保证前一个子数列中的数都小于后一个子数列中的数。
+Specifically, the first step is to divide the sequence into two parts, and then ensure that the numbers in the former sub-sequence are smaller than the numbers in the latter sub-sequence.
 
-怎么操作呢？为了保证平均时间复杂度，一般是随机选择一个数 m 来当做两个子数列的分界。
+How to achieve this? To ensure the average time complexity, a number $m$ is generally selected randomly as the boundary between two sub-sequences.
 
-之后，维护一前一后两个指针 p 和 q，依次考虑当前的数是否放在了应该放的位置（前还是后），当前位置放对了之后，再移动指针继续处理，直到两个指针相遇。
+After that, maintain two pointers p and q, one after the other, and check whether the current number is placed in the position it should be placed in turn (front or back). After the current position is placed correctly, move the pointer to continue processing until the two pointers meet.
 
-如果当前的数没放对呢？比如说如果后面的指针 q 遇到了一个比 m 小的数，那么可以交换 p 和 q 位置上的数，再把 p 向后移一位。
+What if the current number is not placed correctly? For example, if the following pointer q encounters a number smaller than m, then you can swap the numbers at index p and q, and then move p back by one.
 
-其实，快速排序没有指定应如何具体实现第一步，不论是选择 m 的过程还是划分的过程，都不是只有一种实现方法。
+In fact, quick sort does not specify how to implement the first step in detail, whether it is the process of selecting m or division, there is not only one method of implementation.
 
-一般我们说的快速排序的时间复杂度是平均为 $O(n\log n)$ ，最坏是 $O(n^2)$ ，实践中几乎不可能达到最坏情况。且因为快速排序的内存访问遵循局部性原理，多数情况下快速排序的表现大幅优于堆排序等其他复杂度为 $O(n \log n)$ 的排序算法。
+Generally speaking, the average time complexity of quick sort is $O(n\log n)$ , and the worst time complexity is $O(n^2)$ , which is almost impossible to achieve the worst case in practice. And because the memory access of quick sort follows the principle of locality, in most cases, the performance of quick sort is much better than other sorting algorithms with time complexity of $O(n \log n)$ such as heap sort.
 
-其实，在选择 m 的过程中使用 [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) 算法，就可以保证最坏时间复杂度为 $O(n\log n)$ ，但是由于其过于复杂，实践中一般不使用。
+In fact, using the [Median of Medians](https://en.wikipedia.org/wiki/Median_of_medians) algorithm in the process of selecting m can guarantee the worst time complexity of $O(n\log n)$ . However, due to its complexity of coding, it is generally not used in practice.
 
-## 线性找第 k 大的数
+## Find the k-th largest number in linear time complexity
 
-找第 k 大的数（K-th order statistic），最简单的方法是先排序，然后直接找到第 k 大的位置的元素。这样做的时间复杂度是 $O(n\log n)$ ，对于这个问题来说很不划算。事实上，我们有时间复杂度 $O(n)$ 的解法。
+To find the k-th largest element ([K-th order statistic](https://en.wikipedia.org/wiki/Order_statistic#:~:text=In%20statistics%2C%20the%20kth%20order,to%20its%20kth%2Dsmallest%20value.&text=Important%20special%20cases%20of%20the,median%20and%20other%20sample%20quantiles.)), the simplest solution is to sort first, and then directly find the element at the k-th index. The time complexity is $O(n\log n)$ , which is not really cost-effective. In fact, we have a solution with time complexity of $O(n)$ .
 
-考虑快速排序的划分过程，在快速排序的「划分」结束后，数列 $A_{p} \cdots A_{r}$ 被分成了 $A_{p} \cdots A_{q}$ 和 $A_{q+1} \cdots A_{r}$ ，此时可以按照左边元素的个数（ $q - p + 1$ ）和 k 的大小关系来判断是只在左边还是只在右边递归地求解。
+Consider the dividing process of quick sort. After the "division" of quick sort is over, the sequence $A_{p} \cdots A_{r}$ is divided into $A_{p} \cdots A_{q}$ and $A_{q+1} \cdots A_{r}$ . According to the relationship between the number of elements on the left ( $q - p + 1$ ) and the size of k, we can determine whether to solve recursively on the left or only on the right.
 
-可以证明，在期望意义下，程序的时间复杂度为 $O(n)$ 。
+It can be proved that the expected valye of time complexity is $O(n)$ .
 
-### 参考
+### Reference
 
  <https://stackoverflow.com/questions/22339240/what-algorithms-are-used-in-c11-stdsort-in-different-stl-implementations> 
 
  <https://en.cppreference.com/w/cpp/algorithm/sort> 
 
- <http://irootlee.com/juicer_locality/> 
+ <http://irootlee.com/juicer_locality/> (Original link in Chinese)
