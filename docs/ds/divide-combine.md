@@ -1,12 +1,12 @@
-Some symbols we might be using in this article: $\wedge$ logical AND, $\vee$ logical OR.
+Some symbols we might be using in this article: $\wedge$ means logical AND, and $\vee$ means logical OR.
 
 The **divide-combine tree** was invented by Cheng-ao Liu(Github@[CommonAnts](https://github.com/CommonAnts)). The original Chinese name is 析合树. The English name was defined by GitHub user [sshwy](https://github.com/sshwy).
 
-## Questions about segments
+## Problem about segments
 
 We start by introducing a simple problem:
 
-> For a $1-n$ permutation, we call a continuous range of values a segment and try to get the number of segments in an permutation. For example, the segments of $\{5 ,3 ,4, 1 ,2\}$ are: $[1,1],[2,2],[3,3],[4,4],[5,5 ],[2,3],[4,5],[1,3],[2,5],[1,5]$ .
+> For a permutation of $1-n$ , we call a continuous range of values a segment and try to get the number of segments in an permutation. For example, the segments of $\{5 ,3 ,4, 1 ,2\}$ are: $[1,1],[2,2],[3,3],[4,4],[5,5 ],[2,3],[4,5],[1,3],[2,5],[1,5]$ .
 
 It seems that the time complexity of maintaining the range set of intervals seems quite unsatisfying. The segment tree can query whether a certain interval is a segment, but it is not able to count the number of segments.
 
@@ -18,7 +18,7 @@ Before introducing the divide-combine tree, we first define some preconditions. 
 
 ### Permutation and continuous segment
 
- **Permutation** : Define a $n$ permutation $P$ to be a sequence of size $n$ such that $P_i$ goes over $1,2,\cdots,n$ . To put it more formally, $n$ permutation $P$ is an ordered set that satisfies:
+ **Permutation** : Define a permutation of $n$  and $P$ as a sequence of size $n$ such that $P_i$ goes over $1,2,\cdots,n$ . To put it more formally, $n$ permutation $P$ is an ordered set that satisfies:
 
 1.  $|P|=n$ .
 2.  $\forall i,P_i\in[1,n]$ .
@@ -32,13 +32,13 @@ $$
 
 In particular, when $l>r$ , we treat this as an empty continuous segment, denoted as $(P,\varnothing)$ .
 
-We call the set of all continuous segments permuting $P$ $I_P$ , and we consider $(P,\varnothing)\in I_P$ .
+We define the set of all continuous segments of permutation of $P$ as $I_P$ , and consider $(P,\varnothing)\in I_P$ .
 
-### Operations of continuous segments
+### Operation on continuous segments
 
 The continuous segment is defined by the interval and the range, so we can define the operation of intersect/union/minus of the continuous segment.
 
-Define $A=(P,[a,b]),B=(P,[x,y])$ and $A,B\in I_P$ . So the relationship and operation of continuous segments can be represented as:
+Define $A=(P,[a,b]),B=(P,[x,y])$ and $A,B\in I_P$ . So the relationship and operation on continuous segments can be represented as:
 
 1.  $A\subseteq B\Leftrightarrow x\le a\wedge b\le y$ .
 2.  $A=B\Leftrightarrow a=x\wedge b=y$ .
@@ -46,13 +46,13 @@ Define $A=(P,[a,b]),B=(P,[x,y])$ and $A,B\in I_P$ . So the relationship and oper
 4.  $A\cup B=(P,[\min(a,x),\max(b,y)])$ .
 5.  $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$ .
 
-In fact, these operations are just ordinary intersect/union/minus placed on the interval.
+In fact, these operations are just ordinary set intersect/union/minus operations on the interval.
 
-### Propertity of continuous segments
+### Properties of continuous segments
 
 There are some obvious properties of continuous segments. We define $A,B\in I_P,A \cap B \neq \varnothing$ , then there are $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$ .
 
-Proof? The essence of proof is the operation of intersect/union/minus.
+What about proof? The essence of proof is the operation of intersect/union/minus.
 
 ## Divide-combine tree
 
@@ -88,7 +88,7 @@ It can be seen from the figure that only $[1,10]$ is not a combining node. Becau
 
 ### Properties of the dividing/combining node
 
-The naming of the dividing node and combining node comes from their propertity. First of all, we have a very obvious one: for any node $u$ in a divide-combine tree, the union of its child sequence intervals is the range of the node $u$ . That is $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ .
+The naming of the dividing node and combining node comes from their properties. First of all, we have a very obvious one: for any node $u$ in a divide-combine tree, the union of its child sequence intervals is the range of the node $u$ . That is $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ .
 
 For a combining node $u$ : any **subinterval** of its child sequence constitutes a **continuous segment**. Formally speaking, $\forall S_u[l\sim r]$ has $\bigcup_{i=l}^rS_u[i]\in I_P$ .
 
