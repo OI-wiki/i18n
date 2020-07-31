@@ -7,9 +7,9 @@ The [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree)(or, binary indexe
 The operations that Fenwick tree can have, the segment tree must have;
 The operations that segment tree have, the Fenwick tree does not necessarily have.
 
-So it seems that choosing segment tree would be **"having it all"**?
+So it seems that choosing segment tree would be **the best choice**?
 
-In fact, the code of Fenwick tree is much shorter, and the thinking process is clearer. When solving some single-node modification problems, the Fenwick tree is the best choice.
+In fact, the code of Fenwick tree is much shorter, and the principle is clearer. When solving some single-node modification problems, the Fenwick tree is the best choice.
 
 * * *
 
@@ -186,12 +186,12 @@ int kth(int k) {
 }
 ```
 
-Time stamp optimization:
+Timestamp optimization:
 
 A common technique for dealing with multiple sets of data. If the Fenwick tree is brute-forece cleared every time new data comes in, it may cause a timeout. Therefore, the $tag$ is used to store the last time the current node is used (that is, the last time used by the first set of data). Each time we check whether the time in this position $tag$ is the same as the current time, and then we will know whether this position should be 0 or the value in the array.
 
 ```cpp
-// Time stamp optimization
+// Timestamp optimization
 int tag[MAXN], t[MAXN], Tag;
 void reset() { ++Tag; }
 void add(int k, int v) {
@@ -212,6 +212,8 @@ int getsum(int k) {
 ```
 
 ## Sample problems
+
+> Note: all original problems are in Chinese.
 
 -    [Fenwick tree 1: single node modification, interval query](https://loj.ac/problem/130) 
 -    [Fenwick tree 2: interval modification, single node query](https://loj.ac/problem/131) 
