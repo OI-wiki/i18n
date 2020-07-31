@@ -6,7 +6,7 @@ Similar to WBT (weight-balanced trees), WBLT shows the propertity of leafy, that
 
 For $n$ numbers, unlike [treap](./treap) and others, WBLT will create $2n$ nodes. The weight of each node is the weight of its right child, and weight of the right child is greater than or equal to the left child.
 
-Each insertion, similar to the heap, we swap one by one downwards sand pushup upwards. The operation is the same for deletion.
+Each insertion, similar to the heap, we swap one by one downwards and update with `pushup`. The operation is similar for deletion.
 
 Of course, if the input data is ascending or descending, WBLT will degenerate into a linked list. So we need to use rotation to maintain balance.
 
