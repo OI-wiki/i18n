@@ -2,9 +2,9 @@ author: hsfzLZH1, cesonic
 
 WBLT, abbreviation for weight balanced leafy tree, is an uncommon way of implementing a balanced tree. However, it has the advantage that its constant is relatively small and can be used as [mergeable heap](https://en.wikipedia.org/wiki/Mergeable_heap).
 
-Similar to WBT (weight-balanced trees), WBLT shows the propertity of leafy, that is, it has many nodes. But how many?
+Similar to WBT (weight-balanced trees), WBLT shows the property of leafy, that is, it has many nodes. But how many can be counted as many?
 
-For $n$ numbers, unlike [treap](./treap) and others, WBLT will create $2n$ nodes. The weight of each node is the weight of its right child, and weight of the right child is greater than or equal to the left child.
+For $n$ numbers, unlike [treap](./treap) and others, WBLT will create $2n$ nodes with the weight equal to that of its right child, which is greater than or equal to left child.
 
 Each insertion, similar to the heap, we swap one by one downwards and update with `pushup`. The operation is similar for deletion.
 
