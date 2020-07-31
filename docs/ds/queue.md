@@ -4,13 +4,13 @@ This article introduces the queue-related data structure and its applications.
 
 Queue, [std::queue](https://en.cppreference.com/w/cpp/container/queue) and [std::priority_queue](https://en.cppreference.com/w/cpp/container/priority_queue) in C++ STL, is a data structure that can be modified on one end of the seuquence and removal from the other.
 
-The element that enters the queue first must be out of the queue first, so the queue follows the First-in First-out rule, or FIFO for short.
+The first element pushed into the queue must be popped out first. So the queue follows the First-in First-out rule, or FIFO for short.
 
 Note: `std::stack` and `std::queue` are both container adapters, and the default underlying container is `std::deque` (double-ended queue).
 
 ## Deque
 
-A deque is a queue that can insert or delete elements at the head/end of the queue. It is equivalent to a combination of stack and queue functions. Specifically, there are 4 operations supported by the deque:
+A deque is a queue that can insert or delete elements at both the head and the end of a queue. It is equivalent to a combination of stack and queue functions. Specifically, there are 4 operations supported by the deque:
 
 1. Insert an element at the beginning of the deque
 2. Insert an element at the end of the deque
@@ -37,7 +37,7 @@ Above rules work the same for array simulation deque.
 
 ## Circular queue
 
-This will cause a problem: as time goes by, the entire queue will move to the end of the array. Once it reaches the end, even if there is a empty place at the front of the array, the enqueue operation will cause overflow. (This kind of situation where there is actually empty space in the array and overflow still occurs is called "false overflow".)
+This will cause a problem: as time goes by, the entire queue will be pushed to the end of the array. Once it reaches the end, even if there is a empty place at the front of the array, the enqueue operation will cause overflow. (This kind of situation where there is actually empty space in the array but overflow still occurs is called "false overflow".)
 
 The solution to false overflow is to organize the array storing the queue elements in a circular manner, that is, the 0 index of the array is regarded as the successor of the last position. (The successor of `x` is `(x + 1)% Size` ). This would form a circular queue.
 
@@ -50,7 +50,7 @@ We use two stacks F and S to simulate a queue, where F is the stack at the end o
 1. Push: insert into stack F.
 2. Pop: if S is not empty, pop S; otherwise, turn the elements of F upside down and push them into S (which just means pop them one by one and insert, so that the first position is reversed after completion), and then pop S.
 
-It is easy to prove that each element will only enter/transfer/pop once, and the amortized time complexity is $O(1)$ .
+It is easy to prove that each element will only push/transfer/pop once, and the amortized time complexity is $O(1)$ .
 
 Someone might be wondering why this is usaful? Please see the problem below. It can also help you understand the **double stacks simulate deque** method.
 
@@ -72,11 +72,11 @@ Someone might be wondering why this is usaful? Please see the problem below. It 
 
 Each tuple has a survival time, so we create a segment tree of time, and each tuple is marked with log survival times. So what we have to do is to find an optimal subset of the labels on the path to the root node for each query. Obviously this can be done by DP. $f[S,j]$ represents the maximum value of j with the remainder of the items in the selection set S. (In fact, the implementation is in order, so we can use f[i,j] directly)
 
-There are a total of $O(m\log m)$ tokens, so the overall time complexity is $O(mp\log m)$ .
+There are totally $O(m\log m)$ tokens, so the overall time complexity is $O(mp\log m)$ .
 
 ### Online algorithm
 
-This is an interesting problem where online algorithms are faster than offline algorithms. And it’s easier to write than offline.
+This is an interesting problem where online algorithms are faster than offline algorithms. And it’s easier to implement than offline.
 
 The above offline algorithm is actually a little bit of an overkill, because if the deque of the title is changed to directly maintain a set (that is, the elements in the set are randomly deleted), then the offline algorithm is also applicable. Since it is a deque, you might as well operate on the data structure.
 
@@ -98,7 +98,7 @@ When deleting, just move the pointer forward directly. The overall time complexi
 
 If the data structure in the problem is a queue?
 
-There is an operation called double stack simulating queue. This is when it comes in. Because the stack can easily maintain the DP process, and the time complexity is evenly amortized, so the overall time complexity is still $O(mp)$ .
+There is an operation called double stack simulating queue. This is when it comes in. Because the stack can easily maintain the DP process, and the time complexity is evenly amortized, so the average time complexity is still $O(mp)$ .
 
 ### Deque
 
@@ -108,7 +108,7 @@ Similarly, we can try simulating a double-ended queue with a stack, and it seems
 
 But what if we only use half of it?
 
-Such complexity is actually on constant level. Specifically, removing half refers to turning the half of a stack near the bottom of the stack upside down and putting it into another stack. In other words, the stack must be handwritten to support such operations.
+Such complexity is actually in constant level. Specifically, removing half refers to turning the half of a stack near the bottom of the stack upside down and putting it into another stack. In other words, the stack must be implemented to support such operations.
 
 ### Time complexity of losing half
 
@@ -168,7 +168,7 @@ const int M = 5e4 + 5, P = 505;
 int I, m, p;
 
 inline int _(int d) { return (d + p) % p; }
-namespace DQ {       // double-ended stack to simulate deque
+namespace DQ {       // double stacks to simulate deque
 pii fr[M], bc[M];    // front,back; fi:w,se:v;
 int tf = 0, tb = 0;  // top
 int ff[M][P], fb[M][P];
