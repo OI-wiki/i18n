@@ -64,7 +64,7 @@ Someone might be wondering why this is usaful? Please see the problem below. It 
 > 2.  Insert (w,v) in the end;
 > 3.  Delete the tuple at the front;
 > 4.  Delete the tuple in the end;
-> 5.  For l, r, choose a subset S from deque so $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ , and optimize $\sum_{(w,v)\in S}v$ .
+> 5.  Given l and r, choose a subset S from deque so that $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ , and maximize $\sum_{(w,v)\in S}v$ .
 >
 >      $m\leq 5\times 10^4,p\leq 500$ .
 
@@ -84,7 +84,7 @@ The above offline algorithm is actually a little bit of an overkill, because if 
 
 What if the data structure in the problem is a stack?
 
-Direct DP would be good enough. $f[i,j]$ represents the maximum value of the first $i$ tuples and the remainder is $j$ .
+Direct DP would be good enough. $f[i,j]$ represents the maximum value of the first $i$ tuples when the remainder is $j$ .
 
 $$
 f[i,j]=\max(f[i-1,j],f[i-1,(j-w_i)\bmod p]+v_i)
@@ -106,7 +106,7 @@ Back to the original problem, what does Deque do?
 
 Similarly, we can try simulating a double-ended queue with a stack, and it seems like we can easily extend the method of maintaining the queue. But if all elements in the stack are transferred each time, the time complexity of a single operation can easily degenerate to $O(m)$ .
 
-But what if we only use half of it?
+But what if we only use half of them?
 
 Such complexity is actually in constant level. Specifically, removing half refers to turning the half of a stack near the bottom of the stack upside down and putting it into another stack. In other words, the stack must be implemented to support such operations.
 
