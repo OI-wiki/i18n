@@ -24,14 +24,14 @@ We can easily use an array to simulate a stack, code shown as follows:
 
 ```cpp
 int stk[N];
-// Here use stk[0] (i.e. *stk) to represent the number of elements in the stack, and it is also the index on the top of the stack
+// Here use stk[0] (i.e. *stk) to represent the number of elements in the stack, and it is also the index of the top element of the stack
 // push into the stack
 stk[++*stk] = var1;
-// get the top element from stack
+// get the top element from the stack
 int u = stk[*stk];
-// pop from stack: pay attention to the out-of-boundery problem. When *stk == 0, it can no longer be popped
+// pop from the stack: pay attention to the out-of-boundery problem. When *stk == 0, it can no longer be popped
 if (*stk) --*stk;
-// empty stack
+// clear stack
 *stk = 0;
 ```
 
@@ -42,12 +42,12 @@ Also, STL provides this method: `std::stack`
 // stack construction:
 1. stack<Typename T> s;
 2. stack<Typename T, Container> s;
-/* The container of stack needs to realize following interfaces:
+/* The container of stack needs to implement following interfaces:
  * back()
  * push_back()
  * pop_back()
- * Standard container like std::vector / deque / list statisfy these requirements
- * If you use the 1 method to construct, the default container uses deque
+ * Standard container like std::vector / deque / list statisfies these requirements
+ * If you use the method 1 to construct, the default container uses deque
  */
 ```
 
@@ -55,19 +55,19 @@ Also, STL provides this method: `std::stack`
 
 Element access:
 
- `s.top()` return the top of the stacK:
+ `s.top()` returns the top of the stack
 
 Capacity:
 
- `s.empty()` return whether is empty
+ `s.empty()` returns whether is empty
 
- `s.size()` return the number of elements
+ `s.size()` returns the number of elements
 
 Modification:
 
- `s.push()` push the element to the top of the stack
+ `s.push()` pushes the element to the top of the stack
 
- `s.pop()` pop the element on top of the stack
+ `s.pop()` pops the element on top of the stack
 
 Other operators:
 
