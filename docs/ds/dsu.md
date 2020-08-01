@@ -8,12 +8,12 @@ It supports two operations:
 -   Union: merge two subsets into one set.
 
 !!! warning
-    The disjoint set does not support the set separation. However, it supports the deletion of a single element in the set after modification (see [UVA11987 Almost Union-Find](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3138) for details). Dynamically opening nodes on segment tee can also realize persistent disjoint set.
+    The disjoint set does not support the set separation. However, it supports the deletion of a single element in the set after modification (see [UVA11987 Almost Union-Find](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3138) for details). Dynamically creating nodes on segment tee can also realize persistent disjoint set.
 
 ## Initialization
 
 ```cpp
-void makeSet(inßt size) {
+void makeSet(int size) {
   for (int i = 0; i < size; i++) fa[i] = i;  // i is in its own set
   return;
 }
@@ -42,10 +42,6 @@ Obviously this will eventually return the ancestor of $x$ .
 
 ### Path compression
 
-这样的确可以达成目的，但是显然效率实在太低。为什么呢？因为我们使用了太多没用的信息，我的祖先是谁与我父亲是谁没什么关系，这样一层一层找太浪费时间，不如我直接当祖先的儿子，问一次就可以出结果了。甚至祖先是谁都无所谓，只要这个人可以代表我们家族就能得到想要的效果。 **把在路径上的每个节点都直接连接到根上** ，这就是路径压缩。
-
-此处给出一种 C++ 的参考实现：
-
 The above way can indeed achieve the goal, but obviously the efficiency is too low. Why? Because we use too much useless information. Who my ancestors are and who my father is has nothing to do with it, and it is a waste of time to find generaion by generation. It’s better to let "me" be the "son" of my ancestors and obtain results. It doesn't even matter who the ancestor is, as long as this person can represent the family. **Connecting each node on the path directly to the root**, and this is path compression.
 
 Here we offer a C++ implementation for your reference:
@@ -53,7 +49,7 @@ Here we offer a C++ implementation for your reference:
 ```cpp
 int find(int x) {
   if (x != fa[x])  // x is not its own father, that is, x is not a representative of the set
-    fa[x] = find(fa[x]);  // find the ancestors of x until you find a representative, so the path is compressed
+    fa[x] = find(fa[x]);  // find the ancestors of x until you find a representative and compress the path along the way
   return fa[x];
 }
 ```
@@ -66,8 +62,9 @@ See these two figures:
 
 ## Union
 
-At the banquet, the ancestor of one family suddenly said to another family: Our two families have such a good relationship, so what about forming one family? The other family also gladly accepted.
-As we said before, we don’t care who the ancestors are, so as long as one of the ancestors becomes the son of the other ancestor.
+At the banquet, the ancestor of one family suddenly said to another family: Our two families have such a good relationship, so what about merging into one family? The other family also gladly accepted.
+
+As we said before, we don’t care who the ancestors are, as long as one of the ancestors becomes the son of the other ancestor.
 
 Here we offer a C++ implementation for your reference:
 
@@ -76,7 +73,7 @@ void unionSet(int x, int y) {
   // merge the families of x and y
   x = find(x);
   y = find(y);
-  if (x == y)  // do not care if it was in the same family
+  if (x == y)  // do nothing if it was in the same family
     return;
   fa[x] = y;  // turn x's ancestor into y's ancestor's son
 }
