@@ -2,7 +2,7 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 
 This article introduces the [Cartesian tree](https://en.wikipedia.org/wiki/Cartesian_tree) — a data structure that is not very commonly used, but is closely related to the well-known balanced tree and heap.
 
-Cartesian tree is a type of binary tree, in which each node consists of a key value tuple $(k,w)$ . It is required that $k$ satisfy the properties of a binary search tree, and $w$ satisfy the properties of a heap. An interesting fact is that if the $k,w$ key value of the Cartesian tree is already determined, and both $k$ and $w$ are different from each other, then the structure of the Cartesian tree is unique. Please see the figure below：
+Cartesian tree is a kind of binary tree, in which each node consists of a key value tuple $(k,w)$ . It is required that $k$ satisfy the properties of a binary search tree, and $w$ satisfy the properties of a heap. An interesting fact is that if the $k,w$ key value of the Cartesian tree is already determined, and both $k$ and $w$ are different from each other, then the structure of the Cartesian tree is unique. Please see the figure below：
 
 ![eg](./images/cartesian-tree1.png)
 
@@ -65,7 +65,7 @@ When it comes to Cartesian trees, it is easy to think of a well-known structure 
 
 This problem clearly can be solved using DP or monotonous stack, but actually it can also be solved with a Cartesian tree. Specifically, we take the index as the key $k$ and $h_i$ as the value $w$ to satisfy property of the min heap, and build a Cartesian tree of $(i,h_i)$ .
 
-In this way, we enumerate each node $u$ and take $u_w$ (that is, the height key value of node u $h$) as the height of the largest sub-matrix. Since the Cartesian tree we built satisfies the property of min heap, the height of the nodes in the subtree of $u$ is greater than or equal to $u$ . And we know that the index in the $u$ subtree is a continuous interval. So we only need to know the size of the subtree, and then we can calculate the area of the largest submatrix in this interval. Update the answer with the value calculated at each node. Obviously this can be done in one DFS, so the time complexity is still $O(n)$ .
+In this way, we enumerate each node $u$ and take $u_w$ (that is, the key value $h$ of height of node u) as the height of the largest sub-matrix. Since the Cartesian tree we built satisfies the property of min heap, the height of the nodes in the subtree of $u$ is greater than or equal to $u$ . And we know that the index in the $u$ subtree is a continuous interval. So we only need to know the size of the subtree, and then we can calculate the area of the largest submatrix in this interval. Update the answer with the value calculated at each node. Obviously this can be solved using a single pass DFS, so the time complexity is still $O(n)$ .
 
 ```cpp
 #include <algorithm>
