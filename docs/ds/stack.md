@@ -18,9 +18,9 @@ The modification of the stack follows the principle of last in first out, so the
     
     If you consider it as a whole: 1 is the first one pushed into the stack, the first one popped; 2 is the last one pushed into the stack, the last one popped. This would become a first-in first-out table, which is obviously wrong.
     
-    Therefore, when considering whether the data structure is LIFO or FIFO, the situation in the current container should be considered.
+    Therefore, when considering whether the data structure is LIFO or FIFO, the situation in current container should be considered.
 
-We can easily use an array to simulate a stack, code shown as follows:
+We can use an array to simulate a stack easily as the code below shows:
 
 ```cpp
 int stk[N];
