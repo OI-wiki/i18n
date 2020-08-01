@@ -1,6 +1,6 @@
 author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 
-This article introduces the [Cartesian tree](https://en.wikipedia.org/wiki/Cartesian_tree) - a data structure that is not very commonly used, but is closely related to the well-known balanced tree and heap.
+This article introduces the [Cartesian tree](https://en.wikipedia.org/wiki/Cartesian_tree) — a data structure that is not very commonly used, but is closely related to the well-known balanced tree and heap.
 
 Cartesian tree is a type of binary tree, in which each node consists of a key value tuple $(k,w)$ . It is required that $k$ satisfy the properties of a binary search tree, and $w$ satisfy the properties of a heap. An interesting fact is that if the $k,w$ key value of the Cartesian tree is already determined, and both $k$ and $w$ are different from each other, then the structure of the Cartesian tree is unique. Please see the figure below：
 
@@ -8,15 +8,15 @@ Cartesian tree is a type of binary tree, in which each node consists of a key va
 
 (Figure from Wikipedia)
 
-The Cartesian tree above is equivalent to taking the array element value as the value $w$ and the array index as the key $k$ . Obviously, it can be found that the key of this tree $k$ satisfies the property of the binary search tree, and the value $w$ satisfies the property of min heap.
+The Cartesian tree above is equivalent to taking the array element value as the value $w$ and the array index as the key $k$ . Obviously, it can be found that the key of this tree, $k$, satisfies the property of the binary search tree, and the value $w$ satisfies the property of min heap.
 
 In fact, the Cartesian tree in the figure is a special case, because the key of the tuple $k$ corresponds to the array index. This kind of the Cartesian tree has a special property, that is, the index in a subtree is a continuous interval (so that the properties of the binary search tree can be satisfied). A more general case is a Cartesian tree constructed from arbitrary tuples.
 
 ## Construction
 
-## Building the stack
+### Building the stack
 
-We consider sorting the elements according to the key value $k$ , and insert them one by one into the current Cartesian tree. Then each time we insert an element, it must be at the end of the right chain of the tree (right chain: the chain formed by the passing nodes from the root node to the right subtree). So we follow such a process to compare the $w$ of the right chain node with the current node $u$ from bottom to top. If we find a node $x$ on the right chain that satisfies $x_w<u_w$ , then $u$ is connected to the right child of x, and the original right subtree of x becomes the left subtree of u.
+We consider sorting the elements according to the key value $k$ , and insert them one by one into the current Cartesian tree. Then each time we insert an element, it must be at the end of the right chain of the tree (right chain: the chain formed by the passing nodes from the root node to the right subtree). So we follow such a process to compare the $w$ of the right chain node with the current node $u$ from bottom to top. If we find a node $x$ on the right chain that satisfies $x_w<u_w$ , then $u$ is connected to the right child of $x$, and the original right subtree of $x$ becomes the left subtree of $u$.
 
 We could directly refer to the figure below. The red box in the picture is the right chain that we always maintain:
 
@@ -51,19 +51,19 @@ for (int i = 1; i <= n; i++) {
 
 ## Cartesian tree and Treap
 
-When it comes to Cartesian trees, it is easy to think of a well-known structure - [Treap](https://en.wikipedia.org/wiki/Treap). Yes, Treap is a kind of Cartesian tree, but the value of w is completely random. Treap also has a linear construction algorithm. If you sort the elements in advance, obviously you can use the above monotonic stack algorithm to complete the construction process, but it is rarely used.
+When it comes to Cartesian trees, it is easy to think of a well-known structure — [Treap](https://en.wikipedia.org/wiki/Treap). Yes, Treap is a kind of Cartesian tree, but the value of $w$ is completely random. Treap also has a linear construction algorithm. If you sort the elements in advance, obviously you can use the above monotonic stack algorithm to complete the construction process, but it is rarely used.
 
 ## Sample problem
 
 [HDU 1506 Largest Rectangle in a Histogram](http://acm.hdu.edu.cn/showproblem.php?pid=1506)
 
-> The general idea of the problem: there are n positions, the height of each which is $h_i$ , find the largest sub-matrix. Example is shown below:
+> The general idea of the problem: there are $n$ positions, the height of each which is $h_i$ , find the largest sub-matrix. Example is shown below:
 >
 > ![eg](./images/cartesian-tree3.jpeg)
 >
 > The shaded part is the largest rectangle in a histogram in the figure.
 
-This problem clearly can be solved using DP or monotonous stack, but actually it can also be  solved with a Cartesian tree. Specifically, we take the index as the key $k$ and $h_i$ as the value $w$ to satisfy property of the min heap, and build a Cartesian tree of $(i,h_i)$ .
+This problem clearly can be solved using DP or monotonous stack, but actually it can also be solved with a Cartesian tree. Specifically, we take the index as the key $k$ and $h_i$ as the value $w$ to satisfy property of the min heap, and build a Cartesian tree of $(i,h_i)$ .
 
 In this way, we enumerate each node $u$ and take $u_w$ (that is, the height key value of node u $h$) as the height of the largest sub-matrix. Since the Cartesian tree we built satisfies the property of min heap, the height of the nodes in the subtree of $u$ is greater than or equal to $u$ . And we know that the index in the $u$ subtree is a continuous interval. So we only need to know the size of the subtree, and then we can calculate the area of the largest submatrix in this interval. Update the answer with the value calculated at each node. Obviously this can be done in one DFS, so the time complexity is still $O(n)$ .
 
