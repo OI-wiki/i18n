@@ -1,14 +1,14 @@
-AVL 树，是一种平衡的二叉搜索树。由于各种算法教材上对 AVL 的介绍十分冗长，造成了很多人对 AVL 树复杂、不实用的印象。但实际上，AVL 树的原理简单，实现也并不复杂。
+[AVL tree](https://en.wikipedia.org/wiki/AVL_tree)((named after inventors Adelson-Velsky and Landis)) is a balanced binary search tree. Due to the lengthy introductions in various algorithm textbooks, many people have the impression that the it is complicated and impractical. But in fact, the principle of the AVL tree is simple, and the implementation is not complicated.
 
-## 性质
+## Property
 
-1. 空二叉树是一个 AVL 树
-2. 如果 T 是一棵 AVL 树，那么其左右子树也是 AVL 树，并且 $|h(ls) - h(rs)| \leq 1$ ，h 是其左右子树的高度
-3. 树高为 $O(\log n)$ 
+1. The empty binary tree is an AVL tree
+2. If T is an AVL tree, then its left and right subtrees are also AVL trees, and $|h(ls) - h(rs)| \leq 1$ , where h is the height of its left and right subtrees
+3. The tree height is $O(\log n)$
 
-平衡因子：右子树高度 - 左子树高度
+Balance factor: right subtree height - left subtree height
 
- **树高的证明** 设 $f_n$ 为高度为 $n$ 的 AVL 树所包含的最少节点数，则有
+ **Proof of tree height** Let $f_n$ be the minimum number of nodes in the AVL tree with height $n$ , then
 
 $$
 f_n=
@@ -19,27 +19,27 @@ f_n=
 \end{cases}
 $$
 
-显然 $\{f_n+1\}$ 是一个斐波那契数列。众所周知，斐波那契数列是以指数的速度增长的，因此 AVL 树的高度为 $O(\log n)$ 。
+It is obvious that $\{f_n+1\}$ is a Fibonacci sequence. As we all know, the Fibonacci sequence grows exponentially, so the height of the AVL tree is $O(\log n)$ .
 
-## 插入结点
+## Insert node
 
-与 BST（二叉搜索树）中类似，先进行一次失败的查找来确定插入的位置，插入节点后根据平衡因子来决定是否需要调整。
+Similar to BST (Binary Search Tree), a failed search is performed first to determine the position of the insertion, and after inserting the node, it is decided whether to adjust according to the balance factor.
 
-## 删除结点
+## Delete node
 
-删除和 BST 类似，将结点与后继交换后再删除。
+Deletion is similar to BST, and the node is swapped with the successor before deleting.
 
-删除会导致树高以及平衡因子变化，这时需要沿着被删除结点到根的路径来调整这种变化。
+Deletion will cause the tree height and the balance factor to change. At this time, you need to adjust this change along the path from the deleted node to the root.
 
-## 平衡的维护
+## Maintain Balance
 
-插入或删除节点后，可能会造成 AVL 树的性质 2 被破坏。因此，需要沿着从被插入/删除的节点到根的路径对树进行维护。如果对于某一个节点，性质 2 不再满足，由于我们只插入/删除了一个节点，对树高的影响不超过 1，因此该节点的平衡因子的绝对值至多为 2。由于对称性，我们在此只讨论左子树的高度比右子树大 2 的情况，即下图中 $h(B)-h(E)=2$ 。此时，还需要根据 $h(A)$ 和 $h(C)$ 的大小关系分两种情况讨论。需要注意的是，由于我们是自底向上维护平衡的，因此对节点 D 的所有后代来说，性质 2 仍然是被满足的。
+After inserting or deleting nodes, the property of the AVL tree 2 may no longer be statisfied. Therefore, the tree needs to be maintained along the path from the inserted/deleted node to the root. If for a node, property 2 is no longer satisfied, the absolute value of the balance factor of the node is at most 2 because we only insert/delete a node, and the impact on the tree height does not exceed 1. Due to symmetry, we only discuss the case where the left subtree is higher than the right subtree by 2, that is, $h(B)-h(E)=2$ in the figure below. At this time, we need to discuss the two situations according to the relationship between $h(A)$ and $h(C)$ . It should be noted that because we maintain balance from bottom to top, for all descendants of node D, property 2 is still satisfied.
 
 ![](./images/avl1.jpg)
 
 ###  $h(A)\geq h(C)$ 
 
-设 $h(E)=x$ ，则有
+Suppose $h(E)=x$, then we have
 
 $$
 \begin{cases}
@@ -49,11 +49,11 @@ $$
 \end{cases}
 $$
 
-其中 $h(C)\geq x$ 是由于节点 B 满足性质 2，因此 $h(C)$ 和 $h(A)$ 的差不会超过 1。此时我们对节点 D 进行一次右旋操作（旋转操作与其它类型的平衡二叉搜索树相同），如下图所示。
+The reason why $h(C)\geq x$ is because node B satisfies property 2, which means the difference between $h(C)$ and $h(A)$ will not exceed 1. At this time, we perform a right rotation on node D (the rotation operation is the same as other types of balanced binary search trees), as shown in the following figure.
 
 ![](./images/avl2.jpg)
 
-显然节点 A、C、E 的高度不发生变化，并且有
+Obviously the height of nodes A, C, E does not change, and we have
 
 $$
 \begin{cases}
@@ -63,11 +63,11 @@ $$
 \end{cases}
 $$
 
-因此旋转后的节点 B 和 D 也满足性质 2。
+Therefore, the rotated nodes B and D also satisfy property 2.
 
 ###  $h(A)<h(C)$ 
 
-设 $h(E)=x$ ，则与刚才同理，有
+Suppose $h(E)=x$, the same as before, we have
 
 $$
 \begin{cases}
@@ -77,11 +77,11 @@ $$
 \end{cases}
 $$
 
-此时我们先对节点 B 进行一次左旋操作，再对节点 D 进行一次右旋操作，如下图所示。
+At this point, we first perform a left rotation on node B, and then perform a right rotation on node D, as shown in the following figure.
 
 ![](./images/avl3.jpg)
 
-显然节点 A、E 的高度不发生变化，并且 B 的新右儿子和 D 的新左儿子分别为 C 原来的左右儿子，则有
+Obviously the height of nodes A and E does not change, and the new right child node of B and the new left child node of D are the original left and right child of C respectively, then
 
 $$
 \begin{cases}
@@ -94,7 +94,7 @@ $$
 \end{cases}
 $$
 
-因此旋转后的节点 B、C、D 也满足性质 2。最后给出对于一个节点维护平衡操作的伪代码。
+Therefore, the rotated nodes B, C, and D also satisfy property 2. The pseudocode for maintaining a balanced operation for a node is given below.
 
 ```text
 Maintain-Balanced(p)
@@ -112,12 +112,12 @@ Maintain-Balanced(p)
             Left-Rotate(p)
 ```
 
-与其他平衡二叉搜索树相同，AVL 树中节点的高度、子树大小等信息需要在旋转时进行维护。
+Like other balanced binary search trees, the height of nodes in the AVL tree, the size of the subtree, and other information need to be maintained during the rotation operation.
 
-## 其他操作
+## Other operations
 
-AVL 树的其他操作（Pred、Succ、Select、Rank 等）与普通的二叉搜索树相同。
+The other operations of the AVL tree (Pred, Succ, Select, Rank, etc.) are the same as those of normal binary search tree.
 
-## 其他资料
+## Other materials
 
-在 [AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html) 可以观察 AVL 树维护平衡的过程。
+You can observe how AVL tree maintains its balance in [AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html)/
