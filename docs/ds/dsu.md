@@ -21,9 +21,9 @@ void makeSet(inßt size) {
 
 ## Find
 
-First let's hear a story: Several families hold banquets and there are too many people because they usually live a long life. Due to long time separation and aging, these people gradually forget their relatives and only remember who their father is. The father of the oldest person (called "ancestor") has passed away, and he only knows that he is an ancestor. . In order to determine which family they belonged to, they came up with a way, as long as they asked their father if they were ancestors, and asked them generation by generation until they asked their ancestors. If you want to know whether two people are in the same family, you only need to see whether the ancestors of the two are the same.
+First let's hear a story: Several families hold banquets and there are too many people because they usually live a long life. Due to long time separation and aging, these people gradually forget their relatives and only remember who their father is. The father of the oldest person (called "ancestor") has passed away, and he only knows that he is an ancestor. In order to determine which family they belonged to, they came up with a way, as long as they asked their father if they were ancestors, and asked them generation by generation until they asked their ancestors. If you want to know whether two people are in the same family, you only need to see whether the ancestors of the two are the same.
 
-In this way of thinking, the find algorithm of disjoint algorithm was born.
+In this way of thinking, the find algorithm of disjoint set was born.
 
 Here we offer a C++ implementation for your reference:
 
@@ -84,7 +84,7 @@ void unionSet(int x, int y) {
 
 ### Heuristic merge (merging by rank)
 
-One of the ancestors suddenly had an interesting idea:"Your family has fewer people. It is more convenient to move to our family. It would be too much trouble if we move there."
+One of the ancestors suddenly had an interesting idea: "Your family has fewer people. It is more convenient to move to our family because it would be too troublesome if we move there."
 
 Since we only need to support the find and union operations of sets, when we need to merge two sets into one, no matter which set is connected to the other, we can get the correct result. However, different connection methods have different time complexity. Specifically, if we connect a set tree with a smaller number of nodes and depths to a larger set tree, obviously compared to another connection scheme, the next find operation takes less time (also would have better worst time complexity).
 
@@ -114,7 +114,7 @@ void unionSet(int x, int y) {
 
 After using path compression and heuristic merging at the same time, the average time of each operation is only $O(\alpha(n))$ , where $\alpha$ is the inverse function of Ackerman function, and its growth is extremely slow. That is to say, the average running time of a single operation can be considered as a small constant.
 
- [Ackermann function](https://en.wikipedia.org/wiki/Ackermann_function)  $A(n, m)$ is defined as:
+The [Ackermann function](https://en.wikipedia.org/wiki/Ackermann_function), $A(n, m)$, is defined as:
 
  $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$ 
 
