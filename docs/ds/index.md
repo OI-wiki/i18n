@@ -1,5 +1,5 @@
 author: HeRaNO, Zhoier, hsfzLZH1
 
-数据结构是在计算机中存储、组织数据的方式。小到变量、数组，大到线段树、平衡树，都是数据结构。
+Data structure is the way to store and organize data in computer systems. Data structures can be as small as variables and arrays, as large as segment trees and balanced trees.
 
-程序运行离不开数据结构，不同的数据结构又各有优劣，能够处理的问题各不相同，而根据具体问题选取合适的数据结构，可以大大提升程序的效率。所以，学习各种各样的数据结构是很有必要的。
+Data structure is an essential part of a program. Different data structures have their own advantages and disadvantages, and can handle different problems. Choosing the appropriate data structure according to the specific problem can greatly improve the efficiency of the program. Therefore, it is necessary to learn different kinds of data structures.
