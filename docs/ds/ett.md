@@ -1,8 +1,8 @@
 # The Euler Tour Tree (ETT)
 
-Generally speaking, when it comes to dynamic trees, we think of `LCT`. This is a more general, practical, and versatile implementation. Of course, to master `LCT` requires certain familiarity with various operations and knowledge of `Splay` . `ETT` (commonly known as the [Euler tour tree](https://en.wikipedia.org/wiki/Euler_tour_technique#Euler_tour_trees)) is a smart dynamic tree that can be maintained with a brute-force data structure. In addition to the `Link & Cut` operation of ordinary dynamic trees, it also supports subtree replacement. (this operation cannot be completed by `LCT`).
+Generally speaking, when it comes to dynamic trees, we think of LCT. This is a more general, practical, and versatile implementation. Of course, to master LCT requires certain familiarity with various operations and knowledge of Splay. [Euler tour tree](https://en.wikipedia.org/wiki/Euler_tour_technique#Euler_tour_trees), or ETT, is a smart dynamic tree that can be maintained with a brute-force data structure. In addition to the Link & Cut operation of ordinary dynamic trees, it also supports subtree replacement, which cannot be done with LCT.
 
-You must be amiliar with this bracket sequence, such as:
+Let's take a look at this bracket sequence:
 
 ![](./images/ett1.png)
 
@@ -22,10 +22,10 @@ It can be found that `7 7 8 8` has been moved to the back of `3` and `4` is move
 
 How to maintain node-to-root information?
 
-In fact, if you think about it carefully, the `DFS` order can also achieve the effect of [translation](https://en.wikipedia.org/wiki/Translation_(geometry)). So why do we need the bracket sequence? In fact, if you want to query the sum of `1` to `8` in the figure, then you will erase the contribution of the number that appears twice in the bracket sequence from `1` to `8` (the first occurrence). If you are maintaining $\operatorname{xor}$ , then you can directly $\operatorname{xor}$ twice. If $\operatorname{sum}$ is maintained, then the contribution of the first number that appears is positive, and the second is negative. Then you can use the block linked list to maintain the interval sum.
+In fact, if you think about it carefully, the `DFS` order can also achieve the effect of [translation](https://en.wikipedia.org/wiki/Translation_(geometry)). So why do we need the bracket sequence? In fact, if you want to query the sum of `1` to `8` in the figure, then you will erase the contribution of the number that appears twice in the bracket sequence from `1` to `8` (the first occurrence). If you are maintaining xor, then you can directly xor twice. If sum is maintained, then the contribution of the first number that appears is positive, and the second is negative. Then you can use the block linked list to maintain the interval sum.
 
 After using the block linked list, except for the single-node modification which is $O(1)$ , everything else is $O(n^{\frac{1}{2}})$ .
 
-  `ETT` does not support root replacement operation. For chain (interval) modification, there are two cases. One is that the contribution is the same (such as $\operatorname{xor}$ ), and the other is that the contribution is different (such as $\operatorname{sum}$ ). After all, the current mainstream approach is `LCT` and this approaches take more operations, which would be a good approach to adopt when previous operations can be avoided.
+  ETT does not support root replacement operation. For chain (interval) modification, there are two cases. One is that the contribution is the same (such as xor), which is allowed; and the other is that the contribution is different (such as $\operatorname{sum}$ ) , which is not. After all, the current mainstream approach is LCT and ETT take more operations. But if the previous operations can be avoided, it would be a good approach.
 
-Note: The standard ETT (implemented with [Euler circuit(https://en.wikipedia.org/wiki/Eulerian_path#Definition) instead of dfs bracket sequence) supports root replacement, but its implementation is more complicated.
+Note: The standard ETT implemented with [Euler circuit(https://en.wikipedia.org/wiki/Eulerian_path#Definition) instead of DFS bracket sequence supports root replacement, but its implementation is more complicated.
