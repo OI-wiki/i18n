@@ -60,7 +60,7 @@ Okay, now we have reached the point. As you may have guessed, the divide-combine
 
 ### Primitive segment
 
-In fact, the full name of this definition is called **primitive continuous segment**. But we call it primitive segment to be comcise. 
+In fact, the full name of this definition is called **primitive continuous segment**. But we call it primitive segment to be concise. 
 
 For the permutation $P$ , we think that a primitive segment $M$ means that in the set $I_P$ , there is no continuous segment that intersects or contains that segment. Formally defined, we think that $X\in I_P$ satisfies $\forall A\in I_P,\ X\cap A= (P,\varnothing)\vee X\subseteq A\vee A\subseteq X$ .
 
@@ -68,13 +68,13 @@ The set of all primitive segments is $M_P$ . Obviously, $(P,\varnothing)\in M_P$
 
 Obviously, there is only separate or inclusive relationship between the primitive segments. And you may find that **a continuous segment can be composed of several disjoint primitive segments**. The largest primitive segment is the entire permutation itself, which contains all other primitive segments, so we believe that the primitive segment can form a tree structure, which we call the **divide-combine tree**. More strictly speaking, the analysis tree of permutation $P$ is composed of **all primitive segments** of permutation $P$ .
 
-Consider the permutation $P=\{9,1,10,3,2,5,7,6,8,4\}$ . The divide-combine tree composed of its primitive segments is as follows:
+Consider the permutation $P=\{9,1,10,3,2,5,7,6,8,4\}$ . The divide-combine tree composed of its primitive segments is shown in the figure below:
 
 ![p1](./images/div-com1-en.png)
 
 In the figure we did not indicate the primitive segment. Instead, **each node represents a primitive segment**. We only indicated the value range of each primitive segment. For example, the primitive segment represented by the node $[5,8]$ is $(P,[6,9])=\{5,7,6,8\}$ . So here is a question: **What are the dividing or combining nodes?**
 
-### Dividing point/Combining point
+### Dividing point/Combining node
 
 Here we give the definition directly, and will discuss its correctness later.
 
@@ -92,9 +92,11 @@ The naming of the dividing node and combining node comes from their properties. 
 
 For a combining node $u$ : any **subinterval** of its child sequence constitutes a **continuous segment**. Formally speaking, $\forall S_u[l\sim r]$ has $\bigcup_{i=l}^rS_u[i]\in I_P$ .
 
-For an dividing node $u$ : any **length of its son sequence is greater than 1 (the length here refers to the number of elements in the son sequence, not the length of the subscript interval)** subintervals does **not** constitute a **continuous segment**. Formally speaking, $\forall S_u[l\sim r],l<r$ has $\bigcup_{i=l}^rS_u[i]\notin I_P$ .
+For an dividing node $u$ : Any subinterval of its child sequences whose length is greater than 1 does **not** constitute a **continuous segment**. Note that length here refers to the number of elements in the son sequence, instead of the length of the subscript interval. Formally speaking, $\forall S_u[l\sim r],l<r$ has $\bigcup_{i=l}^rS_u[i]\notin I_P$ .
 
-The property of the combining node is not difficult to prove. Because the children of the combining ndoe are permutated in order or in reverse order, and the range interval is also the first place, so as long as it is a continuous segment (interval).
+The property of the combining node is not difficult to prove. Because the children of the combining node are either ordered or reversely ordered, and the range interval is also the first place, so as long as it is a continuous segment (interval).
+=]\
+
 
 Many readers may not understand the property of the dividing node: Why does any sub-interval whose length is greater than $1$ not constitute a continuous segment?
 
@@ -106,13 +108,13 @@ Now let's talk specifically about how to construct a divide-combine tree. Today 
 
 #### Incrementing method
 
-We consider the incremental method. Use a stack to maintain the dividing-combining forest composed of the first $i-1$ elements. To **emphatically emphasize** here, the dividing-combining forest means that at any time, the nodes in the stack are either dividing or combining. Now consider the current node $P_i$ .
+We consider the incremental method. Use a stack to maintain the dividing-combining forest composed of the first $i-1$ elements. It's **worth noting** that the dividing-combining forest means that at any time, the nodes in the stack are either dividing or combining. Now consider the current node $P_i$ .
 
-1. We first check whether it can be the child of the top node of the stack, and if it can, then take the top of the stack as the current node. Repeat the above process until the stack is empty or cannot become the child of the top node of the stack.
-2. If it cannoy become the child of the top of the stack, it depends on whether you can combine several consecutive nodes on the top of the stack into one node (the method to determine whether to combine is defined later), and use the combining point as the current node.
-3. Repeat the above process until it cannot be done. Then end this increment and directly push the current node on the stack.
+1. We first check whether it can be the child of the top node of the stack, and if it can, then take the top of the stack as the current node. Repeat the above process until the stack is empty or the check fails.
+2. If it cannot become the child of the top of the stack, it depends on whether you can combine several consecutive nodes on the top of the stack into one node (the method to determine whether to combine is defined later), and use the combining node as the current node.
+3. Repeat the above process until it cannot be done. Then end this increment and directly push to the current node on the stack.
 
-Let us explain in details next.
+Let us explain in details.
 
 #### Specific strategy
 
@@ -179,7 +181,7 @@ const int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
-// The primitive problem of this code should be CERC2017 Intrinsic Interval
+// The code of primitive problem is written for CERC2017 Intrinsic Interval
 // The a array is the corresponding permutation in the primitive problem
 // st1 and st2 are two monotonic stacks respectively, tp1 and tp2 are the corresponding stack tops, and rt is the root of the divide-combine tree
 // The L and R arrays represent the left and right end points of the divide-combine node. The role of the M array is mentioned in the construction of the divide-combine tree
@@ -371,4 +373,4 @@ int main() {
 
 Liu Chengao. Simple continuous segment data structure. WC2019 campers exchange.
 
- [Rice Cake's Blog -[Study Notes]Divide-combine Tree](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) 
+ [Rice Cake's Blog -[Study Notes]Divide-combine Tree](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) (original link in Chinese)
