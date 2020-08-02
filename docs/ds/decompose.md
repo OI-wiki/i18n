@@ -22,7 +22,7 @@ Here are a few examples:
 
 Motivation: The segment tree might be a bit difficult to implement?
 
-Consider a problem like this: For a sequence of length $n$, we divide it into segments of length $T$ , so there are a total of $\frac{n}{T}$ segments. Each operation affects $O(\frac{n}{T})$ blocks, and at most $2T$ elements of uncomplete blocks on both sides of the interval. 
+For a sequence of length $n$, we divide it into segments of length $T$ , so there are a total of $\frac{n}{T}$ segments. Each operation affects $O(\frac{n}{T})$ blocks, and at most $2T$ elements of uncomplete blocks on both sides of the interval. 
 
 We maintain the interval sum of each segment. Each time we mark the entire segment in $O(1)$ . For uncomplete ones, we can directly brute-force since its element size is relatively small.
 
@@ -71,7 +71,7 @@ For $O(1)$ query, we can maintain various prefix sums.
 
 However, in the case of modification, it is not convenient to maintain, and only the prefix sum in a single block can be maintained.
 
-And the prefix sum of the whole block as a unit.
+And then calculate the the prefix sum of the whole block as a unit.
 
 Modify takes $O(T+\frac{n}{T})$ each time.
 
@@ -81,7 +81,7 @@ Query: There are three parts involved, each part can be directly obtained by pre
 
 The same problem, now the sequence length is $n$ and there are $m$ operations.
 
-If the number of operations is relatively small, we can note down the operations and add these when querying.
+If the number of operations is relatively small, we can record and add them when querying.
 
 Assume that at most $T$ operations are recorded, modification takes $O(1)$ and querying takes $O(T)$ .
 
