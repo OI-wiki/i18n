@@ -64,7 +64,7 @@ See these two figures:
 
 At the banquet, the ancestor of one family suddenly said to another family: Our two families have such a good relationship, so what about merging into one family? The other family also gladly accepted.
 
-As we said before, we don’t care who the ancestors are, as long as one of the ancestors becomes the son of the other ancestor.
+As we said before, we don’t care who the ancestors are, so it only needs to make an ancestor to be the child of another one.
 
 Here we offer a C++ implementation for your reference:
 
