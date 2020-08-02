@@ -28,7 +28,7 @@ The C standard library operates on character arrays
 
 ###  `strcmp` 
 
- `int strcmp(const char *str1, const char *str2)`: compares `str1` and `str2` in lexicographic order. If `str1` is lexicographically smaller, the function returns a negative value; if it's the same, function returns 0; otherwise, it returns a positive value. Please note that don't simply assume that there are only three types which are `0, 1, -1`. The values returned on different platforms all follow the positive/negative rule, but they are not necessarily all `0, 1, -1`.
+ `int strcmp(const char *str1, const char *str2)`: compares `str1` and `str2` in lexicographic order. If `str1` is lexicographically smaller, the function returns a negative value; if it's the same, the function returns 0; otherwise, it returns a positive value. Please note that don't simply assume that there are only three types which are `0, 1, -1`. The values returned on different platforms all follow the positive/negative rule, but they are not necessarily all `0, 1, -1`.
 
 ###  `strcpy` 
 
