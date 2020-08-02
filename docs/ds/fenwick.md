@@ -32,7 +32,7 @@ Obviously we can find:
 
 Then the principle of continuously jumping to the center nodes and scores keep increasing is the same (multiplication).
 
-So, if you want to calculate the sum of intervals, for example, the sum of intervals from $a[51]$ ~ $a[91]$ , brute-force is of course possible. But if there are millions of numbers, we might be getting RE.
+So, if you want to calculate the sum of intervals, for example, the sum of intervals from $a[51]$ ~ $a[91]$ , brute-force is of course possible. But if there are millions of numbers, we might be getting TLE.
 
 Then the principle of continuously jumping to the center node, which is similar to jumping to the center point, is the same (multiplication).
 
