@@ -1,20 +1,20 @@
 author: hsfzLZH1, cesonic
 
-WBLT，全称 Weight Balanced Leafy Tree，一种不常见的平衡树写法，但是具有常数较小，可以当做可并堆使用的优点。
+WBLT, abbreviation for weight balanced leafy tree, is an uncommon way of implementing a balanced tree. However, it has the advantage that its constant is relatively small and can be used as [mergeable heap](https://en.wikipedia.org/wiki/Mergeable_heap).
 
-类似于 WBT（weight-balanced trees），WBLT 体现了 leafy 的性质，即节点多，怎么多呢？
+Similar to WBT (weight-balanced trees), WBLT shows the property of leafy, that is, it has many nodes. But why we would we say that?
 
-对于 n 个数，不同于 treap 等，WBLT 会建立 2n 个节点，每个节点的权值为其右儿子的权值，且右儿子的权值大于等于左儿子
+For $n$ numbers, unlike [treap](./treap) and others, WBLT will create $2n$ nodes with the weight equal to that of its right child, which is greater than or equal to left child.
 
-每次插入，类似于堆，逐次向下交换并向上 pushup 更新即可，删除也是同理
+Each insertion, similar to the heap, we swap one by one downwards and update with `pushup`. The operation is similar for deletion.
 
-当然，如果输入数据递增或递减，WBLT 会退化成链状，于是我们采用旋转来维护平衡。
+Of course, if the input data is ascending or descending, WBLT will degenerate into a linked list. So we need to use rotation to maintain balance.
 
-因为 WBLT 同时满足堆的性质，我们可以用它来实现堆和可并堆。
+Because WBLT satisfies the propertity of the heap at the same time, we can use it to implement heap and mergable heap.
 
-而在旋转的过程中，会产生很多垃圾节点，我们采用垃圾回收的方式就可以回收废弃节点，将建立节点的操作稍作修改即可。
+And in the process of rotation, many garbage nodes will be generated. We can use garbage collection to recycle them. Only slightly modifying the operation of constructing nodes would be enough.
 
-附上普通平衡树代码：
+Here we offer the code implementation of common balanced tree:
 
 ```cpp
 #include <cstdio>
@@ -106,7 +106,7 @@ int rnk(int cur, int x) {
 }
 int main() {
   scanf("%d", &n);
-  newnode(root, 2147383647);  // 使根不改变
+  newnode(root, 2147383647);  // make root unchanged
   while (n--) {
     int s, a;
     scanf("%d %d", &s, &a);

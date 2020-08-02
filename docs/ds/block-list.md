@@ -1,13 +1,11 @@
 author: HeRaNO, konnyakuxzy
 
- [![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png") 
+ [![./images/block_linked_list.png](./images/block_linked_list.png "./images/block_linked_list.png")](./images/block_linked_list.png "./images/block_linked_list.png") 
 
-大概就长这样……
-
-不难发现块状链表就是一个链表，每个节点指向一个数组。
-我们把原来长度为 n 的数组分为 $\sqrt{n}$ 个节点，每个节点对应的数组大小为 $\sqrt{n}$ 。
-所以我们这么定义结构体，代码见下。
-其中 `sqn` 表示 `sqrt(n)` 即 $\sqrt{n}$ ， `pb` 表示 `push_back` ，即在这个 `node` 中加入一个元素。
+It is not hard to find that the block linked list is a linked list, and each node points to an array.
+We divide the original array of length n into $\sqrt{n}$ nodes, and the size of the array corresponding to each node is $\sqrt{n}$ .
+So we define the structure as the code below shows.
+Among them, `sqn` means `sqrt(n)` that is $\sqrt{n}$ , and `pb` means `push_back`, that is, adding an element to this `node`.
 
 ```cpp
 struct node {
@@ -19,28 +17,29 @@ struct node {
 };
 ```
 
-块状链表应该至少支持：分裂、插入、查找。
-什么是分裂？分裂就是分裂一个 `node` ，变成两个小的 `node` ，以保证每个 `node` 的大小都接近 $\sqrt{n}$ （否则可能退化成普通数组）。当一个 `node` 的大小超过 $2\times \sqrt{n}$ 时执行分裂操作。
+Block linked lists should at least support these operations: split, insert, and lookup.
+What is split? It is to split a `node` into two small `nodes` to ensure that the size of each `node` is close to $\sqrt{n}$ (otherwise it may degenerate into an ordinary array). When the size of a `node` exceeds $2\times \sqrt{n}$ , the split operation is performed.
 
-分裂操作怎么做呢？先新建一个节点，再把被分裂的节点的后 $\sqrt{n}$ 个值 `copy` 到新节点，然后把被分裂的节点的后 $\sqrt{n}$ 个值删掉（ `size--` ），最后把新节点插入到被分裂节点的后面即可。
+How to do the split operation? First create a new node, and then `copy` the last $\sqrt{n}$ values of the split node to the new node, and then delete the last $\sqrt{n}$ values of the split node (` size--` ), and finally insert the new node after the node being splited.
 
-块状链表的所有操作的复杂度都是 $\sqrt{n}$ 的。
+The time complexity of all operations of the block linked list is $\sqrt{n}$ .
 
-还有一个要说的。
-随着元素的插入（或删除）， $n$ 会变， $\sqrt{n}$ 也会变。这样块的大小就会变化，我们难道还要每次维护块的大小？
+There is one more thing worth mentioning here.
 
-其实不然，把 $\sqrt{n}$ 设置为一个定值即可。比如题目给的范围是 $10^6$ ，那么 $\sqrt{n}$ 就设置为大小为 $10^3$ 的常量，不用更改它。
+As elements are inserted (or deleted), $n$ will change, and $\sqrt{n}$ will also change. In this way, the size of the block will change. Do we have to maintain the size of the block every time?
+
+In fact, this is not the case. we could just set $\sqrt{n}$ to a fixed value. For example, the range given by the title is $10^6$ , then $\sqrt{n}$ is set as a constant with a size of $10^3$ , so we don't need to change it.
 
 ```cpp
 list<vector<char> > orz_list;
 ```
 
-## 例题
+## Sample problem
 
-Big String POJ - 2887
+[Big String POJ - 2887](http://poj.org/problem?id=2887)
 
-题解：
-很简单的模板题。代码如下：
+Solution:
+This is a very simple template problem. The code is shown below:
 
 ```cpp
 #include <cctype>

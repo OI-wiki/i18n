@@ -1,40 +1,40 @@
 author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 
-本文介绍一种不太常用，但是与大家熟知的平衡树与堆密切相关的数据结构——笛卡尔树。
+This article introduces the [Cartesian tree](https://en.wikipedia.org/wiki/Cartesian_tree) — a data structure that is not very commonly used, but is closely related to the well-known balanced tree and heap.
 
-笛卡尔树是一种二叉树，每一个结点由一个键值二元组 $(k,w)$ 构成。要求 $k$ 满足二叉搜索树的性质，而 $w$ 满足堆的性质。一个有趣的事实是，如果笛卡尔树的 $k,w$ 键值确定，且 $k$ 互不相同， $w$ 互不相同，那么这个笛卡尔树的结构是唯一的。上图：
+Cartesian tree is a kind of binary tree, in which each node consists of a key value tuple $(k,w)$ . It is required that $k$ satisfy the properties of a binary search tree, and $w$ satisfy the properties of a heap. An interesting fact is that if the $k,w$ key value of the Cartesian tree is already determined, and both $k$ and $w$ are different from each other, then the structure of the Cartesian tree is unique. Please see the figure below：
 
 ![eg](./images/cartesian-tree1.png)
 
-（图源自维基百科）
+(Figure from Wikipedia)
 
-上面这棵笛卡尔树相当于把数组元素值当作键值 $w$ ，而把数组下标当作键值 $k$ 。显然可以发现，这棵树的键值 $k$ 满足二叉搜索树的性质，而键值 $w$ 满足小根堆的性质。
+The Cartesian tree above is equivalent to taking the array element value as the value $w$ and the array index as the key $k$ . Obviously, it can be found that the key of this tree, $k$, satisfies the property of the binary search tree, and the value $w$ satisfies the property of min heap.
 
-其实图中的笛卡尔树是一种特殊的情况，因为二元组的键值 $k$ 恰好对应数组下标，这种特殊的笛卡尔树有一个性质，就是一棵子树内的下标是连续的一个区间（这样才能满足二叉搜索树的性质）。更一般的情况则是任意二元组构建的笛卡尔树。
+In fact, the Cartesian tree in the figure is a special case, because the key of the tuple $k$ corresponds to the array index. This kind of the Cartesian tree has a special property, that is, the index in a subtree is a continuous interval (so that the properties of the binary search tree can be satisfied). A more general case is a Cartesian tree constructed from arbitrary tuples.
 
-## 构建
+## Construction
 
-## 栈构建
+### Building the stack
 
-我们考虑将元素按照键值 $k$ 排序。然后一个一个插入到当前的笛卡尔树中。那么每次我们插入的元素必然在这个树的右链（右链：即从根结点一直往右子树走，经过的结点形成的链）的末端。于是我们执行这样一个过程，从下往上比较右链结点与当前结点 $u$ 的 $w$ ，如果找到了一个右链上的结点 $x$ 满足 $x_w<u_w$ ，就把 $u$ 接到 x 的右儿子上，而 x 原本的右子树就变成 u 的左子树。
+We consider sorting the elements according to the key value $k$ , and insert them one by one into the current Cartesian tree. Then each time we insert an element, it must be at the end of the right chain of the tree (right chain: the chain formed by the passing nodes from the root node to the right subtree). So we follow such a process to compare the $w$ of the right chain node with the current node $u$ from bottom to top. If we find a node $x$ on the right chain that satisfies $x_w<u_w$ , then $u$ is connected to the right child of $x$, and the original right subtree of $x$ becomes the left subtree of $u$.
 
-具体不解释，我们直接上图。图中红色框框部分就是我们始终维护的右链：
+We could directly refer to the figure below. The red box in the picture is the right chain that we always maintain:
 
 ![build](./images/cartesian-tree2.png)
 
-显然每个数最多进出右链一次（或者说每个点在右链中存在的是一段连续的时间）。这个过程我们可以用栈维护，栈中维护当前笛卡尔树的右链上的结点。一个点不在右链上了就把它弹掉。这样每个点最多进出一次，复杂度 $O(n)$ 。伪代码如下：
+It is obvious that each number enters and exits the right chain at most once (or each node exists in the right chain for a continuous period of time). During this process, we can use stack to maintain the nodes on the right chain of the current Cartesian tree. If a node is not on the right chain, we could just pop it off. In this way, each node can enter and exit at most once, and the time complexity is $O(n)$ . The pseudo code is shown as follows:
 
 ```text
-新建一个大小为 n 的空栈。用 top 来标操作前的栈顶，k 来标记当前栈顶。
+Create an empty stack of size n. Use top to denote the top of the stack before the operation, and k to denote the top of the current stack.
 For i := 1 to n
     k := top
-    While 栈非空 且 栈顶元素 > 当前元素 
+    While (stack is not empty) and (top stack element > current element) 
         k--
-    if 栈非空
-        栈顶元素.右儿子 := 当前元素
+    if stack is not empty
+        top stack element.right child := current element
     if k < top
-        当前元素.左儿子 := 栈顶元素
-    当前元素入栈
+        current element.left child := top stack element
+    push current element to stack
     top := k
 ```
 
@@ -42,30 +42,30 @@ For i := 1 to n
 for (int i = 1; i <= n; i++) {
   int k = top;
   while (k > 0 && h[stk[k]] > h[i]) k--;
-  if (k) rs[stk[k]] = i;  // rs代表笛卡尔树每个节点的右儿子
-  if (k < top) ls[i] = stk[k + 1];  // ls代表笛卡尔树每个节点的左儿子
+  if (k) rs[stk[k]] = i;  // rs represents the right child of each node in the Cartesian tree
+  if (k < top) ls[i] = stk[k + 1];  // ls represents the left child of each node in the Cartesian tree
   stk[++k] = i;
   top = k;
 }
 ```
 
-## 笛卡尔树与 Treap
+## Cartesian tree and Treap
 
-谈到笛卡尔树，很容易让人想到一种家喻户晓的结构——Treap。没错，Treap 是笛卡尔树的一种，只不过 w 的值完全随机。Treap 也有线性的构建算法，如果提前将元素排好序，显然可以使用上述单调栈算法完成构建过程，只不过很少会这么用。
+When it comes to Cartesian trees, it is easy to think of a well-known structure — [Treap](https://en.wikipedia.org/wiki/Treap). Yes, Treap is a kind of Cartesian tree, but the value of $w$ is completely random. Treap also has a linear construction algorithm. If you sort the elements in advance, obviously you can use the above monotonic stack algorithm to complete the construction process, but it is rarely used.
 
-## 例题
+## Sample problem
 
-HDU 1506 最大子矩形
+[HDU 1506 Largest Rectangle in a Histogram](http://acm.hdu.edu.cn/showproblem.php?pid=1506)
 
-> 题目大意：n 个位置，每个位置上的高度是 $h_i$ ，求最大子矩阵。举一个例子，如下图：
+> The general idea of the problem: there are $n$ positions, the height of each which is $h_i$ , find the largest sub-matrix. Example is shown below:
 >
 > ![eg](./images/cartesian-tree3.jpeg)
 >
-> 阴影部分就是图中的最大子矩阵。
+> The shaded part is the largest rectangle in a histogram in the figure.
 
-这道题你可 DP，可单调栈，但你万万没想到的是它也可以笛卡尔树！具体地，我们把下标作为键值 $k$ ， $h_i$ 作为键值 $w$ 满足小根堆性质，构建一棵 $(i,h_i)$ 的笛卡尔树。
+This problem clearly can be solved using DP or monotonous stack, but actually it can also be solved with a Cartesian tree. Specifically, we take the index as the key $k$ and $h_i$ as the value $w$ to satisfy property of the min heap, and build a Cartesian tree of $(i,h_i)$ .
 
-这样我们枚举每个结点 $u$ ，把 $u_w$ （即结点 u 的高度键值 $h$ ）作为最大子矩阵的高度。由于我们建立的笛卡尔树满足小根堆性质，因此 $u$ 的子树内的结点的高度都大于等于 $u$ 。而我们又知道 $u$ 子树内的下标是一段连续的区间。于是我们只需要知道子树的大小，然后就可以算这个区间的最大子矩阵的面积了。用每一个点计算出来的值更新答案即可。显然这个可以一次 DFS 完成，因此复杂度仍是 $O(n)$ 的。
+In this way, we enumerate each node $u$ and take $u_w$ (that is, the key value $h$ of height of node u) as the height of the largest sub-matrix. Since the Cartesian tree we built satisfies the property of min heap, the height of the nodes in the subtree of $u$ is greater than or equal to $u$ . And we know that the index in the $u$ subtree is a continuous interval. So we only need to know the size of the subtree, and then we can calculate the area of the largest submatrix in this interval. Update the answer with the value calculated at each node. Obviously this can be solved using a single pass DFS, so the time complexity is still $O(n)$ .
 
 ```cpp
 #include <algorithm>
@@ -121,6 +121,6 @@ int main() {
 }
 ```
 
-## 参考资料
+## Reference
 
- [维基百科 - 笛卡尔树](https://zh.wikipedia.org/wiki/%E7%AC%9B%E5%8D%A1%E5%B0%94%E6%A0%91) 
+[Cartesian tree - wikipedia](https://en.wikipedia.org/wiki/Cartesian_tree)
