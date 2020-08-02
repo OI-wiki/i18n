@@ -18,11 +18,11 @@ Original bracket sequence: `1 2 5 5 6 6 2 3 3 4 7 8 8 7 4 1`
 
 New bracket sequence: `1 2 5 5 6 6 2 3 7 8 8 7 3 4 4 1` 
 
-It can be found that `7 7 8 8` has been moved to the back of `3` and `4` is moved together. This is the so-called subtree operation (it can also be used for the `Link & Cut` operation). Now only one data structure is needed to achieve interval translation and maintain values. Some may say that using `Splay` is very efficient, but it is much easier to maintain a block linked list here. For data less than $2 \times 10^5$ , the coding would be pretty fast.
+It can be found that `7 7 8 8` has been moved to the back of `3` and `4` is moved together. This is the so-called subtree operation (it can also be used for the Link & Cut operation). Now only one data structure is needed to achieve interval translation and maintain values. Some may say that using Splay is very efficient, but it is much easier to maintain a block linked list here. For data less than $2 \times 10^5$ , the coding would be pretty fast.
 
 How to maintain node-to-root information?
 
-In fact, if you think about it carefully, the `DFS` order can also achieve the effect of [translation](https://en.wikipedia.org/wiki/Translation_(geometry)). So why do we need the bracket sequence? In fact, if you want to query the sum of `1` to `8` in the figure, then you will erase the contribution of the number that appears twice in the bracket sequence from `1` to `8` (the first occurrence). If you are maintaining xor, then you can directly xor twice. If sum is maintained, then the contribution of the first number that appears is positive, and the second is negative. Then you can use the block linked list to maintain the interval sum.
+In fact, if you think about it carefully, the DFS order can also achieve the effect of [translation](https://en.wikipedia.org/wiki/Translation_(geometry)). So why do we need the bracket sequence? In fact, if you want to query the sum of `1` to `8` in the figure, then you will erase the contribution of the number that appears twice in the bracket sequence from `1` to `8` (the first occurrence). If you are maintaining xor, then you can directly xor twice. If sum is maintained, then the contribution of the first number that appears is positive, and the second is negative. Then you can use the block linked list to maintain the interval sum.
 
 After using the block linked list, except for the single-node modification which is $O(1)$ , everything else is $O(n^{\frac{1}{2}})$ .
 
