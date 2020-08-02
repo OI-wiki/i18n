@@ -2,9 +2,9 @@ author: Ir1d, HeRaNO, Xeonacid
 
 ## Introduction
 
-Blocking problem is pretty common in OI.  In fact, blocking is more of a way of thinking than a data structure.
+Blocking problem is pretty common in OI. In fact, blocking is more of a way of thinking than a data structure.
 
-From [NOIP](https://zh.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E9%9D%92%E5%B0%91%E5%B9%B4%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E8%81%94%E8%B5%9B) to[NOI](../intro/oi/#noi) to [IOI](../intro/oi/#ioi_1), the blocking idea has appeared in all kinds of difficulty levels.
+From [NOIP](https://zh.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E9%9D%92%E5%B0%91%E5%B9%B4%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E8%81%94%E8%B5%9B) to [NOI](../intro/oi/#noi) to [IOI](../intro/oi/#ioi_1), the blocking idea has appeared in all kinds of difficulty levels.
 
 The common blocking algorithms have a root time complexity, while some may have the complexity other than $\log$ .
 
@@ -12,7 +12,7 @@ Blocking is a very flexible idea. Almost everything can be divided into blocks, 
 
 You can write whatever data structure you want. However, the disadvantage is that the time complexity is not good enough.
 
-Of course, when the constant is small(e.g. $n=10^5$ ), it may be similar to the segment tree.
+Of course, when the constant is small (e.g. $n=10^5$ ), it may be similar to the segment tree.
 
 By no means is this suggesting that we should use blocking. In OI, it can be used as a backup plan. The first choice must be advanced data structures such as segment trees.
 
@@ -28,7 +28,7 @@ We maintain the interval sum of each segment. Each time we mark the entire segme
 
 Each time we query the interval, it returns the element value plus the mark added on its segment. So the overall time complexity is $O(\frac{n}{T}+T)$ .
 
-Operations involed in the process include single node modification, interval modification(marking & brute force modification), and interval query.
+Operations involved in the process of interval modification include single node modification, interval modification(marking & brute force modification), and interval query.
 
 When $T=\sqrt{n}$ , the time complexity is $O(\sqrt{n})$ .
 
@@ -93,5 +93,5 @@ Total time complexity: $O(mT+n\frac{m}{T})$ .
 
 # Reference
 
-1. [introduction to blocking method](https://zhuanlan.zhihu.com/p/118117479) (Original link in Chinese)
+1. [Introduction to blocking method](https://zhuanlan.zhihu.com/p/118117479) (Original link in Chinese)
 2. [Blocking problem intro](https://www.codenong.com/cs106117694/) (Original link in Chinese)
