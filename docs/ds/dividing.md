@@ -10,7 +10,7 @@ The construction of the dividing tree is relatively simple, but it is more compl
 
 As shown in the figure, each layer has a seemingly unordered array. In fact, every number marked in red is **to be assigned to the left child**. And the rules of distribution? It is compared with the median in this level, $\leq$ is on the left, otherwise it is on the right. But here we should pay attention: it is not strictly $\leq$ **left, otherwise right**. Because the median may be the same, and it has a certain relationship with the parity of $N$ . The following code would demonstrate a clever usage for your reference.
  
-We cannot sort each layer every time, because the theoretical complexity would not pass, not to mention the constants. To find the median, one pass sorting is enough. Why? For example, if we find the median of $l,r$ , it is actually $num[mid]$ after sorting.
+We cannot sort each layer every time, because the theoretical complexity would not allow, not to mention the constants. To find the median, one pass sorting is enough. Why? For example, if we find the median of $l,r$ , it is actually `num[mid]` after sorting.
 
 There are two key arrays:
 
@@ -57,7 +57,7 @@ end;
 
 Let's first talk about the content of the persistent segment tree. When using the persistent segment tree to find the smallest $K$ in the interval, we use $K$ as the benchmark. If going to left, we go to left; if going to right, we must to subtract the value of the left. This is also the case in the dividing tree.
 
-What makes the query difficult to understand is the **interval reduction**. In the figure below, we are querying from $3$ to $7$ , so we only need to query from $2$ to $3$ at the next level. Of course, we define $left,right$ as the reduced interval (target interval), and $l,r$ as the interval of the node. Then why should we mark the target interval? Because that's **the benchmark to determine whether the answer is on the left or on the right**.
+What makes the query difficult to understand is the **interval reduction**. In the figure below, we are querying from $3$ to $7$ , so we only need to query from $2$ to $3$ at the next layer. Of course, we define left and right as the reduced interval (target interval), and $l,r$ as the interval of the node. Then why should we mark the target interval? Because that's **the benchmark to determine whether the answer is on the left or on the right**.
 
 ![](./images/dividing2.png)
 
