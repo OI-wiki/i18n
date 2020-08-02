@@ -28,15 +28,15 @@ The C standard library operates on character arrays
 
 ###  `strcmp` 
 
- `int strcmp(const char *str1, const char *str2)`: compares `str1 str2` in lexicographic order. If `str1` is lexicographically smaller, returns a negative value; if it's the same, returns 0; otherwise, returns a positive value. Please note that don't simply assume that there are only three types which are `0, 1, -1`. The values returned on different platforms all follow the positive/negative rule, but they are not necessarily all `0, 1, -1`.
+ `int strcmp(const char *str1, const char *str2)`: compares `str1` and `str2` in lexicographic order. If `str1` is lexicographically smaller, the function returns a negative value; if it's the same, function returns 0; otherwise, it returns a positive value. Please note that don't simply assume that there are only three types which are `0, 1, -1`. The values returned on different platforms all follow the positive/negative rule, but they are not necessarily all `0, 1, -1`.
 
 ###  `strcpy` 
 
- `char *strcpy(char *str, const char *src)`: copies the characters in `src` to `str`. `str` and `src` are all head pointers in character arrays, and the value returned is `str` containing null terminator `'\0'`.
+ `char *strcpy(char *str, const char *src)`: copies the characters in `src` to `str`. `str` and `src` are all head pointers of the char arrays, and the value returned is `str` containing null terminator `'\0'`.
 
 ###  `strncpy` 
 
- `char *strncpy(char *str, const char *src, int cnt)`: copies at most `cnt` characters to `str`. If `src` terminates and the number is smaller than `cnt`, write a null character to `str` until a total of `cnt` characters are written.
+ `char *strncpy(char *str, const char *src, int cnt)`: copies at most `cnt` characters to `str`. If `src` terminates and the number is smaller than `cnt`, write null characters to `str` until a total of `cnt` characters are written.
 
 ###  `strcat` 
 
@@ -44,15 +44,15 @@ The C standard library operates on character arrays
 
 ###  `strstr` 
 
- `char *strstr(char *str1, const char *str2)`: if `str2` is a substring of `str1`, return the address of the first occurrence of `str2` in `str1`; if `str2` is not a substring of `str1`, return `NULL`.
+ `char *strstr(char *str1, const char *str2)`: if `str2` is a substring of `str1`, the function returns the address of the first occurrence of `str2` in `str1`; if `str2` is not a substring of `str1`, it returns `NULL`.
 
 ###  `strchr` 
 
- `char *strchr(const char *str, int c)`: finds and returns the position where the character `c` first appears in the string `str`. If the character is not found, return `NULL`.
+ `char *strchr(const char *str, int c)`: the function finds and returns the position where the character `c` first appears in the string `str`. If the character is not found, it returns `NULL`.
 
 ###  `strrchr` 
 
- `char *strrchr(const char *str, char c)`: finds and returns the position where the character `c` last appears in the string `str`. If the character is not found, return `NULL`.
+ `char *strrchr(const char *str, char c)`: the function finds and returns the position where the character `c` last appears in the string `str`. If the character is not found, it returns `NULL`.
 
 ## C++ standard library
 
