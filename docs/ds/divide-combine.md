@@ -34,7 +34,7 @@ In particular, when $l>r$ , we treat this as an empty continuous segment, denote
 
 We define the set of all continuous segments of permutation of $P$ as $I_P$ , and consider $(P,\varnothing)\in I_P$ .
 
-### Operation on continuous segments
+### Operations on continuous segments
 
 The continuous segment is defined by the interval and the range, so we can define the operation of intersect/union/minus of the continuous segment.
 
@@ -46,7 +46,7 @@ Define $A=(P,[a,b]),B=(P,[x,y])$ and $A,B\in I_P$ . So the relationship and oper
 4.  $A\cup B=(P,[\min(a,x),\max(b,y)])$ .
 5.  $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$ .
 
-In fact, these operations are just ordinary set intersect/union/minus operations on the interval.
+In fact, these operations are just ordinary intersect/union/minus operations of sets on the intervals.
 
 ### Properties of continuous segments
 
@@ -62,7 +62,7 @@ Okay, now we have reached the point. As you may have guessed, the divide-combine
 
 In fact, the full name of this definition is called **primitive continuous segment**. But we call it primitive segment to be comcise. 
 
-For the permutation $P$ , we think that a primitive segment $M$ means that in the set $I_P$ , there is no continuous segment that intersects and does not contain. Formally defined, we think that $X\in I_P$ satisfies $\forall A\in I_P,\ X\cap A= (P,\varnothing)\vee X\subseteq A\vee A\subseteq X$ .
+For the permutation $P$ , we think that a primitive segment $M$ means that in the set $I_P$ , there is no continuous segment that intersects or contains that segment. Formally defined, we think that $X\in I_P$ satisfies $\forall A\in I_P,\ X\cap A= (P,\varnothing)\vee X\subseteq A\vee A\subseteq X$ .
 
 The set of all primitive segments is $M_P$ . Obviously, $(P,\varnothing)\in M_P$ .
 
@@ -72,7 +72,7 @@ Consider the permutation $P=\{9,1,10,3,2,5,7,6,8,4\}$ . The divide-combine tree 
 
 ![p1](./images/div-com1-en.png)
 
-In the figure we did not indicate the primitive segment. In the figure **each node represents a primitive segment**. We only indicate the value range of each primivtive segment. For example, the primitive segment represented by the node $[5,8]$ is $(P,[6,9])=\{5,7,6,8\}$ . So here is a question: **What is the dividing node/combining node?**
+In the figure we did not indicate the primitive segment. Instead, **each node represents a primitive segment**. We only indicated the value range of each primitive segment. For example, the primitive segment represented by the node $[5,8]$ is $(P,[6,9])=\{5,7,6,8\}$ . So here is a question: **What are the dividing or combining nodes?**
 
 ### Dividing point/Combining point
 
@@ -84,11 +84,11 @@ Here we give the definition directly, and will discuss its correctness later.
 4. **Combining node**: We believe that the node where the children are permutated in order or in reverse order is the combining node. Formally speaking, it satisfies $P_u=\{1,2,\cdots,|S_u|\}$ or $P_u=\{|S_u|,|S_u-1|,\cdots,1\}$ . **The leaf node has no child permutation, and we also think it is a combining node**.
 5. **Dividing node**: The dividing node is a node that is not a combining node.
 
-It can be seen from the figure that only $[1,10]$ is not a combining node. Because the permutation of the children of $[1,10]$ is $\{3,1,4,2\}$ .
+It can be seen from the figure that only $[1,10]$ is not a combining node because the permutation of its children are $\{3,1,4,2\}$ .
 
 ### Properties of the dividing/combining node
 
-The naming of the dividing node and combining node comes from their properties. First of all, we have a very obvious one: for any node $u$ in a divide-combine tree, the union of its child sequence intervals is the range of the node $u$ . That is $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ .
+The naming of the dividing node and combining node comes from their properties. First of all, we have a very obvious one: for any node $u$ in a divide-combine tree, the union of its child sequence intervals is the range of the node $u$ . That is, $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ .
 
 For a combining node $u$ : any **subinterval** of its child sequence constitutes a **continuous segment**. Formally speaking, $\forall S_u[l\sim r]$ has $\bigcup_{i=l}^rS_u[i]\in I_P$ .
 
