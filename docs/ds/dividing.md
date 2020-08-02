@@ -74,15 +74,15 @@ begin
   ry:=right-l-y; rx:=left-l-x; // ry is the number of right child from l to right, and rx is the number of right child from l to left
   cnt:=y-x; // number of child node from left to right
   if cnt>=k then // typical persistent segment tree
-    Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x is to reduce the left margin, l+y-1 is to reduce the right interval. For the above figure, it is to give up 1 and 2.
+    Query:=Query(l+x,l+y-1,k,l,mid,deep+1) // l+x is to reduce the left margin, l+y-1 is to reduce the right interval. For the above figure, it is to give up nodes 1 and 2.
   else
-    Query:=Query(mid+rx+1,mid+ry+1,k-cnt,mid+1,r,deep+1); // the same is to narrow the interval, but it becomes the right side. Pay attention to k-cnt.
+    Query:=Query(mid+rx+1,mid+ry+1,k-cnt,mid+1,r,deep+1); // the same is to narrow the interval, but it becomes the right side. pay attention to k-cnt.
 end;
 ```
 
 ## Theoretical complexity and testing results
 
-Time complexity: one query only needs $O(\log n)$ . For $m$ queries, it needs $O(m\log n)$ .
+Time complexity: one query only needs $O(\log n)$ . So $m$ queries needs $O(m\log n)$ .
 
 Space complexity: only need to store $O(n\log n)$ numbers.
 
