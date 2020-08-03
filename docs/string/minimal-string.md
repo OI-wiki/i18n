@@ -1,10 +1,10 @@
-Minimal representation is a method used to solve the problem of minimal string representation 
+Minimal string representation is a method used to solve problems concerning what its name shows (i.e. minimal string representation itself). 
 
 ## Minimum representation of the string
 
 ### Cyclic isomorphism
 
-When a position $i$ in the string $S$ can be selected, it satisfies:
+When a position $i$ in the string $S$ can be selected to satisfy:
 
 $$
 S[i\cdots n]+S[1\cdots i-1]=T
@@ -37,13 +37,13 @@ while (k < n && i < n && j < n) {
 i = min(i, j);
 ```
 
-The performance is good using random data, but special cases may get it stuck.
+The performance is good using random data, but it may get stuck with special cases.
 
 For example: for $\texttt{aaa}\cdots\texttt{aab}$ , it is not difficult to find that the time complexity of this algorithm degenerates to $O(n^2)$ .
 
 We find that when there are multiple consecutive repeated substrings in the string, the efficiency of this algorithm is reduced. So we have to consider optimizing this process.
 
-## Minimal representation
+## Minimal representation algorithm
 
 ### The principle of the algorithm
 
@@ -53,11 +53,11 @@ $$
 A[i \cdots i+k-1]=B[j \cdots j+k-1]
 $$
 
-Consider the case of $A[i+k]>B[j+k]$ first. We find that the starting position subscript $l$ satisfies the string of $i\le l\le i+k$ cannot be the answer. Because for any string $S_{i+p}$ (representing a string starting with $i+p$ ), there must be a string $S_{j+p}$ that is better than it.
+First we consider the case where $A[i+k]>B[j+k]$ . We find that the strings whose starting position subscript $l$ satisfies the string of $i\le l\le i+k$ cannot be the answer. Because for any string $S_{i+p}$ (representing a string starting with $i+p$ ), there must be a string $S_{j+p}$ that is better than it.
 
 So when comparing, we can skip the subscript $l\in [i,i+k]$ and directly compare $S_{i+k+1}$ .
 
-In this way, we have completed the optimization of the above beute force solution.
+In this way, we have completed the optimization of the above brute force solution.
 
 ### Time complexity
  $O(n)$ 
@@ -66,7 +66,7 @@ In this way, we have completed the optimization of the above beute force solutio
 
 1. Initialize pointer $i$ to $0$ , $j$ to $1$ , and initial matching length $k$ to $0$ ;
 2. Compare the size of the $k$-th element, and jump to the corresponding pointer according to the comparison result. If the two pointers are the same after the jump, choose a pointer randomly and increase it by one to ensure that the two strings compared are different;
-3. Repeat the above process until the comparison is over;
+3. Repeat the process above until the comparisons are over;
 4. The answer is the smaller one of $i,j$ ;
 
 ### Code
