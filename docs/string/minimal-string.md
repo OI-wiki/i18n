@@ -39,7 +39,7 @@ i = min(i, j);
 
 The performance is good using random data, but it may get stuck with special cases.
 
-For example: for $\texttt{aaa}\cdots\texttt{aab}$ , it is not difficult to find that the time complexity of this algorithm degenerates to $O(n^2)$ .
+For example: for string $\texttt{aaa}\cdots\texttt{aab}$ , it is not difficult to find that the time complexity of this algorithm degenerates to $O(n^2)$ .
 
 We find that when there are multiple consecutive repeated substrings in the string, the efficiency of this algorithm is reduced. So we have to consider optimizing this process.
 
