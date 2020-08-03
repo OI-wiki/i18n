@@ -14,11 +14,11 @@ Then we can say that $S$ and $T$ are cyclically isomorphic.
 
 ### Minimal representation
 
-The minimal representation of the string $S$ is the string with the smallest lexicographical order among all strings that are isomorphic to the $S$ loop.
+The minimal representation of the string $S$ is a string with the smallest lexicographical order among all strings that are isomorphic to the $S$ loop.
 
 ## The simple brute force
 
-Each time we compare the isomorphism of the loop starting from $i$ and $j$ , record the current position as $k$ , and skip the larger one each time we encounter a different character. The rest is Optimal solution.
+Each time we compare the isomorphism of the loop starting from $i$ and $j$ , record the current position as $k$ , and skip the larger one each time we encounter a different character. The rest is the optimal solution.
 
 ```cpp
 int k = 0, i = 0, j = 1;
@@ -47,7 +47,7 @@ We find that when there are multiple consecutive repeated substrings in the stri
 
 ### The principle of the algorithm
 
-For a pair of strings $A,B , their starting positions in the original string $S$ are respectively $i,j$ , and their first $k$ characters are the same, that is
+For a pair of strings $A,B$ , their starting positions in the original string $S$ are respectively $i,j$ , and their first $k$ characters are the same, that is
 
 $$
 A[i \cdots i+k-1]=B[j \cdots j+k-1]
