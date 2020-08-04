@@ -2,13 +2,13 @@
 
 ### Single string match
 
-There are a pattern string (pattern), and a string to be matched. We need to find all occurrences of the former in the latter.
+There is a pattern string, and a string to be matched. We need to find all occurrences of the former string in the latter string.
 
 ### Multi-string matching
 
 There are multiple pattern strings, and one string to be matched (multiple strings to be matched can be directly concatenated).
 
-It is certainly possible to treat it as a single string matching problem, but the efficiency is not good enough.
+It is certainly possible to treat it as multiple single string matching problems, but the efficiency is not good enough.
 
 ### Other types of string matching problems
 
