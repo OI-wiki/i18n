@@ -99,7 +99,7 @@ See [Docker deployment](https://oi-wiki.org/intro/docker-deploy/) for details.
 
 We always welcome you to write content for **OI Wiki** and share what you have learned with you.
 
-The specific way to contribute is in [How to Participate](https://oi-wiki.org/intro/htc/) page.
+The specific way to contribute is in [How to Contribute](https://oi-wiki.org/intro/htc/) page.
 
 * * *
 
