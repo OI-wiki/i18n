@@ -1,69 +1,97 @@
 author: Ir1d, HeRaNO, Xeonacid
 
-## 简介
+## Introduction
 
-其实，分块是一种思想，而不是一种数据结构。
+Blocking problem is pretty common in OI. In fact, blocking is more of a way of thinking than a data structure.
 
-从 NOIP 到 NOI 到 IOI，各种难度的分块思想都有出现。
+From [NOIP](https://zh.wikipedia.org/wiki/%E5%85%A8%E5%9B%BD%E9%9D%92%E5%B0%91%E5%B9%B4%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%A5%A5%E6%9E%97%E5%8C%B9%E5%85%8B%E8%81%94%E8%B5%9B) to [NOI](../intro/oi/#noi) to [IOI](../intro/oi/#ioi_1), the blocking idea has appeared in all kinds of difficulty levels.
 
-通常的分块算法的复杂度带根号，或者其他奇怪的复杂度，而不是 $\log$ 。
+The common blocking algorithms have a root time complexity, while some may have the complexity other than $\log$ .
 
-分块是一种很灵活的思想，几乎什么都能分块，并且不难实现。
+Blocking is a very flexible idea. Almost everything can be divided into blocks, and it is not difficult to implement.
 
-你想写出什么数据结构就有什么，缺点是渐进意义的复杂度不够好。
+You can write whatever data structure you want. However, the disadvantage is that the time complexity is not good enough.
 
-当然，在 $n=10^5$ 时，由于常数小，跟线段树可能差不多。
+Of course, when the constant is small (e.g. $n=10^5$ ), it may be similar to the segment tree.
 
-这不是建议你们用分块的意思，在 OI 中，可以作为一个备用方案，首选肯定是线段树等高级的数据结构。
+By no means is this suggesting that we should use blocking. In OI, it can be used as a backup plan. The first choice must be advanced data structures such as segment trees.
 
-以下通过几个例子来介绍～
+Here are a few examples:
 
-## 区间和
+## Interval sum
 
-动机：线段树太难写？
+Motivation: The segment tree might be a bit difficult to implement?
 
-将序列分段，每段长度 $T$ ，那么一共有 $\frac{n}{T}$ 段。
+For a sequence of length $n$, we divide it into segments of length $T$ , so there are a total of $\frac{n}{T}$ segments. Each operation affects $O(\frac{n}{T})$ blocks, and at most $2T$ elements of uncomplete blocks on both sides of the interval. 
 
-维护每一段的区间和。
+We maintain the interval sum of each segment. Each time we mark the entire segment in $O(1)$ . For uncomplete ones, we can directly brute-force since its element size is relatively small.
 
-单点修改：显然。
+Each time we query the interval, it returns the element value plus the mark added on its segment. So the overall time complexity is $O(\frac{n}{T}+T)$ .
 
-区间询问：会涉及一些完整的段，和最多两个段的一部分。
+Operations involved in the process of interval modification include single node modification, interval modification(marking & brute force modification), and interval query.
 
-完整段使用维护的信息，一部分暴力求。
+When $T=\sqrt{n}$ , the time complexity is $O(\sqrt{n})$ .
 
-复杂度 $O(\frac{n}{T}+T)$ 。
+Here we offer the C++ implementaion of interval query. The complete template is still WIP;
 
-区间修改：同样涉及这些东西，使用打标记和暴力修改，同样的复杂度。
+```cpp
+// ...
+#define LL long long
+const LL MAXN=100001;
+LL a[MAXN]; // initial value
+LL add[MAXN]; // value added to each segment
+LL location[MAXN]; // which segment
+LL sum[MAXN]; // sum of each segment
+// ...
 
-当 $T=\sqrt{n}$ 时，复杂度 $O(\sqrt{n})$ 。
+void interval_query(LL ll, LL rr)
+{
+    LL res=0;
+    for(LL i = ll; i <= min(location[ll] * T, rr); i++)
+        res += a[i] + add[location[i]];
+      
+    if(location[ll] != location[rr])
+        for(LL i = (location[rr]-1) * T+1; i<=rr; i++)
+            res += a[i] + add[location[i]];
+             
+    for(LL i = location[ll] + 1; i <= location[rr]-1; i++)
+        res += sum[i]+add[i] * T;
 
-## 区间和 2
+    printf("%lld\n", res);
+}
+```
 
-上一个做法的复杂度是 $\Omega(1) , O(\sqrt{n})$ 。
+## Interval sum 2
 
-我们在这里介绍一种 $O(\sqrt{n}) - O(1)$ 的算法。
+The time complexity of the previous approach is $\Omega(1), O(\sqrt{n})$ .
 
-为了 $O(1)$ 询问，我们可以维护各种前缀和。
+Here we introduce an algorithm in $O(\sqrt{n})-O(1)$ time complexity.  
 
-然而在有修改的情况下，不方便维护，只能维护单个块内的前缀和。
+For $O(1)$ query, we can maintain various prefix sums.
 
-以及整块作为一个单位的前缀和。
+However, in the case of modification, it is not convenient to maintain, and only the prefix sum in a single block can be maintained.
 
-每次修改 $O(T+\frac{n}{T})$ 。
+Then, take each block as a unit and calculate prefix sums for them.
 
-询问：涉及三部分，每部分都可以直接通过前缀和得到，时间复杂度 $O(1)$ 。
+Modify takes $O(T+\frac{n}{T})$ each time. 
 
-## 对询问分块
+Query: There are three parts involved, each part can be directly obtained by prefix sum. The time complexity is $O(1)$ .
 
-同样的问题，现在序列长度为 $n$ ，有 $m$ 个操作。
+## Making query blocks
 
-如果操作数量比较少，我们可以把操作记下来，在询问的时候加上这些操作的影响。
+The same problem, now the sequence length is $n$ and there are $m$ operations.
 
-假设最多记录 $T$ 个操作，则修改 $O(1)$ ，询问 $O(T)$ 。
+If the number of operations is relatively small, we can record and add them when querying.
 
- $T$ 个操作之后，重新计算前缀和， $O(n)$ 。
+Assume that at most $T$ operations are recorded, modification takes $O(1)$ and querying takes $O(T)$ .
 
-总复杂度： $O(mT+n\frac{m}{T})$ 。
+  After $T$ operations, recalculate the prefix sum, $O(n)$ .
 
- $T=\sqrt{n}$ 时，总复杂度 $O(m \sqrt{n})$ 。
+Total time complexity: $O(mT+n\frac{m}{T})$ .
+
+  When $T=\sqrt{n}$ , the total time complexity is $O(m \sqrt{n})$ .
+
+# Reference
+
+1. [Introduction to blocking method](https://zhuanlan.zhihu.com/p/118117479) (Original link in Chinese)
+2. [Blocking problem intro](https://www.codenong.com/cs106117694/) (Original link in Chinese)
