@@ -1,26 +1,26 @@
-## 字符串匹配问题
+## String matching problem
 
-### 单串匹配
+### Single string match
 
-一个模式串 (pattern)，一个待匹配串，找出前者在后者中的所有出现位置
+There is a pattern string, and a string to be matched. We need to find all occurrences of the former string in the latter string.
 
-### 多串匹配
+### Multi-string matching
 
-多个模式串，一个待匹配串（多个待匹配串可以直接连起来）。
+There are multiple pattern strings, and one string to be matched (multiple strings to be matched can be directly concatenated).
 
-直接当做单串匹配肯定是可以的，但是效率不够高。
+It is certainly possible to treat it as multiple single string matching problems, but the efficiency is not good enough.
 
-### 匹配一个串的任意后缀
+### Other types of string matching problems
 
-### 匹配多个串的任意后缀
+For example, match any suffix of one string, and match any suffix of multiple strings, etc.
 
-## 暴力做法
+## Brute force solution
 
-对于每个位置，尝试对模式串和待匹配串进行比对。
+For each position, try to compare the pattern string with the string to be matched.
 
-参考代码：
+Template Code:
 
-（伪代码）
+(pseudocode)
 
 ```cpp
 std::vector<int> match(char *a, char *b, int n, int m) {
@@ -35,18 +35,16 @@ std::vector<int> match(char *a, char *b, int n, int m) {
 }
 ```
 
-时间复杂度分析：
+Time complexity analysis:
 
-最坏时间复杂度是 $O(nm)$ 的，
+The worst time complexity is $O(nm)$ , and the best is $O(n)$ .
 
-最好是 $O(n)$ 的。
+If the size of the character set is greater than 1 (there exists at least two different characters), the average time complexity is $O(n)$ . But in OI problems, the strings given are generally not purely random.
 
-如果字符集的大小大于 1（有至少两个不同的字符），平均时间复杂度是 $O(n)$ 的。但是在 OI 题目中，给出的字符串一般都不是纯随机的。
+## Hash method
 
-## Hash 的方法
+See [Hash](./hash.md)
 
-参见 [Hash](./hash.md) 
+## KMP Algorithm
 
-## KMP 算法
-
-参见 [KMP](./kmp.md) 
+See [KMP](./kmp.md)
