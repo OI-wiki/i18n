@@ -8,7 +8,7 @@ Let's look at a figure first:
 
 It can be found that this trie uses edges to represent letters, and the path from the root node to a node on the tree represents a string. For example, $1\to4\to 8\to 12$ represents the string `caa`.
 
-The structure of trie is very easy to understand. We use $\delta(u,c)$ to represent the next node pointed to by the $c$ character of the node $u$ , or it can be seen as adding a node of the string formed by the character $c$ after the string represented by the node $u$ . (The value range of $c$ is related to the size of the character set. It is not necessarily $0\sim 26$ .)
+The structure of trie is very easy to understand. We use $\delta(u,c)$ to represent the next node pointed to by the $c$ character of the node $u$ , or it can be seen as the node representing the string which is formed by appending an character $c$ after the string represented by node $u$ . (The value range of $c$ is related to the size of the character set. It is not necessarily $0\sim 26$ .)
 
 Sometimes it is necessary to mark which strings are inserted into trie, and each time the insertion is completed, mark the node represented by this string.
 
@@ -25,7 +25,7 @@ struct trie {
     int p = 0;
     for (int i = 0; i < l; i++) {
       int c = s[i] - 'a';
-      if (!nex[p][c]) nex[p][c] = ++cnt;  // if not, then add node
+      if (!nex[p][c]) nex[p][c] = ++cnt;  // if does not exist, then add node
       p = nex[p][c];
     }
     exist[p] = 1;
@@ -53,8 +53,8 @@ The most basic application of the trie is to find whether a string appeared in t
 
     $1\le n\le 10^4$, $1\le m\le 10^5$, and the length of all strings does not exceed $50$ .
 
-    ??? mdui-shadow-6 "Problem solution"
-        Create trie for all names, and then query whether the string exists in trie and whether it has already been called. The first call is marked as called.
+    ??? mdui-shadow-6 "Solution"
+        Create trie for all names, and then query whether the string exists in trie and whether it has already been called. Each name is marked as called after the first call.
 
     ??? mdui-shadow-6 "Template code"
         ```cpp
@@ -104,25 +104,25 @@ The most basic application of the trie is to find whether a string appeared in t
 
 ### AC automation
 
-Trie is part of [AC AUTOMATON](./ac-automaton.md).
+Trie is part of [AC automation](./ac-automaton.md).
 
 ### XOR related
 
 We regard the binary representation of a number as a string, so a trie whose character set is $\{0,1\}$ can be constructed.
 
 ???+note "[BZOJ1954 longest XOR path](https://www.luogu.com.cn/problem/P4551) (original link in Chinese)"
-    Give you a tree with edge weights, find $(u, v)$ to maximize the XOR sum of edge weights on the path from $u$ to $v$ , and output this maximum value.
+    Given a tree with edge weights, find $(u, v)$ to maximize the XOR sum of edge weights on the path from $u$ to $v$ , and output this maximum value.
 
-    The number of points does not exceed $10^5$ , and the edge weight is within $[0,2^{31})$ .
+    The number of nodes does not exceed $10^5$ , and the edge weight is within $[0,2^{31})$ .
 
     ??? mdui-shadow-6 "Solution"
-        Randomly specify a root $root$ , use $T(u, v)$ to represent the XOR sum of the edge weights of the path between $u$ and $v$ , then $T(u,v)=T(root, u)\oplus T(root,v)$ , because the partial XOR of [LCA](../graph/lca.md) is offset twice.
+        Randomly specify a root $root$ , use $T(u, v)$ to represent the XOR sum of the edge weights of the path between $u$ and $v$ , then $T(u,v)=T(root, u)\oplus T(root,v)$ , because the partial XOR of tree depth till [LCA](../graph/lca.md) is offset twice.
 
         So, if you insert all $T(root, u)$ into a trie, you can quickly find the largest XOR sum $T(root, v)$ for each $T(root, u)$ :
 
-        Starting from the root of the trie, if you can go to a subtree different from the current position of $T(root, u)$ , go there, otherwise there is no choice.
+        Starting from the root of the trie, if you can go to a subtree different from the present bit of $T(root, u)$ , go there, otherwise there is no choice.
 
-        Correctness of Greedy solution: If you go this way, it will be $1$ ; if you don't go this way, it will be $0$ . And the high position needs to be as large as possible.
+        Correctness of Greedy solution: If you go this way, the present bit will be $1$ ; if you don't go this way, it will be $0$ . And the high position needs to be as large as possible.
 
     ??? mdui-shadow-6 "Template code"
         ```cpp
