@@ -1,39 +1,39 @@
 author: GavinZhengOI
 
-## 简介
+## Introduction
 
-离散化本质上可以看成是一种 [哈希](../string/hash.md) ，其保证数据在哈希以后仍然保持原来的全/偏序关系。
+Discretization can be seen as a type of [hash](../string/hash.md) in essence, which ensures that the data still maintains the original full/partial order relationship after hashing.
 
-通俗地讲就是当有些数据因为本身很大或者类型不支持，自身无法作为数组的下标来方便地处理，而影响最终结果的只有元素之间的相对大小关系时，我们可以将原来的数据按照从大到小编号来处理问题，即离散化。
+In layman's terms, when some data is too large or the data type is not supported, it cannot be easily processed as an array subscript by itself, and only the relative size relationship between the elements affects the final result. We can use the original data according to the serial number from large to small to deal with the problem, that is, discretization.
 
-用来离散化的可以是大整数、浮点数、字符串……等等。
+The data used for discretization can be large integers, floating-point numbers, strings... etc.
 
-## 实现
+## Implementation
 
-C++ 离散化有现成的 STL 算法：
+C++ discretization has ready-made STL algorithms:
 
-### 离散化数组
+### Discretize array
 
-将一个数组离散化，并进行查询是比较常用的应用场景：
+Discretizing and querying an array is a common application scenario:
 
 ```cpp
-// a[i] 为初始数组,下标范围为 [1, n]
-// len 为离散化后数组的有效长度
+// a[i] is the initial array, and the subscript range is [1, n]
+// len is the effective length of the discretized array
 std::sort(a + 1, a + 1 + n);
 len = std::unique(a + 1, a + n + 1) - a -
-      1;  // 离散化整个数组的同时求出离散化后本质不同数的个数。
+      1;  // when discretizing the entire array, find the number of essentially different numbers after discretization.
 ```
 
-在完成上述离散化之后可以使用 `std::lower_bound` 函数查找离散化之后的排名（即新编号）：
+After completing the above discretization, you can use the `std::lower_bound` function to find the rank (that is, the new serial number):
 
 ```cpp
-std::lower_bound(a + 1, a + len + 1, x) - a;  // 查询 x 离散化后对应的编号
+std::lower_bound(a + 1, a + len + 1, x) - a;  // query the corresponding serial number of x after discretization
 ```
 
-同样地，我们也可以对 `vector` 进行离散化：
+Similarly, we can also discretize `vector`:
 
 ```cpp
-// std::vector<int> a, b; // b 是 a 的一个副本
+// std::vector<int> a, b; // b is a copy of a
 std::sort(a.begin(), a.end());
 a.erase(std::unique(a.begin(), a.end()), a.end());
 for (int i = 0; i < n; ++i)
