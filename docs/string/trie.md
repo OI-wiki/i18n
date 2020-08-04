@@ -46,10 +46,10 @@ struct trie {
 
 ### Search strings
 
-The most basic application of the trie - to find whether a string appeared in the "dictionary".
+The most basic application of the trie is to find whether a string appeared in the "dictionary".
 
 ???+note "[So he started the wrong roll call](https://www.luogu.com.cn/problem/P2580) (original link in Chinese)"
-    There are $n$ name strings, and we need to perform a roll call for $m$ times. Each time we need to answer one of "Name does not exist", "This name is clicked for the first time", or "This name has already been clicked".
+    There are $n$ name strings, and we need to perform roll calls for $m$ times. Each time we need to answer one of "Name does not exist", "This name is called for the first time", or "This name has already been called".
 
     $1\le n\le 10^4$, $1\le m\le 10^5$, and the length of all strings does not exceed $50$ .
 
@@ -108,7 +108,7 @@ Trie is part of [AC AUTOMATON](./ac-automaton.md).
 
 ### XOR related
 
-We regard the binary representation of a number as a string, so a trie with a character set of $\{0,1\}$ can be constructed.
+We regard the binary representation of a number as a string, so a trie whose character set is $\{0,1\}$ can be constructed.
 
 ???+note "[BZOJ1954 longest XOR path](https://www.luogu.com.cn/problem/P4551) (original link in Chinese)"
     Give you a tree with edge weights, find $(u, v)$ to maximize the XOR sum of edge weights on the path from $u$ to $v$ , and output this maximum value.
