@@ -10,7 +10,7 @@ There are two common methods: one is recursive and the other is non-recursive.
 
 The recursive method is to split the expression into an expression tree as shown in the figure, and then perform operations on the tree from bottom to top. ![](./images/bet.png)
 
-[Tree traversal](../graph/tree-basic.md#_10) on expression tree can get different types of expressions:
+[Tree traversals](../graph/tree-basic.md#_10) on expression trees can get different types of expressions:
 
 - Preorder traversal corresponding to prefix expressions (Polish Notation)
 - Middle order traversal corresponds to infix expression
@@ -20,9 +20,9 @@ The recursive method is to split the expression into an expression tree as shown
 
 The non-recursive method is to define two [stacks](../ds/stack.md) to store operators and operands respectively. Whenever a number is encountered, it is directly pushed into the number stack; whenever an operator is encountered, the element in the previous operator stack must be searched, and the appropriate pop operation will be performed according to the pre-defined priority(The value of the corresponding sub-expression).
 
-What we need to know: the arithmetic expressions have three types, namely prefix expressions, infix expressions, and postfix expressions. Among them, infix expressions are the most commonly used expressions in our daily lives; Postfix expressions are the easiest expressions for computers to understand. Why is it that postfix expressions are the easiest to be understood by computers? Because the suffix expression does not need parentheses, and its order of operations is uniquely determined. For example: In the postfix expression $3 2 * 1 -$ , first we calculate $3 \times 2 = 6$ (using the last operator, that is, the operator on the top of the stack), and then calculate $6 - 1 = 5$ . It can be seen that for a suffix expression, we only need **to maintain a number stack. Each time an operator is encountered, the top elements from two stacks are popped out, and the result of the operation is pushed back into the stack**. Finally, the only element in the stack is the operation result of changing the suffix expression. The time complexity is $O(n)$ .
+What we need to know: the arithmetic expressions have three types, namely prefix expressions, infix expressions, and postfix expressions. Among them, infix expressions are the most commonly used expressions in our daily lives; Postfix expressions are the easiest expressions for computers to understand. The reason is that suffix expression does not need parentheses, and its order of operations is uniquely determined. For example: In the postfix expression $3~2~*~1~-$ , first we calculate $3 \times 2 = 6$ (using the last operator, that is, the operator on the top of the stack), and then calculate $6 - 1 = 5$ . It can be seen that for a suffix expression, we only need **to maintain a number stack. Each time an operator is encountered, the top elements from two stacks are popped out, and the result of the operation is pushed back into the stack**. Finally, the only element in the stack is the operation result of the suffix expression. The time complexity is $O(n)$ .
 
-So, for the calculation of ordinary infix expressions, we can convert them into postfix expressions and then perform calculations. The conversion method is also very simple. Just create a stack for storing operators and scan its infix expression:
+So, for the calculation of ordinary infix expressions, we can convert them into postfix expressions and then perform calculations. The conversion method is also very simple. Just create a stack for storing operators and scan the infix expression:
 
 1. If you encounter a number, directly output the number to the suffix expression (the following "output" all indicates the output to the suffix expression);
 2. If you encounter a left parenthese, push it to the stack;
