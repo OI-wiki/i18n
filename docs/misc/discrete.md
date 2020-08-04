@@ -4,9 +4,9 @@ author: GavinZhengOI
 
 Discretization can be seen as a type of [hash](../string/hash.md) in essence, which ensures that the data still maintains the original full/partial order relationship after hashing.
 
-In layman's terms, when some data is too large or the data type is not supported, it cannot be easily processed as an array subscript by itself, and only the relative size relationship between the elements affects the final result. We can use the original data according to the serial number from large to small to deal with the problem, that is, discretization.
+In layman's terms, when some data is too large or the data type is not supported, causing the value itself unable to be array subscripts, and the answer is determined only by the relative size of the elements. We can use the original data according to the index from large to small to deal with the problem, that is, discretization.
 
-The data used for discretization can be large integers, floating-point numbers, strings... etc.
+The data used for discretization can be large integers, floating-point numbers, strings, etc.
 
 ## Implementation
 
@@ -20,14 +20,15 @@ Discretizing and querying an array is a common application scenario:
 // a[i] is the initial array, and the subscript range is [1, n]
 // len is the effective length of the discretized array
 std::sort(a + 1, a + 1 + n);
-len = std::unique(a + 1, a + n + 1) - a -
-      1;  // when discretizing the entire array, find the number of essentially different numbers after discretization.
+len = std::unique(a + 1, a + n + 1) - a - 1;
+
+// when discretizing the entire array, find the number of essentially different numbers after discretization.
 ```
 
-After completing the above discretization, you can use the `std::lower_bound` function to find the rank (that is, the new serial number):
+After completing the above discretization, you can use the `std::lower_bound` function to find the rank (that is, the new index):
 
 ```cpp
-std::lower_bound(a + 1, a + len + 1, x) - a;  // query the corresponding serial number of x after discretization
+std::lower_bound(a + 1, a + len + 1, x) - a;  // query the corresponding index of x after discretization
 ```
 
 Similarly, we can also discretize `vector`:
