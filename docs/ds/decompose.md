@@ -71,9 +71,9 @@ For $O(1)$ query, we can maintain various prefix sums.
 
 However, in the case of modification, it is not convenient to maintain, and only the prefix sum in a single block can be maintained.
 
-And then calculate the the prefix sum of the whole block as a unit.
+Then, take each block as a unit and calculate prefix sums for them.
 
-Modify takes $O(T+\frac{n}{T})$ each time.
+Modify takes $O(T+\frac{n}{T})$ each time. 
 
 Query: There are three parts involved, each part can be directly obtained by prefix sum. The time complexity is $O(1)$ .
 
