@@ -10,9 +10,9 @@ There are multiple pattern strings, and one string to be matched (multiple strin
 
 It is certainly possible to treat it as a single string matching problem, but the efficiency is not good enough.
 
-### Matches any suffix of a string
+### Other types of string matching problems
 
-### Match any suffix of multiple strings
+For example, match any suffix of one string, and match any suffix of multiple strings, etc.
 
 ## Brute force solution
 
