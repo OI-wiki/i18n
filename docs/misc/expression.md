@@ -12,13 +12,13 @@ The recursive method is to split the expression into an expression tree as shown
 
 [Tree traversals](../graph/tree-basic.md#_10) on expression trees can get different types of expressions:
 
-- Preorder traversal corresponding to prefix expressions (Polish Notation)
+- Preorder traversal corresponds to prefix expressions (Polish Notation)
 - Middle order traversal corresponds to infix expression
-- Post-order traversal corresponding to postfix expressions (Reverse Polish Notation)
+- Post-order traversal corresponds to postfix expressions (Reverse Polish Notation)
 
 ## Non-recursive
 
-The non-recursive method is to define two [stacks](../ds/stack.md) to store operators and operands respectively. Whenever a number is encountered, it is directly pushed into the number stack; whenever an operator is encountered, the element in the previous operator stack must be searched, and the appropriate pop operation will be performed according to the pre-defined priority(The value of the corresponding sub-expression).
+The non-recursive method is to define two [stacks](../ds/stack.md) to store operators and operands respectively. Whenever a number is encountered, it is directly pushed into the number stack; whenever an operator is encountered, the element in the previous operator stack must be searched, and the appropriate pop operation will be performed according to the pre-defined priority(calculate the value of the corresponding sub-expression while popping).
 
 What we need to know: the arithmetic expressions have three types, namely prefix expressions, infix expressions, and postfix expressions. Among them, infix expressions are the most commonly used expressions in our daily lives; Postfix expressions are the easiest expressions for computers to understand. The reason is that suffix expression does not need parentheses, and its order of operations is uniquely determined. For example: In the postfix expression $3~2~*~1~-$ , first we calculate $3 \times 2 = 6$ (using the last operator, that is, the operator on the top of the stack), and then calculate $6 - 1 = 5$ . It can be seen that for a suffix expression, we only need **to maintain a number stack. Each time an operator is encountered, the top elements from two stacks are popped out, and the result of the operation is pushed back into the stack**. Finally, the only element in the stack is the operation result of the suffix expression. The time complexity is $O(n)$ .
 
@@ -26,7 +26,7 @@ So, for the calculation of ordinary infix expressions, we can convert them into 
 
 1. If you encounter a number, directly output the number to the suffix expression (the following "output" all indicates the output to the suffix expression);
 2. If you encounter a left parenthese, push it to the stack;
-3. If you encounter a right parenthese, keep outputting the top element of the stack until you encounter a left parenthese. (The left parenthese is popped from the stack withou output)
+3. If you encounter a right parenthese, keep outputting the top element of the stack until you encounter a left parenthese. (The left parenthese is popped from the stack without output)
 4. If you encounter other types of the operators, continuously remove all operators whose operation priority is greater than or equal to the current operator and output. Finally, the new symbol is pushed into the stack.
 5. Output the remaining symbols in the stack in turn, and the expression conversion ends.
 
@@ -46,7 +46,7 @@ std::string convert(const std::string &s) {  // convert infix expression to post
       t += tmp + " ";  // 1. if encounter a number, output it
     else if (tmp[0] == '(')
       oper.push(tmp[0]);       // 2. if encounter a left parenthese, push it to the stack
-    else if (tmp[0] == ')') {  // 3. f encounter a right parenthese
+    else if (tmp[0] == ')') {  // 3. if encounter a right parenthese
       while (!oper.empty() && oper.top() != '(')
         t += std::string(1, oper.top()) + " ",
             oper.pop();  // keep taking out the top of the stack and output it until the top of the stack is a left parenthesis,
