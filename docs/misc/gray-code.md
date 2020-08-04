@@ -1,14 +1,16 @@
 author: sshwy
 
-格雷码是一个二进制数系，其中两个相邻数的二进制位只有一位不同。举个例子， $3$ 位二进制数的格雷码序列为
+Gray code is a binary number system in which only one bit of two adjacent numbers differs. For example, the Gray code sequence of a $3$ bit binary number is:
 
 $$
 000,001,011,010,110,111,101,100
 $$
 
-注意序列的下标我们以 $0$ 为起点，也就是说 $G(0)=000,G(4)=100$ 。
-
 格雷码由贝尔实验室的 Frank Gray 于 1940 年发现。
+
+Note that we use $0$ as the starting point for the subscript of the sequence, that is, $G(0)=000,G(4)=100$ .
+
+Gray code was invented in 1940 by Frank Gray of Bell Laboratories.
 
 ## 构造格雷码（变换）
 
