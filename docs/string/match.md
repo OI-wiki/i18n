@@ -6,7 +6,7 @@ There are a pattern string (pattern), and a string to be matched. We need to fin
 
 ### Multi-string matching
 
-There are multiple pattern strings, and one string to be matched (multiple strings to be matched can be directly connected).
+There are multiple pattern strings, and one string to be matched (multiple strings to be matched can be directly concatenated).
 
 It is certainly possible to treat it as a single string matching problem, but the efficiency is not good enough.
 
