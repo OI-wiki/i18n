@@ -12,7 +12,7 @@ This algorithm is obviously feasible for unimodal functions.
 > Q: Now that it is a unimodal function, why not use ternary search?
 > A：In many years of OI, I have realized that human beings have their limits, no matter how scheming they are. The state is always unrepresentable. We can never get the mind of the people who create the problem and the boundary written is always wrong -- so -- I won't use ternary search anymore!
 
-Seriously speaking, the advantage of the hill climbing algorithm is that when you don’t know how to write formal solutions (commonly used in geometry calculation and mathematics problems), or there are many dimensions of its own state, and it is not easy to write divide and conquer (sample 2 can be completed by binary search), the optimal solution can be obtained through brute force.
+Seriously speaking, the advantage of the hill climbing algorithm is that when you don’t know how to write formal solutions (commonly used in geometry calculation and mathematics problems), or when there are many dimensions of its own state, making it hard to implement divide and conquer (sample 2 can be completed by binary search), the optimal solution can be obtained through brute force.
 
 But for most functions that need to be solved, the hill climbing algorithm can easily enter a local optimal solution, as shown in the figure below (the optimal solution is $\color{green}{\Uparrow}$ , and the optimal solution that the hill climbing algorithm may find is $\color{red}{\Downarrow}$ ).
 
@@ -32,10 +32,10 @@ About cooling: The cooling parameter is a constant slightly less than $1$ , gene
 
 Problem: Given $n$ points in $n$-dimensional space, knowing that they are on the same $n$-dimensional sphere, find the center of the sphere. $n \leq 10$ , and the absolute value of the coordinates does not exceed $10000$ .
 
-Obviously, the unimodal function can be solved by hill climbing. The algorithm of this question:
+Obviously, the unimodal function can be solved by hill climbing. The algorithm of this question is as follows:
 
 1. Initialize the center of the sphere to the center of gravity of each given point (that is, its dimensional coordinates are the average value of the dimensional coordinates of all the given points) to reduce enumeration operations.
-2. For the current sphere center , find the average of the Euclidean distance from each known point to the center of the sphere.
+2. For the current sphere center, find the average of the Euclidean distance from each known point to the center of the sphere.
 3. Traverse all known points. Record a change value $\textit{cans}$ (record each dimension separately) for the Euclidean distance of each point. If it is greater than the average value, add the difference to the change value, otherwise subtract it. In fact, there is no need to check the size, as long as the absolute value is not considered, the coordinates can be directly calculated. This process can be transformed into a new center of the sphere pushing it back and forth, {pull|push}ing it when it is too {far|close} to the center of sphere.
 4. Multiply the recorded $\textit{cans}$ by the temperature, update the center of the sphere, and go back to step 2.
 5. End when the temperature is less than a given threshold.
@@ -136,7 +136,7 @@ The framework is similar, with a bit of physics knowledge.
 
 It is easy to think that we can climb the hill many times to get the best answers possible. Methods like this include modifying the initial state/modifying the cooling parameter/modifying the initial temperature, etc., and then create a global optimal solution to record the answer. After each hill climbing, the global optimal solution is updated.
 
-The problem that may exist in this processing is timeout. Please use handmade large dataset to test parameters during the OI competitions.
+The problem that may exist in this processing is timeout. Please use handmade large dataset to test parameters during competitive programming competitions.
 
 ## Disadvantage
 
