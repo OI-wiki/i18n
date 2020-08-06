@@ -12,7 +12,7 @@ This algorithm is obviously feasible for unimodal functions.
 > Q: Now that it is a unimodal function, why not use ternary search?
 > A：In many years of OI, I have realized that human beings have their limits, no matter how scheming they are. The state is always unrepresentable. We can never get the mind of the people who create the problem and the boundary written is always wrong -- so -- I won't use ternary search anymore!
 
-Seriously speaking, the advantage of the hill climbing algorithm is that when you don’t know how to write formal solutions (commonly used in geometry calculation and mathematics problems), or when there are many dimensions of its own state, making it hard to implement divide and conquer (sample 2 can be completed by binary search), the optimal solution can be obtained through brute force.
+Seriously speaking, the advantage of the hill climbing algorithm is that when you don’t know how to write formal solutions (commonly used in computational geometry and mathematics problems), or when there are many dimensions of its own state, making it hard to implement divide and conquer (sample 2 can be completed by binary search), the optimal solution can be obtained through brute force.
 
 But for most functions that need to be solved, the hill climbing algorithm can easily enter a local optimal solution, as shown in the figure below (the optimal solution is $\color{green}{\Uparrow}$ , and the optimal solution that the hill climbing algorithm may find is $\color{red}{\Downarrow}$ ).
 
