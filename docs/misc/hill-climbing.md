@@ -36,8 +36,8 @@ Obviously, the unimodal function can be solved by hill climbing. The algorithm o
 
 1. Initialize the center of the sphere to the center of gravity of each given point (that is, its dimensional coordinates are the average value of the dimensional coordinates of all the given points) to reduce enumeration operations.
 2. For the current sphere center , find the average of the Euclidean distance from each known point to the center of the sphere.
-3. Traverse all known points. Record a change value $\mathit{cans}$ (record each dimension separately) for the Euclidean distance of each point. If it is greater than the average value, add the difference to the change value, otherwise subtract it. In fact, there is no need to check the size, as long as the absolute value is not considered, the coordinates can be directly calculated. This process can be transformed into a new center of the sphere pushing it back and forth, {pull|push}ing it when it is too {far|close} to the center of sphere.
-4. Multiply the recorded $\mathit{cans}$ by the temperature, update the center of the sphere, and go back to step 2.
+3. Traverse all known points. Record a change value $\textit{cans}$ (record each dimension separately) for the Euclidean distance of each point. If it is greater than the average value, add the difference to the change value, otherwise subtract it. In fact, there is no need to check the size, as long as the absolute value is not considered, the coordinates can be directly calculated. This process can be transformed into a new center of the sphere pushing it back and forth, {pull|push}ing it when it is too {far|close} to the center of sphere.
+4. Multiply the recorded $\textit{cans}$ by the temperature, update the center of the sphere, and go back to step 2.
 5. End when the temperature is less than a given threshold.
 
 Therefore, when we update the center of the sphere, we cannot directly add the changed value, but add the product of the changed value and the temperature.
