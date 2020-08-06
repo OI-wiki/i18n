@@ -1,18 +1,18 @@
-## Stern-Brocot 树
+## Stern-Brocot tree
 
-Stern-Brocot 树是一种维护分数的优雅的数据结构。它分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年发现这个结构。
+The Stern-Brocot tree is an elegant data structure for maintaining positive fractions. It was discovered independently by Moritz Stern in 1858 and Achille Brocot in 1861.
 
-### 概述
+### Overview
 
-Stern-Borcot 树从两个简单的分数开始：
+The Stern-Borcot tree starts with two simple fractions:
 
 $$
 \frac{0}{1}, \frac{1}{0}
 $$
 
-这个 $\frac{1}{0}$ 可能看得你有点懵逼。不过我们不讨论这方面的严谨性，你只需要把它当作 $\infty$ 就行了。
+This $\frac{1}{0}$ may make you feel a little confused. But we will not discuss its preciseness here. You can just treat it as $\infty$ .
 
-每次我们在相邻的两个分数 $\frac{a}{b},\frac{c}{d}$ 中间插入一个分数 $\frac{a+c}{b+d}$ ，这样就完成了一次迭代，得到下一个序列。于是它就会变成这样
+Every time we insert a fraction $\frac{a+c}{b+d}$ between two adjacent fractions $\frac{a}{b},\frac{c}{d}$ , which means one iteration is completed and the next sequence is obtained. So it will look like this.
 
 $$
 \begin{array}{c}
@@ -22,27 +22,27 @@ $$
 \end{array}
 $$
 
-既然我们叫这个数据结构 Stern-Brocot 树，那么它总得有一个树的样子对吧。来一张图：
+Since we call this data structure Stern-Brocot tree, it must look like a tree, right? Look at this figure:
 
 ![pic](./images/stern-brocot1.png)
 
-你可以把第 $i$ 层的序列当作是深度为 $i-1$ 的 Stern-Brocot 树的中序遍历。
+You can think of the sequence at the $i$ level as an in-order traversal of the Stern-Brocot tree with a depth of $i-1$ .
 
-### 性质
+### Property
 
-接下来讨论一下 Stern-Brocot 树的性质。
+Next, let's discuss the nature of the Stern-Brocot tree.
 
-#### 单调性
+#### Monotonicity
 
-在每一层的序列中，真分数是单调递增的。
+In the sequence of each layer, the true fraction is monotonically increasing.
 
-略证：只需要在 $\frac{a}{b}\le \frac{c}{d}$ 的情况下证明
+Brief proof: only need to prove in the case of $\frac{a}{b}\le \frac{c}{d}$
 
 $$
 \frac{a}{b}\le \frac{a+c}{b+d}\le \frac{c}{d}
 $$
 
-就行了。这个很容易，直接做一下代数变换即可
+That's it. This is very easy, we can just do algebraic transformation directly
 
 $$
 \begin{array}{l}
@@ -53,33 +53,33 @@ $$
 \end{array}
 $$
 
-另一边同理可证。
+The same is true on the other side.
 
-#### 最简性
+#### Irreducibility
 
-序列中的分数（除了 $\frac{0}{1},\frac{1}{0}$ ）都是最简分数。
+The fractions in the sequence (except for $\frac{0}{1},\frac{1}{0}$) are the minimal fraction.
 
-略证：为证明最简性，我们首先证明对于序列中连续的两个分数 $\frac{a}{b},\frac{c}{d}$ ：
+Brief proof: To prove the irreducibility, we first prove that for two consecutive fractions in the sequence $\frac{a}{b},\frac{c}{d}$ :
 
 $$
 bc-ad=1
 $$
 
-显然，我们只需要在 $bc-ad=1$ 的条件下证明 $\frac{a}{b}, \frac{a+c}{b+d}, \frac{c}{d}$ 的情况成立即可。
+Obviously, we only need to prove that $\frac{a}{b}, \frac{a+c}{b+d}, \frac{c}{d}$ under the condition of $bc-ad=1$ .
 
 $$
 a(b+d)-b(a+c)=ad-bc=1
 $$
 
-后半部分同理。证明了这个，利用扩展欧几里德定理，如果上述方程有解，显然 $\gcd(a,b)=\gcd(c,d)=1$ 。这样就证完了。
+The latter part is the same. we can prove using the extended Euclidean theorem. If the above equation has a solution, obviously $\gcd(a,b)=\gcd(c,d)=1$ . Then the proof is finished.
 
-有了上面的证明，我们可以证明 $\frac{a}{b}<\frac{c}{d}$ 。
+With the above proof, we can prove $\frac{a}{b}<\frac{c}{d}$ .
 
-有了这两个性质，你就可以把它当成一棵平衡树来做了。建立和查询就向平衡树一样做就行了。
+With these two properties, you can treat it as a balanced tree. So we can construct and query the same way we do to the balanced trees.
 
-### 实现
+### Implementation
 
-构建实现
+Construct:
 
 ```cpp
 void build(int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
@@ -91,7 +91,7 @@ void build(int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
 }
 ```
 
-查询实现
+Query:
 
 ```cpp
 string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
@@ -104,9 +104,9 @@ string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
 }
 ```
 
-## Farey 序列
+## Farey sequence
 
-Stern-Brocot 树与 Farey 序列有着极其相似的特征。第 $i$ 个 Farey 序列记作 $F_i$ ，表示把分母小于等于 $i$ 的所有最简真分数按大小顺序排列形成的序列。
+Stern-Brocot tree and Farey sequence have very similar characteristics. The $i$th Farey sequence is denoted as $F_i$ , which means that all the simplest true fractions whose denominator is less than or equal to $i$ are arranged in order of value.
 
 $$
 \begin{array}{l}
@@ -118,15 +118,15 @@ F_5=\{&\frac{0}{1},&\frac{1}{5},&\frac{1}{4},&\frac{1}{3},&\frac{2}{5},&\frac{1}
 \end{array}
 $$
 
-显然，上述构建 Stern-Brocot 树的算法同样适用于构建 Farey 序列。因为 Stern-Brocot 树中的数是最简分数，因此在边界条件（分母）稍微修改一下就可以形成构造 Farey 序列的代码。你可以认为 Farey 序列 $F_i$ 是 Stern-Brocot 第 $i-1$ 次迭代后得到的序列的子序列。
+Obviously, the above algorithm for constructing Stern-Brocot tree is also suitable for constructing the Farey sequence. Because the numbers in the Stern-Brocot tree are the minimal fraction, a slight modification of the boundary conditions (denominator) can form the code for constructing the Farey sequence. You can think of the Farey sequence $F_i$ as a subsequence of the sequence obtained after the $i-1$ iteration of Stern-Brocot.
 
-Farey 序列同样满足最简性和单调性，并且满足一个与 Stern-Brocot 树相似的性质：对于序列中连续的三个数 $\frac ab,\frac xy,\frac cd$ ，有 $x=a+c,y=b+d$ 。这个可以轻松证明，不再赘述。
+The Farey sequence also satisfies the irreducibility and monotonicity, and satisfies a property similar to the Stern-Brocot tree: for the three consecutive numbers $\frac ab,\frac xy,\frac cd$ in the sequence, there is $x=a +c,y=b+d$ . This can be easily proved, so we won't repeat it here.
 
-由 Farey 序列的定义，我们可以得到 $F_i$ 的长度 $L_i$ 公式为：
+From the definition of Farey sequence, we can get the length of $F_i$ . The formula of $L_i$ is:
 
 $$
 L_i=L_{i-1}+\varphi(i)\\
 L_i=1+\sum_{k=1}^i\varphi(k)
 $$
 
- **本页面主要译自博文 [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) 与其英文翻译版 [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **This page is mainly translated from the blog post [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) and its English version [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html). The copyright agreement for the Russian version is Public Domain + Leave a Link; the copyright agreement for the English version is CC-BY-SA 4.0.**
