@@ -14,11 +14,11 @@
 
 ## Content
 
-Programming competitions have been around for many years. Its difficulty level is getting higher and higher, and the content is getting more and more complicated. However, most of the online materials are scattered, which takes a lot of time to explore, and beginners often do not know how to learn relevant knowledge systematically.
+Programming competitions have been around for many years. Its difficulty level is increasingly higher, and the content is getting increasingly more complicated. However, most of the online materials are scattered, which takes a lot of time to explore, and beginners often do not know how to learn relevant knowledge systematically.
 
 In order to make it easier for friends who love programming competitions to get started, in July 2018, **OI Wiki** was migrated to GitHub. As the content of **OI Wiki** continues to improve, more and more friends are starting to join in.
 
-**OI Wiki** is committed to becoming a free, open and continuously updated knowledge integration website. You can find interesting and practical knowledge about **competitive programming** here. We have prepared the content including basic knowledge, common types of questions, problem-solving ideas, and common tools, etc., to help everyone learn programming competitions more quickly and deeply.
+**OI Wiki** is aimed to be a free, open and continuously updated knowledge integration website. You can find interesting and practical knowledge about **competitive programming** here. We have prepared the content including basic knowledge, common types of questions, problem-solving ideas, and common tools, etc., to help everyone learn programming competitions more quickly and deeply.
 
 Right now, the content of **OI Wiki** still has many imperfections, the coverage of knowledge points is not comprehensive enough, and there are some pages whose quality needs to be modified. The **OI Wiki** team and the contributing friends are actively improving these content.
 
@@ -62,7 +62,7 @@ mkdocs build -v
 mkdocs --help
 ```
 
-We are now rendering MathJax on the server side. If you want to achieve a similar effect, you may refer to [.travis.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.travis.yml) for more details. (Need to install [Node.js](https://nodejs.org/en/download/))
+We are now rendering MathJax on the server side. If you want to achieve a similar effect, you may refer to [.travis.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.travis.yml) for more details. ([Node.js](https://nodejs.org/en/download/) required)
 
 ### Mirror
 
@@ -73,7 +73,7 @@ git clone https://gitee.com/OI-wiki/OI-wiki.git
 
 ### Offline version
 
-You can use the contents of the `gh-pages` branch
+You can use the content of the `gh-pages` branch
 
 ```bash
 git clone https://gitee.com/OI-wiki/OI-wiki.git -b gh-pages
@@ -103,12 +103,12 @@ The specific way to contribute is in [How to Contribute](https://oi-wiki.org/int
 
 * * *
 
-## Copyright statement
+## Copyright Licenses
 
 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License Agreement" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
 Unless otherwise specified, except for the code part of the project, we all use <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a> plus the additional [The Star And Thank Author License](https://github.com/zTrix/sata-license) as our licenses.
 
-In other words, you can share freely during use, but you must sign, and share in the same way without additional restrictions.
+In other words, you may share in a reasonable manner during the use but you must sign, share in the same way without additional restrictions. And in no way should it suggest the licensor endorse you or your use.
 
 And you need to star the GitHub repository.
 
@@ -121,7 +121,7 @@ And if you want to reference this GitHub repository, you can use the following b
   year = {2016},
   publisher = {GitHub},
   journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/OI-wiki/OI-wiki}},
+  howpublished = {\url{https://github.com/OI-wiki/i18n}},
 }
 ```
 
