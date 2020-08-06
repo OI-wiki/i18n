@@ -32,7 +32,7 @@ At the same time, **OI Wiki** originates from the community, advocating the **in
 
 This project is currently deployed at [oi-wiki.org](https://oi-wiki.org) using [MkDocs](https://github.com/mkdocs/mkdocs).
 
-We also maintain a list of mirror sites at [status.oi-wiki.org](https://status.oi-wiki.org). The contents and [oi-wiki.org](https://oi- wiki.org) are the same.
+We also maintain a list of mirror sites at [status.oi-wiki.org](https://status.oi-wiki.org). The contents and [oi-wiki.org](https://oi-wiki.org) are the same.
 
 Of course, it can also be deployed locally. (**Requires Python 3**)
 
@@ -106,7 +106,7 @@ The specific way to contribute is in [How to Contribute](https://oi-wiki.org/int
 ## Copyright statement
 
 <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License Agreement" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
-Unless otherwise specified, except for the code part of the project, we all use <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) Creative Commons Attribution-Share in the Same Way 4.0 International License Agreement</a> Add the additional [The Star And Thank Author License](https://github.com/zTrix/sata-license) for copyright approval.
+Unless otherwise specified, except for the code part of the project, we all use <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a> plus the additional [The Star And Thank Author License](https://github.com/zTrix/sata-license) as our licenses.
 
 In other words, you can share freely during use, but you must sign, and share in the same way without additional restrictions.
 
