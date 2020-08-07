@@ -1,6 +1,6 @@
 author: sshwy
 
-Gray code is a binary number system in which only one bit of two adjacent numbers differs. For example, the Gray code sequence of a $3$ bit binary number is:
+Gray code is a binary number system in which only one bit of two adjacent numbers differs. For example, the Gray code sequence of a $3$ bit binary numbers is:
 
 $$
 000,001,011,010,110,111,101,100
@@ -122,7 +122,7 @@ Gray code has some very useful applications, some of which are unexpected:
 
 ## Practice problems
 
--  [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) (original link in Chinese)Difficulty: easy
+-  [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) (original link in Chinese) Difficulty: easy
 
 -  [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
 
