@@ -1,31 +1,31 @@
 author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
-悬线法的适用范围是单调栈的子集。具体来说，悬线法可以应用于满足以下条件的题目：
+The scope the hover line applies to is a subset of the monotonic stack. Specifically, the hover line should meet the following conditions:
 
-- 需要在扫描序列时维护单调的信息；
-- 可以使用单调栈解决；
-- 不需要在单调栈上二分。
+- Need to maintain monotonous information while scanning the sequence;
+- Can be solved using the monotonic stack;
+- No need to do binary search on the monotonic stack.
 
-看起来悬线法可以被替代，用处不大，但是悬线法概念比单调栈简单，更适合初学 OI 的选手理解并解决最大子矩阵等问题。
+It seems that the hover line can be replaced and is of little use, but its concept is simpler than the monotonic stack, and is more suitable for OI beginners to understand and use to solve problems like the largest sub-matrix.
 
 ???+note "[SP1805 HISTOGRA - Largest Rectangle in a Histogram](https://www.luogu.com.cn/problem/SP1805)"
-    大意：在一条水平线上有 $n$ 个宽为 $1$ 的矩形，求包含于这些矩形的最大子矩形面积。
+    General idea: There are $n$ rectangles with a width of $1$ on a horizontal line, find the area of the largest sub-Rectangle in histograms.
 
-悬线，就是一条竖线，这条竖线有初始位置和高度两个性质，可以在其上端点不超过当前位置的矩形高度的情况下左右移动。
+Hover line is a vertical line. It has two properties: initial position and height. It can move left and right when its upper bound does not exceed the height of the rectangle at the current position.
 
-对于一条悬线，我们在这条上端点不超过当前位置的矩形高度且不移出边界的前提下，将这条悬线左右移动，求出其最多能向左和向右扩展到何处，此时这条悬线扫过的面积就是包含这条悬线的尽可能大的矩形。容易发现，最大子矩形必定是包含一条初始位置为 $i$ ，高度为 $h_i$ 的悬线。枚举实现这个过程的时间复杂度为 $O(n ^ 2)$ ，但是我们可以用悬线法将其优化到 $O(n)$ 。
+For a hover line, we move it left or right under the premise that the upper bound does not exceed the height of the rectangle at the current position and does not move out of the boundary, and find out where it can expand to left and right at most. At this time, the area swept by this hover line is the largest possible rectangle containing it. It is easy to find that the largest sub-rectangle must contain a suspension line with an initial position of $i$ and a height of $h_i$. The time complexity of enumeration to achieve this process is $O(n ^ 2)$, but we can optimize it to $O(n)$ using the suspension method.
 
-我们考虑如何快速找到悬线可以到达的最左边的位置。
+We consider how to quickly find the leftmost endpoint that the hover line can reach.
 
-定义 $l_i$ 为当前找到的 $i$ 位置的悬线能扩展到的最左边的位置，容易得到 $l_i$ 初始为 $i$ ，我们需要进一步判断还能不能进一步往左扩展。
+Define $l_i$ as the leftmost endpoint to which the hover line of the currentl $i$-th position can reach. It is easy to get the initial value of $l_i$ as $i$ . We need to further check whether it can expand to the left.
 
-- 如果当前 $l_i = 1$ ，则已经扩展到了边界，不可以。
-- 如果当前 $a_i > a_{l_i - 1}$ ，则从当前悬线扩展到的位置不能再往左扩展了。
-- 如果当前 $a_i \le a_{l_i - 1}$ ，则从当前悬线还可以往左扩展，并且 $l_i - 1$ 位置的悬线能向左扩展到的位置， $i$ 位置的悬线一定也可以扩展到，于是我们将 $l_i$ 更新为 $l_{l_i - 1}$ ，并继续执行判断。
+- If the current $l_i = 1$ , then it has expanded to the boundary. Therefore, it cannot.
+- If the current $a_i> a_{l_i-1}$ , then the position reached from the current hover line cannot expand anymore.
+- If the current $a_i \le a_{l_i - 1}$ , then the current hover line can also be extended to the left, and position the hover line at $l_i-1$ can be extended to, the hover line at the position $i$ must be able to extend to as well. So we update $l_i$ to $l_{l_i-1}$ and continue to the execution.
 
-通过摊还分析，可以证明每个 $l_i$ 最多会被其他的 $l_j$ 遍历到一次，因此时间复杂度为 $O(n)$ 。
+Through amortized analysis, it can be proved that each $l_i$ will be traversed by other $l_j$ at most once, so the time complexity is $O(n)$ .
 
-??? 参考代码
+??? Sample code
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -50,12 +50,12 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
     }
     ```
 
-???+note "[UVA1619 感觉不错 Feel Good](https://www.luogu.com.cn/problem/UVA1619)"
-    对于一个长度为 $n$ 的数列，找出一个子区间，使子区间内的最小值与子区间长度的乘积最大，要求在满足舒适值最大的情况下最小化长度，最小化长度的情况下最小化左端点序号。
+???+note "[UVA1619 Feel Good](https://www.luogu.com.cn/problem/UVA1619)"
+    For a sequence of length $n$ , find a sub-interval so that the product of the minimum value in the sub-interval and the length of the sub-interval is the maximum. It is required to minimize the length while meeting the maximum comfort value, and to minimize the number of the left endpoint while the length is minimum.
 
-本题中我们可以考虑枚举最小值，将每个位置的数 $a_i$ 当作最小值，并考虑从 $i$ 向左右扩展，找到满足 $\min\limits _ {j = l} ^ r a_j = a_i$ 的尽可能向左右扩展的区间 $[l, r]$ 。这样本题就被转化成了悬线法模型。
+In this question, we can enumerate the minimum value. We consider the number $a_i$ at each position as the minimum value, expanding from $i$ to the left and right, and find that $\min\limits _ {j = l} ^ r a_j = a_i$ as much as possible. In this way, this question has been transformed into a hover line model.
 
-??? 参考代码
+??? Sample code
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -94,14 +94,14 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
     }
     ```
 
-## 最大子矩形
+## Largest submatrix
 
-???+note "[P4147 玉蟾宫](https://www.luogu.com.cn/problem/P4147)"
-    给定一个 $n \times m$ 的包含 `'F'` 和 `'R'` 的矩阵，求其面积最大的子矩阵的面积 $\times 3$ ，使得这个子矩阵中的每一位的值都为 `'F'` 。
+???+note "[P4147 Yuchan Palace](https://www.luogu.com.cn/problem/P4147) (original link in Chinese)"
+    Given a $n \times m$ matrix containing `'F'` and `'R'`, find the area $\times 3$ of the largest submatrix so that the value of each element is `'F'`.
 
-我们会发现本题的模型和第一题的模型很像。仔细分析，发现如果我们每次只考虑某一行的所有元素，将位置 $(x, y)$ 的元素尽可能向上扩展的距离作为该位置的悬线长度，那最大子矩阵一定是这些悬线向左右扩展得到的尽可能大的矩形中的一个。
+We will find that the model of this question is very similar to the first one. After careful analysis, it is found that if each time we only consider all elements in a certain row, and use the distance upward as far as possible at position $(x, y)$ as the length of the hover line at that position, then the largest sub-matrix must be these one of these rectangles that can be expanded left and right as far as possible.
 
-??? 参考代码
+??? Sample code
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -128,6 +128,6 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
     }
     ```
 
-## 习题
+## Practice problems
 
--  [P1169「ZJOI2007」棋盘制作](https://www.luogu.com.cn/problem/P1169) 
+-  [P1169「ZJOI2007」Making Chessboard](https://www.luogu.com.cn/problem/P1169) (original link in Chinese) 
