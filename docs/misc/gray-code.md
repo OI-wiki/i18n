@@ -68,18 +68,18 @@ We consider the difference between $n$ and $n+1$ . Adding $n$ by $1$ is equivale
 
 $$
 \begin{array}{rll}
-(n)_2&=&\cdots0\underbrace{11\cdots11}_{k}\\
-(n+1)_2&=&\cdots1\underbrace{00\cdots00}_{k}
+(n)_2&=&\cdots0\underbrace{11\cdots11}_{k\text{entries}}\\
+(n+1)_2&=&\cdots1\underbrace{00\cdots00}_{k\text{entries}}
 \end{array}
 $$
 
-So when we calculate $g(n)$ and $g(n+1)$ , the next $k$ bits will become the form like $\displaystyle\underbrace{100\cdots00}_{k}$ , and the $k+1$-th bit is different, because $n$ and $n+1$ are the same except for the last $k+1$ bits. Therefore, the position $k+1$ is either XORed $1$ or $0$ at the same time. In both cases, the $k+1$-th bit is different. The binary bits except the last $k+1$ bits are also subjected to the same XOR operation, and the result is the same.
+So when we calculate $g(n)$ and $g(n+1)$ , the next $k$ bits will become the form like $\displaystyle\underbrace{100\cdots00}_{k\text{entries}}$ , and the $k+1$-th bit is different, because $n$ and $n+1$ are the same except for the last $k+1$ bits. Therefore, the position $k+1$ is either XORed $1$ or $0$ at the same time. In both cases, the $k+1$-th bit is different. The binary bits except the last $k+1$ bits are also subjected to the same XOR operation, and the result is the same.
 
 Q.E.D.
 
 ## Construct the original number through Gray code (inverse transformation)
 
-Next, we consider the inverse transformation of the Gray code, that is, given a gray code $g$ and ask you to find the original number $n$ . We consider traversing from the highest bit of the binary to the lowest bit (the subscript of the lowest bit is $1$ , which is the one bit; and the highest bit subscript is $k$ ). Then the relationship between the $i$-th bit of $n$ and the $i$-th bit of $g$ is shown as follows:
+Next, we consider the inverse transformation of the Gray code, that is, given a Gray code $g$ and ask you to find the original number $n$ . We consider traversing from the highest bit of the binary to the lowest bit (the subscript of the lowest bit is $1$ , which is the one bit; and the highest bit subscript is $k$ ). Then the relationship between the $i$-th bit of $n$ and the $i$-th bit of $g$ is shown as follows:
 
 $$
 \begin{array}{rll}
