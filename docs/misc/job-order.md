@@ -1,4 +1,4 @@
-Assume you have $n$ tasks, and you are required to find a order with least cost to execute them. The time spent on the $i$-th task is $t_i$ , and the time spent by the $i$-th task waiting for $t$ is $f_i(t)$ .
+Assume you have $n$ tasks, and you are required to find a order with least cost to execute them. It costs $t_i$ to finish $i$-th job and $f_i(t)$ to make this job wait for time $t$ .
 
 Formally speaking, given $n$ functions $f_i$ and $n$ number $t_i$ , find a permutation $p$ to minimize:
 
