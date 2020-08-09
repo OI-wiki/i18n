@@ -6,20 +6,20 @@ The scope the hover line applies to is a subset of the monotonic stack. Specific
 - Can be solved using the monotonic stack;
 - No need to do binary search on the monotonic stack.
 
-It seems that the hover line can be replaced and is of little use, but its concept is simpler than the monotonic stack, and is more suitable for OI beginners to understand and use to solve problems like the largest sub-matrix.
+It seems that the hover line can be replaced and is useless, but its concept is simpler than the monotonic stack, and is more suitable for OI beginners to understand and use to solve problems like the largest sub-rectangle.
 
 ???+note "[SP1805 HISTOGRA - Largest Rectangle in a Histogram](https://www.luogu.com.cn/problem/SP1805)"
-    General idea: There are $n$ rectangles with a width of $1$ on a horizontal line, find the area of the largest sub-Rectangle in histograms.
+    General idea: There are $n$ rectangles with a width of $1$ on a horizontal line, find the area of the largest sub-rectangle in histograms.
 
 Hover line is a vertical line. It has two properties: initial position and height. It can move left and right when its upper bound does not exceed the height of the rectangle at the current position.
 
-For a hover line, we move it left or right under the premise that the upper bound does not exceed the height of the rectangle at the current position and does not move out of the boundary, and find out where it can expand to left and right at most. At this time, the area swept by this hover line is the largest possible rectangle containing it. It is easy to find that the largest sub-rectangle must contain a suspension line with an initial position of $i$ and a height of $h_i$. The time complexity of enumeration to achieve this process is $O(n ^ 2)$, but we can optimize it to $O(n)$ using the suspension method.
+For a hover line, we move it left or right under the premise that the upper bound does not exceed the height of the rectangle at the current position and does not move out of the boundary, and find out where it can expand to left and right at most. At this time, the area swept by this hover line is the largest possible rectangle containing it. It is easy to find that the largest sub-rectangle must contain a hover line with an initial position of $i$ and a height of $h_i$. The time complexity of enumeration to achieve this process is $O(n ^ 2)$, but we can optimize it to $O(n)$ using the hover line method.
 
 We consider how to quickly find the leftmost endpoint that the hover line can reach.
 
-Define $l_i$ as the leftmost endpoint to which the hover line of the currentl $i$-th position can reach. It is easy to get the initial value of $l_i$ as $i$ . We need to further check whether it can expand to the left.
+Define $l_i$ as the leftmost endpoint to which the hover line of the current $i$-th position can reach. It is easy to get the initial value of $l_i$ as $i$ . We need to further check whether it can expand to the left.
 
-- If the current $l_i = 1$ , then it has expanded to the boundary. Therefore, it cannot.
+- If the current $l_i = 1$ , then it has expanded to the boundary. Therefore, the position reached from the current hover line cannot expand anymore.
 - If the current $a_i> a_{l_i-1}$ , then the position reached from the current hover line cannot expand anymore.
 - If the current $a_i \le a_{l_i - 1}$ , then the current hover line can also be extended to the left, and position the hover line at $l_i-1$ can be extended to, the hover line at the position $i$ must be able to extend to as well. So we update $l_i$ to $l_{l_i-1}$ and continue to the execution.
 
@@ -53,7 +53,7 @@ Through amortized analysis, it can be proved that each $l_i$ will be traversed b
 ???+note "[UVA1619 Feel Good](https://www.luogu.com.cn/problem/UVA1619)"
     For a sequence of length $n$ , find a sub-interval so that the product of the minimum value in the sub-interval and the length of the sub-interval is the maximum. It is required to minimize the length while meeting the maximum comfort value, and to minimize the number of the left endpoint while the length is minimum.
 
-In this question, we can enumerate the minimum value. We consider the number $a_i$ at each position as the minimum value, expanding from $i$ to the left and right, and find that $\min\limits _ {j = l} ^ r a_j = a_i$ as much as possible. In this way, this question has been transformed into a hover line model.
+In this question, we can enumerate the minimum value. We consider the number $a_i$ at each position as the minimum value, expanding from $i$ to the left and right, and find that $\min\limits _ {j = l} ^ r a_j = a_i$ as much as we could. In this way, this question has been transformed into a hover line model.
 
 ??? Sample code
     ```cpp
@@ -94,12 +94,12 @@ In this question, we can enumerate the minimum value. We consider the number $a_
     }
     ```
 
-## Largest submatrix
+## Largest sub-rectangle
 
 ???+note "[P4147 Yuchan Palace](https://www.luogu.com.cn/problem/P4147) (original link in Chinese)"
-    Given a $n \times m$ matrix containing `'F'` and `'R'`, find the area $\times 3$ of the largest submatrix so that the value of each element is `'F'`.
+    Given a $n \times m$ rectangle containing `'F'` and `'R'`, find the area $\times 3$ of the largest sub-rectangle so that the value of each element is `'F'`.
 
-We will find that the model of this question is very similar to the first one. After careful analysis, it is found that if each time we only consider all elements in a certain row, and use the distance upward as far as possible at position $(x, y)$ as the length of the hover line at that position, then the largest sub-matrix must be these one of these rectangles that can be expanded left and right as far as possible.
+We will find that the model of this question is very similar to the first one. After careful analysis, it is found that if each time we only consider all elements in a certain row, and use the distance upward as far as possible at position $(x, y)$ as the length of the hover line at that position, then the largest sub-rectangle must be these one of these rectangles that can be expanded left and right as far as possible.
 
 ??? Sample code
     ```cpp
