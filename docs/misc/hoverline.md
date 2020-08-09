@@ -97,7 +97,7 @@ In this question, we can enumerate the minimum value. We consider the number $a_
 ## Largest sub-rectangle
 
 ???+note "[P4147 Yuchan Palace](https://www.luogu.com.cn/problem/P4147) (original link in Chinese)"
-    Given a $n \times m$ rectangle containing `'F'` and `'R'`, find the area $\times 3$ of the largest sub-rectangle so that the value of each element is `'F'`.
+    Given a $n \times m$ rectangle consists of `'F'` and `'R'`, find the area $\times 3$ of the largest sub-rectangle so that the value of all elements in this matrix are `'F'`.
 
 We will find that the model of this question is very similar to the first one. After careful analysis, it is found that if each time we only consider all elements in a certain row, and use the distance upward as far as possible at position $(x, y)$ as the length of the hover line at that position, then the largest sub-rectangle must be these one of these rectangles that can be expanded left and right as far as possible.
 
