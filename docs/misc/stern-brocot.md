@@ -30,7 +30,7 @@ You can think of the sequence at the $i$ level as an in-order traversal of the S
 
 ### Property
 
-Next, let's discuss the nature of the Stern-Brocot tree.
+Next, let's discuss the property of the Stern-Brocot tree.
 
 #### Monotonicity
 
@@ -57,7 +57,7 @@ The same is true on the other side.
 
 #### Irreducibility
 
-The fractions in the sequence (except for $\frac{0}{1},\frac{1}{0}$) are the minimal fraction.
+The fractions in the sequence (except for $\frac{0}{1},\frac{1}{0}$) are the irreducible fraction.
 
 Brief proof: To prove the irreducibility, we first prove that for two consecutive fractions in the sequence $\frac{a}{b},\frac{c}{d}$ :
 
@@ -106,7 +106,7 @@ string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
 
 ## Farey sequence
 
-Stern-Brocot tree and Farey sequence have very similar characteristics. The $i$th Farey sequence is denoted as $F_i$ , which means that all the simplest true fractions whose denominator is less than or equal to $i$ are arranged in order of value.
+Stern-Brocot tree and Farey sequence have very similar characteristics. The $i$-th Farey sequence is denoted as $F_i$ , which means that all the simplest true fractions whose denominator is less than or equal to $i$ are arranged in order of value.
 
 $$
 \begin{array}{l}
@@ -118,7 +118,7 @@ F_5=\{&\frac{0}{1},&\frac{1}{5},&\frac{1}{4},&\frac{1}{3},&\frac{2}{5},&\frac{1}
 \end{array}
 $$
 
-Obviously, the above algorithm for constructing Stern-Brocot tree is also suitable for constructing the Farey sequence. Because the numbers in the Stern-Brocot tree are the minimal fraction, a slight modification of the boundary conditions (denominator) can form the code for constructing the Farey sequence. You can think of the Farey sequence $F_i$ as a subsequence of the sequence obtained after the $i-1$ iteration of Stern-Brocot.
+Obviously, the above algorithm for constructing Stern-Brocot tree is also suitable for constructing the Farey sequence. Because the numbers in the Stern-Brocot tree are the irreducible fraction, a slight modification of the boundary conditions (denominator) can form the code for constructing the Farey sequence. You can think the Farey sequence $F_i$ as a subsequence of the sequence obtained after the $i-1$-th iteration of Stern-Brocot.
 
 The Farey sequence also satisfies the irreducibility and monotonicity, and satisfies a property similar to the Stern-Brocot tree: for the three consecutive numbers $\frac ab,\frac xy,\frac cd$ in the sequence, there is $x=a +c,y=b+d$ . This can be easily proved, so we won't repeat it here.
 
@@ -129,4 +129,4 @@ L_i=L_{i-1}+\varphi(i)\\
 L_i=1+\sum_{k=1}^i\varphi(k)
 $$
 
- **This page is mainly translated from the blog post [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) and its English version [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html). The copyright agreement for the Russian version is Public Domain + Leave a Link; the copyright agreement for the English version is CC-BY-SA 4.0.**
+ **This page is mainly translated from the blog post [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) and its English version [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html). The license for the Russian version is Public Domain + Leave a Link; the license for the English version is CC-BY-SA 4.0.**
