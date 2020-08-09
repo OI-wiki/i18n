@@ -6,7 +6,7 @@ $$
 000,001,011,010,110,111,101,100
 $$
 
-Note that we use $0$ as the starting point for the subscript of the sequence, that is, $G(0)=000,G(4)=100$ .
+Note that we use $0$ as the starting point for the subscript of the sequence, that is, $G(0)=000,G(4)=110$ .
 
 Gray code was discovered in 1940s and patented in 1953 by Frank Gray of Bell Laboratories.
 
