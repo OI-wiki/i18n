@@ -6,7 +6,7 @@ $$
 F(p)=\sum_{i=1}^nf_{p_i}\left(\sum_{j=1}^{i-1}t_{p_j}\right)
 $$
 
-## Special cost function
+## Special cost functions
 
 ### Linear cost function
 
@@ -42,7 +42,7 @@ The Livshits-Kladov theorem is valid if and only if the cost function is one of 
 
 - Linear function: $f_i(t) = c_it + d_i$ , among them $c_i\ge 0$ ;
 - Exponential function: $f_i(t) = c_i e^{a t} + d_i$ , among them $c_i,a>0$ ;
-- Same monotonically increasing function: $f_i(t) = \phi(t)$ , among them $\phi(t)$ is a monotonically increasing function.
+- Same monotonically increasing function: $f_i(t) = \phi(t)$ , where $\phi(t)$ is a monotonically increasing function.
 
 The theorem is proved under the assumption that the cost function is sufficiently smooth (there is a third derivative). In these three cases, the optimal solution of the problem can be solved in $O(n\log n)$ by a simple sorting.
 
