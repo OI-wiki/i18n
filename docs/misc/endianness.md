@@ -2,7 +2,7 @@ Endianness is the storage rule for program objects that cross multiple bytes, an
 
 There are two endianness: little endian and big endian.
 
-In fact, there is no difference between these two endianness. The names of these two sequences (`little endian` and `big endian`) are exactly taken from the book "Gulliver's Travels". The reason for which the two factions can't stop fighting in the book is that they cannot agree on which end to break shell of the egg. And similar to the egg problem, the choice of endianness has become an argument unrelated to technical reasons.
+In fact, there is no difference between these two endianness. The names of these two sequences (`little endian` and `big endian`) are exactly taken from the book *Gulliver's Travels*. The reason for which the two factions can't stop fighting in the book is that they cannot agree on which end to break shell of the egg. And similar to the egg problem, the choice of endianness has become an argument unrelated to technical reasons.
 
 Of course, the inconsistency of the endianness will cause the binary data to be reversed when transmitting between different types of machines. To avoid this, the network application has established a set of standards to ensure that the agreed network standard is used during the transmitting process, rather than the internal representation of different machines.
 
