@@ -50,7 +50,7 @@ Through amortized analysis, it can be proved that each $l_i$ will be traversed b
     }
     ```
 
-???+note "[UVA1619 Feel Good](https://www.luogu.com.cn/problem/UVA1619)"
+???+note "[UVA1619 Feel Good](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=825&page=show_problem&problem=4494)"
     For a sequence of length $n$ , find a sub-interval so that the product of the minimum value in the sub-interval and the length of the sub-interval is the maximum. It is required to minimize the length while meeting the maximum comfort value, and to minimize the number of the left endpoint while the length is minimum.
 
 In this question, we can enumerate the minimum value. We consider the number $a_i$ at each position as the minimum value, expanding from $i$ to the left and right, and find that $\min\limits _ {j = l} ^ r a_j = a_i$ as much as we could. In this way, this question has been transformed into a hover line model.
