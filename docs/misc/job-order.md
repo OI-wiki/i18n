@@ -49,3 +49,4 @@ The theorem is proved under the assumption that the cost function is sufficientl
 * * *
 
  **Part of this page is translated from the blog post [Задача Джонсона с одним станком](http://e-maxx.ru/algo/johnson_problem_1) and its English version [Scheduling jobs on one machine](https://cp-algorithms.com/schedules/schedule_one_machine.html). The copyright license for the Russian version is Public Domain + Leave a Link; And the copyright license for the English version is CC-BY-SA 4.0.**
+
