@@ -8,7 +8,7 @@ The scope the hover line applies to is a subset of the monotonic stack. Specific
 
 It seems that the hover line can be replaced and is useless, but its concept is simpler than the monotonic stack, and is more suitable for OI beginners to understand and use to solve problems like the largest sub-rectangle.
 
-???+note "[SP1805 HISTOGRA - Largest Rectangle in a Histogram](https://www.luogu.com.cn/problem/SP1805)"
+???+note "[SP1805 HISTOGRA - Largest Rectangle in a Histogram](https://www.spoj.com/problems/HISTOGRA/)"
     General idea: There are $n$ rectangles with the width of $1$ on a common base line, find the area of the largest rectangle in a histogram.
 
 Hover line is a vertical line. It has two properties: initial position and height. It can move left and right when its upper bound does not exceed the height of the rectangle at the current position.
