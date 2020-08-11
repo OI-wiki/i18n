@@ -1,46 +1,46 @@
 author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan
 
-## 括号序树上莫队
+## Mo's algorithm on bracket order tree
 
-一般的莫队只能处理线性问题，我们要把树强行压成序列。
+The common Mo's algorithm can only solve linear problems. We have to forcibly convert the tree into a sequence.
 
-我们可以将树的括号序跑下来，把括号序分块，在括号序上跑莫队。
+We can obtain the bracket order of the tree, divide the it into blocks, and run the Mo's algorithm on each one.
 
-具体怎么做呢？
+How to do this exactly?
 
-dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点，就直接 `push_back(-x)` ，然后我们在挪动指针的时候，
+Run DFS on a tree, and if DFS reaches the node x, it will be `push_back(x)`. And after the node x is traversed, it will be directly `push_back(-x)`. Then move the pointer.
 
-- 新加入的值是 x  ---> `add(x)` 
-- 新加入的值是 - x ---> `del(x)` 
-- 新删除的值是 x  ---> `del(x)` 
-- 新删除的值是 - x ---> `add(x)` 
+- The newly added value is x  ---> `add(x)` 
+- The newly added value is - x ---> `del(x)` 
+- The newly deleted value is x  ---> `del(x)` 
+- The newly deleted value is - x ---> `add(x)` 
 
-这样的话，我们就把一棵树处理成了序列。
+In this case, we have processed a tree into a sequence.
 
-???+note "例题[「WC2013」糖果公园](https://uoj.ac/problem/58)"
-    题意：给你一棵树，每个点有颜色，每次询问
+???+note "Sample problem[「WC2013」Candy park](https://uoj.ac/problem/58)"
+    Question: Given a tree, and each node has a color. Every time query
 
     $$\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$$
 
-    其中：$val$ 表示该颜色的价值，$cnt$ 表示颜色出现的次数，$w$ 表示该颜色出现 $i$ 次后的价值
+    Among them: $val$ represents the value of the color, $cnt$ represents the number of times the color appears, and $w$ represents the value after the color appears $i$ times
 
-先把树变成序列，然后每次添加/删除一个点，这个点的对答案的的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_{c+1}}$ 
+First we turn the tree into a sequence, and then add/remove a point each time. The contribution of this point to the answer can be obtained in $O(1)$ time, that is, $val_c\times w_{cnt_{c+1 }}$
 
-发现因为他会把起点的子树也扫了一遍，产生多余的贡献，怎么办呢？
+What should we do if the algorithm would also scan the starting node of subtree and produce extra contributions?
 
-因为扫的过程中起点的子树里的点肯定会被扫两次，但贡献为 0。
+Because the node in the starting subtree will definitely be scanned twice during the scanning process, but the contribution is 0.
 
-所以可以开一个 $vis$ 数组，每次扫到点 x，就把 $vis_x$ 异或上 1。
+So we can create a $vis$ array, and each time we scan to the node x, XOR $vis_x$ by 1.
 
-如果 $vis_x=0$ ，那这个点的贡献就可以不计。
+If $vis_x=0$ , then the contribution of this node can be ignored.
 
-所以可以用树上莫队来求。
+So we can use the Mo's algorithm on the tree to solve this.
 
-修改的话，加上一维时间维即可，变成带修改树上莫队。
+If we modify it, we can add a one-dimensional time dimension, and it becomes the Mo's algorithm with a modified tree.
 
-然后因为所包含的区间内可能没有 LCA，对于没有的情况要将多余的贡献删除，然后就完事了。
+Then because there may be no LCA in the included interval, if there is no LCA, delete the extra contribution, and then it's done.
 
-??? 参考代码
+??? Sample code
     ```cpp
     #include <algorithm>
     #include <cmath>
@@ -59,7 +59,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
     struct edge {
       int to, nxt;
     } e[maxn];
-    int cnt1 = 0, cnt2 = 0;  // 时间戳
+    int cnt1 = 0, cnt2 = 0;  // timestamp
     
     struct query {
       int l, r, t, id;
@@ -83,7 +83,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
           dfs(e[i].to);
         }
       }
-      id[g[x] = ++index] = x;  // 括号序
+      id[g[x] = ++index] = x;  // bracket sequence
     }
     
     inline int lca(int x, int y) {
@@ -92,7 +92,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
         int dis = dep[x] - dep[y];
         for (int i = 20; i >= 0; i--)
           if (dis >= (1 << i)) dis -= 1 << i, x = fa[x][i];
-      }  // 爬到同一高度
+      }  // reach the same height
       if (x == y) return x;
       for (int i = 20; i >= 0; i--) {
         if (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
@@ -115,7 +115,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
         add(x);
       } else
         col[x] = t;
-    }  // 在时间维上移动
+    }  // move on time dimentions
     
     int main() {
       scanf("%d%d%d", &n, &m, &q);
@@ -152,7 +152,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
         }
       }
       sort(a + 1, a + cnt1 + 1);
-      int L, R, T;  // 指针坐标
+      int L, R, T;  // position index of pointers
       L = R = 0;
       T = 1;
       for (int i = 1; i <= cnt1; i++) {
@@ -196,63 +196,63 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)` ，dfs 完 x 点
     }
     ```
 
-## 真·树上莫队
+## The real Mo's algorithm on trees
 
-上面的树上莫队只是将树转化成了链，下面的才是真正的树上莫队。
+The Mo's algorithm on the tree just transforms the tree into a chain, and the real Mo's algorithm below is on-tree version.
 
-由于莫队相关的问题都是模板题，因此实现部分不做太多解释
+Since the questions related to Mo's algorithm are all template questions, we will not explain too much about the implementation part.
 
-### 询问的排序
+### Sorting of the query
 
-首先我们知道莫队的是基于分块的算法，所以我们需要找到一种树上的分块方法来保证时间复杂度。
+First of all, we know that Mo's algorithm is based on the blocking algorithm, so we need to find a tree blocking method to ensure the time complexity.
 
-条件：
+Conditions:
 
-- 属于同一块的节点之间的距离不超过给定块的大小
-- 每个块中的节点不能太多也不能太少
-- 每个节点都要属于一个块
-- 编号相邻的块之间的距离不能太大
+- The distance between nodes of the same block does not exceed the size of the given block
+- There cannot be too many or too few nodes in each block
+- Each node must belong to a block
+- The distance between numbered adjacent blocks cannot be too large
 
-了解了这些条件后，我们看到这样一道题 [「SCOI2005」王室联邦](https://loj.ac/problem/2152) 。
+After understanding these conditions, we can try this problem ["SCOI2005" Royal Federation](https://loj.ac/problem/2152)(original link in Chinese).
 
-在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了。
+On the basis of this problem, we can solve the problem of blocking as long as we guarantee one last condition.
 
-!!! 思路
-    令 lim 为希望块的大小，首先，对于整个树 dfs，当子树的大小大于 lim 时，就将它们分在一块，容易想到：对于根，可能会剩下一些点，于是将这些点分在最后一个块里。
+!!! Method
+    Let lim be the size of the desired block. First, do the dfs for the entire tree. When the size of the subtree is greater than lim, divide them into one. It is easy to get that: for the root, there may be some nodes left, so we divide these nodes into the last block.
 
-做法：用栈维护当前节点作为父节点访问它的子节点，当从栈顶到父节点的距离大于希望块的大小时，弹出这部分元素分为一块，最后剩余的一块单独作为一块。
+Method: Use the stack to maintain the current node as the parent node to access its child nodes. When the distance from the top of the stack to the parent node is greater than the size of the desired block, pop the element into one block, and use the remaining block as a single block.
 
-最后的排序方法：若第一维时间戳大于第二维，交换它们，按第一维所属块为第一关键字，第二维时间戳为第二关键字排序。
+If the first dimension timestamp is greater than the second dimension, swap them, and sort by the block to which the first dimension belongs as the first key, and the second dimension timestamp as the second key.
 
-### 指针的移动
+### Movement of pointers
 
-容易想到，我们可以标记被计入答案的点，让指针直接向目标移动，同时取反路径上的点。
+It is easy to think that we can mark the points that are included in the answer. Let the pointer move directly to the target, and at the same time reverse the point on the path.
 
-但是，这样有一个问题，若指针一开始都在 x 上，显然 x 被标记，当两个指针向同一子节点移动（还有许多情况）时，x 应该不被标记，但实际情况是 x 被标记，因为两个指针分别标记了一次，抵消了。
+However, there is a problem. If the pointers are on x at the beginning, obviously x is marked. When the two pointers move to the same child node (there are many cases), x should not be marked. But the actual situation is that x is marked. Because the two pointers are marked once and offset.
 
-如何解决呢？
+How to solve this?
 
-有一个很显然的性质：这些点肯定是某些 LCA，因为 LCA 处才有可能被重复撤销导致撤销失败。
+There is an obvious property: these points must be certain LCAs. Because the LCA may be repeatedly revoked that leas to revocation fails.
 
-所以我们每次不标记 LCA，到需要询问答案时再将 LCA 标记，然后再撤销。
+So we do not mark the LCA every time, but only mark the LCA when we need to ask for the answer, and then revoke it.
 
 ```cpp
-//取反路径上除LCA以外的所有节点
+// reverse all nodes on the path except LCA
 void move(int x, int y) {
   if (dp[x] < dp[y]) swap(x, y);
   while (dp[x] > dp[y]) update(x), x = fa[x];
   while (x != y) update(x), update(y), x = fa[x], y = fa[y];
-  // x!=y保证LCA没被取反
+  // x!=y to ensure LCA is not reversed
 }
 ```
 
-对于求 LCA，我们可以用树剖，然后我们就可以把分块的步骤放到树剖的第一次 dfs 里面，时间戳也可以直接用第二次 dfs 的 dfs 序。
+For LCA, we can use a tree section, and then put the blocking step into the first dfs inside. And the timestamp can also directly use the dfs order of the second dfs.
 
 ```cpp
-int bl[100002], bls = 0;  // 属于的块，块的数量
-unsigned step;            // 块大小
+int bl[100002], bls = 0;  // block belonged, number of blocks
+unsigned step;            // size of block
 int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0};
-//父节点，深度，重儿子，大小
+// parent node, depth, heavy child, size
 stack<int> sta;
 void dfs1(int x) {
   sz[x] = 1;
@@ -273,27 +273,27 @@ void dfs1(int x) {
 }
 // main
 if (!sta.empty()) {
-  bls++;  // 这一行可写可不写
+  bls++;  // this line can be left out
   while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
 }
 ```
 
-### 时间复杂度
+### Time complexity
 
-重点到了，这里关系到块的大小取值。
+The main point here is that the time complexity is actually related to the value of block size.
 
-设块的大小为 $unit$ ：
+Let the block size be $unit$ :
 
-- 对于 x 指针，由于每个块中节点的距离在 $unit$ 左右，每个块中 x 指针移动 $unit^2$ 次（ $unit\times dis_max$ ），共计 $n\times unit$ （ $unit^2 \times (n\div unit)$ ）次；
-- 对于 y 指针，每个块中最多移动 $O(n)$ 次，共计 $n^2\div unit$ （ $n \times (n \div unit)$ ）次。
+- For pointer x, since the distance between the nodes in each block is around $unit$ , the x pointer in each block moves $unit^2$ times ( $unit\times dis_max$ ). So in total they move $n\times unit$ ( $unit^2 \times (n\div unit)$ ) times.
+- For pointer y, there are at most $O(n)$ moves in each block. So in total they move $n^2\div unit$ ( $n \times (n \div unit)$ ) times.
 
-加起来大概在根号处取得最小值（由于树上莫队块的大小不固定，所以不一定要严格按照）。
+Add up to get the minimum value at the root number (because the size of the block on the tree is not fixed, it is unnecessary to strictly follow the rule).
 
-### 例题「WC2013」糖果公园
+### Sample problem「WC2013」Candy park
 
-由于多了时间维，块的大小取到 $0.6n$ 的样子就差不多了。
+Due to the additional time dimension, the size of the block should be taken to almost the same as $0.6n$ .
 
-??? 参考代码
+??? Sample code
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
