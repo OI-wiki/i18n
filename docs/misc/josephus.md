@@ -1,18 +1,18 @@
-The Joseph problem has existed for a long time, and its solution is constantly improving, but there is still no extremely efficient algorithm (within log) to solve this problem.
+The Joseph problem has existed for a long time, and its solution is constantly improving, but there is still no extremely efficient algorithm (log-level time complexity) to solve this problem.
 
 ## Problem description
 
-> There are n people labeled as $0,1,\cdots, n-1$ standing in a counterclockwise circle. Starting from the $0$-th person, find the $k$-th person counterclockwise from the current person each time, and then let this person out. Who is the last one standing?
+> There are n people labeled as $0,1,\cdots, n-1$ standing in a counterclockwise circle. Starting from the person with index $0$, find the $k$-th person counterclockwise from the current person each time, and then let this person out. Who is the last one standing?
 
 This classic question was proposed by Josephus in the first century AD, although he only considered the case of $k=2$ . Now we can use many efficient algorithms to solve this problem.
 
-## Naive algorithm
+## Brute-force algorithm
 
-The most naive algorithm is to enumerate directly. The process uses a circular linked list to enumerate and delete, ad=bd repeat $n-1$ times to get the answer. The time complexity is $\Theta (n^2)$ .
+The most brute-force algorithm is to enumerate directly. The process uses a circular linked list to enumerate and delete, and the answer can be obtained after n-1 repetitions. The time complexity is $\Theta (n^2)$ .
 
 ## Simple optimization
 
-The process of finding the next person can be optimized with a segment tree. Specifically, create a segment tree of $0,1,\cdots, n-1$ , and then record the number of people remaining in the interval. Finding the location of the current person and the next $k$-th person can be done using binary searh on the segment tree.
+The process of finding the next person can be optimized with a segment tree. Specifically, create a segment tree of $0,1,\cdots, n-1$ , and then record the number of people remaining in each interval. Finding the location of the current person and the next $k$-th person can be done using binary searh on the segment tree.
 
 ## Linear algorithm
 
@@ -53,7 +53,7 @@ int josephus(int n, int k) {
 }
 ```
 
-It can be proved that the time complexity of this algorithm is $\Theta (k\log n)$ . We set the number of recursions in this process as $x$ , then the size of each problem will roughly become $\displaystyle n\left(1-\frac{1}{k}\right)$ , so we have 
+It can be proved that the time complexity of this algorithm is $\Theta (k\log n)$ . We assume the number of recursions in this process as $x$ , then the size of each problem will roughly become $\displaystyle n\left(1-\frac{1}{k}\right)$ , so we have 
 
 $$
 n\left(1-\frac{1}{k}\right)^x=1
@@ -65,7 +65,7 @@ $$
 x=-\frac{\ln n}{\ln\left(1-\frac{1}{k}\right)}
 $$
 
-Below we prove that the time complexity of the algorithm is $\Theta (k\log n)$ .
+Let’s turn to prove that the time complexity of the algorithm is $\Theta (k\log n)$ .
 
 Consider that $\displaystyle \lim _{k \rightarrow \infty} k \log \left(1-\frac{1}{k}\right)$ , we have
 
