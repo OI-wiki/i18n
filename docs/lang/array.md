@@ -1,31 +1,31 @@
-An array is a container for storing objects of the same type. The objects stored in the array cannot accessed through their location name. Instead, they shoould be accessed through the index location. The size of the array is fixed, and the length of the array cannot be changed at will.
+An array is a container for storing objects of the same type. The objects stored in the array cannot be accessed through their location name. Instead, they should be accessed through the indexes. The size of the array is fixed, and the length of the array cannot be changed at will.
 
 ## Array definition
 
-The definition of an array is in the form of `a[d]`, where `a` is the name of the array, and `d` is the number of elements in the array. While compiling, `d` should be known, that is, `d` should be a constant expression in integer form.
+The definition of an array is in the form of `a[d]`, where `a` is the name of the array, and `d` is the number of elements in the array. While compiling, `d` should be known, that is, `d` should be a fixed integer.
 
 ```cpp
 unsigned int d1 = 42;
 const int d2 = 42;
-int arr1[d1];  // error: d1 is not a constant expression
-int arr2[d2];  // Error: d1 is not a constant expression
+int arr1[d1];  // wrong: d1 is not a constant expression
+int arr2[d2];  // correct: arr2 is an array of length 42
 ```
 
 You cannot assign an array directly to another array:
 
 ```cpp
 int arr1[3];
-int arr2 = arr1;  // error
-arr2 = arr1;      // error
+int arr2 = arr1;  // wrong
+arr2 = arr1;      // wrong
 ```
 
-It is suggested to try to define larger arrays as global variables. Because local variables will be created in the stack area, and an array that is too large (larger than the size of the stack) will cause the stackoverflow, leading to RE. If the array is declared in the global scope, the array will be created in the static area.
+It is suggested to try to define larger arrays as global variables. Because local variables will be created in the stack area, and an array that is too large (larger than the size of the stack) will cause stack overflow, leading to RE. If the array is declared in the global scope, the array will be created in the static area.
 
 ## Access array elements
 
 The elements in the array can be accessed through the index operator `[]`. The index of the array (the value in square brackets) starts from 0. Taking an array of 10 elements as an example, its index is 0-9 instead of 1-10. But in OI, for ease of use, we usually expand the array a bit, and do not use the first element of the array. Instead, we access the array elements starting from index 1.
 
-Example 1: Read an integer $n$ from standard input, then read $n$ numbers and store it in the array. Among them, $n\leq 1000$ .
+Example 1: Read an integer $n$ from standard input, then read $n$ numbers and store them in the array. Among them, it's guaranteed that $n\leq 1000$ .
 
 ```cpp
 #include <iostream>
@@ -42,7 +42,7 @@ int main() {
 }
 ```
 
-Example 2: (Continued example 1) Sum the elements in the array `arr` and output the sum. It must satisfy that the sum of all elements in the array is less than or equal to $2^{31}-1$
+Example 2: (Continued example 1) Sum the elements in the array `arr` and output the sum. it's guaranteed that the sum of all elements in the array is less than or equal to $2^{31}-1$ .
 
 ```cpp
 #include <iostream>
@@ -69,7 +69,7 @@ int main() {
 
 ### Out-of-bound access to index
 
-The index $\mathit{idx}$ of the array should satisfy $0\leq \mathit{idx}< \mathit{size}$ . If the index goes out of range, unpredictable result will occur, such as segmentation fault, or modifying variables other than expected ones.
+The index $\mathit{idx}$ of the array should satisfy $0\leq \mathit{idx}< \mathit{size}$ . If the index goes out of range, there may be unpredictable consequences, including causing segmentation fault, and modifying variables other than expected ones.
 
 ## Multidimensional Arrays
 
@@ -94,4 +94,4 @@ for (int i = 1; i <= n; ++i)
   for (int j = 1; j <= n; ++j) cin >> pic[i][j];
 ```
 
-Similarly, you can define three-dimensional, four-dimensional, or even higher-dimensional arrays.
+Similarly, you can define three-dimensional, four-dimensional, or even arrays of higher dimensions. 
