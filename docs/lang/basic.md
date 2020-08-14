@@ -13,24 +13,24 @@ int main() {
 ```
 
 ??? note "What is include？"
-     `#include` is actually a preprocessing command, which means to "put" a file at this statement. The file being "put" is called a header file. In other words, when compiling, the compiler will "copy" the content in the header file `iostream` and "paste" it to the statement `#include <iostream>`. In this way, you can use the `std::cin`, `std::cout`, `std::endl` and other objects provided in `iostream`.
+     `#include` is actually a preprocessor directive, which means to "put" a file at this statement. The file being "put" is called a header file. In other words, when compiling, the compiler will "copy" the content in the header file `iostream` and "paste" it to the statement `#include <iostream>`. In this way, you can use the `std::cin`, `std::cout`, `std::endl` and other objects provided by `iostream`.
 
     If you have studied the C language, you will find that the header files in C++ that we are currently exposed to generally do not have the suffix `.h`, and those header files in the C language `xx.h` have become `cxx`. For example, `stdio.h` becomes `cstdio`. To maintain compatibility with C, C++ directly uses the header files in the C language. In order to distinguish between C++ header files and C header files, the `c` prefix is used.
       
-    Generally speaking, you should determine which header files you want to `#include` according to the C++ program you need to write. But if you `#include` the extra header files, it will only increase the compilation time and will hardly affect the runtime. At present, we have only come into contact with the two header files `iostream` and `cstdio`. If you only need `scanf` and `printf`, you cannot use `#include <iostream>`.
+    Generally speaking, you should determine which header files you want to `#include` according to the C++ program you need to write. But if you `#include` the extra header files, it will only increase the compilation time and will hardly affect the runtime. At present, we have only come into contact with the two header files `iostream` and `cstdio`. If you only need `scanf` and `printf`, then it is not needed to use `#include <iostream>`.
 
     Can I `#include` the header files written by myself? Yes.
 
     You can write a header file yourself, such as: `myheader.h`. Then, put it in the same directory as your code, and then `#include "myheader.h"`. It should be noted that the custom header files need to use quotation marks instead of brackets. Of course, you can also use the compilation command `-I <header_file_path>` to tell the compiler where to find the header file, so you don't need to put the header file in the same directory as the code.
 
 ??? note "What is `main()` ?"
-    It can be understood that the code in `main()` will be executed when the program is running.
+    It can be understood that the code in `main()` will be executed the moment program starts running.
 
-    In fact, the `main` function is called by the system or external programs. For example, you call your program on the command line, that is, you call the `main` function in the program (before completing the construction of the global [variable](./var.md)).
+    In fact, the `main` function is called by the system or external programs. For example, your program is called using the command line, which actually means the `main` function in the program is being called (the construction of the global [variable](./var.md) is finished before this).
 
     The last `return 0;` means the program has run successfully. By default, when the program ends, it returns 0 to indicate that everything is normal, otherwise the return value indicates an error code. To whom is this value returned? In fact, it is the system or external program that calls the program you write, and it will receive this return value when your program ends. If you don't write the `return` statement, the program ends normally and the default return value is also 0.
 
-    In C or C++, the return value that does not equal to 0 will cause a runtime error (RE).
+    In C or C++, a nonzero return value will cause a runtime error (RE).
 
 ## Comment
 
@@ -38,13 +38,13 @@ There are two ways to write comments in C++ code:
 
 1.  Inline comment
 
-    Start with `//`, all after which are comments.
+    Start with `//`. All content within the same line after this notation are comments.
 
 2.  Block comment
 
-    Start with `/*` and end with `*/`. The content in the middle is all comments, which can be expanded.
+    Start with `/*` and end with `*/`. All content between them are comments, and can cross lines.
 
-The comment has no effect on the running of the program, it can be used to explain the meaning of the program, and it can also prevent a certain piece of code from being executed (but it still remains in the source file).
+The comment has no effect on the running of the program. It can be used to explain the meaning of the program, and can also prevent a certain piece of code from being executed (but it still remains in the source file).
 
 In project development, comments can be convenient for future maintenance and others to read.
 
@@ -65,8 +65,8 @@ int main() {
 }
 ```
 
-???+note "What is variable?"
-    You can refer to the [Variable](./var.md).
+???+note "What are variables?"
+    You can refer to the [variable page](./var.md).
 
 ???+note "What is `std`?" 
     std is the **namespace** used by the C++ standard template library. The namespace is used to avoid duplicate names.
