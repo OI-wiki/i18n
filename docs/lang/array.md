@@ -42,7 +42,7 @@ int main() {
 }
 ```
 
-Example 2: (Continued example 1) Sum the elements in the array `arr` and output the sum. it's guaranteed that the sum of all elements in the array is less than or equal to $2^{31}-1$ .
+Example 2: (Continued example 1) Sum the elements in the array `arr` and output the sum. It's guaranteed that the sum of all elements in the array is less than or equal to $2^{31}-1$ .
 
 ```cpp
 #include <iostream>
