@@ -93,10 +93,10 @@ Similarly:
 
 1. `%s` represents a string.
 2. `%c` represents a character.
-3. `%lf` means double-precision floating point number (`double`).
-4. `%lld` means long integer (`long long` ). Depending on the system, it may also be `%I64d`.
-5. `%u` means unsigned integer (`unsigned int` ).
-6. `%llu` means unsigned long integer (`unsigned long long` ), and may also be `%I64u`.
+3. `%lf` represents double-precision floating point number (`double`).
+4. `%lld` represents long integer (`long long` ). Depending on the system, it may also be `%I64d`.
+5. `%u` represents unsigned integer (`unsigned int` ).
+6. `%llu` represents unsigned long integer (`unsigned long long` ), and may also be `%I64u`.
 
 In addition to type identifiers, there are also some ways to control the format, though many are not commonly used. We have selected two popular ones listed as follows:
 
@@ -106,15 +106,15 @@ In addition to type identifiers, there are also some ways to control the format,
 The corresponding places of these two operators can be filled with other numbers. For example, `%.3lf` means to keep three decimal places.
 
 ??? note "What are “Double precision floating point“ and “Long integer”?"
-    These indicate the type of variable. Same as above, details will be explained in [variable](./var.md).
+    These are the types of variables. Same as above, details will be explained in [variable](./var.md).
 
 ??? note "Why is there a `&` operator in `scanf`?"
-    Here, `&` is actually the address operator, which returns the address of the variable in memory. The parameter received by scanf is the address of the variable. The specifics is fully explained in [pointer](./pointer.md), so you just need to note it down for now.
+    Here, `&` is actually the address operator, which returns the address of the variable in memory. The parameter received by scanf is the address of the variable. The specifics is fully explained in [pointer](./pointer.md), so you just need to remember it for now.
 
 ??? note "What is `\n`?" 
      It is an **escape character**, which means line break.
 
-    Escape characters are used to represent some characters that cannot be entered directly, such as line breaks due to the inability to wrap in the string literal, quotation marks due to special meaning, inverses due to escape characters, and Slash.
+    Escape characters are used to represent some characters that cannot be entered directly, such as line breaks due to the inability to wrap in the string literal, quotation marks due to special meaning, inverses due to escape characters, and slashes.
 
     Commonly used escape characters are:
 
@@ -124,24 +124,24 @@ The corresponding places of these two operators can be filled with other numbers
 
     3. `\"` represents `"`.
 
-    4. `\0` represents a null character, used to indicate the end of a C style string.
+    4. `\0` represents a null character, used to indicate the end of a C-style string.
 
-    5. `\r` means carriage return. The newline character in Linux is `\n`, and the newline character in Windows is `\r\n`. In OI, if the output needs to change line, just use `\n`. But when reading in, if you use character-by-character reading, it may cause some problems due to line breaks. This requires extra attention. For example, `gets` puts `\n` as the end of the string. If the newline character is `\r\n`, `\r` will stay at the end of the string.
+    5. `\r` means carriage return. The newline character in Linux is `\n`, and the newline character in Windows is `\r\n`. In OI, if the output needs to change line, just use `\n`. But when reading in, if you use character-by-character reading, it may cause some problems due to line breaks. This requires extra attention. For example, `gets` treats `\n` as the end of the string. If the newline character is `\r\n`, `\r` will stay at the end of the string.
 
-    6. In particular, `%%` means `%` and can only be used in `printf` or `scanf`. In other words, just use `%`.
+    6. In particular, `%%` means `%` and can only be used in `printf` or `scanf`. In other cases, just use `%`.
 
-    ??? note "What is literal quantity?"
-        "Literal quantity" is a program segment that is directly used as a value in the code. For example, `3` is an `int` literal, and `'c'` is a `char` literal. The `"hello world"` in the program we wrote above is also a string literal.
+    ??? note "What are literals?"
+        "Literal" is a program segment that is directly used as a value in the code. For example, `3` is an `int` literal, and `'c'` is a `char` literal. The `"hello world"` in the program we wrote above is also a string literal.
 
-        Unexplained literals that appear for no reason are also called "magic numbers". If the code needs to be read, this is a very unrecommended behavior.
+        Unexplained literals that appear for no reason are also called "magic numbers". If the code needs to be read, this is highly recommended not to do this.
 
 ## Extended content
 
 ### White space in C++
 
-In C++, all whitespace characters (spaces, tabs, newlines), multiple or single, are considered the same. (Of course, the quotation marks are not counted as part of the string.)
+In C++, all whitespace characters (spaces, tabs, newlines), either multiple or single, are treated equally. (Of course, those within the quotation marks are not counted as part of the string.)
 
-Therefore, you can use any coding style freely (except inline comments, string literals and preprocessing commands must be on a single line), for example:
+Therefore, you can use any coding style freely (except inline comments, string literals and preprocessor commands must be on a single line), for example:
 
 ```cpp
 /* clang-format off */
@@ -189,8 +189,8 @@ int main()
 ```cpp
 #include <iostream>
 #define n 233
-// n is not a variable, but the compiler will replace all n text in the code with 233, as part of the identifier
-// n will not be replaced, such as fn will not be replaced with f233. similarly, the string will not be replaced
+// n is not a variable, but the compiler will replace all the n in code with 233. However, as a part of the identifier
+// n will not be replaced. For example, fn will not be replaced with f233. Similarly, the string will not be replaced
 
 int main() {
   std::cout << n;  // output 233
@@ -198,7 +198,7 @@ int main() {
 }
 ```
 
-??? note "What is an identifier?"
+??? note "What are identifiers?"
     An identifier is a set of characters that can be used as a variable name. For example, `abcd` and `abc1` are both legal identifiers, but neither `1a` nor `c+b` are legal identifiers.
 
     Identifiers start with English letters and underscores, and only English letters, underscores and numbers are allowed in the middle. It is worth noting that keywords (such as `int`, `for`, `if`) cannot be used as identifiers.
