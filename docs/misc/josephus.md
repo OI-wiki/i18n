@@ -22,7 +22,7 @@ $$
 J_{n,k}=(J_{n-1,k}+k)\bmod n
 $$
 
-This is also easy to derive. We will see that after k-1-th person, which is selected by counting $k$ people from index $0$. After calculating the answer selected among the $n-1$ individuals, add a relative displacement $k$ to get the real answer. The time complexity of this algorithm is obviously $\Theta (n)$ .
+This is also easy to derive. We will see that after making $k-1$-th person, which is selected by counting $k$ people from index $0$, out of game, $n-1$ people left. After calculating the answer selected among the $n-1$ individuals, add a relative displacement $k$ to get the real answer. The time complexity of this algorithm is obviously $\Theta (n)$ .
 
 ```cpp
 int josephus(int n, int k) {
