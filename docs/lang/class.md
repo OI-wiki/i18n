@@ -1,13 +1,13 @@
 author: Ir1d, cjsoft, Lans1ot
-类（class）是结构体的拓展，不仅能够拥有成员元素，还拥有成员函数。
+A class is an extension of the structure. It can not only have member elements, but also member functions.
 
-在面向对象编程（OOP）中，对象就是类的实例，也就是变量。
+In object-oriented programming (OOP), objects are instances of classes, that is, variables.
 
-C++ 中 `struct` 关键字定义的也是类，上文中的 **结构体** 的定义来自 C。因为某些历史原因，C++ 保留并拓展了 `struct` 。
+The `struct` keyword in C++ also defines classes. The definition of **structure** above comes from C. For some historical reasons, C++ stays and expands `struct`.
 
-## 定义类
+## Class definition 
 
-类使用关键字 `class` 或者 `struct` 定义，下文以 `class` 举例。
+Classes are defined using keywords `class` or `struct`. The following example uses `class`.
 
 ```cpp
 class ClassName {
@@ -26,46 +26,46 @@ Object b, B[array_length];
 Object *c;
 ```
 
-与使用 `struct` 大同小异。该例定义了一个名为 `Object` 的类。该类拥有四个成员元素，分别为 `weight,value` ；并在 `}` 后定义了一个数组 `B` 。
+Similar to using `struct`. This example defines a class named `Object`. This class has four member elements, namely `weight, value`; and an array `B` is defined after `}`.
 
-定义类的指针形同 [ `struct` ](./struct.md) 。
+The pointer that defines the class is the same as [`struct` ](./struct.md).
 
-### 访问说明符
+### Access specifiers
 
-不同于 [ `struct` ](./struct.md) 中的举例，本例中出现了 `public` ，这属于访问说明符。
+Different from the example in [`struct`](./struct.md), `public` in this example is an access specifier.
 
--  `public` ：该访问说明符之后的各个成员都可以被公开访问，简单来说就是无论 **类内** 还是 **类外** 都可以访问。
--  `protected` ：该访问说明符之后的各个成员可以被 **类内** 、派生类或者友元的成员访问，但类外 **不能访问** 。
--  `private` ：该访问说明符之后的各个成员 **只能** 被 **类内** 成员或者友元的成员访问， **不能** 被从类外或者派生类中访问。
+-  `public`: All members after the access specifier can be publicly accessed, which means both **in-class** and **out-of-class** can be accessed.
+-  `protected`: Each member after the access specifier can be accessed by members **inside classes**, derived classes or friend, but **cannot be accessed outside of the class**.
+-  `private`: The members after the access specifier can **only** be accessed by members of **inside classes** or friend, and cannot be accessed from outside or derived classes.
 
-对于 `struct` ，它的所有成员都是默认 `public` 。对于 `class` ，它的所有成员都是默认 `private` 。
+For `struct`, all its members are `public` by default. For `class`, all its members are `private` by default.
 
-*关于 "友元" 和 "派生类"，可以参考下方折叠框，或者查询网络资料进行详细了解。*
+*For "friend" and "derived classes", you can refer to the folding box below, or search for more details online.*
 
-*对于算法竞赛来说，友元和派生类并不是必须要掌握的知识点。*
+*For algorithm competitions, friend and derived classes are not essential knowledge to master.*
 
-??? note "关于友元以及派生类的基本概念"
+??? note "Basic concepts about friend and derived classes"
 
-    友元（`friend`）: 使用`friend`关键字修饰某个函数或者类。可以使得在**被修饰者**在不成为成员函数或者成员类的情况下，访问该类的私有（`private`）或者受保护（`protected`）成员。简单来说就是只要带有这个类的`friend`标记，就可以访问私有或受保护的成员元素。
+    `friend`: use the `friend` keyword to modify a function or class. It is possible to make the **modified element** access the private (`private`) or protected (`protected`) members of the class without becoming a member function or member class. Simply put, as long as you have the `friend` tag of the class, you can access private or protected member elements.
 
-    派生类（`derived class`）: C++允许使用一个类作为**基类**，并通过基类**派生**出**派生类**。其中派生类（根据特定规则）继承基类中的成员变量和成员函数。可以提高代码的复用率。
+    `derived class`: C++ allows a class to be used as a **base class**, and a **derived class** can be derived from the base class. The derived class (according to specific rules) inherits the member variables and member functions from the base class. It can be used to improve the code reuse rate.
 
-    派生类似" is "的关系。如猫（派生类）" is " 哺乳动物（基类）。
+    Derive classes are similar to the "is" relationship. For example, cat (derived class) "is" mammal (base class).
 
-     对于上面`private`和`protected`的区别，可以看做派生类可以访问基类的`protected`的元素（`public`同），但不能访问`private`元素。
+     The difference between `private` and `protected` above can be seen as the derived class can access the elements of the base class `protected` (the same as for `public`), but not the `private` elements.
 
-## 访问与修改成员元素的值
+## Access and modify the value of member elements
 
-方法形同 [ `struct` ](./struct.md) 
+The method is the same as [`struct`](./struct.md).
 
-- 对于变量，使用 `.` 符号。
-- 对于指针，使用 `->` 符号。
+- For variables, use the `.` symbol.
+- For pointers, use the `->` symbol.
 
-## 成员函数
+## Member function
 
-成员函数，顾名思义。就是类中所包含的函数。
+Member function, as the name implies, is the function contained in the class.
 
-??? note "常见成员函数举例"
+??? note "Examples of common member functions"
     ```cpp
     vector.push_back();
     set.insert();
@@ -92,26 +92,26 @@ class Object {
 void Object::change_w(int _weight) { weight = _weight; }
 ```
 
-该类有一个打印 `Object` 成员元素的函数，以及更改成员元素 `weight` 的函数。
+This class has a function to print the member element of `Object` and a function to change the member element `weight`.
 
-和函数类似，对于成员函数，也可以先声明，在定义，如第十四行（声明处）以及十七行后（定义处）。
+Similar to functions, member functions can also be declared first, in the definition, such as line 14 (declaration) and after line 17 (definition).
 
-如果想要调用 `var` 的 `print` 成员函数，可以使用 `var.print()` 进行调用。
+If you want to call the `print` member function of `var`, you can use `var.print()`.
 
-### 重载运算符
+### Overloading operators
 
-??? note "何为重载"
-    C++ 允许编写者为名称相同的函数或者运算符指定不同的定义。这称为 **重载** （overload）。
+??? note "What is overloading"
+    C++ allows writers to specify different definitions for functions or operators with the same name. This is called **overload**.
 
-    如果同名函数的参数种类、数量、返回类型不相同其中一者或多者两两不相同，则这些同名函数被看做是不同的。
+    If one or more of the parameter types, numbers, and return types of functions with the same name are not the same, then these functions are considered different.
 
-    如果在调用时不会出现混淆（指调用某些同名函数时，无法根据所填参数种类和数量唯一地判断出被调用函数。常发生在具有默认参数的函数中），则编译器会根据调用时所填参数判断应调用函数。
+    If there is no confusion when loading (referring to when calling some functions with the same name; the called function cannot be uniquely determined based on the type and number of parameters filled in. It often occurs in functions with default parameters), the compiler will use parameters filled in to judge which function should be called.
 
-    而上述过程被称作重载解析。
+    The above process is called overload resolution.
 
-重载运算符，可以部分程度上代替函数，简化代码。
+Overloading operators can partially replace functions and simplify the code.
 
-下面给出重载运算符的例子。
+The following gives examples of overloading operators.
 
 ```cpp
 class Vector {
@@ -131,24 +131,24 @@ Vector Vector::operator+(const Vector& other) {
 Vector Vector::operator-(const Vector& other) {
   return Vector(x - other.x, y - other.y);
 }
-//关于4,5行表示为x,y赋值，具体实现参见后文。
+// 4 and 5 lines means assigning values for x and y. Please refer to the following paragraph for specific implementation.
 ```
 
-该例定义了一个向量类，并重载了 `* + -` 运算符，并分别代表向量内积，向量加，向量减。
+This example defines a vector class and overloads the `* + -` operator, which respectively represent vector inner product, vector addition, and vector subtraction.
 
-重载运算符的模板大致可分为下面几部分。
+The template of overloading operators can be roughly divided into the following parts.
 
 ```text
-/*类定义内重载*/ 返回类型 operator符号(参数){...}
+/*Overloading in class definition*/ return types symbol(parameter){...}
 
-/*类定义内声明，在外部定义*/ 返回类型 类名称::operator符号(参数){...}
+/*declared inside the class definition, defined outside*/ Return type Class name::operator symbol(parameter){...}
 ```
 
-对于自定义的类，如果重载了某些运算符（一般来说只需要重载 `<` 这个比较运算符），便可以使用相应的 STL 容器或算法，如 [ `sort` ](../basic/stl-sort.md) 。
+For custom classes, if some operators are overloaded (generally only the comparison operator `<` needs to be overloaded), the corresponding STL container or algorithm can be used, such as [`sort`](../basic/stl-sort.md).
 
-*如要了解更多，参见“参考资料”第四条。*
+*For more information, see article 4 of "References" section.*
 
-??? note " 可以被重载的运算符"
+??? note "Operators that can be overloaded"
 
       ```cpp
          =
@@ -165,9 +165,9 @@ Vector Vector::operator-(const Vector& other) {
          ->*  ->  new  delete  new[]  delete[]
       ```
 
-### 在实例化变量时设定初始值
+### Set initial values when instantiating variables
 
-为完成这种操作，需要定义 **默认构造函数** (Default constructor)。
+To accomplish this kind of operation, you need to define the **Default constructor**.
 
 ```cpp
 class ClassName {
@@ -186,33 +186,33 @@ class Object {
 };
 ```
 
-该例定义了 `Object` 的默认构造函数，该函数能够在我们实例化 `Object` 类型变量时，将所有的成员元素初始化为 `0` 。
+This example defines the default constructor of `Object`, which can initialize all member elements to `0` when we instantiate a variable of type `Object`.
 
-若无显式的构造函数，则编译器认为该类有隐式的默认构造函数。换言之，若无定义任何构造函数，则编译器会自动生成一个默认构造函数，并会根据成员元素的类型进行初始化（与定义 内置类型 变量相同）。
+If there is no explicit constructor, the compiler considers the class to have an implicit default constructor. In other words, if no constructor is defined, the compiler will automatically generate a default constructor and initialize it according to the type of the member element (the same as defining the built-in type variable).
 
-在这种情况下，成员元素都是未初始化的，访问未初始化的变量的结果是未定义的（也就是说并不知道会返回和值）。
+In this case, the member elements are uninitialized, and the result of accessing the uninitialized variable is undefined (that is, it is not known to return the sum value).
 
-如果需要自定义初始化的值，可以再定义（或重载）构造函数。
+If you need to customize the initialized value, you can redefine (or overload) the constructor.
 
-??? note "关于定义(或重载)构造函数"
-    一般来说，默认构造函数是不带参数的，这区别于构造函数。构造函数和默认构造函数的定义大同小异，只是参数数量上的不同。
+??? note "About defining (or overloading) the constructor"
+    Generally speaking, the default constructor takes no parameters, which is different from the constructor. The definition of the constructor and the default constructor is similar, but the number of parameters is different.
 
-    构造函数可以被重载（当然首次被叫做定义）。需要注意的是，如果已经定义了构造函数，且构造函数的参数列表不为空，那么编译器便不会再生成无参数的默认构造函数。这会可能会使试图以默认方法构造变量的行为编译失败（指不填入初始化参数）。
+    The constructor can be overloaded (of course the first time it is called definition). It should be noted that if a constructor has been defined and the parameter list of the constructor is not empty, the compiler will no longer generate a default constructor without parameters. This may cause the behavior of trying to construct variables in the default method to fail to compile (referring to not filling in the initialization parameters).
 
-使用 C++11 或以上时，可以使用 `{}` 进行变量的初始化。
+When using C++11 or above, you can use `{}` to initialize variables.
 
-??? note "关于`{}`"
-    使用 `{}` 进行初始化，会用到 std::initializer_list 这一个轻量代理对象进行初始化。
+??? note "About `{}`"
+    Use `{}` for initialization, which requires using std::initializer_list, a lightweight proxy object for initialization.
 
-    初始化步骤大概如下
+    The initialization steps are roughly as follows:
 
-    1. 尝试寻找参数中有`std::initializer_list`的默认构造函数，如果有则调用（调用完后不再进行下面的查找，下同）。
+    1. Try to find the default constructor with `std::initializer_list` in the parameters, and call it if there is one (after the call, the following search will not be performed, the same below).
 
-    2. 尝试将`{}`中的元素填入其他构造参数，如果能将参数按照顺序填满（默认参数也算在内），则调用该默认构造函数。
+    2. Try to fill the elements in `{}` into other construction parameters. If the parameters can be filled in order (default parameters are also included), call the default constructor.
 
-    3. 若无`private`成员元素，则尝试在**类外**按照元素定义顺序或者下标顺序依次赋值。
+    3. If there is no `private` member element, try to assign values in the order of element definition or index order outside the **class**.
 
-    _上述过程只是完整过程的简化版本，详细内容参见"参考资料九"_
+    _The above process is only a simplified version, see "reference 9" for details_
 
 ```cpp
 class Object {
@@ -243,8 +243,8 @@ Object B(1, 2);  // ok
 Object C{1, 2};  // ok,(C++11)
 ```
 
-??? note "关于隐式类型转换"
-    有时候会写出如下的代码
+??? note "About implicit type conversion"
+    Sometimes we might write the following code:
 
     ```cpp
     class Node {
@@ -255,11 +255,11 @@ Object C{1, 2};  // ok,(C++11)
     Node a = 1;
     ```
 
-    看上去十分不符合逻辑，一个 `int` 类型不可能转化为 `node` 类型。但是编译器不会进行 `error` 提示。
+    This does not seem very logical. An int type cannot be converted to a node type. But the compiler will not give an error prompt.
 
-    原因是在进行赋值时，首先会将 `1` 作为参数调用 `node::node(int)` ，然后调用默认的复制函数进行赋值。
+    The reason is that when assigning, first call `node::node(int)` with `1` as a parameter, and then call the default copy function for assignment.
 
-    但大多数情况下，编写者会希望编译器进行报错。这时便可以在构造函数前追加 `explicit` 关键字。这会告诉编译器必须显式进行调用。
+    But in most cases, the writer will want the compiler to report an error. At this time, you can add the `explicit` keyword before the constructor. This would tell the compiler that it must be called explicitly.
 
     ```cpp
     class Node {
@@ -269,21 +269,21 @@ Object C{1, 2};  // ok,(C++11)
     };
     ```
 
-    也就是说 `node a=1` 将会报错，但 `node a=node(1)` 不会。因为后者显式调用了构造函数。当然大多数人不会写出后者的代码，但此例足以说明 explicit 的作用。
+    In other words, `node a=1` will report an error, but `node a=node(1)` will not. Because the latter explicitly calls the constructor. Of course most people will not write the latter one. But this example is enough to illustrate the role of explicit.
 
-    _不过在算法竞赛中，为了避免此类情况常用的是"加强对代码的规范程度"，从源头上避免_
+    _However, in OIs, in order to avoid such situations, the commonly used technique is to "enhance the degree of standardization of the code" and avoid it from the source._
 
-### 销毁
+### Destroy
 
-这是不可避免的问题。每一个变量都将在作用范围结束走向销毁。
+This is an inevitable problem. Each variable will be destroyed at the end of the scope.
 
-但对于已经指向了动态申请的内存的指针来说，该指针在销毁时不会自动释放所指向的内存，需要手动释放动态内存。
+But for a pointer that has already pointed to dynamically allocated memory, the pointer will not automatically release the pointed memory when it is destroyed, and dynamic memory needs to be manually released.
 
-如果结构体的成员元素包含指针，同样会遇到这种问题。需要用到析构函数来手动释放动态内存。
+If the member elements of the structure contain pointers, you will also encounter this problem. It is necessary to use the destructor to manually release dynamic memory.
 
- **析构** 函数（Destructor）将会在该变量被销毁时被调用。重载的方法形同构造函数，但需要在前加 `~` 
+ **destruct** function(Destructor) will be called when the variable is destroyed. The overloaded method is the same as the constructor, but you need to add `~` before it. 
 
-*默认定义的析构函数通常对于算法竞赛已经足够使用，通常我们只有在成员元素包含指针时才会重载析构函数。*
+*The destructor defined by default is usually enough for OIs. Usually we only overload the destructor when the member element contains a pointer.*
 
 ```cpp
 class Object {
@@ -299,33 +299,33 @@ class Object {
 };
 ```
 
-### 为类变量赋值
+### Assign values to class variables
 
-默认情况下，赋值时会按照对应成员元素赋值的规则进行。也可以使用 `类名称()` 或 `类名称{}` 作为临时变量来进行赋值。
+By default, the assignment will follow the rules for assigning the corresponding member elements. You can also use `class name()` or `class name{}` as temporary variables for assignment.
 
-前者只是调用了复制构造函数（copy constructor)，而后者在调用复制构造函数前会调用默认构造函数。
+The former just calls the copy constructor, and the latter calls the default constructor before calling the copy constructor.
 
-另外默认情况下，进行的赋值都是对应元素间进行 **浅拷贝** ，如果成员元素中有指针，则在赋值完成后，两个变量的成员指针具有相同的地址。
+In addition, the assignments are performed by **shallow copy** between corresponding elements by default. If there is a pointer in the member element, the member pointers of the two variables have the same address after the assignment is completed.
 
 ```cpp
-// A,tmp1,tmp2,tmp3类型为Object
+// type of A,tmp1,tmp2,tmp3 is Object
 tmp1 = A;
 tmp2 = Object(...);
 tmp3 = {...};
 ```
 
-如需解决指针问题或更多操作，需要重载相应的构造函数。
+For solving the pointer problem or more operations, you need to overload the corresponding constructor.
 
-*更多 构造函数（constructor）内容，参见“参考资料”第六条。*
+*For more information on the constructor, see article 6 of "References".*
 
-## 参考资料
+## References
 
-1.  [cppreference class](https://zh.cppreference.com/w/cpp/language/class) 
-2.  [cppreference access](https://zh.cppreference.com/w/cpp/language/access) 
-3.  [cppreference default_constructor](https://zh.cppreference.com/w/cpp/language/default_constructor) 
-4.  [cppreference operator](https://zh.cppreference.com/w/cpp/language/operators) 
+1.  [cppreference class](https://en.cppreference.com/w/cpp/language/class) 
+2.  [cppreference access](https://en.cppreference.com/w/cpp/language/access) 
+3.  [cppreference default_constructor](https://en.cppreference.com/w/cpp/language/default_constructor) 
+4.  [cppreference operator](https://en.cppreference.com/w/cpp/language/operators) 
 5.  [cplusplus Data structures](http://www.cplusplus.com/doc/tutorial/structures/) 
 6.  [cplusplus Special members](http://www.cplusplus.com/doc/tutorial/classes2/) 
 7.  [C++11 FAQ](http://www.stroustrup.com/C++11FAQ.html) 
 8.  [cppreference Friendship and inheritance](http://www.cplusplus.com/doc/tutorial/inheritance/) 
-9.  [cppreference value initialization](https://zh.cppreference.com/w/cpp/language/value_initialization) 
+9.  [cppreference value initialization](https://en.cppreference.com/w/cpp/language/value_initialization) 
