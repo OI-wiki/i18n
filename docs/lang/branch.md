@@ -4,7 +4,7 @@ By default, a program is executed following the order of code. Sometimes when ce
 
 ### Basic if statement
 
-The following is the structure of a basic if statement.
+The following code shows the structure of a basic if statement.
 
 ```cpp
 if (condition) {
@@ -26,7 +26,7 @@ if (condition) {
 }
 ```
 
-The if...else statement is similar to the if statement, and the else does not need to write more conditions. When the condition of the if statement is satisfied, the statement in the if will be executed. And when the condition of the if statement is not satisfied, the statement in the else will be executed. Similarly, when the main part has only one statement, the curly braces can be omitted.
+The if...else statement is similar to the if statement, and the else does not need to write more conditions. When the condition of the if statement is satisfied, the statement in the if will be executed. Otherwise, the statement in the else will be executed. Similarly, the curly braces can be omitted when the main part has only one statement.
 
 ### else if statement
 
@@ -70,7 +70,7 @@ switch (condition) {
 }
 ```
 
-When the switch statement is executed, the value is selected first, and then the corresponding label is selected according to the value of the choice sentence. And the execution starts from the label. Among them, the choice sentence must be an integer type expression, and the label must be an integer type constant. E.g:
+When the switch statement is executed, the value is selected first, and then the corresponding label is selected according to the value of the choice sentence. And the execution starts from that label. Among them, the choice expression must be an integer type expression, and the label must be an integer type constant. E.g:
 
 ```cpp
 int i = 1;  // the data type of i here is an integer, which satisfies the requirements of an expression of integer type
@@ -107,7 +107,7 @@ switch (i) {
 }
 ```
 
-If you don't want the following branch statement to be executed, the break is required. For specific examples, please refer to the following code.
+If you don't want the following branch statements to be executed, the break is required. For specific examples, please refer to the following code.
 
 ```cpp
 char i = 'B';
@@ -125,9 +125,10 @@ switch (i) {
 }
 ```
 
-The output of above code is WIKI, because the following statements will not continue to be executed since the break statement exists. The default statement does not need a break, because there is no statement below.
+The output of above code is WIKI, because the following statements will not continue to be executed for the 
+ existence of break statement. The default statement does not need a break, because there is no statement below.
 
-It is optional to add curly braces in the case clause of switch. But it should be noted that if you need to define a variable in the switch statement, the curly braces must be added. E.g:
+It is optional to add curly braces in the case clause of switch. But note that the curly braces must be added if you need to define a variable in the switch statement. E.g:
 
 ```cpp
 char i = 'B';
@@ -151,6 +152,6 @@ switch (i) {
 ```
 
 ??? note "How to understand switch"
-    In the above article, a lot of terms such as "case clause" and "case sub-clause" are used. In fact, in the underlying implementation, switch is equivalent to a set of jump statements. For this reason, clever technique like Duff's Device exists. Those who are interested to know more are welcome to learn by themselves.
+    In the article above, a lot of terms such as "case clause" and "case sub-clause" are used. In fact, in the underlying implementation, switch is equivalent to a set of jump statements. For this reason, clever techniques like Duff's Device exists. You can dig deeper about that if you are interested.
 
     Another way to understand switch is from its logical meaning. In this way, case represents a set of clauses, and switch selects a case clause for execution based on the value of the choice sentence. And case must add break and curly braces except for a few exceptions. 
