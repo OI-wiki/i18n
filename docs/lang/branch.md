@@ -1,4 +1,4 @@
-By default, a program is executed following the order of code. Sometimes when certain statements need to be selectively executed, we can use the the branch function to achieve such flow control. Choosing the appropriate branch statement can improve the efficiency of the program.
+By default, a program is executed following the order of code. Sometimes when certain statements need to be selectively executed, we can use the the branch feature to achieve such flow control. Choosing the appropriate branch statement can improve the efficiency of the program.
 
 ## if statement
 
@@ -12,7 +12,7 @@ if (condition) {
 }
 ```
 
-The if statement calculates the condition to check: if the result is true (not 0), the statement is executed, otherwise it is not executed.
+The if statement calculates the condition to check: if the result is true (nonzero), the statement is executed, otherwise it is not executed.
 
 If there is only a single statement in the body, the curly braces can be omitted.
 
@@ -82,8 +82,8 @@ switch (i) {
 
 ```cpp
 char i = 'A';
-// the data type of i here is character, but char
-// is also a type of integer and satisfies the requirements of an expression of integer type
+// the data type of i here is character, but it is a kind of integer in
+// nature and satisfies the requirement of an integer-typed expression
 switch (i) {
   case 'A':
     cout << "OI WIKI" << endl;
