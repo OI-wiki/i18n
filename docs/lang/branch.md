@@ -153,5 +153,3 @@ switch (i) {
 
 ??? note "How to understand switch"
     In the article above, a lot of terms such as "case clause" and "case sub-clause" are used. In fact, in the underlying implementation, switch is equivalent to a set of jump statements. For this reason, clever techniques like Duff's Device exists. You can dig deeper about that if you are interested.
-
-    Another way to understand switch is from its logical meaning. In this way, case represents a set of clauses, and switch selects a case clause for execution based on the value of the choice sentence. And case must add break and curly braces except for a few exceptions. 
