@@ -73,4 +73,4 @@ int main() {                // define main function
 }
 ```
 
-Note: The C language here is for reference only (it is basically outdated). C++ is fully compatible with the C language and has many new features that will allow players to achieve more with less. For details, please see [difference between C and C++](/lang/c-cpp/).
+Note: The C language here is for reference only (it is basically outdated). C++ is fully compatible with the C language and has many new features that will allow players to achieve more with less effort. For details, please see [difference between C and C++](/lang/c-cpp/).
