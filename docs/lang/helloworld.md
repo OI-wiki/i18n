@@ -6,7 +6,7 @@ disqus:
 
 ### Integrated development environment
 
-IDE operation is relatively easy, which is generally the tool  beginners would choose to write code. The most common one in OI is [Dev-C++](./editor/devcpp.md) (if the testing environment is the Windows system, this IDE is also provided).
+The use of IDE's is relatively easy, which is one of the reasons why beginners usually choose it to write code. The most common one in OI is [Dev-C++](./editor/devcpp.md) (if the contest environment is the Windows system, this IDE is also provided).
 
 ### Compilers
 
@@ -34,7 +34,7 @@ sudo apt update && sudo apt install g++
 
 #### Compile the code using command line
 
-After certain time, some players could use a more flexible command line to compile the code, so that they do not need to rely on the IDE. Instead, they can choose whichever the text editor they are familiar with to write the code.
+After a while, some players could use a more flexible command line to compile the code, so that they do not need to rely on the IDE. Instead, they can choose whichever the text editor they are familiar with to write the code.
 
 ```bash
 g++ test.cpp -o test -lm
@@ -42,7 +42,7 @@ g++ test.cpp -o test -lm
 
  `g++` is the C++ compiler (the C compiler is `gcc`). `-o` is used to specify the file name of the executable file, and the compiler option `-lm` is used to link the math library `libm`, so that the code using `math.h` can be compiled and run normally.
 
-Note: C++ programs can compile and run normally without `-lm`. The C++ compilation options of NOI/NOIP test questions over the years all carry `-lm`, so they are also added here.
+Note: C++ programs can compile and run normally without `-lm`. The C++ compilation options of NOI/NOIP contest problems over the years all contains `-lm`, so it is also used here.
 
 ## First code
 
@@ -54,7 +54,7 @@ C++ language
 #include <iostream>  // reference header file
 
 using namespace std;
-// introduce a namespace(related material: https://oi-wiki.org/lang/namespace/#using)
+// introduce a namespace (related material: https://oi-wiki.org/lang/namespace/#using)
 
 int main() {                // define main function
   cout << "Hello, world!";  // output Hello, world!
