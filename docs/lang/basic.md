@@ -141,7 +141,7 @@ The corresponding places of these two operators can be filled with other numbers
 
 In C++, all whitespace characters (spaces, tabs, newlines), either multiple or single, are treated equally. (Of course, those within the quotation marks are not counted as part of the string.)
 
-Therefore, you can use any coding style freely (except inline comments, string literals and preprocessor commands must be on a single line), for example:
+Therefore, you can use any coding style freely (except inline comments, string literals and preprocessor commands which must be on a single line), for example:
 
 ```cpp
 /* clang-format off */
@@ -199,9 +199,9 @@ int main() {
 ```
 
 ??? note "What are identifiers?"
-    An identifier is a set of characters that can be used as a variable name. For example, `abcd` and `abc1` are both legal identifiers, but neither `1a` nor `c+b` are legal identifiers.
+    An identifier is a set of characters that can be used as a variable name. For example, `abcd` and `abc1` are both legal identifiers, but not for `1a` or `c+b`.
 
-    Identifiers start with English letters and underscores, and only English letters, underscores and numbers are allowed in the middle. It is worth noting that keywords (such as `int`, `for`, `if`) cannot be used as identifiers.
+    Identifiers can not start with digits and can only be consisted of English letters, underscores. It is worth noting that keywords such as `int`, `for`, `if` cannot be used as identifiers.
 
 ??? note "What is a preprocess command?"
     Pre-processing commands are the commands accepted by the pre-processor to make preliminary changes to the code, including `#include` and `#define` etc.
@@ -218,7 +218,7 @@ int main() {
 }
 ```
 
-But there is a difference between a macro with parameters and a function. Because macros are text replacements, they can cause many problems. For example:
+But there is a difference between a macro with parameters and a function. That is, for the macros' nature of text replacement, they can cause many problems. For example:
 
 ```cpp
 #include <iostream>
