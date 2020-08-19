@@ -13,7 +13,7 @@ int main() {
 ```
 
 ??? note "What is include？"
-     `#include` is actually a preprocessor directive, which means to "put" a file at this statement. The file being "put" is called a header file. In other words, when compiling, the compiler will "copy" the content in the header file `iostream` and "paste" it to the statement `#include <iostream>`. In this way, you can use the `std::cin`, `std::cout`, `std::endl` and other objects provided by `iostream`.
+     `#include` is actually a preprocessor command, which means to "put" a file at this statement. The file being "put" is called a header file. In other words, when compiling, the compiler will "copy" the content in the header file `iostream` and "paste" it to the statement `#include <iostream>`. In this way, you can use the `std::cin`, `std::cout`, `std::endl` and other objects provided by `iostream`.
 
     If you have studied the C language, you will find that the header files in C++ that we are currently exposed to generally do not have the suffix `.h`, and those header files in the C language `xx.h` have become `cxx`. For example, `stdio.h` becomes `cstdio`. To maintain compatibility with C, C++ directly uses the header files in the C language. In order to distinguish between C++ header files and C header files, the `c` prefix is used.
       
@@ -204,7 +204,7 @@ int main() {
 
     Identifiers can not start with digits and can only be consisted of English letters, underscores. It is worth noting that keywords such as `int`, `for`, `if` cannot be used as identifiers.
 
-??? note "What is a preprocess command?"
+??? note "What is a preprocessor command?"
     Preprocessor commands are the commands accepted by the pre-processor to make preliminary changes to the code, including `#include` and `#define` etc.
 
 Macros can take parameters, and macros with parameters can be used like functions:
@@ -244,7 +244,7 @@ However, in OI, `#define` is still useful (the following two usages are not reco
 1.  `#define int long long` + `signed main()`. Usually used to avoid errors caused by forgetting to use long long variables, or to eliminate the possibility of errors caused by forgetting to use long long during debugging. (It may also lead to increasing the constant or even TLE, or MLE because of the stackoverflow)
 2.  `#define For(i, l, r) for (int i = (l); i <= (r); ++i)`, `#define pb push_back`, `#define mid ((l + r) / 2)`, used to shorten the length of the code.
 
-However, `#define` also has some advantages. For example, combining with `#if` and other preprocessing directives produces amazing results, such as:
+However, `#define` also has some advantages. For example, combining with `#if` and other preprocessor commands produces amazing results, such as:
 
 ```cpp
 #ifdef LINUX
