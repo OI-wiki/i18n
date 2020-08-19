@@ -1,4 +1,4 @@
-C++ defines a complete set of methods for defining read-only variables. Objects or types modified by the constant modifier `const` are all read-only. The memory storage of read-only variables is no different from general variables, but the compiler will compile periodically check for conflicts to avoid modification of read-only variables. Therefore, reasonable use of the `const` modifier can increase code robustness.
+C++ defines a complete set of methods for defining read-only variables. Objects or types modified by the constant modifier `const` are all read-only. The memory storage of read-only variables is of no difference from general variables defining, but the compiler will check for conflicts to avoid modification of read-only variables during the compilation phase. Therefore, reasonable use of the `const` modifier can increase code robustness.
 
 ## Regular type
 
@@ -6,7 +6,7 @@ Adding a const modification before the name of a type will mark the variable of 
 
 ### Constant
 
-The constant here is a constant variable, which refers to a variable of const type (not a read-only variable we generally refer to in the title). The constant type cannot be reassigned after declaration, nor can it access its variable members, only its constant members. See below for the definition of constant members.
+The constant here is a constant variable, which refers to a variable of const type (instead of read-only variable we generally refer to in the title). The constant-typed variables cannot be reassigned after declaration, nor can it access its mutable members, only its constant members. See the text below for the definition of constant members.
 
 ??? note "Type qualifier"
     There are three types of type qualifiers in C++: constant (const), mutable (mutable) and volatile (volatile). By default, they are mutable variables. The declaration of mutable variables is to avoid compiler optimization.
