@@ -184,13 +184,14 @@ int main()
 
 ###  `#define` command
 
- `#define` Is a pre-processing command used to define macros, essentially text replacement. E.g:
+ `#define` Is a preprocessor command used to define macros, essentially text replacement. E.g:
 
 ```cpp
 #include <iostream>
 #define n 233
-// n is not a variable, but the compiler will replace all the n in code with 233. However, as a part of the identifier
-// n will not be replaced. For example, fn will not be replaced with f233. Similarly, the string will not be replaced
+// n is not a variable, but the compiler will replace all the n with 233. 
+// However, as a part of the identifier, n will not be replaced.
+// For example, fn will not be replaced with f233. Similarly, the string will not be replaced.
 
 int main() {
   std::cout << n;  // output 233
@@ -204,7 +205,7 @@ int main() {
     Identifiers can not start with digits and can only be consisted of English letters, underscores. It is worth noting that keywords such as `int`, `for`, `if` cannot be used as identifiers.
 
 ??? note "What is a preprocess command?"
-    Pre-processing commands are the commands accepted by the pre-processor to make preliminary changes to the code, including `#include` and `#define` etc.
+    Preprocessor commands are the commands accepted by the pre-processor to make preliminary changes to the code, including `#include` and `#define` etc.
 
 Macros can take parameters, and macros with parameters can be used like functions:
 
@@ -228,7 +229,7 @@ But there is a difference between a macro with parameters and a function. That i
 
 int main() {
   std::cout << sum(1, 2) << ' ' << 2 * sum(3, 5) << std::endl;
-  // Output is 3 11. Because #define is a text replacement. The following sentence is replaced with 2 * 3 + 5
+  // Output is 3 11. Because #define is to replace text, and the following sentence is replaced with 2 * 3 + 5.
   int i = 1;
   std::cout << square(++i) << ' ' << i;
   // Output is undefined because ++i is executed twice
