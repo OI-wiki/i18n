@@ -11,7 +11,7 @@ C++ has six basic built-in data types:
 | Double floating point | double |
 | Void | void   |
 
-| Type   | Number of bytes  | Size                                              |
+| Type   | Number of bytes  | Range                                              |
 | ------ | ----- | ----------------------------------------------- |
 | char   | 1 byte | -128 ~ 127 or 0 ~ 255                           |
 | int    | 4 bytes | -2147483648 ~ 2147483647( $2^{31} - 1$ )        |
@@ -32,8 +32,7 @@ char org = 'c';
 
 In the code segment we have seen so far, the variables declared in the curly braces are local variables, and the variables declared without curly braces are global variables. There are actual exceptions, but you don't need to understand right now.
 
-声明时没有初始化值的全局变量会被初始化为 0。而局部变量没有这种特性，需要手动赋初始值，否则可能引起难以发现的 bug。
-Global variables that have no initial value at the time of declaration will be initialized to 0. However, local variables do not have this feature and need to manually assign initial values, otherwise it may cause bugs that are difficult to find.
+Global variables that have no initial value at the time of declaration will be initialized to 0. However, local variables do not have this feature and initial value needs to be manually assigned. Otherwise it may cause bugs that are difficult to find.
 
 ## Variable scope
 
