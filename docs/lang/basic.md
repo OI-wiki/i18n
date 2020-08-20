@@ -21,7 +21,7 @@ int main() {
 
     Can I `#include` the header files written by myself? Yes.
 
-    You can write a header file yourself, such as: `myheader.h`. Then, put it in the same directory as your code, and then `#include "myheader.h"`. It should be noted that the custom header files need to use quotation marks instead of brackets. Of course, you can also use the compilation command `-I <header_file_path>` to tell the compiler where to find the header file, so you don't need to put the header file in the same directory as the code.
+    You can write a header file like `myheader.h` yourself. Then, put it in the same directory as your code, and then `#include "myheader.h"`. It should be noted that the custom header files need to use quotation marks instead of brackets. Of course, you can also use the compilation command `-I <header_file_path>` to tell the compiler where to find the header file, so you don't need to put the header file in the same directory as the code.
 
 ??? note "What is `main()` ?"
     It can be understood that the code in `main()` will be executed the moment program starts running.
