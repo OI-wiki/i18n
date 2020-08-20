@@ -18,7 +18,7 @@ C++ has six basic built-in data types:
 | float  | 4 bytes |  $-3.4\times 10^{38}$ ~ $3.4\times 10^{38}$     |
 | double | 8 bytes |  $-1.7\times 10^{-308}$ ~ $1.7\times 10^{308}$  |
 
-Some basic types can be modified with one or more type specifiers, such as `signed` and `unsigned` indicate whether the modified number has a sign; `short` and `long` indicate the length of the type, that is, the range the type can represent. In addition, there are some other specifiers such as `const`, which can be used to describe some more complicated situaions. We will explain in details below.
+Some basic types can be modified with one or more type specifiers, such as `signed` and `unsigned` indicate whether the modified number has a sign; `short` and `long` indicate the length of the type, that is, the range the type can represent. In addition, there are some other specifiers such as `const`, which can be used to describe some more complicated situations which will explain in details below.
 
 ## Variable declaration
 
