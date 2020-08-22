@@ -8,11 +8,11 @@ The distance function $h(x), h*(x)$ to the ending node (final state).
 
 Define the evaluation function $f(x)=g(x)+h(x)$ for each node.
 
-Each time the A\* algorithm takes out the smallest $f$ from the **priority queue**, and then updates the state of adjacent nodes.
+Each time the algorithm takes out the smallest element $f$ from the **priority queue**, and then updates the states of adjacent nodes.
 
-If $h\leq h*$ , then the A\* algorithm can find the optimal solution.
+The algorithm can find the optimal solution if $h\leq h*$.
 
-Under the above conditions, if $h$ **satisfies the triangle inequality, the A\* algorithm will not add duplicate nodes to the queue**.
+Under the condition above, the algorithm **will not add duplicate nodes to the queue** if $h$ satisfies the triangle inequality.
 
 In fact, when $h=0$ , the algorithm is the [DFS](./dfs.md) ; when $h=0$ and the edge weight is $1$ , it is [BFS](./bfs.md).
 
@@ -120,7 +120,7 @@ In this way, we build the graph in reverse order during preprocessing, calculate
 
 Due to the designed distance function and evaluation function, each state needs to store two parameters: the current node $x$ and the distance traveled $v$ .
 
-We can also optimize a little bit based on the current solution: since only the $k$th shortest path is required, when we reach the node for the $k+1$th time or more, we skip this state directly. Because the previous $k$ time to reach this node will definitely be able to construct $k$ paths, it is unnecessary to add edges later.
+We can also optimize a little bit based on the current solution: since only the $k$th shortest path is required, when we reach the node for the $k+1$th time or more, we skip this state directly. The reason is that since the previous $k$ reaches of this node undoubtedly enabled $k$ paths to be constructed, it is unnecessary to add edges later.
 
 Code implementation:
 
