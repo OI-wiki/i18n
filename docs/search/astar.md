@@ -1,12 +1,12 @@
 A\* algorithm is an improvement based on [BFS](./bfs.md).
 
-Define the starting node $s$ and the ending node $t$ .
+Define the starting node as $s$ and the ending node as $t$ .
 
-The distance function $g(x)$ from the starting node (initial state).
+Define the distance function from the starting node as $g(x)$ (initial state).
 
-The distance function $h(x), h*(x)$ to the ending node (final state).
+Define the distance function to the ending node as $h(x), h*(x)$  (final state).
 
-Define the evaluation function $f(x)=g(x)+h(x)$ for each node.
+Define the evaluation function for each node as $f(x)=g(x)+h(x)$ .
 
 Each time the algorithm takes out the smallest element $f$ from the **priority queue**, and then updates the states of adjacent nodes.
 
@@ -106,7 +106,7 @@ int main() {
 }
 ```
 
-## Sample problem [k short paths](https://www.luogu.com.cn/problem/P2483)
+## Sample problem [k shortest paths](https://www.luogu.com.cn/problem/P2483)
 
 > NOTE: original link is in Chinese.
 
