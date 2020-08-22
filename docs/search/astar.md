@@ -1,36 +1,38 @@
-A\*算法是 [BFS](./bfs.md) 的一种改进。
+A\* algorithm is an improvement based on [BFS](./bfs.md).
 
-定义起点 $s$ ，终点 $t$ 。
+Define the starting node $s$ and the ending node $t$ .
 
-从起点（初始状态）开始的距离函数 $g(x)$ 。
+The distance function $g(x)$ from the starting node (initial state).
 
-到终点（最终状态）的距离函数 $h(x), h*(x)$ 。
+The distance function $h(x), h*(x)$ to the ending node (final state).
 
-定义每个点的估价函数 $f(x)=g(x)+h(x)$ 。
+Define the evaluation function $f(x)=g(x)+h(x)$ for each node.
 
-A\*算法每次从 **优先队列** 中取出一个 $f$ 最小的，然后更新相邻的状态。
+Each time the A\* algorithm takes out the smallest $f$ from the **priority queue**, and then updates the state of adjacent nodes.
 
-如果 $h\leq h*$ ，则 A\*算法能找到最优解。
+If $h\leq h*$ , then the A\* algorithm can find the optimal solution.
 
-上述条件下，如果 $h$  **满足三角形不等式，则 A\*算法不会将重复结点加入队列** 。
+Under the above conditions, if $h$ **satisfies the triangle inequality, the A\* algorithm will not add duplicate nodes to the queue**.
 
-其实…… $h=0$ 时就是 [DFS](./dfs.md) 算法， $h=0$ 并且边权为 $1$ 时就是 [BFS](./bfs.md) 。
+In fact, when $h=0$ , the algorithm is the [DFS](./dfs.md) ; when $h=0$ and the edge weight is $1$ , it is [BFS](./bfs.md).
 
-## 例题 [八数码](https://www.luogu.com.cn/problem/P1379) 
+## Sample problem [Eight Digits](https://www.luogu.com.cn/problem/P1379) 
 
-题目大意：在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 1 至 8 的某一数字。棋盘中留有一个空格，空格用 0 来表示。空格周围的棋子可以移到空格中，这样原来的位置就会变成空格。给出一种初始布局和目标布局（为了使题目简单，设目标状态为
+> NOTE: original link is in Chinese.
+
+Problem: On the chessboard with size of $3\times 3$ , there are eight chess pieces, and each chess piece is marked with a number from 1 to 8. There is an empty space in the board represented by 0. The pieces around the empty space can be moved into it, so that the original position will become an empty space. Give an initial layout and target layout (in order to make the topic simple, the target state is set as
 
     123
     804
     765
 
-），找到一种从初始布局到目标布局最少步骤的移动方法。
+）, find a way to move from the initial layout to the target layout with the fewest steps.
 
- $h$ 函数可以定义为，不在应该在的位置的数字个数。
+ The $h$ function can be defined as the number of digits that are not where they are supposed to be.
 
-容易发现 $h$ 满足以上两个性质，此题可以使用 A\*算法求解。
+It is easy to find that $h$ satisfies the above two properties. This problem can be solved using the A\* algorithm.
 
-代码实现：
+Code implementation:
 
 ```cpp
 #include <algorithm>
@@ -104,21 +106,23 @@ int main() {
 }
 ```
 
-## 例题 [k 短路](https://www.luogu.com.cn/problem/P2483) 
+## Sample problem [k short paths](https://www.luogu.com.cn/problem/P2483)
 
-题目大意：按顺序求一个有向图上从结点 $s$ 到结点 $t$ 的所有路径最小的前任意多（不妨设为 $k$ ）个。
+> NOTE: original link is in Chinese.
 
-很容易发现，这个问题很容易转化成用 A\*算法解决问题的标准程式。
+Problem: find any number of paths from the node $s$ to the node $t$ on a directed graph that are the smallest (may be set as $k$ ) in order.
 
-初始状态为处于结点 $s$ ，最终状态为处于结点 $t$ ，距离函数为从 $s$ 到当前结点已经走过的距离，估价函数为从当前结点到结点 $t$ 至少要走过的距离，也就是当前结点到结点 $t$ 的最短路。
+It is easy to find that this problem can easily be transformed into a standard A\* algorithm problem.
 
-就这样，我们在预处理的时候反向建图，计算出结点 $t$ 到所有点的最短路，然后将初始状态塞入优先队列，每次取出 $f(x)=g(x)+h(x)$ 最小的一项，计算出其所连结点的信息并将其也塞入队列。当你第 $k$ 次走到结点 $t$ 时，也就算出了结点 $s$ 到结点 $t$ 的 $k$ 短路。
+The initial state is at the node $s$ , the final state is at the node $t$ , the distance function is the distance traveled from $s$ to the current node, and the evaluation function is the least distance to travel from the current node to the node $t$, that is, the shortest path from the current node to the node $t$ .
 
-由于设计的距离函数和估价函数，每个状态需要存储两个参数，当前结点 $x$ 和已经走过的距离 $v$ 。
+In this way, we build the graph in reverse order during preprocessing, calculate the shortest path from the node $t$ to all nodes, and then insert the initial state into the priority queue. Each time we take out the smallest element in $f(x)=g(x)+h(x)$ , calculate the information of the connected point, and insert it in the queue as well. When we reach the node $t$ for the first $k$th time , we also calculate the short path of $k$ from node $s$ to node $t$ .
 
-我们可以在此基础上加一点小优化：由于只需要求出第 $k$ 短路，所以当我们第 $k+1$ 次或以上走到该结点时，直接跳过该状态。因为前面的 $k$ 次走到这个点的时候肯定能因此构造出 $k$ 条路径，所以之后在加边更无必要。
+Due to the designed distance function and evaluation function, each state needs to store two parameters: the current node $x$ and the distance traveled $v$ .
 
-代码实现：
+We can also optimize a little bit based on the current solution: since only the $k$th shortest path is required, when we reach the node for the $k+1$th time or more, we skip this state directly. Because the previous $k$ time to reach this node will definitely be able to construct $k$ paths, it is unnecessary to add edges later.
+
+Code implementation:
 
 ```cpp
 #include <algorithm>
