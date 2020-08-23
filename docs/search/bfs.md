@@ -1,3 +1,3 @@
-BFS 是图论中的一种遍历算法，详见 [BFS](../graph/bfs.md) .
+BFS is a traversal algorithm in graph theory. Please see [BFS](../graph/bfs.md) for more details.
 
-BFS 在搜索中也很常用，将每个状态对应为图中的一个点即可。
+BFS is also very commonly used in searching problems where each state corresponds to a node in the graph.
