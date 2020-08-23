@@ -20,7 +20,7 @@ In fact, when $h=0$ , the algorithm is the [DFS](./dfs.md) ; when $h=0$ and the 
 
 > NOTE: original link is in Chinese.
 
-Problem: On the chessboard with size of $3\times 3$ , there are eight chess pieces, and each chess piece is marked with a number from 1 to 8. There is an empty space in the board represented by 0. The pieces around the empty space can be moved into it, so that the original position will become an empty space. Give an initial layout and target layout (in order to make the topic simple, the target state is set as
+Problem: There are eight chess pieces on a $3\times 3$ chessboard whose chess pieces are is numbered from 1 to 8. There is an empty space in the board represented by 0. The pieces around the empty space can be moved to that space with making original position of that piece become an empty space. Give an initial layout and target layout (in order to make the topic simple, the target state is set as
 
     123
     804
@@ -30,7 +30,7 @@ Problem: On the chessboard with size of $3\times 3$ , there are eight chess piec
 
  The function $h$ can be defined as the number of misplaced chesses.
 
-It is easy to find that $h$ satisfies the above two properties. This problem can be solved using the A\* algorithm.
+It is easy to find that $h$ satisfies the two properties above, so this problem can be solved using the A\* algorithm.
 
 Code implementation:
 
