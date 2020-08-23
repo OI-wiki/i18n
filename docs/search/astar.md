@@ -4,7 +4,7 @@ Define the starting node as $s$ and the ending node as $t$ .
 
 Define the distance function from the starting node as $g(x)$ (initial state).
 
-Define the distance function to the ending node as $h(x), h*(x)$  (final state).
+Define the distance function to the ending node, or the final state, as $h(x), h*(x)$ .
 
 Define the evaluation function for each node as $f(x)=g(x)+h(x)$ .
 
@@ -28,7 +28,7 @@ Problem: On the chessboard with size of $3\times 3$ , there are eight chess piec
 
 ）, find a way to move from the initial layout to the target layout with the fewest steps.
 
- The $h$ function can be defined as the number of digits that are not where they are supposed to be.
+ The function $h$ can be defined as the number of misplaced chesses.
 
 It is easy to find that $h$ satisfies the above two properties. This problem can be solved using the A\* algorithm.
 
@@ -106,7 +106,7 @@ int main() {
 }
 ```
 
-## Sample problem [k shortest paths](https://www.luogu.com.cn/problem/P2483)
+## Sample problem [k-th shortest paths](https://www.luogu.com.cn/problem/P2483)
 
 > NOTE: original link is in Chinese.
 
