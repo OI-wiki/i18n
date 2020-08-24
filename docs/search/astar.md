@@ -116,11 +116,11 @@ It is easy to find that this problem can easily be transformed into a standard A
 
 The initial state is at the node $s$ , the final state is at the node $t$ , the distance function is the distance traveled from $s$ to the current node, and the evaluation function is the least distance to travel from the current node to the node $t$, that is, the shortest path from the current node to the node $t$ .
 
-In this way, we build the graph in reverse order during preprocessing, calculate the shortest path from the node $t$ to all nodes, and then insert the initial state into the priority queue. Each time we take out the smallest element in $f(x)=g(x)+h(x)$ , calculate the information of the connected point, and insert it in the queue as well. When we reach the node $t$ for the first $k$th time , we also calculate the short path of $k$ from node $s$ to node $t$ .
+In this way, we build the graph in reverse order during preprocessing, calculate the shortest path from the node $t$ to all nodes, and then insert the initial state into the priority queue. Each time we pop the smallest element in $f(x)=g(x)+h(x)$ , calculate the information of the connected nodes, and push it in the queue as well. When we reach the node $t$ for the first $k$th time , we also calculate the short path of $k$ from node $s$ to node $t$ .
 
 Due to the designed distance function and evaluation function, each state needs to store two parameters: the current node $x$ and the distance traveled $v$ .
 
-We can also optimize a little bit based on the current solution: since only the $k$th shortest path is required, when we reach the node for the $k+1$th time or more, we skip this state directly. The reason is that since the previous $k$ reaches of this node undoubtedly enabled $k$ paths to be constructed, it is unnecessary to add edges later.
+We can also optimize a little bit based on the current solution: since only the $k$-th shortest path is required, when we reach the node for the $k+1$-th time or more, we skip this state directly. The reason is that since the previous $k$ reaches of this node undoubtedly enabled $k$ paths to be constructed, it is unnecessary to add edges later.
 
 Code implementation:
 
