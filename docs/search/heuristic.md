@@ -1,23 +1,23 @@
-## 概念
+## Introduction
 
-简单来说，启发式搜索就是对取和不取都做分析，从中选取更优解（或删去无效解）
+In simple terms, heuristic search is a technique that analyzes both taking and non-taking operations, and select a better solution (or delete the invalid solution).
 
-由于概念过于抽象，我们使用例题讲解。
+Since the concept is too abstract, we will take a few examples to explain.
 
-??? note " 例题[「NOIP2005 普及组」采药](https://www.luogu.com.cn/problem/P1048)"
-    题目大意：有 $N$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $wi$ 和价值 $vi$ 两种属性，要求选若干个物品（每种物品只能选一次）放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
+??? note " Sample problem [「NOIP2005 general level」Gather herbs](https://www.luogu.com.cn/problem/P1048) (original link in Chinese)"
+    Problem: There are $N$ items and a backpack with a capacity of $W$ . Each item has two attributes: weight $wi$ and value $vi$ . It is required to select several items (each item can only be selected once) to put in the backpack to maximize the total value and the total weight of the items while not exceeding the capacity of the backpack.
 
-## 代码构造
+## Code
 
-我们写一个估价函数 f，可以剪掉所有无效的 0 枝条（就是剪去大量无用不选枝条）。
+We write an evaluation function $f$ that can cut all invalid 0 branches (that is, cut a large number of useless branches without selecting).
 
-估价函数 f 的运行过程如下：
+The running process of the evaluation function $f$ is as follows:
 
-我们在取的时候判断一下是不是超过了规定体积（可行性剪枝）。
+When taking the items, we need to check whether it exceeds the specified volume (feasible pruning).
 
-在不取的时候判断一下不取这个时，剩下的药所有的价值 + 现有的价值是否大于目前找到的最优解（最优性剪枝）。
+When not taking it, check whether the value of the remaining medicine + the existing value is greater than the optimal solution found so far (optimal pruning).
 
-## 例题代码
+## Sample code
 
 ```cpp
 #include <algorithm>
@@ -26,7 +26,7 @@ using namespace std;
 const int N = 105;
 int n, m, ans;
 struct Node {
-  int a, b;  // a代表时间，b代表价值
+  int a, b;  // a represents time; b represents value
   double f;
 } node[N];
 
