@@ -2,7 +2,7 @@ Search, a technique that enumerates the state space, finds the optimal solution 
 
 There are many ways to optimize search, such as reducing the state space, changing the search order, pruning, etc.
 
-Search is the basis of some advanced algorithms. In OI, pure searching is often a method to get partial points, but there are very few topics that you can get full marks for through pure search.
+Search is the basis of some advanced algorithms. In OI, pure searching is often a method to get partial points, but there are very few problems that you can get full marks for through pure search.
 
 ## Classic problems
 
