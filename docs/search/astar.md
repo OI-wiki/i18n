@@ -106,7 +106,7 @@ int main() {
 }
 ```
 
-## Sample problem [k-th shortest paths](https://www.luogu.com.cn/problem/P2483)
+## Sample problem [k shortest paths](https://www.luogu.com.cn/problem/P2483)
 
 > NOTE: original link is in Chinese.
 
