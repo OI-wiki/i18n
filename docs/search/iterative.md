@@ -1,12 +1,12 @@
 ## Introduction
 
-Iterative deepening search is a depth-first search that **restricts the search depth each time**. Its abbreviation is IDS or IDDFS.
+Iterative deepening search, abbreviated as IDS or IDDFS, is a depth-first search that **restricts the search depth each time**. 
 
-The principle of IDS is still depth-first search, but a depth $d$ is also maintained during the search, and returned when $d$ reaches the set depth, which is generally used to find the optimal solution. If a search fails to find a legal solution, let the set depth $+1$ and start from the root again.
+The principle of IDS is still depth-first search, but a depth $d$ is also maintained during the search, and returns when $d$ reaches the depth set. This algorithm is generally used to find the optimal solution. If a search fails to find a legal solution, let the depth set increase by one and start the search from the root again.
 
-Since the goal is to find the optimal solution, why not use BFS? We know that the basis of BFS is a queue, and the space complexity of the queue is very large. When there are many states or a single state is relatively large, BFS with queue is an disadvantage. In fact, iterative deepening search is like a BFS implemented by DFS, and its space complexity is relatively small.
+Since the goal is to find the optimal solution, why not use BFS? We know that the basis of BFS is a queue, and the space complexity of queues are very large. When there are multiple states or a single state is relatively large, BFS with queue is disadvantageous. In fact, iterative deepening search is like a BFS implemented by DFS, and its space complexity is relatively small.
 
-When the search tree has more branches, the time complexity of searching each additional layer will exponentially increase. At this time, the complexity caused by the previous repeated parts can be almost ignored, which is why the iterative deepening search can be approximated seen as BFS.
+When the search tree has more branches, the time complexity of searching each additional layer will exponentially increase. At this time, the complexity caused by the previous repeated parts can be almost ignored, which is the reason why the iterative deepening search can be approximately seen as BFS.
 
 ## Steps
 
