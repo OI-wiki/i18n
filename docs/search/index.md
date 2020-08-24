@@ -1,4 +1,4 @@
-Search is a technique that enumerates the state space, finds the optimal solution by exhausting all the possibilities, or counts the number of legal solutions.
+Search, a technique that enumerates the state space, finds the optimal solution or counts the number of legal solutions by exhausting all the possibilities.
 
 There are many ways to optimize search, such as reducing the state space, changing the search order, pruning, etc.
 
