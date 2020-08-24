@@ -32,7 +32,7 @@ Meet in the middle is a searching technique that can be used when the input data
 
 ???+note "Sample problem [「USACO09NOV」Lights](https://www.luogu.com.cn/problem/P2962) (original link in Chinese)"
 
-    There are $n$ lamps. Each lamp is connected to several lamps, and each lamp has a switch. If you press the switch on one lamp, the switch status of this lamp and all the connected lamps will change. In the beginning, all the lights are off, and you need to turn on all the lights. Please find the minimum number of times to press the switch.
+    There are $n$ lamps. Each lamp is connected to several lamps, and each lamp has a switch. If you press the switch on a lamp, the switch status of this lamp and all lamps connected to it will change. In the beginning, all the lights are off, and you need to turn on all the lights. Please find the minimum number of operations.
 
     $1\le n\le 35$ .
 
@@ -40,7 +40,7 @@ If we use a brute force DFS to search for the status of the light on and off, th
 
 **Meet in the middle** search IS to let us first find the half of the state, that is, find the state that can be reached using only the switches numbered from $1$ to $\mathrm{mid}$ , and then find out the state when only the other half is used. If the lights turned on in the first half and the second half complement each other, we can combine these two parts and have a solution that turns on all lights. 
 
-During the implementation, you can store the first half of the state and the minimum number of times to switch to each state in the `map`. When searching for the second half, each time a solution is found, it will be combined with the complementary solution of the first half to update the answer.
+For the implementation, you can store the first half of the state and the minimum number of times to switch to each state in the `map`. When searching for the second half, each time a solution is found, it will be combined with the complementary solution of the first half to update the answer.
 
 ??? note "sample code"
     ```cpp
