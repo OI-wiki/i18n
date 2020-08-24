@@ -7,9 +7,9 @@ Start BFS/DFS from the starting node and ending node on the state graph at the s
 The steps of bidirectional search:
 
 ```text
-starting_node and target_node enters queue q
-starting_node is marked as 1
-target_node is marked as 2
+push starting_node and target_node into queue q
+mark starting_node as 1
+mark target_node as 2
 while(queue q is not empty)
 {
   expand s new nodes from q.front()
@@ -19,10 +19,10 @@ while(queue q is not empty)
     then   the loop is ended
   
   if   s new nodes are expanded from the starting node
-    then   mark s nodes as 1 and enter the queue q
+    then   mark s nodes as 1 and push it into queue q
     
   if   s new nodes are expanded from the ending node
-    then   mark s nodes as 2 and enter the queue q
+    then   mark s nodes as 2 and push it into queue q
 }
 ```
 
