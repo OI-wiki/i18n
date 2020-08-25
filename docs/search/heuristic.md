@@ -1,6 +1,6 @@
 ## Introduction
 
-In simple terms, heuristic search is a technique that analyzes both taking and non-taking operations, and select a better solution (or delete the invalid solution).
+In simple terms, heuristic search is a technique that analyzes the results of both performing and not performing operations, and select a better solution or remove the invalid solutions.
 
 Since the concept is too abstract, we will take a few examples to explain.
 
@@ -9,9 +9,9 @@ Since the concept is too abstract, we will take a few examples to explain.
 
 ## Code
 
-We write an evaluation function $f$ that can cut all invalid 0 branches (that is, cut a large number of useless branches without selecting).
+We write an evaluation function $f$ that can cut off all invalid 0 branches (that is, cut off myriad of useless branches without selecting).
 
-The running process of the evaluation function $f$ is as follows:
+The process of the evaluation function $f$ is as follows:
 
 When taking the items, we need to check whether it exceeds the specified volume (feasible pruning).
 
