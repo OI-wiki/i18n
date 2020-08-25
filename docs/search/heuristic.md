@@ -5,7 +5,7 @@ In simple terms, heuristic search is a technique that analyzes the results of bo
 Since the concept is too abstract, we will take a few examples to explain.
 
 ??? note " Sample problem [「NOIP2005 general level」Gather herbs](https://www.luogu.com.cn/problem/P1048) (original link in Chinese)"
-    Problem: There are $N$ items and a backpack with a capacity of $W$ . Each item has two attributes: weight $wi$ and value $vi$ . It is required to select several items (each item can only be selected once) to put in the backpack to maximize the total value and the total weight of the items while not exceeding the capacity of the backpack.
+    Problem: There are $N$ items and a backpack with a capacity of $W$ . Each item has two attributes: weight $wi$ and value $vi$ . It is required to select several items (each item can only be selected once) to put in the backpack to maximize the total value of the items while the total weight not exceeding the capacity of the backpack.
 
 ## Code
 
@@ -15,7 +15,7 @@ The process of the evaluation function $f$ is as follows:
 
 When taking the items, we need to check whether it exceeds the specified volume (feasible pruning).
 
-When not taking it, check whether the value of the remaining medicine + the existing value is greater than the optimal solution found so far (optimal pruning).
+When not taking it, check whether the value of the sum of remaining medicine and existing value is greater than the optimal solution found so far (optimal pruning).
 
 ## Sample code
 
