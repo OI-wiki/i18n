@@ -9,7 +9,7 @@ Since the concept is too abstract, we will take a few examples to explain.
 
 ## Code
 
-We write an evaluation function $f$ that can cut off all invalid 0 branches (that is, cut off myriad of useless branches without selecting).
+We write an evaluation function $f$ that can cut off all invalid 0 branches (that is, pruning myriad of useless branches without selecting).
 
 The process of the evaluation function $f$ is as follows:
 
