@@ -2,7 +2,7 @@ author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne
 
 ### Bidirectional simultaneous search
 
-Start BFS/DFS from the starting node and ending node on the state graph at the same time. If the search meets, it can be assumed that a solution is obtained.
+Start BFS/DFS from the starting node and ending node on the state graph at the same time. If two searches meet, it can be assumed that a solution is obtained.
 
 The steps of bidirectional search:
 
@@ -19,10 +19,10 @@ while(queue q is not empty)
     then   the loop is ended
   
   if   s new nodes are expanded from the starting node
-    then   mark s nodes as 1 and push it into queue q
+    then   mark those nodes as 1 and push them into queue q
     
   if   s new nodes are expanded from the ending node
-    then   mark s nodes as 2 and push it into queue q
+    then   mark those nodes 2 and push them into queue q
 }
 ```
 
@@ -38,7 +38,7 @@ Meet in the middle is a searching technique that can be used when the input data
 
 If we use a brute force DFS to search for the status of the light on and off, the time complexity is $O(2^{n})$ , which would obviously cause TLE. However, if we use the **Meet in the middle** search, the time complexity can be optimized to $O(n2^{n/2})$ . 
 
-**Meet in the middle** search IS to let us first find the half of the state, that is, find the state that can be reached using only the switches numbered from $1$ to $\mathrm{mid}$ , and then find out the state when only the other half is used. If the lights turned on in the first half and the second half complement each other, we can combine these two parts and have a solution that turns on all lights. 
+**Meet in the middle** search is to meet our search means to first find the half of the state, that is, find the state that can be reached using only the switches numbered from $1$ to $\mathit{mid}$ , and then find out the state when only the other half is used. If the lights turned on in the first half and the second half complement each other, we can combine these two parts and have a solution for turning on all lights. 
 
 For the implementation, you can store the first half of the state and the minimum number of times to switch to each state in the `map`. When searching for the second half, each time a solution is found, it will be combined with the complementary solution of the first half to update the answer.
 
