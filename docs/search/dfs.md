@@ -24,7 +24,7 @@ This is when the recursive search is needed.
 
 The characteristic of this type of search algorithms is that the target to be searched is divided into several "layers", and each layer makes decisions based on the state of the previous layers until the target state is reached.
 
-Let's look back to the example above. Suppose a solution divide the positive integer $n$ into the sum of $k$ integers, namely the $k$ positive integers are $a_1, a_2, \ldots, a_k$ .
+Let's look back to the example above. Suppose a solution divide the positive integer $n$ into the sum of $k$ integers, namely $k$ positive integers $a_1, a_2, \ldots, a_k$ .
 
 We seperate the problem into layers, and the $i-th$ level determines $a_i$ . In order to make decisions at the $i$-th level, we need to record three state variables: $n-\sum_{j=1}^i{a_j}$ , which represents the sum of all positive integers; $a_{i-1 }$ , which represents the positive integer of the previous layer to ensure that the positive integer increases; and $i$, which is to ensure that we output at most $m$ positive integers.
 
