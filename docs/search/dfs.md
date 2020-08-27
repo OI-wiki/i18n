@@ -28,7 +28,7 @@ Let's look back to the example above. Suppose a solution divide the positive int
 
 We seperate the problem into layers, and the $i-th$ level determines $a_i$ . In order to make decisions at the $i$-th level, we need to record three state variables: $n-\sum_{j=1}^i{a_j}$ , which represents the sum of all positive integers; $a_{i-1 }$ , which represents the positive integer of the previous layer to ensure that the positive integer increases; and $i$, which is to ensure that we output at most $m$ positive integers.
 
-To store the solution, we use the `arr` array, in which the $i$-th item represents $a_i$ . Note that arr is actually a stack of length $i$ .
+To store the solution, we use the `arr` array, in which the $i$-th item represents $a_i$ . Note that `arr` is actually a stack of length $i$ .
 
 Code show as below:
 
