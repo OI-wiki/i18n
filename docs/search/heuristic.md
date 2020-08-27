@@ -13,9 +13,9 @@ We write an evaluation function $f$ that can cut off all invalid $0$ branches (t
 
 The process of the evaluation function $f$ is as follows:
 
-When taking the items, we need to check whether it exceeds the specified volume (feasible pruning).
+When taking an item, check whether it exceeds the capacity (feasible pruning).
 
-When not taking it, check whether the value of the sum of remaining medicine and existing value is greater than the optimal solution found so far (optimal pruning).
+When not taking it, check whether the sum of the value of remaining medicine plus existing value is greater than the optimal solution found so far (optimal pruning).
 
 ## Sample code
 
