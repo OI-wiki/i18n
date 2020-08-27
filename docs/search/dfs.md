@@ -3,7 +3,7 @@ DFS is a concept in graph theory, please see [DFS (graph theory)](../graph/dfs.m
 Let's consider this example:
 
 ???+note "sample problem"
-    Divide the positive integer n into 3 different positive integers, such as 6=1+2+3, and the number in the back must be greater than or equal to the number in the front. Please output all solutions.
+    Divide the positive integer $n$ into 3 different positive integers, such as 6=1+2+3, and the number in the back must be greater than or equal to the number in the front. Please output all possible solutions with operands sorted ascendingly on the right hand side.
 
 For this problem, what should I do if I don’t know about the search?
 
@@ -24,13 +24,11 @@ This is when the recursive search is needed.
 
 The characteristic of this type of search algorithms is that the target to be searched is divided into several "layers", and each layer makes decisions based on the state of the previous layers until the target state is reached.
 
-Consider the above problem, that is to divide the positive integer n into the sum of m positive integers or less, and the number in the back must be greater than or equal to the number in the front, and we need to output all the solutions.
-
-Suppose a set of solutions divide the positive integer $n$ into the sum of $k$ positive integers, and the $k$ positive integers are $a_1, a_2, \ldots, a_k$ .
+Let's look back to the example above. Suppose a set of solutions divide the positive integer $n$ into the sum of $k$ positive integers, and the $k$ positive integers are $a_1, a_2, \ldots, a_k$ .
 
 We seperate the problem into layers, and the $i-th level determines $a_i$ . In order to make decisions at the $i$-th level, we need to record three state variables: $n-\sum_{j=1}^i{a_j}$ , which represents the sum of all positive integers; $a_{i-1 }$ , which represents the positive integer of the previous layer to ensure that the positive integer increases; and $i$, which is to ensure that we output at most $m$ positive integers.
 
-To store the solution, we use the `arr` array, the $i$-th item represents $a_i$m. Note that arr is actually a stack of length $i$ .
+To store the solution, we use the `arr` array, in which the $i$-th item represents $a_i$ . Note that arr is actually a stack of length $i$ .
 
 Code show as below:
 
