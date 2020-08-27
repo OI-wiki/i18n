@@ -1,13 +1,13 @@
-DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。在 **搜索算法** 中，该词常常指利用递归函数方便地实现暴力枚举的算法，与图论中的 DFS 算法有一定相似之处，但并不完全相同。
+DFS is a concept in graph theory, please see [DFS (graph theory)](../graph/dfs.md) for details. In **searching algorithms**, this term usually refers to an algorithm that uses recursive functions to implement a brute force enumeration. It has certain similarities with the DFS algorithm in graph theory, but not exactly the same.
 
-考虑这个例子：
+Let's consider this example:
 
-???+note "例题"
-    把正整数 n 分解为 3 个不同的正整数，如 6=1+2+3，排在后面的数必须大于等于前面的数，输出所有方案。
+???+note "sample problem"
+    Divide the positive integer $n$ into $3$ different positive integers, such as $6=1+2+3$, and the number in the back must be greater than or equal to the number in the front. Please output all possible solutions with operands in the right hand side sorted ascendingly.
 
-对于这个问题，如果不知道搜索，应该怎么办呢？
+For this problem, what should I do if I don’t know about the search?
 
-当然是 3 重循环，参考代码如下：
+Of course use a 3-fold loop. The sample code is as follows:
 
 ```cpp
 for (int i = 1; i <= n; ++i)
@@ -16,26 +16,24 @@ for (int i = 1; i <= n; ++i)
       if (i + j + k == n) printf("%d=%d+%d+%d\n", n, i, j, k);
 ```
 
-那如果是分解成四个整数呢？再加一重循环？
+What if we need to divide it into four integers? Add another cycle?
 
-那分解成小于等于 m 个整数呢？
+What about dividing into integers less than or equal to $m$?
 
-这时候就需要用到递归搜索了。
+This is when the recursive search is needed.
 
-该类搜索算法的特点在于，将要搜索的目标分成若干“层”，每层基于前几层的状态进行决策，直到达到目标状态。
+The characteristic of this type of search algorithms is that the target to be searched is divided into several "layers", and each layer makes decisions based on the state of the previous layers until the target state is reached.
 
-考虑上述问题，即将正整数 n 分解成小于等于 m 个正整数之和，且排在后面的数必须大于等于前面的数，并输出所有方案。
+Let's look back to the example above. Suppose a solution divide the positive integer $n$ into the sum of $k$ integers, namely $k$ positive integers $a_1, a_2, \ldots, a_k$ .
 
-设一组方案将正整数 n 分解成 k 个正整数之和，k 个正整数为 $a_1, a_2, \ldots, a_k$ .
+We seperate the problem into layers, and the $i-th$ level determines $a_i$ . In order to make decisions at the $i$-th level, we need to record three state variables: $n-\sum_{j=1}^i{a_j}$ , which represents the sum of all positive integers; $a_{i-1 }$ , which represents the positive integer of the previous layer to ensure that the positive integer increases; and $i$, which is to ensure that we output at most $m$ positive integers.
 
-我们将问题分层，第 $i$ 层决定 $a_i$ 。则为了进行第 $i$ 层决策，我们需要记录三个状态变量： $n-\sum_{j=1}^i{a_j}$ ，表示后面所有正整数的和；以及 $a_{i-1}$ ，表示前一层的正整数，以确保正整数递增；以及 $i$ ，确保我们最多输出 $m$ 个正整数。
+To store the solution, we use the `arr` array, in which the $i$-th item represents $a_i$ . Note that `arr` is actually a stack of length $i$ .
 
-为了记录方案，我们用 arr 数组，第 i 项表示 $a_i$ . 注意到 arr 实际上是一个长度为 $i$ 的栈。
-
-代码如下：
+Code show as below:
 
 ```cpp
-int m, arr[103];  // arr 用于记录方案
+int m, arr[103];  // arr is used to record the solution
 void dfs(int n, int i, int a) {
   if (n == 0) {
     for (int j = 1; j <= i - 1; ++j) printf("%d ", arr[j]);
@@ -44,27 +42,27 @@ void dfs(int n, int i, int a) {
   if (i <= m) {
     for (int j = a; j <= n; ++j) {
       arr[i] = j;
-      dfs(n - j, i + 1, j);  // 请仔细思考该行含义。
+      dfs(n - j, i + 1, j);  // Please think about this line of code carefully
     }
   }
 }
-// 主函数
+// main function
 scanf("%d%d", &n, &m);
 dfs(n, 1, 1);
 ```
 
-## 例题
+## Sample problem
 
- [Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706) 
+ [Luogu P1706 Permutation problem](https://www.luogu.com.cn/problem/P1706) (original link in Chinese)
 
-C++ 代码：
+C++ code:
 
 ```cpp
-bool vis[N];  // 访问标记数组
-int a[N];     // 排列数组，按顺序储存当前搜索结果
+bool vis[N];  // visited array
+int a[N];     // permutation array to store the current search results in order
 
 void dfs(int step) {
-  if (step == n + 1) {  // 边界
+  if (step == n + 1) {  // boundary
     for (int i = 1; i <= n; i++) {
       cout << setw(5) << a[i];
     }
