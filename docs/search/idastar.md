@@ -157,4 +157,4 @@ int main() {
 
 ## Practice problems
 
- [The rotation game UVA1343](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=446&page=show_problem&problem=4089)(original link in Chinese)
+ [The rotation game UVA1343](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=446&page=show_problem&problem=4089)
