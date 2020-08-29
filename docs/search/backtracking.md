@@ -1,24 +1,24 @@
-## 概念表述
+## Introduction
 
-回溯法是一种经常被用在深度深度优先搜索（DFS）和广度优先搜索（BFS）的技巧。
+Backtracking is a technique often used in depth-first search (DFS) and breadth-first search (BFS) problems.
 
-其本质是：走不通就回头。
+The principle of backtracking is: go back if you can't get through.
 
-## 实现过程
+## Implementation process
 
-1. 构造空间树。
+1. Construct the potential search tree.
 
-2. 进行遍历。
+2. Start the traversal.
 
-3. 如遇到边界条件，即不再向下搜索，转而搜索另一条链。
+3. If the boundary condition is met, stop searching further and try another possibility.
 
-4. 达到目标条件，输出结果。
+4. When the target condition is reached, output the result.
 
-## 经典例题：
+## Classic sample problems
 
-### DFS 实现
+### DFS implementation
 
-八皇后问题（USACO 版本）的回溯代码：
+The traceback code for the Eight Queens problem ([USACO version](https://www.programmersought.com/article/92334981585/)):
 
 ```cpp
 #include <bits/stdc++.h>
@@ -56,9 +56,9 @@ int main() {
 }
 ```
 
-### BFS 实现
+### BFS implementation
 
-迷宫问题（USACO 版本）的回溯代码：
+The traceback code for the maze problem (USACO version):
 
 ```cpp
 using namespace std;
