@@ -10,7 +10,7 @@ The principle of backtracking is: go back if you can't get through.
 
 2. Start the traversal.
 
-3. If the boundary condition is met, the current search will no longer continue, instead, it will turn to another path.
+3. If the boundary condition is met, stop searching further and try another possibility.
 
 4. When the target condition is reached, output the result.
 
