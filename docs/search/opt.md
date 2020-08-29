@@ -2,7 +2,7 @@ author: CBW2007, ChungZH, TrisolarisHD, abc1763613206, Ir1d
 
 ## Introduction
 
-DFS (Depth First Search) is a really common algorithm in  OI and most of the problems can be solved using it. However, in most cases, it can only get you some points, because the time complexity of DFS is extremely high and there are very few problems where a brute force DFS can be the most optimized solution. (If you have not studied DFS, please refer to [dfs](./dfs.md) for more details).
+DFS (Depth First Search) is a really common algorithm used in OI and most of the problems can be solved using it. However, in most cases, it can only get partial points, because the time complexity of DFS is extremely high and there are very few problems that can be solved with a brute-force DFS. (If you have not studied DFS, please refer to [dfs](./dfs.md) for more details).
 
 But how to get a few more points when DFS is not the best answer? This article will introduce some practical optimization algorithms (commonly known as "pruning").
 
