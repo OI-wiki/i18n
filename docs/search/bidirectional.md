@@ -40,7 +40,7 @@ If we use a brute force DFS to search for the status of the light on and off, th
 
 **Meet in the middle** search is to meet our search means to first find the half of the state, that is, find the state that can be reached using only the switches numbered from $1$ to $\mathit{mid}$ , and then find out the state when only the other half is used. If the lights turned on in the first half and the second half complement each other, we can combine these two parts and have a solution for turning on all lights. 
 
-For the implementation, you can store the first half of the state and the minimum number of times to switch to each state in the `map`. When searching for the second half, each time a solution is found, it will be combined with the complementary solution of the first half to update the answer.
+For the implementation, you can store the first half of the state and the minimum number of times to switch to each state in the `map`. When searching for the second half, each time a solution is found, it will be combined with the complementary solution for the first half to update the answer.
 
 ??? note "sample code"
     ```cpp
