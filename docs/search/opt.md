@@ -6,7 +6,7 @@ DFS (Depth First Search) is a really common algorithm used in OI and most of the
 
 But how to get a few more points when DFS is not the best answer? This article will introduce some practical optimization algorithms (commonly known as "pruning").
 
-Let's first look at a section of DFS template, and the following templates will be modified on this basis.
+Let's first look at a section of DFS template, and the following templates will be modified based on it.
 
 ```cpp
 int ans = worst_case, now;  // now is the current answer
@@ -14,7 +14,7 @@ void dfs(input_data) {
   if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;
   for (all_possible_solutions)
     if (feasible) {
-      carry_out_operation;
+      perform_operation;
       dfs(downsizing);
       withdraw_operation;
     }
@@ -25,9 +25,9 @@ Among them, ans can be the record of the solution, then the best one selected fr
 
 ## Pruning methods
 
-There are three most commonly used pruning: memory search, optimal pruning, and feasible pruning.
+There are three most commonly used pruning: memorized search, optimal pruning, and feasible pruning.
 
-### Memoization search
+### Memorized search
 
 Because the same input value in search often has the same solution, we can use an array to memorize, see [memoization search](../dp/memo.md) for details.
 
@@ -41,7 +41,7 @@ void dfs f(input_data) {
   if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;  // or output the solution, depending on the situation
   for (all_possible_solutions)
     if (feasible) {
-      carry_out_operation;
+      perform_operation;
       dfs(downsizing);
       withdraw_operation;
     }
@@ -65,7 +65,7 @@ void dfs(input_data) {
   if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;
   for (all_possible_solutions)
     if (feasible) {
-      carry_out_operation;
+      perform_operation;
       dfs(downsizing);
       withdraw_operation;
     }
@@ -85,7 +85,7 @@ void dfs(input_data) {
   if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;
   for (all_possible_solutions)
     if (feasible) {
-      carry_out_operation;
+      perform_operation;
       dfs(downsizing);
       withdraw_operation;
     }
