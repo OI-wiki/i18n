@@ -4,7 +4,7 @@ Pick's theorem: Given a simple polygon whose vertex coordinates are all integral
 
 Specific proof: [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
 
-It has the following promotion properties:
+It has the following properties:
 
 - The area of the graph composed of grid points is one unit. Pick's theorem still stands for parallelogram grid. For any triangle lattice, Pick's theorem is ${\displaystyle A=2 \times i+b-2}$ .
 
