@@ -1,30 +1,33 @@
-## Pick 定理
+## Pick's theorem
 
-Pick 定理：给定顶点坐标均是整点（或正方形格子点）的简单多边形，皮克定理说明了其面积 ${\displaystyle A}$ 和内部格点数目 ${\displaystyle i}$ 、边上格点数目 ${\displaystyle b}$ 的关系： ${\displaystyle A=i+{\frac {b}{2}}-1}$ 。
+Pick's theorem: Given a simple polygon whose vertex coordinates are all integral points (or square grid points), Pick’s theorem proves the relationship between its area ${\displaystyle A}$ , the number of internal grid points ${\displaystyle i}$ , and the number of grid points on the edge ${\displaystyle b}$ : ${\displaystyle A=i+{\frac {b}{2}}-1}$ .
 
-具体证明： [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
+Specific proof: [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
 
-它有以下推广：
+It has the following promotion properties:
 
-- 取格点的组成图形的面积为一单位。在平行四边形格点，皮克定理依然成立。套用于任意三角形格点，皮克定理则是 ${\displaystyle A=2 \times i+b-2}$ 。
-- 对于非简单的多边形 ${\displaystyle P}$ ，皮克定理 ${\displaystyle A=i+{\frac {b}{2}}-\chi (P)}$ ，其中 ${\displaystyle \chi (P)}$ 表示 ${\displaystyle P}$ 的 **欧拉特征数** 。
-- 高维推广：Ehrhart 多项式
-- 皮克定理和 **欧拉公式** （ ${\displaystyle V-E+F=2}$ ）等价。
+- The area of the graph composed of grid points is one unit. Pick's theorem still stands for parallelogram grid. For any triangle lattice, Pick's theorem is ${\displaystyle A=2 \times i+b-2}$ .
 
-## 一道例题 (POJ 1265)
+- For non-simple polygons ${\displaystyle P}$ , Pick’s theorem ${\displaystyle A=i+{\frac {b}{2}}-\chi (P)}$ , where ${\displaystyle \chi ( P))$ represents the **Euler characteristic** of $(\displaystyle P)$ .
 
-### 题目大意
+- Higher-dimensional: Ehrhart polynomials.
+- Pick's theorem is equivalent to Euler's formula ( ${\displaystyle V-E+F=2}$ ).
 
-给一个平面上的简单多边形，求边上的点，多边形内的点，多边形面积。
+## Sample problem (POJ 1265)
+
+### Topic
+
+Given a simple polygon on a plane, find the points on the side, inside the polygon, and the area of the polygon.
 
 ### Solution
 
-这道题目其实用了以下三个知识：
+This topic has applied the following three key points:
 
-- 以格子点为顶点的线段，覆盖的点的个数为 $\gcd(dx,dy)$ ，其中， $dx,dy$ 分别为线段横向占的点数和纵向占的点数。如果 $dx$ 或 $dy$ 为 $0$ ，则覆盖的点数为 $dy$  **或**  $dx$ 。
-- Pick 定理：平面上以格子点为顶点的简单多边形的面积 = 边上的点数/2 + 内部的点数 + 1。
--   任意一个多边形的面积等于按顺序求相邻两个点与原点组成的向量的叉积之和（这个也可以通过顺时针定积分求得）。
-     于是这题就愉快地做完了
+- For a line segment with a grid point as vertex, the number of points covered is $\gcd(dx,dy)$ , where $dx, dy$ are the number of points occupied by the line segment horizontally and vertically. If $dx$ or $dy$ is $0$ , the number of points covered is $dy$ **or** $dx$ .
+- Pick's theorem: The area of a simple polygon with lattice points as vertices on the plane = the number of points on the side/2 + the number of internal points + 1.
+- The area of any polygon is equal to finding the sum of the cross product of the vector composed of two adjacent points and the origin in order (this can also be obtained by clockwise definite integral).
+
+So this question is finished easily.
 
 ```cpp
 #include <cmath>
