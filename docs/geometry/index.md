@@ -1,1 +1,1 @@
-利用计算机建立数学模型解决几何问题。
+Build mathematical models using computer science techniques to solve geometric problems.
