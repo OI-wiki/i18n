@@ -18,7 +18,7 @@ The smallest convex polygon that can enclose all given points on the plane is ca
 
 ### How to find the convex hull
 
-Common methods for finding the convex hull include Graham's scan and Andrew's algorithm. Here we will focus on introducing Andrew's algorithm.
+Common methods for finding convex hulls include Graham's scan and Andrew's algorithm. Here we will focus on introducing Andrew's algorithm.
 
 #### Andrew's algorithm for finding the convex hull
 
@@ -26,22 +26,22 @@ First, sort all the points with the horizontal coordinate as the first keyword a
 
 Obviously, the smallest element and the largest element must be on the convex hull after sorting. And because it is a convex polygon, if we move counterclockwise starting from a point, the trajectory will always "turn left". Once there is a right turn, it means that this segment is not on the convex hull. So we can use a monotonic stack to maintain the upper and lower convex hulls.
 
-Seeing from left to right, Because the upper and lower convex hulls rotate in different directions seeing from left and right, we first **ascending enumeration** to find the lower convex hull, and then **descending** to find the upper convex hull to make the monotonic stack work.
+Seeing from left to right, since the upper and lower convex hulls rotate in different directions seeing from left to right, we first **ascending enumeration** to find the lower convex hull, and then **descending** to find the upper convex hull to make the monotonic stack work.
 
-When finding the convex hull, once the point ($P$) that is about to be pushed into the stack and the rotation direction of two points on the top of the stack ( $S_1,S_2$ , where $S_1$ is the top of the stack) is right, the cross product is less than $0$ : $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ , pop the top of the stack, go back to the previous step, and continue testing until $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0 $ or there is only one element left in the stack.
+When finding a convex hull, once the point $P$ that is about to be pushed into the stack and the rotation direction of two points on the top of the stack ( $S_1,S_2$ , where $S_1$ is the top of the stack) is right, i.e. the cross product is less than $0$, or $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ formally, pop the top of the stack, go back to the previous step, and continue testing until $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0 $ or there is only one element left in the stack.
 
-Normally, there is no need to keep the points on the edge of the convex hull, so the "$<$" in the above condition $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ can be changed to $\ le$ , and the latter condition should be changed to $>$ .
+Normally, there is no need to keep the points on the edge of the convex hull, so the "$<$" in the above condition $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ can be changed to $\ le$ , and the latter condition should be changed to $>$ correspondingly.
 
 ???+note "Code implementation"
     ```cpp
-    // stk[] is an integer and stores subscript
+    // stk[] is an integer array which stores subscript
     // p[] store vectors or points
     tp = 0;                       // initialize stack
     std::sort(p + 1, p + 1 + n);  // sort the points
     stk[++tp] = 1;
     // the first element is added to the stack, and used(the variable) is not updated; so that 1 also updates the monotonic stack when the convex hull is closed at the end
     for (int i = 2; i <= n; ++i) {
-      while (tp >= 2  // the next line * is overloaded as a cross product
+      while (tp >= 2  // the * in the next line is overloaded as a cross product
              && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
         used[stk[tp--]] = 0;
       used[i] = 1;  // used represents that the current state is on the convex hull
