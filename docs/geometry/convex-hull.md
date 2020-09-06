@@ -8,11 +8,11 @@ Convex polygon is a **simple polygon** in which all interior angles are within $
 
 The smallest convex polygon that can enclose all given points on the plane is called the convex hull.
 
-其定义为：对于给定集合 $X$ ，所有包含 $X$ 的凸集的交集 $S$ 被称为 $X$ 的 **凸包** 。It is defined as: for a given set $X$ , the intersection of all convex sets containing $X$ $S$ is called the **convex hull** of $X$.
+It is defined as: for a given set $X$ , the intersection of all convex sets containing $X$ $S$ is called the **convex hull** of $X$.
 
-实际上可以理解为用一个橡皮筋包含住所有给定点的形态。
+In fact, it can be understood as a form that contains all given points with a rubber band.
 
-凸包用最小的周长围住了给定的所有点。如果一个凹多边形围住了所有的点，它的周长一定不是最小，如下图。根据三角不等式，凸多边形在周长上一定是最优的。
+The convex hull encloses all the given points with the smallest perimeter. If a concave polygon encloses all points, its perimeter must not be the smallest, as shown in the figure below. According to the triangle inequality, the convex polygon must be the optimal in perimeter.
 
 ![](./images/ch.png)
 
@@ -35,7 +35,7 @@ Normally, there is no need to keep the points on the edge of the convex hull, so
 ???+note "Code implementation"
     ```cpp
     // stk[] is an integer array which stores subscript
-    // p[] store vectors or points
+    // p[] stores vectors or points
     tp = 0;                       // initialize stack
     std::sort(p + 1, p + 1 + n);  // sort the points
     stk[++tp] = 1;
@@ -56,12 +56,12 @@ Normally, there is no need to keep the points on the edge of the convex hull, so
         used[i] = 1;
         stk[++tp] = i;
       }
-    for (int i = 1; i <= tp; ++i)  // Copy to the new array
+    for (int i = 1; i <= tp; ++i)  // copy to the new array
       h[i] = p[stk[i]];
     int ans = tp - 1;
     ```
 
-According to the code above, there are $ans$ elements on the final convex hull (the additional $1$ is also stored, so there are $ans+1$ elements in the $h$ array), and they are sorted counterclockwise. Perimeter is
+According to the code above, there are \textit{ans} elements on the final convex hull (the additional $1$ is also stored, so there are \textit{ans+1} elements in the $h$ array), and they are sorted counterclockwise. Perimeter is
 
 $$
 \sum_{i=1}^{ans}\left|\overrightarrow{h_ih_{i+1}}\right|
