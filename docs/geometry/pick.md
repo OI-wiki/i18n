@@ -23,7 +23,7 @@ Given a simple polygon on a plane, find the points on the side, inside the polyg
 
 This topic includes the following three key points:
 
-- For a line segment with an integral point as vertex, the number of points covered is \textit{gcd(dx,dy)} , where \textit{dx, dy} are the number of points occupied by the line segment horizontally and vertically. If \textit{dx} or \textit{dy} is $0$ , the number of points covered is \textit{dy} **or** \textit{dx} .
+- For a line segment with an integral point as vertex, the number of points covered is $\gcd(\textit{dx},\textit{dy})$ , where $\textit{dx},\textit{dy}$ are the number of points occupied by the line segment horizontally and vertically. If $\textit{dx}$ or $\textit{dy}$ is $0$ , the number of points covered is $\textit{dy}$ **or** $\textit{dx}$ .
 - Pick's theorem: The area of a simple polygon with integral points as vertices on the plane = the number of points on the edge/2 + the number of internal points + 1.
 - The area of any polygon is equal to finding the sum of the cross product of the vector composed of two adjacent points and the origin in order (this can also be obtained by clockwise definite integral).
 
