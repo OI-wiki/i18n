@@ -10,11 +10,11 @@ In this way, we choose a certain point $O$ on the plane, called **pole**, and dr
 
 How do we describe the position in the polar coordinate system?
 
-Let $A$ be a point on the plane, and the distance $|OA|$ , denoted as $\rho$, between the pole $O$ and $A$ is the **polar diameter**, taking the $\angle xOA$ , denoted as $\theta$ , starting from the polar axis, and ending at the edge $ OA$ as **polar angle**, then the ordinal pair $(\rho,\theta)$ is the **polar coordinate of $A$**.
+Let $A$ be a point on the plane, and the distance $|OA|$ , denoted as $\rho$, between the pole $O$ and point $A$ is the **polar diameter**. Take the $\angle xOA$ , denoted as $\theta$ , which starts from the polar axis and ends at the edge $OA$, as **polar angle**, then the ordinal pair $(\rho,\theta)$ is the **polar coordinate of $A$**.
 
 According to the definition of the same angle at the end, the point represented by $(\rho,\theta)$ and $(\rho,\theta+2k\pi)\ (k\in \mathbb{Z})$ is actually the same. In particular, the polar coordinate of the pole is $(0,\theta)\ (\theta\in \mathbb{R})$, so there are countless kinds of polar coordinates of points in the plane.
 
-If $\rho>0,0\le \theta<2\pi$ is specified, then in addition to the poles, points in other planes can be represented by a unique ordinal pair $(\rho,\theta)$ , and points represented by polar coordinate $(\rho,\theta)$ is uniquely determined.
+If $\rho>0,0\le \theta<2\pi$ is specified, then in addition to the poles, points in other planes can be represented by a unique ordinal pair $(\rho,\theta)$ , and points represented by polar coordinate $(\rho,\theta)$ is unique.
 
 Of course, sometimes it is not very convenient to study the graphics in the polar coordinate system. If we want to study it in the rectangular coordinate system, we can use the mutualization formula.
 
