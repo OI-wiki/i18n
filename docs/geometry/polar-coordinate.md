@@ -2,7 +2,7 @@ author: Ir1d, HeRaNO, Chrogeek, abc1763613206
 
 ## Polar coordinates and polar coordinate system
 
-> This paragraph is taken from chapter 4-4 high school mathematics electives, people's education edition.
+> This is the content of the book *Senior High School Math: Elective 4-4 by People's Education Press*.
 
 Let's consider the actual scenario, such as sailing. We say "$B$ is in the direction of $30^\circ$ north east of $A$ , and the distance is $100$ meters" instead of "using $A$ as the origin to create a rectangular coordinate system, $B(50,50\sqrt 3)$ ".
 
@@ -16,7 +16,7 @@ According to the definition of the same angle at the end, the point represented 
 
 If $\rho>0,0\le \theta<2\pi$ is specified, then in addition to the poles, points in other planes can be represented by a unique ordinal pair $(\rho,\theta)$ , and points represented by polar coordinate $(\rho,\theta)$ is unique.
 
-Of course, sometimes it is not very convenient to study the graphics in the polar coordinate system. If we want to study it in the rectangular coordinate system, we can use the mutualization formula.
+Of course, sometimes it is not very convenient to study the graphics in the polar coordinate system. If we want to study it in the rectangular coordinate system, we can use the mutualization equation.
 
 The rectangular coordinates $(x,y)$ of the point $A(\rho,\theta)$ can be expressed as follows:
 
