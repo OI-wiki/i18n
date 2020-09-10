@@ -16,19 +16,19 @@ According to the figure below, it can be seen that the total area can be obtaine
 
 Now suppose we have a line and start scanning from bottom to top:
 
-![](./images/scanning-1.png)
+![](./images/scanning-1-en.png)
 
-![](./images/scanning-2.png)
+![](./images/scanning-2-en.png)
 
-![](./images/scanning-3.png)
+![](./images/scanning-3-en.png)
 
-![](./images/scanning-4.png)
+![](./images/scanning-4-en.png)
 
-![](./images/scanning-5.png)
+![](./images/scanning-5-en.png)
 
-![](./images/scanning-6.png)
+![](./images/scanning-6-en.png)
 
-![](./images/scanning-7.png)
+![](./images/scanning-7-en.png)
 
 > The original version of above figures are made by [kk303](https://blog.csdn.net/kk303).
 
