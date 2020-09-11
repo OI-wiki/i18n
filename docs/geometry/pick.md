@@ -1,6 +1,6 @@
 ## Pick's theorem
 
-Pick's theorem: Given a simple polygon whose vertex coordinates are all integral points, Pick’s theorem proves the relationship between its area ${\displaystyle A}$ , the number of internal points ${\displaystyle i}$ , and the number of points on the edge ${\displaystyle b}$ : ${\displaystyle A=i+{\frac {b}{2}}-1}$ .
+Pick's theorem: Given A simple polygon whose vertices are all integral points, Pick’s theorem proves the relationship between its area ${\displaystyle A}$ , the number of internal points ${\displaystyle i}$ , and the number of points on the edge ${\displaystyle b}$ : ${\displaystyle A=i+{\frac {b}{2}}-1}$ .
 
 Detailed proof: [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
 
@@ -23,9 +23,9 @@ Given a simple polygon on a plane, find the points on the side, inside the polyg
 
 This topic includes the following three key points:
 
-- For a line segment with an integral point as vertex, the number of points covered is $\gcd(\textit{dx},\textit{dy})$ , where $\textit{dx},\textit{dy}$ are the number of points occupied by the line segment horizontally and vertically. If $\textit{dx}$ or $\textit{dy}$ is $0$ , the number of points covered is $\textit{dy}$ **or** $\textit{dx}$ .
-- Pick's theorem: The area of a simple polygon with integral points as vertices on the plane = the number of points on the edge/2 + the number of internal points + 1.
-- The area of any polygon is equal to finding the sum of the cross product of the vector composed of two adjacent points and the origin in order (this can also be obtained by clockwise definite integral).
+- The number of points covered by the line segment with the integral point as the vertex is $\gcd(\textit{dx},\textit{dy})$ , where $\textit{dx} and \textit{dy}$ are respectively the number of points covered by line horizontally and vertically. If $\textit{dx}$ or $\textit{dy}$ is $0$ , the number of points covered is $\textit{dy}$ **or** $\textit{dx}$ .
+- Pick theorem: The area of a simple polygon with integral points as its vertices on the plane = the number of points on the side/2 + the number of internal points + 1.
+- The area of any polygon is equal to the sum of the cross product of the vector composed of two adjacent points and the origin in order (this can also be obtained by clockwise definite integral).
 
 So this question is finished easily.
 
