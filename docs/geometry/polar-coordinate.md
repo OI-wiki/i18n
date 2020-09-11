@@ -16,7 +16,7 @@ According to the definition of the same angle at the end, the point represented 
 
 If $\rho>0,0\le \theta<2\pi$ is specified, then in addition to the poles, points in other planes can be represented by a unique ordinal pair $(\rho,\theta)$ , and points represented by polar coordinate $(\rho,\theta)$ is unique.
 
-Of course, sometimes it is not very convenient to study the graphics in the polar coordinate system. If we want to study it in the rectangular coordinate system, we can use the mutualization equation.
+Of course, sometimes it is not very convenient to study the graphics in the polar coordinate system. If we want to study it in the rectangular coordinate system, we can use the conversion formula.
 
 The rectangular coordinates $(x,y)$ of the point $A(\rho,\theta)$ can be expressed as follows:
 
