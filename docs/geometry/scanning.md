@@ -1,6 +1,6 @@
 ## Introduction
 
-Scanning lines are usually used on the graphics. It is very similar to its literal meaning, that is, a line sweeps across the entire map. It is generally used to solve questions like graphic area, perimeter and other.
+Scanning lines are usually used on the graphics. It is very similar to its literal meaning, that is, a line sweeps across the entire map. It is generally used to solve problems like areas, perimeters.
 
 ## Atlantis problem
 
@@ -30,11 +30,11 @@ Now suppose we have a line and start scanning from bottom to top:
 
 ![](./images/scanning-7-en.png)
 
-> The original version of above figures are made by [kk303](https://blog.csdn.net/kk303).
+> The original version of above figures were made by [kk303](https://blog.csdn.net/kk303).
 
 - As shown in the figure, we can divide the entire rectangle into small rectangles with different colors. Then the height of this small rectangle is the distance we swept across. And then there is one variable left, that is, the length of the rectangle that keeps changing.
-- Our segment tree is used to maintain the length of the rectangle. We mark the upper and lower sides of each rectangle where the lower side is marked as $1$ , and the upper side is marked as $-1$ . Whenever we encounter a rectangle, we know the line that is marked as $1$ . We add the length of this rectangle, and when our scan reaches $-1$ , it means that this edge needs to be deleted, so we delete it. Using $1$ and $-1$ can easily reach this state.
-- Please note that the segment tree here does not mean an end point of a line segment, instead, but an interval. So what we have to calculate is $r+1$ and $r-1$ .
+- The segment tree here is used to maintain the length of the rectangle. We mark the upper and lower sides of each rectangle in which the lower sides are marked as $1$ , while the upper sides are marked as $-1$ . Whenever we encounter a rectangle, we know the line that is marked as $1$ . We add the length of this rectangle, and when our scan reaches $-1$ , it means that this edge needs to be deleted, so did we. Using $1$ and $-1$ can easily reach this state.
+- Please note that the segment tree here does not mean an end point of a line segment, but an interval instead. So what we have to calculate are $r+1$ and $r-1$ .
 - Also, [discretization](../misc/discrete.md) is required.
 
 ???+note "Code implementation"
