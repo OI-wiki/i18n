@@ -118,7 +118,7 @@ Now suppose we have a line and start scanning from bottom to top:
           s[i + n + 1] = y2;
         }
         sort(s + 1, s + (2 * n + 1));  // discretization
-        sort(p, p + 2 * n, cmp);  // sort the coordinates of the sides of the rectangle ascendingly
+        sort(p, p + 2 * n, cmp);  // sort the vertical coordinates of the sides of the rectangle ascendingly
         build(1, 1, 2 * n);       // construct the tree
         memset(lazy, 0, sizeof(lazy));
         update(1, p[0].y1, p[0].y2, p[0].flag);
@@ -139,3 +139,13 @@ Now suppose we have a line and start scanning from bottom to top:
 -  [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828) 
 
 -  [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
+
+## References
+
+> Original links in Chinese.
+
+-  <https://www.cnblogs.com/yangsongyi/p/8378629.html> 
+
+-  <https://blog.csdn.net/riba2534/article/details/76851233> 
+
+-  <https://blog.csdn.net/winddreams/article/details/38495093>
