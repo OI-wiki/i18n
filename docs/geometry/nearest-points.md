@@ -1,6 +1,6 @@
 ## Overview
 
-Given $n$ points on a two-dimensional plane, find a set of point pairs with the closest Euclidean distance.
+Given $n$ points on a two-dimensional plane, find a pair of points with the closest Euclidean distance.
 
 Here we will introduce a divide and conquer algorithm with time complexity of $O(n\log n)$ to solve this problem. This algorithm was proposed in 1975 by [Franco P. Preparata](https://en.wikipedia.org/wiki/Franco_P._Preparata), and was proven to be optimal under the decision tree model by Preparata and [Michael Ian Shamos](https://en.wikipedia.org/wiki/Michael_Ian_Shamos).
 
@@ -8,14 +8,14 @@ Here we will introduce a divide and conquer algorithm with time complexity of $O
 
 Like the regular divide-and-conquer algorithm, we split this set of $n$ points into two sets $S_1, S_2$ of the same size, and recurse continuously. But there is a problem: how to merge? That is, how to find the nearest point pair of one point in $S_1$ and another point in $S_2$ ? Here we first assume that the time complexity of the merging operation is $O(n)$ , and the total complexity of the algorithm is $T(n) = 2T(\frac{n}{2}) + O(n) = O(n \log n)$ .
 
-We first sort all points according to $x_i$ as the first keyword and $y_i$ as the second keyword, and use the point $p_m (m = \lfloor \frac{n}{2} \rfloor)$ as the boundary point. The split point set is $A_1,A_2$ :
+We first sort all points according to $x_i$ as 1st keyword and $y_i$ as 2nd keyword, and use the point $p_m (m = \lfloor \frac{n}{2} \rfloor)$ as the boundary point. The split point set is $A_1,A_2$ :
 
 $$
 A_1 = \{p_i \ \big | \ i = 0 \ldots m \}\\
 A_2 = \{p_i \ \big | \ i = m + 1 \ldots n-1 \}
 $$
 
-And recursively, find the nearest point pair within each of the two point sets, set the distance as $h_1, h_2$ , and set the smaller value as $h$ .
+And recursively, find the nearest point pair within these two point sets and assume the distances are $h_1, h_2$ , and set the smaller value as $h$ .
 
 Now it's time to merge! We are trying to find such a set of point pairs, one of which belongs to $A_1$ and the other belongs to $A_2$ , and the distance between them is less than $h$ . Therefore, we put all the points whose difference between the abscissa and $x_m$ is less than $h$ into the set $B$ :
 
@@ -209,6 +209,6 @@ Since each point will be inserted and deleted at most once, the time complexity 
 
 ## References
 
- **The divide and conquer algorithm part on this page is mainly translated from the blog post [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) and its English version [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md). The copyright agreement for the Russian version is Public Domain + Leave a Link; the copyright agreement for the English version is CC-BY-SA 4.0.** 
+ **The divide and conquer algorithm part in this page is mainly translated from the blog post [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) and its English version [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md). The copyright agreement for the Russian version is Public Domain + Leave a Link; the copyright agreement for the English version is CC-BY-SA 4.0.** 
 
  [Zhihu column: computational geometry-nearest point pair problem](https://zhuanlan.zhihu.com/p/74905629) 
