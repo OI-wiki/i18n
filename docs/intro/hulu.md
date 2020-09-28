@@ -1,26 +1,26 @@
 disqus:
 
-Hulu 是美国领先的互联网专业视频服务平台，成立于 2006 年，目前由迪士尼控股，在美国拥有超过 2900 万付费用户。通过 Hulu，用户可以在电脑、可联网电视机、手机、平板电脑等多种设备上观看长视频和电视直播。
+Hulu is the leading professional video service platform in the United States. It was founded in 2006 and is currently owned by Disney. It has more than 29 million paying users in the United States. With Hulu, users can watch long videos and live TV on multiple devices such as computers, TVs with network connections, mobile phones, and tablets.
 
-<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu 是全美领先的流媒体平台 </div>
+<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;">  Hulu is the leading streaming media platform in the states</div>
 <img style="display: block;margin: 0 auto;" src="https://i.loli.net/2020/02/03/6oCP7XOKj9AvzMR.png" />
 
-2017 年，Hulu 自制剧《使女的故事》成为艾美奖和金球奖双料最大赢家，斩获十余奖项；2019 年，Hulu 自制纪录片《滑板少年》获奥斯卡最佳纪录片提名。
+In 2017, Hulu's self-produced drama "The Handmaid's Tale" became the biggest winner of both the Emmys and the Golden Globe Awards, and won more than ten trophies. In 2019, Hulu's self-produced documentary "Minding the Gap" was nominated for the best documentary Oscar.
 
-<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu 办公室分布 </div>
+<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu Office distribution </div>
 <img style="display: block;margin: 0 auto;" src="https://i.loli.net/2020/02/03/Z87FfMHA6kxqclt.png" />
 
-Hulu 总部位于美国洛杉矶，在全球一共拥有 8 个办公室。北京办公室是仅次于总部的第二大研发中心，也是从 Hulu 成立伊始就具有重要战略地位的研发中心。
+Hulu is headquartered in Los Angeles, USA and has a total of 8 offices worldwide. Its Beijing office is the second largest R&D center after the headquarter and has been in an important strategic position since the establishment of Hulu.
 
-<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu 北京办公室 </div>
+<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu Beijing Office </div>
 <img style="display: block;margin: 0 auto;" src="https://i.loli.net/2020/02/03/M9dIrShWJDNoGia.png" />
 
-Hulu 北京办公室成立于 2007 年，目前规模为 200 人，其中博士和硕士比例超过百分之八十。Hulu 北京于 2018 和 2019 连续两年当选“大中华区最佳职场 ®”。
+Hulu's Beijing office was established in 2007 and currently has 200 employees, of which over 80% have doctorate and master degrees. Hulu Beijing was elected as the “Best Workplace in Greater China®” for two consecutive years in 2018 and 2019.
 
-<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu 校园机会 </div>
+<div style="text-align:center;font-weight:bold;margin-top: 35px;font-size: 25pt;"> Hulu Campus Opportunities </div>
 
 <div style="text-align:center;font-weight:small">
 <a href="https://sm.ms/image/Ls1cPJAB36gUztN" target="_blank"><img src="https://i.loli.net/2020/02/03/iSGMqmy8fTDJ5bz.png" ></a>
 </div>
 
-正如 Hulu 的产品是技术与娱乐的最佳结合，在 Hulu 工作，既能与一群志同道合的技术达人合作学习，又能享受充满乐趣的工作环境。Hulu 北京面向校园群体开放全年实习生招聘项目。欢迎关注 **Hulu 微信公众号** 了解更多关于 Hulu 的信息！
+Just as Hulu's products are the best combination of technology and entertainment, working at Hulu can not only work with a group of like-minded tech experts, but also enjoy a fun working environment. Hulu Beijing has annual intern recruitment program for campus groups. Welcome to follow [Hulu on Twitter](https://twitter.com/hulu?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) to learn more!
