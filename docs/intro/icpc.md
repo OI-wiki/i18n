@@ -26,8 +26,8 @@ In addition to ICPC and CCPC, many competitions also adopt this competition syst
 
 ## Season schedule
 
-- ICPC/CCPC Online Competition (from the end of August to the beginning of September)
-- ICPC/CCPC Regional Competition (from the end of September to the end of November)
+- ICPC/CCPC Online Competition (Late August to Early September)
+- ICPC/CCPC Regional Competition (Late September to Late November)
 - ICPC EC Final/CCPC Final (Mid-December)
 - ICPC World Finals (April to June of the following year)
 
@@ -35,13 +35,13 @@ In addition to ICPC and CCPC, many competitions also adopt this competition syst
 
 ### Multi-school joint training
 
-A training competition held in [HDU OJ](http://acm.hdu.edu.cn) in the summer. The competition has high quality questions and offers bonuses for winners. It has accumulated abundant resources throughout the years.
+A training competition held in [HDU OJ](http://acm.hdu.edu.cn) in the summer. The competition has high quality problems and offers bonuses for winners. It has accumulated abundant resources throughout the years.
 
-Keywords for query in OJ: `Multi-University Training Contest`.
+Keywords for search in OJ: `Multi-University Training Contest`.
 
 ### Domestic regional competition
 
-A collection of selected questions from OJs of universities in China can be found in [Virtual Judge](https://vjudge.net/).
+A collection of selected problems from OJs of universities in China can be found in [Virtual Judge](https://vjudge.net/).
 
 ### Training Camp
 
