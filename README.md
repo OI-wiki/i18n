@@ -22,7 +22,7 @@ In order to make it easier for friends who love programming competitions to get 
 
 Right now, the content of **OI Wiki** still has many imperfections, the coverage of knowledge points is not comprehensive enough, and there are some pages whose quality needs to be modified. The **OI Wiki** team and the contributing friends are actively improving these content.
 
-For the content to be improved above, please refer to [Issues](https://github.com/OI-wiki/OI-wiki/issues) and [Iteration Plan](https://github.com) of **OI Wiki** /OI-wiki/OI-wiki/labels/Iteration%20Plan%20%2F%20%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92).
+For the content to be improved, please refer to [Issues](https://github.com/OI-wiki/OI-wiki/issues) and [Iteration Plan](https://github.com/OI-wiki/OI-wiki/labels/Iteration%20Plan%20%2F%20%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92) of **OI Wiki**.
 
 At the same time, **OI Wiki** originates from the community, advocating the **intellectual freedom**, and will never be commercialized in the future. We will always maintain its independent and freedom.
 
