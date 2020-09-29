@@ -4,7 +4,7 @@ author: NachtgeistW
 
 ### ICPC
 
- **ICPC**, International Collegiate Programming Contest, is organized by the ICPC Foundation. It is the most influential programming competition for college students. Since ACM sponsored this competition in the past, many people are used to calling it ACM competition.
+International Collegiate Programming Contest, or ICPC, is a competitive programming contest organized by the ICPC Foundation. It is the most influential programming competition for college students. Since ACM sponsored this competition in the past, many people are used to calling it ACM competition.
 
 ICPC is mainly divided into two parts: Regionals and World Finals.
 
@@ -20,7 +20,7 @@ The major difference from ICPC is that many schools do not support reimbursement
 
 ## Competition system introduction
 
-Contestants have multiple submission opportunities during the competition. The competition is evaluated in real time and the results are displayed (wrong test cases can be seen in some competitions, such as LeetCode). If the submitted result is wrong, there will be a penalty time. The more errors, the longer the penalty time. Each question can only get a score after all the points are correct. The competition ranking is judged based on the number of questions and penalty time.
+Contestants have multiple submission opportunities during the competition. The competition is evaluated in real time and the results are displayed (wrong test cases can be seen in some competitions, such as LeetCode). If the submitted result is wrong, there will be a penalty time. The more errors, the longer the penalty time. The score of the problem can only be obtained after the submission is accepted. The ranking is judged based on the number of questions and penalty time.
 
 In addition to ICPC and CCPC, many competitions also adopt this competition system, such as LeetCode Weekly Contest and National Programming Contest, Nowcoder Entry-level Practice Challenge and so on.
 
