@@ -1,1 +1,1 @@
-对如何贡献的说明已经移到了 [F.A.Q](https://oi-wiki.org/intro/faq/)，请在提交更新的时候额外注意一下格式（也在 [F.A.Q](https://oi-wiki.org/intro/faq/) 里说明了），谢谢！
+Please refer to [How To Contribute](https://oi-wiki.org/intro/htc/) to learn more. Thanks for your contributions!
