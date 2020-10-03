@@ -6,9 +6,9 @@ title: OI Wiki
 
  [![Word Art](https://cdn.jsdelivr.net/npm/oicdn@0.0.1/wordArt.webp)](https://github.com/OI-wiki/OI-wiki) 
 
-Olympiad in Informatics, or **OI**, entered China in 1984, and it is among five major academic competitions. Since 1989, a national training team for International Olympiad in Informatics, or IOI, will be selected each year.
+Olympiad in Informatics, or **OI**, entered China in 1984, and it is among five major high school academic competitions. Since 1989, a national training team for International Olympiad in Informatics, or IOI, will be selected each year.
 
-International Collegiate Programming Contest, or **ICPC**, is held by ICPC Foundation, and is one of the most influential computing compeitions in colleges。There are two parts in ICPC -- Regionals and World Finals respectively. It is also known as ACM compeition since this organization sponsored it in the past.
+International Collegiate Programming Contest, or **ICPC**, is held by ICPC Foundation, and is one of the most influential computing compeitions in colleges. There are two parts in ICPC -- Regionals and World Finals respectively. It is also known as ACM compeition since this organization sponsored it in the past.
 
  **OI Wiki** aims to be a free and lively updated site that integrates resources, in which readers can get interesting and useful knowledge about **competitive programming**. There are basic knowledge, frequently seen problems, way of solving problems, and useful tools to help everyone to learn quicker and deeper.
 
