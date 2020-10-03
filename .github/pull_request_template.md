@@ -1,18 +1,17 @@
 <!--
-首先，十分感谢你花时间来给 OI Wiki 开一个 Pull Request，下面是一些你可能需要知道的信息：
+Thanks for creating a Pull Request for OI Wiki. Here are a few things you need to know:
+- Please write meaningful commit message when making a commit.
+- Please give a meaningful title for your Pull Request.
+- If your Pull Request solves a issue, please write fix + issue # at the beginning of this textbox, like fix #1234.
+- Please refer to [How to Contribute](https://oi-wiki.org/intro/htc) for basic format and regulations.
+- Please Check Allow Edits from Maintainers to allow lint bot to format the text.
 
-- 请在 commit 的时候写比较有意义的 commit message
-- 请给 PR 起比较有意义的标题。
-- 如果您的 PR 可以解决某个现有的 issue，请在这个文本框的开头部分写上 fix + issue 编号。 如：fix #1622
-- 关于文档内容的基本格式和基本内容规范，可以查阅 [如何参与](https://oi-wiki.org/intro/htc)。
-- 请确保勾选了下方允许维护者修改的候选框（lint bot 需要在 PR 环节修正格式）
-
-**如果有需要额外注明的内容，请写在这个文本框的开头部分 :smile: 谢谢～**
+**Please write any additional information at the beginning of this textbox :smile:**
 -->
 
-**审核的同学** 请着重关注以下四方面：
+Please **Reviewers** take care of the following aspects:
 
-1. 注意有没有 typo
-2. 不论你是否熟悉相关知识，都请以初学者的角度把这个 PR 的内容阅读一遍，跟着作者的思路走，然后谈谈你的感受
-3. 如果你熟悉相关知识，请按照自己的理解评估这个 PR 的内容是否合适
-4. 请**尽量**保持跟进直到它被 merge 或 close
+1. Are there any typos?
+2. Please read the content of the Pull Request as if you were a beginner and talk about your thoughts after reading the text no matter whether you are familiar with the content or not.
+3. Please evaluate the content of the Pull Request if you are familiar with related concepts.
+4. Please **try your best** to keep an eye on it until it is merged or closed.
