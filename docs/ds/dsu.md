@@ -58,7 +58,7 @@ See these two figures:
 
 ![p1](./images/dsu1.png)
 
-![p2](./images/dsu2-en.png)
+![p2](./images/dsu2.png)
 
 ## Union
 
