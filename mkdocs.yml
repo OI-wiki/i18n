@@ -18,7 +18,7 @@ google_analytics:
 
 # Contents
 nav:
-  - Introductions:
+  - Intro:
     - Getting Started: index.md
     - OI Contest Format: intro/oi.md
     - ICPC/CCPC Contest Format: intro/icpc.md
@@ -343,7 +343,7 @@ nav:
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
-  - Computational Geometry:
+  - Comp. Geometry:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
