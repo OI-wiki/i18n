@@ -16,7 +16,9 @@ This project is inspired by [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) and
 
 This project is hosted on [GitHub](https://github.com/OI-wiki/OI-wiki), and uses [Issues](https://github.com/OI-wiki/OI-wiki/issues) / [QQ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) / [Telegram](https://t.me/OIwiki) to communicate.
 
-Welcome joining our Telegram group at [@OIwiki](https://t.me/OIwiki) and QQ group at [ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) !
+Welcome joining our Telegram group at [@OIwiki](https://t.me/OIwiki) and QQ group at [ `588793226` ](https://jq.qq.com/?_wv=1027&k=5EfkM6K) ! 
+
+**Note:** This is the English fork of the [main site](https://oi-wiki.org) which is actively updating. The initial translation work of this site is part of the [Open Source Promotion Plan](https://summer.iscas.ac.cn/) with OI Wiki a community in the project in 2020 and 2021. In 2020, [isdanni](https://github.com/isdanni), as a participant of [this project](https://github.com/OI-wiki/OI-wiki/wiki/Open-Source-Promotion-Plan---Summer-2020#6-%E7%BF%BB%E8%AF%91%E6%B4%BB%E5%8A%A8export) (Chinese link), made significant contribution to this project and translated about half of the site. **Special thanks for her work!** 
 
 ## Material color palette 
 
