@@ -4,13 +4,13 @@ author: accelsao
 
 ## Blossom Algorithm
 
-**Blossom Algorithm** can solve the maximum matching problem（[maximum cardinality matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)#Maximum-cardinality_matching)) in general graphs. This algorithm was proposed by Jack Edmonds in 1961.
+**Blossom Algorithm** can solve the maximum matching problem ([maximum cardinality matching](https://en.wikipedia.org/wiki/Matching_(graph_theory)#Maximum-cardinality_matching)) in general graphs. This algorithm was proposed by Jack Edmonds in 1961.
 
 After some modifications, it can also be used to solve the maximum weight matching of general graphs.
 
 This algorithm is the first confirmation to prove that maximum matching has multiple complexities.
 
-The difference between general graph matching and bipartite matching is that there may exist odd cycle.
+The difference between general graph matching and bipartite matching is that there may exist odd cycles.
 
 Taking this graph as an example, if directly inverted (swap matched edge and unmatched edge), it will make the inverted $M$ illegal, and some nodes will appear in both matching. The reason for this to happen is the odd cycle.
 
