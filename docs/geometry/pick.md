@@ -1,6 +1,6 @@
 ## Pick's theorem
 
-Pick's theorem: Given A simple polygon whose vertices are all integral points, Pick’s theorem proves the relationship between its area ${\displaystyle A}$ , the number of internal points ${\displaystyle i}$ , and the number of points on the edge ${\displaystyle b}$ : ${\displaystyle A=i+{\frac {b}{2}}-1}$ .
+Pick's theorem: Given a simple polygon whose vertices are all integral points, Pick’s theorem proves the relationship between its area ${\displaystyle A}$ , the number of internal points ${\displaystyle i}$ , and the number of points on the edge ${\displaystyle b}$ : ${\displaystyle A=i+{\frac {b}{2}}-1}$ .
 
 Detailed proof: [Pick's theorem](https://en.wikipedia.org/wiki/Pick%27s_theorem) 
 
