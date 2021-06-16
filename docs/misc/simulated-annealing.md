@@ -1,52 +1,53 @@
-## 简介
+## Introduction
 
-模拟退火是一种随机化算法。当一个问题的方案数量极大（甚至是无穷的）而且不是一个单峰函数时，我们常使用模拟退火求解。
+Simulated annealing is a randomized algorithm. When the number of solutions for a problem is very large (infinite even) and is not a unimodal function, we often use simulated annealing to solve it.
 
 * * *
 
-## 实现
+## Implementation
 
-根据 [爬山算法](./hill-climbing.md) 的过程，我们发现：对于一个当前最优解附近的非最优解，爬山算法直接舍去了这个解。而很多情况下，我们需要去接受这个非最优解从而跳出这个局部最优解，即为模拟退火算法。
+According to the process of [hill climbing algorithm](./hill-climbing.md), we find that for a non-optimal solution near the current optimal solution, the hill climbing algorithm directly discards it. In many cases, we need to accept this non-optimal solution and jump out of this local optimal solution, which is the simulated annealing algorithm.
 
->  **什么是退火？** （选自百度百科）
+>  **What is annealing?**
+> ref: Baidu Baike
 >
-> 退火是一种金属热处理工艺，指的是将金属缓慢加热到一定温度，保持足够时间，然后以适宜速度冷却。目的是降低硬度，改善切削加工性；消除残余应力，稳定尺寸，减少变形与裂纹倾向；细化晶粒，调整组织，消除组织缺陷。准确的说，退火是一种对材料的热处理工艺，包括金属材料、非金属材料。而且新材料的退火目的也与传统金属退火存在异同。
+> Annealing is a metal heat treatment process, which refers to slowly heating the metal to a certain temperature, keeping it for a sufficient time, and then cooling it at an appropriate speed. The purpose is to reduce the hardness, improve the machinability, eliminate residual stress, stabilize the size, reduce deformation and cracking tendency; refine the grain, adjust the structure, and eliminate the structure defects. Precisely speaking, annealing is a heat treatment process for materials, including metallic materials and non-metallic materials. Moreover, the annealing purpose of new materials is similar to that of traditional metal annealing.
 
-由于退火的规律引入了更多随机因素，那么我们得到最优解的概率会大大增加。于是我们可以去模拟这个过程，将目标函数作为能量函数。
+Because the rule of annealing introduces more random factors, the probability for getting the optimal solution will greatly increase. So we can simulate this process and use the objective function as the energy function.
 
-### 模拟退火算法描述
+### Description of simulated annealing algorithm
 
-先用一句话概括：如果新状态的解更优则修改答案，否则以一定概率接受新状态。
+First we summarize it in one sentence: if the solution of the new state is better, modify the answer, otherwise accept the new state with a certain probability.
 
-我们定义当前温度为 $T$ ，新状态与已知状态（由已知状态通过随机的方式得到）之间的能量（值）差为 $\Delta E$ （ $\Delta E\geqslant 0$ ），则发生状态转移（修改最优解）的概率为
+We define the current temperature as $T$ , and the energy (value) difference between the new state and the known state (obtained by a random method from the known state) is $\Delta E$ ( $\Delta E\geqslant 0$ ) . The probability of a state transition (modifying the optimal solution) is
 
 $$
 P(\Delta E)=
 \begin{cases}
-1&\text{新状态更优}\\
-e^\frac{-\Delta E}{T}&\text{新状态更劣}
+1&\text{new state is better}\\
+e^\frac{-\Delta E}{T}&\text{new state is not better}
 \end{cases}
 $$
 
- **注意** ：我们有时为了使得到的解更有质量，会在模拟退火结束后，以当前温度在得到的解附近多次随机状态，尝试得到更优的解（其过程与模拟退火相似）。
+ **Note**: Sometimes, in order to make the obtained solution better, we will try to get a better solution at the current temperature in a random state near the obtained solution after the simulated annealing is completed (the process is similar to that of simulated annealing).
 
-### 如何退火（降温）？
+### How to anneal(cool down)?
 
-模拟退火时我们有三个参数：初始温度 $T_0$ ，降温系数 $d$ ，终止温度 $T_k$ 。其中 $T_0$ 是一个比较大的数， $d$ 是一个非常接近 $1$ 但是小于 $1$ 的数， $T_k$ 是一个接近 $0$ 的正数。
+We have three parameters during simulated annealing: initial temperature $T_0$ , cooling coefficient $d$ , and termination temperature $T_k$ . Among them, $T_0$ is a relatively large number, $d$ is a number very close to $1$ but less than $1$ , and $T_k$ is a positive number close to $0$ .
 
-首先让温度 $T=T_0$ ，然后按照上述步骤进行一次转移尝试，再让 $T=d\cdot T$ 。当 $T<T_k$ 时模拟退火过程结束，当前最优解即为最终的最优解。
+First let the temperature $T=T_0$ , then follow the above steps to attempt a transfer, then let $T=d\cdot T$ . When $T<T_k$ , the simulated annealing process ends, and the current optimal solution is the final optimal solution.
 
-注意为了使得解更为精确，我们通常不直接取当前解作为答案，而是在退火过程中维护遇到的所有解的最优值。
+Note that in order to make the solution more accurate, we usually do not directly take the current solution as the answer, but maintain the optimal value of all solutions encountered during the annealing process.
 
-引用一张 [Wiki - Simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing) 的图片（随着温度的降低，跳跃越来越不随机，最优解也越来越稳定）。
+We quote a picture from [Wiki-Simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing) here (as the temperature decreases, the jump becomes less random and the optimal solution becomes more stable).
 
 ![](./images/simulated-annealing.gif)
 
 * * *
 
-## 代码
+## Code
 
-此处代码以 [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337) （求 $n$ 个点的带权类费马点）为例。
+The code here takes ["BZOJ 3680" Balance point/KO XXX](https://www.luogu.com.cn/problem/P1337) (finding a weighted Fermat point for $n$ points, original link in Chinese) as an example.
 
 ```cpp
 #include <cmath>
@@ -100,26 +101,28 @@ int main() {
 
 * * *
 
-## 一些技巧
+## Some techniques
 
-### 分块模拟退火
+### Block simulated annealing
 
-有时函数的峰很多，模拟退火难以跑出最优解。
+Sometimes there are many peaks in the function, and it is difficult for simulated annealing to find the optimal solution.
 
-此时可以把整个值域分成几段，每段跑一遍模拟退火，然后再取最优解。
+At this point, you can divide the entire range into several segments, run simulated annealing for each segment, and then find the optimal one.
 
-### 卡时
+### Cutting time
 
-有一个 `clock()` 函数，返回程序运行时间。
+There is a `clock()` function that returns the running time of the program.
 
-可以把主程序中的 `simulateAnneal();` 换成 `while ((double)clock()/CLOCKS_PER_SEC < MAX_TIME) simulateAnneal();` 。这样子就会一直跑模拟退火，直到用时即将超过时间限制。
+You can replace `simulateAnneal();` in the main program with `while ((double)clock()/CLOCKS_PER_SEC <MAX_TIME) simulateAnneal();`. In this way, simulated annealing will continue running until the time limit is about to be exceeded.
 
-这里的 `MAX_TIME` 是一个自定义的略小于时限的数。
+Here `MAX_TIME` is a custom number slightly less than the time limit.
 
 * * *
 
-## 习题
+## Practice problems
 
--  [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337) 
--  [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076) 
--  [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503) 
+> NOTE: All original links are in Chinese.
+
+-  [「BZOJ 3680」Balance point/KO XXX](https://www.luogu.com.cn/problem/P1337) 
+-  [「JSOI 2016」Bomb attack](https://loj.ac/problem/2076) 
+-  [「HAOI 2006」Evenly split data](https://www.luogu.com.cn/problem/P2503) 
