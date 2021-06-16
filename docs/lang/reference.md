@@ -1,18 +1,18 @@
-引用可以看成是 C++ 封装的指针，用来传递它所指向的对象。在 C++ 代码中实际上会经常和引用打交道，但是通常不会显式地表现出来。引用的基本原则是在声明时必须指向对象，以及对引用的一切操作都相当于对原对象操作。另外，引用不是对象，因此不存在引用的数组、无法获取引用的指针，也不存在引用的引用。
+Reference can be seen as a pointer encapsulated by C++ to pass the object it points to. In fact, in C++, you often deal with references that don't show explicitly. The basic principle of reference is that the object must be pointed to when it is declared, and all operations of the reference are equivalent to those of the original object. In addition, references are not objects, so there are no referenced arrays, pointers, or references.
 
-> 尽管引用不是对象，但是可以通过 [ `reference_wrapper` ](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) 把它对象化，间接实现相似的效果。
+> Although the reference is not an object, it can be objectified through [`reference_wrapper`](https://en.cppreference.com/w/cpp/utility/functional/reference_wrapper) to achieve similar effect indirectly.
 
-引用主要分为两种，左值引用和右值引用。此外还有两种特殊的引用：转发引用和垂悬引用，不作详细介绍。另外，本文还牵涉到一部分常值的内容，请用 [常值](./const.md) 一文辅助阅读。
+There are two main types of references: lvalue reference and rvalue reference. In addition, there are two special cases: forward reference and dangling reference, but we wouldn't get into details here. In addition, this article also introduces a part of the constant values, please refer to [constant value](./const.md) for more details.
 
-## 左值引用
+## lvalue reference
 
-??? note "左值和右值"
-    在赋值表达式 `X = Y` 中，我们说 X 是左值，它被用到的是在内存中的 **地址** ，在编译时可知；而 Y 则是右值，它被用到的是它的 **内容** （值），内容仅在运行时可知。在 C++11 之后值的概念被进一步分类，分为泛左值、纯右值和亡值，具体参见 [相关文档](https://zh.cppreference.com/w/cpp/language/value_category) 。值得一提的是，尽管右值引用在 C++11 后才支持，但是右值概念却更早就被定义了。
+??? note "lvalue and rvalue"
+    In the assignment expression `X = Y`, we say that X is a lvalue, which is used in the **address** in memory and can be known at compile time; While Y is a rvalue that is used for its **content** (value) and can only be known at runtime. After C++11, the concept of value is further classified into glvalue, prvalue and xvalue. For details, please refer to [cppreference - value category](https://en.cppreference.com/w/cpp/language/value_category). It is worth mentioning that, although rvalue references were only supported after C++11, its concept was defined earlier。
 
-??? note "左值表达式"
-    如果一个表达式返回的是左值（即可以被修改），那么这个表达式被称为左值表达式。右值表达式亦然。
+??? note "lvalue expression"
+    If an expression returns a lvalue (that is, modification is allowed), it is called the lvalue expression. The rvalue expression works the same way.
 
-通常我们会接触到的引用为左值引用，它通常被用来被赋值和访问，指向右值，它的名称来源于它通常放在等号左边。左值需要 **在内存中有实体** ，而不能指向临时变量。以下是来自 [参考手册](https://zh.cppreference.com/w/cpp/language/reference) 的一段示例代码。
+Usually the reference we see is the lvalue reference, which is usually used to be assigned, accessed, or point to the rvalue. Its name comes from the fact that it is usually placed on the left side of the equal sign. The lvalue needs to **have entity in memory**, and cannot point to a temporary variable. The following is a sample code from [reference manual](https://en.cppreference.com/w/cpp/language/reference).
 
 ```cpp
 #include <iostream>
@@ -23,35 +23,35 @@ int main() {
   std::string& r1 = s;
   const std::string& r2 = s;
 
-  r1 += "ample";  // 修改 r1，即修改了 s
-  //  r2 += "!";               // 错误：不能通过到 const 的引用修改
-  std::cout << r2 << '\n';  // 打印 r2，访问了s，输出 "Example"
+  r1 += "ample";  // modify r1, that is, modify s
+  //  r2 += "!";               // error: cannot be modified by reference of const
+  std::cout << r2 << '\n';  // print r2, visit s, and output "Example"
 }
 ```
 
-左值引用最常用的地方是函数参数，通过左值引用传参可以起到与通过指针传参相同的效果。
+The most common case for lvalue reference is the function parameters. Passing parameters through lvalue references can have the same effect as passing parameters through pointers.
 
 ```cpp
 #include <iostream>
 #include <string>
 
-// 参数中的 s 是引用，在调用函数时不会发生拷贝
+// the s in the parameter is a reference. no copy will occur when the function is called
 char& char_number(std::string& s, std::size_t n) {
-  s += s;          // 's' 与 main() 的 'str' 是同一对象
-                   // 此处还说明左值也是可以放在等号右侧的
-  return s.at(n);  // string::at() 返回 char 的引用
+  s += s;          // 's' and 'str' in main() are the same object
+                   // it also means that the lvalue can be placed on the right side of the equal sign
+  return s.at(n);  // string::at() return reference of char
 }
 
 int main() {
   std::string str = "Test";
-  char_number(str, 1) = 'a';  // 函数返回是左值，可被赋值
-  std::cout << str << '\n';   // 此处输出 "TastTest"
+  char_number(str, 1) = 'a';  // function returns a lvalue, which can be assigned
+  std::cout << str << '\n';   // output "TastTest" here
 }
 ```
 
-## 右值引用 (C++ 11)
+## rvalue references (C++ 11)
 
-右值引用是用来赋给其他变量的引用，指向右值，它的名称来源于它通常放在赋值号右边。右值 **可以在内存里也可以在 CPU 寄存器中** 。另外，右值引用可以被看作一种 **延长临时对象生存期的方式** 。
+The rvalue reference is a reference used to point the values assigned to other variables to the rvalue, and its name comes from the fact that it is usually placed on the right side of the assignment operator. The rvalue **can be in the memory or in the CPU register**. In addition, rvalue references can be viewed as a way to **extend the lifetime of temporary objects**.
 
 ```cpp
 #include <iostream>
@@ -59,82 +59,83 @@ int main() {
 
 int main() {
   std::string s1 = "Test";
-  //  std::string&& r1 = s1;           // 错误：不能绑定到左值
+  //  std::string&& r1 = s1;           // error: cannot bind to lvalue
 
-  const std::string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
-  //  r2 += "Test";                    // 错误：不能通过到常值的引用修改
+  const std::string& r2 = s1 + s1;  // ok: lvalue reference of constant types extends the lifetime cycle
+  //  r2 += "Test";                    // error: cannot modify by reference of constant value
 
-  std::string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
-  r3 += "Test";  // 可行：能通过到非常值的右值引用修改
+  std::string&& r3 = s1 + s1;  // ok: rvalue reference extends the lifetime cycle
+  r3 += "Test";  // ok: can be modified by rvalue reference of non-constant values
   std::cout << r3 << '\n';
 }
 ```
 
-在上述代码中， `r3` 是一个右值引用，引用的是右值 `s1 + s1` 。 `r2` 是一个左值引用，可以发现 **右值引用可以转为 const 修饰的左值引用** 。
+In the above code, `r3` is a rvalue reference, which refers to the rvalue `s1 + s1`. `r2` is a lvalue reference. It can be found that **rvalue reference can be converted to lvalue reference modified with const**.
 
-## 一些例子
+## Some examples
 
-###  `++i` 和 `i++` 
+###  `++i` and `i++` 
 
- `++i` 和 `i++` 是典型的左值和右值。 `++i` 的实现是直接给 i 变量加一，然后返回 i 本身。因为 i 是内存中的变量，因此可以是左值。实际上前自增的函数签名是 `T& T::operator++();` 。而 `i++` 则不一样，它的实现是用临时变量存下 i，然后再对 i 加一，返回的是临时变量，因此是右值。后自增的函数签名是 `T T::operator++(int);` 。
+ `++i` and `i++` are typical lvalues and rvalues. The implementation of `++i` is to directly add one to the i variable, and then return i itself. Because i is a variable in memory, it can be a lvalue. In fact, the signature of the previous auto-increment function is `T& T::operator++();`. But `i++` is different. Its implementation is to store i in a temporary variable, and then add one to i. The variable returned is temporary, so it is a rvalue. The signature of the post-increment function is `T T::operator++(int);`.
 
 ```cpp
 int n1 = 1;
 int n2 = ++n1;
-int n3 = ++++n1;  // 因为是左值，所以可以继续操作
+int n3 = ++++n1;  // lvalue, can continue to operate
 int n4 = n1++;
-//  int n5 = n1++ ++;   // 错误，无法操作右值
-//  int n6 = n1 + ++n1; // 未定义行为
-int&& n7 = n1++;  // 利用右值引用延长生命期
+//  int n5 = n1++ ++;   // error, cannot operate right value
+//  int n6 = n1 + ++n1; // undefined behaviour
+int&& n7 = n1++;  // use rvalue references to extend life cycle
 int n8 = n7++;    // n8 = 1
 ```
 
-### 移动语义和 `std::move` (C++11)
+### Move semantics and `std::move` (C++11)
 
-在 C++11 之后，C++ 利用右值引用新增了移动语义的支持，用来避免对象在堆空间的复制（但是无法避免栈空间复制），STL 容器对该特性有完整支持。具体特性有 [移动构造函数](https://zh.cppreference.com/w/cpp/language/move_constructor) 、 [移动赋值](https://zh.cppreference.com/w/cpp/language/move_assignment) 和具有移动能力的函数（参数里含有右值引用）。
-另外， `std::move` 函数可以用来产生右值引用，需要包含 `<utility>` 头文件。
+After C++11, C++ uses rvalue references to offer support for move semantics to avoid copying objects in the heap space (but stack space copying is unavoidable). The STL container has full support for this feature and the specific features are [move constructor](https://en.cppreference.com/w/cpp/language/move_constructor), [move assignment](https://en.cppreference.com/w/cpp/language/move_assignment ), and functions with moving capabilities (with rvalue references in the parameters).
+
+In addition, the `std::move` function can be used to generate rvalue references, and the `<utility>` header file must be included.
 
 ```cpp
-// 移动构造函数
+// move constructor
 std::vector<int> v{1, 2, 3, 4, 5};
-std::vector<int> v2(std::move(v));  // 移动v到v2, 不发生拷贝
+std::vector<int> v2(std::move(v));  // move v to v2, no copy operations
 assert(v.empty());
 
-// 移动赋值函数
+// move assignment function
 std::vector<int> v3;
 v3 = std::move(v2);
 assert(v2.empty());
 
-// 有移动能力的函数
+// function with ability to move
 std::string s = "def";
 std::vector<std::string> numbers;
 numbers.push_back(std::move(s));
 ```
 
-注意上述代码仅在 C++11 之后可用。
+Note that the above code is only available after C++11.
 
-### 函数返回引用
+### Function return reference
 
-让函数返回引用值可以避免函数在返回时对返回值进行拷贝，如
+Let the function return a reference value to avoid copying the return value when returning the function. For example:
 
 ```cpp
 char &get_val(std::string &str, int index) { return str[index]; }
 ```
 
-你不能返回在函数中的局部变量的引用，如果一定要在函数内的变量。请使用动态内存。例如如下两个函数都会产生悬垂引用，导致未定义行为。
+You cannot return a reference to a local variable in a function. If it must be a variable within the function, please use dynamic memory. For example, the following two functions will produce [dangling references](https://stackoverflow.com/questions/17997228/what-is-a-dangling-pointer) and result in undefined behavior.
 
 ```cpp
-std::vector<int>& getLVector() {  // 错误：返回局部变量的左值引用
+std::vector<int>& getLVector() {  // error: return the lvalue reference of local variable
   std::vector<int> x{1};
   return x;
 }
-std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
+std::vector<int>&& getRVector() {  // error: return rvalue reference of local variable
   std::vector<int> x{1};
   return std::move(x);
 }
 ```
 
-当右值引用指向的空间在进入函数前已经分配时，右值引用可以避免返回值拷贝。
+When the space pointed to by the rvalue has been allocated before entering the function, the rvalue reference can avoid the return value copy.
 
 ```cpp
 struct Beta {
@@ -143,11 +144,11 @@ struct Beta {
   Beta_ab&& getAB() && { return std::move(ab); }
 };
 
-Beta_ab ab = Beta().getAB();  // 这里是移动语义，而非拷贝
+Beta_ab ab = Beta().getAB();  // here is the move semantics, not copy
 ```
 
-## 参考内容
+## References
 
-1.  [C++ 语言文档——引用声明](https://zh.cppreference.com/w/cpp/language/reference) 
-2.  [C++ 语言文档——值类别](https://zh.cppreference.com/w/cpp/language/value_category) 
+1.  [C++ documentation - Reference declaration](https://en.cppreference.com/w/cpp/language/reference) 
+2.  [C++ documentation - value category](https://en.cppreference.com/w/cpp/language/value_category) 
 3.  [Is returning by rvalue reference more efficient?](https://stackoverflow.com/questions/1116641/is-returning-by-rvalue-reference-more-efficient) 
