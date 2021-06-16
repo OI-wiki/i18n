@@ -1,137 +1,146 @@
-本页面主要分享一下在竞赛中很多人经常会出现的错误。
+This page mainly shares the mistakes commonly made in the competition.
 
-## 会引起 Compile Error 的错误
 
-由于这类错误比较明显，故略写。
+## Could Cause Compile Error
 
--  `int main()` 写为 `int mian()` 。
+We left the detailed explanation out since this type of errors is pretty straightforward and self-explanatory.
 
-- 写完 `struct` 或 `class` 忘记写分号。
+-   Use `int mian()` instead of `int main()` .
 
-- 数组开太大，（在 OJ 上）使用了不合法的函数（例如多线程），或者函数声明但未定义，会引起链接错误。
+-   Forgets to write a semicolon after `struct` or `class`.
 
--   使用 `algorithm` 中的 `max` 函数时，一个参数类型为 `int` 而另一个参数类型为 `long long` 
-    -   示例：
+-   If the array size is too large, or an illegal function (such as multithreading) is used on OJ, or the function is declared but undefined, it will cause the link error.
+
+-   When using the `max` function in `algorithm`, one parameter has `int` type and the other one has `long long` type.
+    -   Example:
         ```cpp
-        printf("%lld\n", max(0, query(1, 1, n, l, r)); // query 返回 long long 类型
+        printf("%lld\n", max(0, query(1, 1, n, l, r)); // query returns long long type
         ```
 
--    `goto` 的时候，跳过了一些局部变量的初始化。
+-    Skipped the initialization of some local variables while using `goto`.
 
-    -  `switch-case` 的时候，跳过了一些局部变量的初始化。
+    -    Skipped the initialization of some local variables while `switch-case`.
 
-## 不会引起 Compile Error 但会引发 Warning 的错误
 
-这类错误较难发现，但会在使用 `-W{warningtype}` 参数编译时被编译器指出，所以要多学会使用 `-W{warningtype}` 参数，常见的有 `-Wall` ， `-Wextra` ， `-Wshadow` 等。
+## Does not cause Compile Error but will cause Warning
 
--   由于运算符优先级产生的错误。
-    -  `1 << 1 + 1` : 1 左移了 2，即该表达式返回的值是 4。
+This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter. You might want to check out the [Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html) in the official documentation. Common ones in `-W{warningtype}` include `-Wall`, `- Wextra`, `-Wshadow`, etc.
 
-- 不正确地使用 `static` 修饰符。
+-   Error caused by operator precedence .
+    -    `1 << 1 + 1` : 1 is left shifted by 2, that is, the value returned by the expression is 4.
 
--  `-1 >> 1 == 1` 。
+-   The `static` modifier is used incorrectly.
 
--   赋值运算符和 `==` 不分。
-    -   示例：
+-    `-1 >> 1 == 1`
+
+
+-   Cannot distinguish between assignment operator and `==`.
+    -   Example:
             ```cpp
             if (n = 1)
               puts("Yes");
             else
               puts("No");
             ```
-            无论 $n$ 的值之前为多少，输出肯定是 `Yes` 。
-        Tips: 如果你的确是想在 `if` / `while` 直接用赋值运算符（比如 `while (foo = bar)` ），又不想收到 Warning，可以使用 **双括号** ： `while ((foo = bar))` 。
+            No matter what the previous value of $n$ was, the output must be `Yes`.
+        **Tips**: If you really want to use the assignment operator (such as `while (foo = bar)`) directly in `if` / `while`, and you do not want to receive warnings, you can use **double brackets**: `while ((foo = bar))`.
 
-- 使用 `scanf` 读入的时候没加取地址符 `&` 。更一般地，使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符。
+-   Forgets to add the address character `&` when reading using `scanf`. More generally, when using `scanf` or `printf`, the parameter type does not match the format specifier.
 
-- 没有考虑数组下标出现负数的情况。
+-   Did not consider the case of negative array index.
 
-- 同时使用位运算和逻辑运算符（ `==` ）并且未加括号（例如 `(x>>j)&3==2` ）。
+-   Use both bitwise and logical operators (`==`) without parentheses (eg `(x>>j)&3==2` ).
 
--  `int` 字面量溢出，例如： `long long x = 0x7f7f7f7f7f7f7f7f` ， `1<<62` 。
+-   `int` literal overflow, for example: `long long x = 0x7f7f7f7f7f7f7f7f`, `1<<62`.
 
-- 未初始化局部变量，导致局部变量被赋予垃圾初值。
+-   Uninitialized local variables, causing local variables to be assigned with initial undefined values.
 
-- 局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
+-   The local and global variables have the same name, causing the global variables to be accidentally overwritten. (Open `-Wshadow` to check for such errors.)
 
-## 既不会引起 Compile Error 也不会引发 Warning 的错误
 
-这类错误无法被编译器发现，所以在调试时只能依靠你自己。
+## Causes neither Compile Error nor Warning
 
-### 会导致 WA
+Such errors cannot be discovered by the compiler, so you need to rely on yourself when debugging.
 
-- 多组数据未清空数组。
+### Could Cause WA
 
-- 读入优化未判断负数。
+-   Forgets to clear all for multiple sets of array input.
 
-- 所用数据类型不够大导致溢出，即常见的“三年 OI 一场空，不开 `long long` 见祖宗”，意思是因为没有使用 `long long` （开 `long long` ）导致大量丢分从而赛季作废。
+-   Forgets to check negative numbers when using reading optimization.
 
-- 存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
+-   The data type used is not large enough, causing overflow, which means that the usage of `long long` (opening `long long`) leads to losing a large number of points.
 
-- 大/小于号打错或打反。
+-   Forgets to -1 when reading input graph whose endpoint number starts from 1 but those defined in your graph starts from 0.
 
--   在执行 `ios::sync_with_stdio(false);` 后混用两种 IO，导致输入/输出错乱。
-    -   可以参考这个例子。
+-   > or < sign are wrong or reversed.
+
+-   After executing `ios::sync_with_stdio(false);`, the usage of two IOs are mixed, resulting in messy input/output.
+    -   Example:
         ```cpp
-        // 这个例子将说明，关闭与 stdio 的同步后，混用两种 IO 的后果
-        // 建议单步运行来观察效果
+        // This example will illustrate the consequences of mixing two IOs after turning off synchronization with stdio
+        // It is recommended to use single-step operation to observe the effect
         #include <cstdio>
         #include <iostream>
         int main() {
           std::ios::sync_with_stdio(false);
-          // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
-          // 的缓冲区，从而减少 IO 耗时
+          // After the synchronization is turned off, 
+          // cin/cout will use separate buffers 
+          // instead of synchronizing the output to the scanf/printf buffer, 
+          // thereby reducing IO time
           std::cout << "a\n";
-          // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出，应该使用 endl
-          // 来换行并立刻刷新缓冲区
+          // In cout, when using'\n' line feed, 
+          // the content will be buffered and not output immediately. 
+          // You should use endl to wrap and refresh the buffer immediately
           printf("b\n");
-          // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
+          // printf'\n' will flush printf's buffer, causing the output to be misplaced
           std::cout << "c\n";
-          return 0;  // 程序结束时，cout 的缓冲区才会被输出
+          return 0;  // At the end of the program, the buffer of cout will be output
         }
         ```
-    - 特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen` 。
+    -   In particular, you cannot use `freopen` after executing `ios::sync_with_stdio(false);`.
 
--   由于宏的展开，且未加括号导致的错误：
+
+-   Errors caused by macro expansion without parentheses:
     ```cpp
     #define square(x) x* x
     printf("%d", square(2 + 2));
     ```
-    该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$ 。
+    The value returned by this macro is not $4^2 = 16$ but $2+2\times 2+2 = 8$.
 
-- 哈希的时候没有使用 `unsigned` ，因为对负数的右移运算会在最高位补 1，详见 [位运算](../math/bit.md) 
+-   When hashing, `unsigned` is not used, because the right shift operation for negative numbers will be complemented by 1 at the highest bit. For details, see [Bit Operation](../math/bit.md) 
 
-- 没有删除或注释掉调试输出语句。
+-   Forgets to delete the debugging information.
 
--   误加了 `;` 。
-    -   可以参考这个例子：
+-   Add `;` by mistake.
+    -   Example:
         ```cpp
         /* clang-format off */
         while (1);
             printf("OI Wiki!\n");
         ```
 
-- 没有正确设置哨兵值。例如，平衡树的 `0` 节点。
+-   The sentinel value is not set correctly. For example, the `0` node of a balanced tree.
 
-- 在类或结构体的构造函数中，使用 : 初始化变量，且变量声明顺序不符合初始化时候的依赖关系。因为成员变量的初始化顺序只与它们在类中声明的顺序有关，而与在初始化列表中的顺序无关。
+-   In the constructor of a class or structure, use `:` to initialize the variable, and the variable declaration order does not meet the dependency at the time of initialization. This is because the order of initialization of member variables is only related to the order in which they are declared in the class, but not the order in the initialization list.
 
-- 并查集合并集合时没有把两个元素的祖先合并：
+-   Forgets to merge the ancestors of the two elements when merging two union-find sets, 
 
 ```cpp
-f[a] = b;              // 错误
-f[find(a)] = find(b);  // 正确
+f[a] = b;              // right
+f[find(a)] = find(b);  // wrong
 ```
 
-### 会导致 RE
+### Could Cause RE
+-   Divide the integer by $0$.
+    -  Inverse $0$.
 
--   对整数除以 $0$ 。
-    - 对 $0$ 求逆元。
-
-- 没删文件操作（某些 OJ）。
-
--   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序： `a<a` 为 `false` ；若 `a<b` 为 `true` ，则 `b<a` 为 `false` ；若 `a<b` 为 `true` 且 `b<c` 为 `true` ，则 `a<c` 为 `true` 。其中要特别注意第二点。
-    如果不满足上述要求，排序时很可能会 RE。
-    例如，编写莫队的奇偶性排序时，这样写是错误的：
+-   Forgets to delete the file operations (for some OJs).
+-   Errors in comparison functions when sorting. `std::sort` requires comparison functions to be strictly weakly ordered: `a<a` is `false`; if `a<b` is `true`, then `b<a` is `false`; if `a<b` is `true` and `b<c` is` true`, then `a<c` is `true`. Pay special attention to the second point.
+    
+    If the above requirements are not met, it is likely to be RE when sorting.
+    
+    For example, when writing the parity order of the Mo's Algorithm, this is wrong:
+    
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -139,8 +148,11 @@ f[find(a)] = find(b);  // 正确
       else
         return block[a.l] < block[b.l];
     ```
-    上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足上述要求的第二点。
-    改成这样就正确了：
+
+    In the code above, `(block[a.l]&1)^(a.r<b.r)` does not meet the strict weak order in requirement 2.
+
+    Changing into this would make it correct:
+    
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -148,42 +160,41 @@ f[find(a)] = find(b);  // 正确
       else
         return block[a.l] < block[b.l];
     ```
+-   Dereferencing the null pointer.
 
-- 解引用空指针。
+### Could Cause TLE
 
-### 会导致 TLE
+-   Divide and conquer without boundary check leads to recursion.
 
-- 分治未判边界导致死递归。
+-   Dead loop:
 
--   死循环。
+    -   Use the same name for the loop variable.
 
-    - 循环变量重名。
+    -   The direction of loop is reversed.
 
-    - 循环方向反了。
+-   Forgets to mark whether a state has been visited in BFS.
 
-- BFS 时不标记某个状态是否已访问过。
+-   Use macro expansion to write min/max.
 
--   使用宏展开编写 min/max
+    Although this approach technically is not an "error", it still needs to be mentioned here.
 
-    这种做法虽然算不上是「错误」，但是这里还是要拎出来说一下。
-
-    常见的写法是这样的：
+    The common way of writing looks like this:
 
     ```cpp
     #define Min(x, y) ((x) < (y) ? (x) : (y))
     #define Max(x, y) ((x) > (y) ? (x) : (y))
     ```
 
-    这样写虽然在正确性上没有问题，但是如果你直接对函数的返回值取 max，如 `a = Max(func1(), func2())` ，而这个函数的运行时间较长，则会大大影响程序的性能，因为宏展开后是 `a = func1() > func2() ? func1() : func2()` 的形式，调用了三次函数，比正常的 max 函数多调用了一次。注意这里如果 `func1()` 每次返回的答案不一样的话还会导致这种 `max` 的写法出现错误，例如 `func1()` 为 `return ++a;` 而 `a` 为全局变量。
+    Although there is no problem in the correctness of this writing, if you directly take the max of the return value of the function, such as `a = Max(func1(), func2())`, and the running time of this function is longer, the performance of the program will be greatly affected. Because after the macro expanded, it will be `a = func1()> func2()? Func1(): func2()`. The function is called three times, which is called once more than the normal max function.
 
-    这种错误在初学者写线段树时尤为多见，会大大增加程序的运行时间，甚至直接影响代码的时间复杂度。例如这份错误代码：
+    This kind of error is especially common when a beginner writes a segment tree, which will greatly increase the running time of the program and even directly affect the time complexity of the code. For example, this error code:
 
     ```cpp
     #define max(x, y) ((x) > (y) ? (x) : (y))
 
     int query(int t, int l, int r, int ql, int qr) {
       if (ql <= l && qr >= r) {
-        ++ti[t];  // 记录结点访问次数方便调试
+        ++ti[t];  // Record the number of node visits for easy debugging
         return vi[t];
       }
 
@@ -198,58 +209,62 @@ f[find(a)] = find(b);  // 正确
     }
     ```
 
-    会被卡到单次查询 $\Theta(n)$ 导致 TLE。
+    Will be stuck to a single query $\Theta(n)$ leading to TLE.
+    
+-   Forgets to delete the file operations (for some OJ).
 
-- 没删文件操作（某些 OJ）。
+-    `for (int i = 0; i < strlen(s); ++i)`: Repeatedly execute functions with complexity other than $O(1)$ in the loop. (Strictly speaking, this may cause a change in time complexity.)
 
--  `for (int i = 0; i < strlen(s); ++i)` ：在循环中重复执行复杂度非 $O(1)$ 的函数。（严格来说，这可能会引起时间复杂度的改变。）
+### Could Cause MLE
 
-### 会导致 MLE
+-   The size of the array is too large.
 
-- 数组过大。
+-   Too many elements are inserted in the STL container.
 
--   STL 容器中插入了过多的元素。
 
-    - 经常是在一个会向 STL 插入元素的循环中死循环了。
+    -   It is often an endless loop that inserts elements into the STL.
 
-    - 也有可能被卡了。
+    -   It may also be stuck.
 
-###  [未定义行为](https://zh.cppreference.com/w/cpp/language/ub) 
+###  [Undefined behavior](https://en.cppreference.com/w/cpp/language/ub) 
 
--   数组越界。上下都算。（多数是 RE。）
+-   The array is out of boundary. Either the starting point or ending point. (Mostly RE.)
 
-    - 未正确设置循环的初值导致访问了下标为 -1 的值。
+    -   Fail to set the initial value of the loop correctly, leading to the access to the value with index -1.
 
-    - 无向图边表未开 2 倍。
+    -   The undirected graph edge table is not declared twice the size.
 
-    - 线段树未开 4 倍空间。
+    -   The segment tree does not declare 4 times the space.
 
-    - 看错数据范围，少打一个零。
+    -   Miss a zero in delcaration because reading the data range wrong.
 
-    - 错误预估了算法的空间复杂度。
+    -   Miscalculates the space complexity of the algorithm.
 
-    - 写线段树的时候， `pushup` 或 `pushdown` 叶节点。
+    -   When writing a segment tree, `pushup` or `pushdown` leaf nodes.
 
--   解引用野指针。
 
-    - 未初始化就解引用指针。
+-   Dereference wild pointers.
 
-    - 指针指向的内存区域已经释放。
+    -   The pointer is dereferenced without initialization.
 
-### 会导致常数过大
+    -   The area pointed to by the pointer is already `free` or `delete`.
 
-- 定义模数的时候，使用了全局变量（如 `int mod = 998244353` ，为方便编译器按常量处理，正确做法是 `const int mod = 998244353` ）。
 
-- 使用了不必要的递归（需要注意的是，尾递归不在此列）。
+### Cause time complexity constant to be too large
 
-- 将递归转化成迭代的时候，引入了大量额外运算。
+-   When defining the modulus, a global variable (such as `int mod = 998244353` is used. For the convenience of compiler processing by constants, the correct practice is `const int mod = 998244353` ).
 
-### 只在程序在本地运行的时候造成影响的错误
+-   Unnecessary recursion is used (note that tail recursion is not included).
 
--   文件操作有可能会发生的错误：
+-   When converting recursion into iteration, a lot of extra operations are introduced.
 
-    - 对拍时未清除文件指针即 `fclose(fp)` 就又令 `fp = fopen()` , 这会使得进程出现大量的文件野指针。
 
-    -  `freopen()` 中的文件名未加 `.in` / `.out` 。
+### Errors that only take effect when the program is running locally
 
-- 使用堆空间忘记 `delete` 或 `free` 。
+-   Errors that may occur during file operations:
+
+    -   If the file pointer is not cleared during the double compare, that is, `fclose(fp)`, then `fp = fopen()`, which will cause a large number of file pointers in the process.
+
+    -    The file names in `freopen()` are not added with `.in` / `.out`.
+
+-   Forgets about `delete` or `free` while using the heap space. 
