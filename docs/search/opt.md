@@ -1,129 +1,129 @@
 author: CBW2007, ChungZH, TrisolarisHD, abc1763613206, Ir1d
 
-## 前言
+## Introduction
 
-DFS（深度优先搜索）是一种常见的算法，大部分的题目都可以用 DFS 解决，但是大部分情况下，这都是骗分算法，很少会有爆搜为正解的题目。因为 DFS 的时间复杂度特别高。（没学过 DFS 的请自行补上这一课）
+DFS (Depth First Search) is a really common algorithm used in OI and most of the problems can be solved using it. However, in most cases, it can only get partial points, because the time complexity of DFS is extremely high and there are very few problems that can be solved with a brute-force DFS. (If you have not studied DFS, please refer to [dfs](./dfs.md) for more details).
 
-既然不能成为正解，那就多骗一点分吧。那么这一篇文章将介绍一些实用的优化算法（俗称“剪枝”）。
+But how to get a few more points when DFS is not the best answer? This article will introduce some practical optimization algorithms (commonly known as "pruning").
 
-先来一段深搜模板，之后的模板将在此基础上进行修改。
+Let's first look at a section of DFS template, and the following templates will be modified based on it.
 
 ```cpp
-int ans = 最坏情况, now;  // now为当前答案
-void dfs(传入数值) {
-  if (到达目的地) ans = 从当前解与已有解中选最优;
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+int ans = worst_case, now;  // now is the current answer
+void dfs(input_data) {
+  if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;
+  for (all_possible_solutions)
+    if (feasible) {
+      perform_operation;
+      dfs(downsizing);
+      withdraw_operation;
     }
 }
 ```
 
-其中的 ans 可以是解的记录，那么从当前解与已有解中选最优就变成了输出解。
+Among them, ans can be the record of the solution, then the best one selected from the current and the existing solutions will become the output answer.
 
-## 剪枝方法
+## Pruning methods
 
-最常用的剪枝有三种，记忆化搜索、最优性剪枝、可行性剪枝。
+There are three most commonly used pruning: memorized search, optimal pruning, and feasible pruning.
 
-### 记忆化搜索
+### Memorized search
 
-因为在搜索中，相同的传入值往往会带来相同的解，那我们就可以用数组来记忆，详见 [记忆化搜索](../dp/memo.md) 。
+Because the same input value in search often has the same solution, we can use an array to memorize, see [memoization search](../dp/memo.md) for details.
 
- **模板：** 
+ **template:** 
 
 ```cpp
-int g[MAXN];  // 定义记忆化数组
-int ans = 最坏情况, now;
-void dfs f(传入数值) {
-  if (g[规模] != 无效数值) return;  // 或记录解，视情况而定
-  if (到达目的地) ans = 从当前解与已有解中选最优;  // 输出解，视情况而定
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+int g[MAXN];  // define memoization array
+int ans = worst_case, now;
+void dfs f(input_data) {
+  if (g[size] != invalid_value) return;  // or record the solution, depending on the situation
+  if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;  // or output the solution, depending on the situation
+  for (all_possible_solutions)
+    if (feasible) {
+      perform_operation;
+      dfs(downsizing);
+      withdraw_operation;
     }
 }
 int main() {
-  ... memset(g, 无效数值, sizeof(g));  // 初始化记忆化数组
+  ... memset(g, invalid_value, sizeof(g));  // initialize memoization array
   ...
 }
 ```
 
-### 最优性剪枝
+### Optimal pruning
 
-在搜索中导致运行慢的原因还有一种，就是在当前解已经比已有解差时仍然在搜索，那么我们只需要判断一下当前解是否已经差于已有解。
+There is another reason why the operation is slow in the search, that is, the search is still being performed when the current solution is already worse than the existing solution. Then we only need to judge whether the current solution is already worse than the existing solution.
 
- **模板：** 
+ **template:** 
 
 ```cpp
-int ans = 最坏情况, now;
-void dfs(传入数值) {
-  if (now比ans的答案还要差) return;
-  if (到达目的地) ans = 从当前解与已有解中选最优;
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+int ans = worst_case, now;
+void dfs(input_data) {
+  if (now is worse than ans) return;
+  if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;
+  for (all_possible_solutions)
+    if (feasible) {
+      perform_operation;
+      dfs(downsizing);
+      withdraw_operation;
     }
 }
 ```
 
-### 可行性剪枝
+### Feasible pruning
 
- **模板：** 
+ **template:** 
 
-在搜索中如果当前解已经不可用了还运行，也是在搜索中导致运行慢的原因。
+If the current solution cannot be used but is till running, it is also the cause of the slow operations during the search.
 
 ```cpp
-int ans = 最坏情况, now;
-void dfs(传入数值) {
-  if (当前解已不可用) return;
-  if (到达目的地) ans = 从当前解与已有解中选最优;
-  for (遍历所有可能性)
-    if (可行) {
-      进行操作;
-      dfs(缩小规模);
-      撤回操作;
+int ans = worst_case, now;
+void dfs(input_data) {
+  if (current solution cannot be used) return;
+  if (destination_arrived) ans = the_best_from_the_current_and_existing_solutions;
+  for (all_possible_solutions)
+    if (feasible) {
+      perform_operation;
+      dfs(downsizing);
+      withdraw_operation;
     }
 }
 ```
 
-## 剪枝思路
+## Pruning
 
-剪枝思路有很多种，大多需要对于具体问题来分析，在此简要介绍几种常见的剪枝思路。
+There are many ways of pruning, and most of them need to analyze specific problems. Here we introduce a few common pruning ideas.
 
-- 极端法：考虑极端情况，如果最极端（最理想）的情况都无法满足，那么肯定实际情况搜出来的结果不会更优了。
+- Extreme method: consider the extreme situation. If the most extreme (ideal) situation cannot be satisfied, the result of the actual situation will certainly not be better.
 
-- 调整法：通过对子树的比较剪掉重复子树和明显不是最有“前途”的子树。
+- Adjustment method: cut out duplicate subtrees and subtrees that are obviously not the most "promising" ones by comparing them.
 
-- 数学方法：比如在图论中借助连通分量，数论中借助模方程的分析，借助不等式的放缩来估计下界等等。
+- Mathematical method: for example, use the connectivity in graph theory, modular equation analysis in number theory, or inequality scaling to estimate lower bounds, and so on.
 
-## 例题
+## Sample problem
 
-???+note "工作分配问题"
-     **题目描述** 
+???+note "Job assignment problem"
+     **problem description** 
 
-    有 $n$ 份工作要分配给 $n$ 个人来完成，每个人完成一份。第 $i$ 个人完成第 $k$ 份工作所用的时间为一个正整数 $t_{i,k}$，其中 $1 \leq i, k \leq n$。试确定一个分配方案，使得完成这 $n$ 份工作的时间总和最小。
+    There are $n$ jobs to be assigned to $n$ individuals to complete, and each individual can complete one job. The time taken by the $i$-th person to complete the $k$-th job is a positive integer $t_{i,k}$ , where $1 \leq i, k \leq n$. Try to come up with an assignment plan that minimizes the total time to complete these $n$ jobs.
 
-    输入包含 $n + 1$ 行。
+    Input includes $n + 1$ lines.
 
-    第 1 行为一个正整数 $n$。
+    The first line is a positive integer $n$ .
 
-    第 2 行到第 $n + 1$ 行中每行都包含 $n$ 个正整数，形成了一个 $n \times n$ 的矩阵。在该矩阵中，第 $i$ 行第 $k$ 列元素 $t_{i,k}$ 表示第 $i$ 个人完成第 $k$ 件工作所要用的时间。
+    Each line from $2$ to $n + 1$ contains $n$ positive integers, forming a matrix of $n \times n$ . In this matrix, the element $t_{i,k}$ in the $i$-th row and the $k$-th column represents the time it takes for the $i$-th person to complete the $k$-th job.
 
-    输出包含一个正整数，表示所有分配方案中最小的时间总和。
+    The output contains a positive integer, representing the smallest sum of time among all assignment plans.
 
-    **数据范围**
+    **data range**
 
     $1 \leq n \leq  15$
 
     $1 \leq t_{i,k} \leq 10^4$
 
-    **输入样例**
+    **input sample**
 
     ```text
     5
@@ -134,45 +134,45 @@ void dfs(传入数值) {
     9 1 7 8 9
     ```
 
-    **输出样例**
+    **output sample**
 
     ```text
     5
     ```
 
-由于每个人都必须分配到工作，在这里可以建一个二维数组 `time[i][j]` ，用以表示 $i$ 个人完成 $j$ 号工作所花费的时间。给定一个循环，从第 1 个人开始循环分配工作，直到所有人都分配到。为第 $i$ 个人分配工作时，再循环检查每个工作是否已被分配，没有则分配给 $i$ 个人，否则检查下一个工作。可以用一个一维数组 `is_working[j]` 来表示第 $j$ 号工作是否已被分配，未分配则 `is_working[j]=0` ，否则 `is_working[j]=1` 。利用回溯思想，在工人循环结束后回到上一工人，取消此次分配的工作，而去分配下一工作直到可以分配为止。这样，一直回溯到第 1 个工人后，就能得到所有的可行解。
+Since everyone must be assigned with a job, a two-dimensional array `time[i][j]` can be created to represent the time spent by the $i$-th person to complete the $j$-th job. Given a cycle, start with the first person and distribute jobs until everyone is assigned. When assigning job to the $i$-th person, it will re-check whether each job has been assigned, if not, assign to the $i$-th person, otherwise the next job will be checked. A one-dimensional array `is_working[j]` can be used to indicate whether the $j$-th job has been assigned. If not, `is_working[j]=0`, otherwise `is_working[j]=1`. Use recursion, return to the previous job after the end of the cycle, cancel the assigned jobs for this round, and assign the next job until it can be assigned. In this way, after going back to the first job, all feasible solutions can be obtained.
 
-检查工作分配，其实就是判断取得可行解时的二维数组的第一维下标各不相同并且第二维下标各不相同。而我们是要得到完成这 $n$ 份工作的最小时间总和，即可行解中时间总和最小的一个，故需要再定义一个全局变量 `cost_time_total_min` 表示目前找到的解中最小的时间总和，初始 `cost_time_total_min` 为 `time[i][i]` 之和，即对角线工作时间相加之和。在所有人分配完工作时，比较 `count` 与 `cost_time_total_min` 的大小，如果 `count` 小于 `cost_time_total_min` ，说明找到了一个最优解，此时就把 `count` 赋给 `cost_time_total_min` 。
+Checking the job assignment is actually checking that when a feasible solution is obtained, the first dimension subscript of the two-dimensional array are different and the second dimension subscripts are different. And what we want to obtain is the minimum sum of time to complete the $n$ work, which is the smallest sum of time in solutions. Therefore, we need to define a global variable `cost_time_total_min` to represent the smallest sum of time found so far. The initial value of ` cost_time_total_min` is the sum of `time[i][i]`, that is, the sum of the diagonal working time. When everyone has been assigned with job, compare `count` and `cost_time_total_min`. If `count` is less than `cost_time_total_min`, an optimal solution has been found. At this time, assign `count` to `cost_time_total_min`.
 
-但考虑到算法的效率，这里还有一个剪枝优化的工作可以做。就是在每次计算局部费用变量 `count` 的值时，如果判断 `count` 已经大于 `cost_time_total_min` ，就没必要再往下分配了，因为这时得到的解必然不是最优解。
+However, considering the efficiency of the algorithm, there is still one pruning optimization that can be done. That is, every time the value of the local cost variable `count` is calculated, if `count` is already greater than `cost_time_total_min`, there is no need to assign further, because the solution obtained at this time is necessarily not the optimal solution.
 
-??? note "参考代码"
+??? note "Sample code"
     ```C++
     #include <cstdio>
     #define N 16
-    int is_working[N] = {0};  // 某项工作是否被分配
-    int time[N][N];           // 完成某项工作所需的时间
-    int cost_time_total_min;  // 完成 n 份工作的最小时间总和
-    // i 表示第几个人，count 表示工作费用总和
+    int is_working[N] = {0};  // whether a job has been assigned
+    int time[N][N];           // time to finish a job
+    int cost_time_total_min;  // the minimum sum of time to complete n jobs
+    // i represents the i-th person，count represents the sum of the cost of jobs
     void work(int i, int count, int n) {
-      // 如果 i 超出了所能分配的最大工作件数，表示分配完成，并且 count 比原来
-      // cost_time_total_min 花费少，则更新 cost_time_total_min 的值
+      // if i exceeds the maximum number of jobs that can be assigned, the assignment is complete, and count is smaller than the original
+      // cost_time_total_min cost less, then update the value of cost_time_total_min
       if (i > n && count < cost_time_total_min) {
         cost_time_total_min = count;
         return;
       }
-      // 回溯思想
+      // recursion
       if (count < cost_time_total_min) {
-        // j 表示第几件工作
+        // j represents the j-th job
         for (int j = 1; j <= n; j++) {
-          // 如果工作未被分配 is_working = 0
+          // If the job is not assigned is_working = 0
           if (is_working[j] == 0) {
-            // 分配工作 is_working = 1
+            // assign job is_working = 1
             is_working[j] = 1;
-            // 工作交给第 i + 1 个人
+            // assign the job to the (i + 1)-th person
             work(i + 1, count + time[i][j], n);
-            // 在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配
-            // 将 is_working[j] 重设为 0
+            // after a round of iteration is done, return to the previous person and redistribute
+            // reset is_working[j] as 0
             is_working[j] = 0;
           }
         }
@@ -192,3 +192,4 @@ void dfs(传入数值) {
       return 0;
     }
     ```
+    
