@@ -3,7 +3,7 @@ site_name: OI Wiki
 site_description: OI Wiki aims to be a free and lively updated site that integrates resources, in which readers can get interesting and useful knowledge about competitive programming. There are basic knowledge, frequently seen problems, way of solving problems, and useful tools to help everyone to learn quicker and deeper.
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
-strict: true
+strict: false
 
 # Repository
 repo_name: 'OI-wiki/OI-wiki (English)'
