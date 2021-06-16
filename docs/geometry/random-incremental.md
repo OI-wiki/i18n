@@ -1,40 +1,42 @@
 author: Ir1d
 
-## 简介
+## Introduction
 
-随机增量算法是计算几何的一个重要算法，它对理论知识要求不高，算法时间复杂度低，应用范围广大。
+The random incremental algorithm is an important algorithm for computational geometry. It does not require high theoretical knowledge, has low algorithm time complexity, and can be used in a wide range of applications.
 
-增量法 (Incremental Algorithm) 的思想与第一数学归纳法类似，它的本质是将一个问题化为规模刚好小一层的子问题。解决子问题后加入当前的对象。写成递归式是：
+The idea of Incremental Algorithm is similar to the mathematical induction method. Its essence is to turn a problem into a sub-problem of just one level smaller in scale. Add the current object after solving the sub-problem. If implemented recursively, :
 
 $$
 T(n)=T(n-1)+g(n)
 $$
 
-增量法形式简洁，可以应用于许多的几何题目中。
+The incremental method is simple in form and can be applied to many geometric problems.
 
-增量法往往结合随机化，可以避免最坏情况的出现。
+Incremental methods are often combined with randomization to avoid the worst-case scenarios.
 
-## 最小圆覆盖问题
+## Minimum coverage circle problem
 
-### 题意描述
+### Problem description
 
-在一个平面上有 $n$ 个点，求一个半径最小的圆，能覆盖所有的点。
+There are $n$ points on a plane. Find a circle with the smallest radius that can cover all points.
 
-### 算法
+### Algorithm
 
-假设圆 $O$ 是前 $i-1$ 个点得最小覆盖圆，加入第 $i$ 个点，如果在圆内或边上则什么也不做。否，新得到的最小覆盖圆肯定经过第 $i$ 个点。
+Assuming that the circle $O$ is the smallest covering circle of the first $i-1$ points, add the $i$-th point, and do nothing if it is inside or on the edge of the circle. Otherwise, the new smallest covered circle must go through the $i$-thth point.
 
-然后以第 $i$ 个点为基础（半径为 $0$ ），重复以上过程依次加入第 $j$ 个点，若第 $j$ 个点在圆外，则最小覆盖圆必经过第 $j$ 个点。
+Then based on the $i$-th point (with a radius of $0$ ), repeat the above process to add the $j$-th point in sequence. If the $j$-th point is outside the circle, the smallest covered circle must pass through the $j$-th point Points.
 
-重复以上步骤。（因为最多需要三个点来确定这个最小覆盖圆，所以重复三次）
+Then based on the $i$th point (with a radius of $0$), repeat the above process to add the $j$th point in sequence. If the $j$th point is outside the circle, the smallest covered circle must pass through the $j$th point Points.
 
-遍历完所有点之后，所得到的圆就是覆盖所有点得最小圆。
+Repeat the above steps. (Because at most three points are needed to determine the minimum covering circle, so it is repeated three times)
 
- **时间复杂度**  $O(n)$ 
+After traversing all the points, the circle obtained is the smallest circle covering all the points.
 
- **空间复杂度**  $O(n)$ 
+ **Time complexity**:  $O(n)$ 
 
-??? note "代码实现"
+ **Space complexity**:  $O(n)$ 
+
+??? note "Code implementation"
     ```cpp
     #include <cmath>
     #include <cstdio>
@@ -106,13 +108,15 @@ $$
     }
     ```
 
-## 练习
+## Practice
 
- [最小圆覆盖](https://www.luogu.com.cn/problem/P1742) 
+> Original links in Chinese.
 
- [「HNOI2012」射箭](https://www.luogu.com.cn/problem/P3222) 
+ [Minimum circle coverage](https://www.luogu.com.cn/problem/P1742) 
 
-## 参考资料
+ [「HNOI2012」Archery](https://www.luogu.com.cn/problem/P3222) 
+
+## References
 
  <http://www.doc88.com/p-007257893177.html> 
 

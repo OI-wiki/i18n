@@ -1,22 +1,22 @@
-## 简介
+## Introduction
 
-迭代加深是一种 **每次限制搜索深度的** 深度优先搜索。
+Iterative deepening search, abbreviated as IDS or IDDFS, is a depth-first search that **restricts the search depth each time**. 
 
-它的本质还是深度优先搜索，只不过在搜索的同时带上了一个深度 $d$ ，当 $d$ 达到设定的深度时就返回，一般用于找最优解。如果一次搜索没有找到合法的解，就让设定的深度 $+1$ ，重新从根开始。
+The principle of IDS is still depth-first search, but a depth $d$ is also maintained during the search, and returns when $d$ reaches the depth set. This algorithm is generally used to find the optimal solution. If a search fails to find a legal solution, increase the depth set by one and start the search from the root again.
 
-既然是为了找最优解，为什么不用 BFS 呢？我们知道 BFS 的基础是一个队列，队列的空间复杂度很大，当状态比较多或者单个状态比较大时，使用队列的 BFS 就显出了劣势。事实上，迭代加深就类似于用 DFS 方式实现的 BFS，它的空间复杂度相对较小。
+Since the goal is to find the optimal solution, why not use BFS? We know that the basis of BFS is a queue, and the space complexity of queues are very large. When there are multiple states or a single state is relatively large, BFS with queue is disadvantageous. In fact, iterative deepening search is like a BFS implemented by DFS, and its space complexity is relatively small.
 
-当搜索树的分支比较多时，每增加一层的搜索复杂度会出现指数级爆炸式增长，这时前面重复进行的部分所带来的复杂度几乎可以忽略，这也就是为什么迭代加深是可以近似看成 BFS 的。
+As the number of branches increases, the time complexity of searching an additional layer grows exponentially. At this time, the complexity caused by the previous repeated parts can be almost ignored, which is the reason why the iterative deepening search can be approximately seen as BFS.
 
-## 步骤
+## Steps
 
-首先设定一个较小的深度作为全局变量，进行 DFS。每进入一次 DFS，将当前深度 $d++$ ，当发现 $d$ 大于设定的深度就返回。如果在搜索的途中发现了答案就可以回溯，同时在回溯的过程中可以记录路径。如果没有发现答案，就返回到函数入口，增加设定深度，继续搜索。
+First we set a smaller depth as a global variable for DFS. Each time DFS is called, increase current depth $d$ by one, and return when $d$ is greater than the set depth $\textit{limit}$ . If the answer is found during the search, we can start the backtrack, and record the path during the process. If no answer is found, go back to the function entry, increase the set depth, and try again.
 
-## 代码结构
+## Code structure
 
 ```text
 IDDFS(u,d)
-    if d>设定深度
+    if d>limit
         return
     else
         for each edge (u,v)
@@ -24,6 +24,6 @@ IDDFS(u,d)
   return
 ```
 
-## 注意事项
+## Note
 
-在大多数的题目中，广度优先搜索还是比较方便的，而且容易判重。当发现广度优先搜索在空间上不够优秀，而且要找最优解的问题时，就应该考虑迭代加深。
+In most problems, breadth-first search is more convenient and easiser to check duplicates. However, when its space complexity is not good enough and the problem requires finding the optimal solution, iterative deepening search should be considered.

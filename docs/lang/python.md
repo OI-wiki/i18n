@@ -1,38 +1,39 @@
-## 关于 Python
+## About Python
+ 
+Python is an interpreted object-oriented programming language that has been widely used around the world. It is very suitable for testing algorithm segments and prototypes. It can also be used to practice OJ questions.
 
-Python 是一种目前已在世界上广泛使用的解释型面向对象语言，非常适合用来测试算法片段和原型，也可以用来刷一些 OJ。
+### Why should we learn Python?
 
-### 为什么要学习 Python
+- Python is an **interpreted** language: similar to PHP and Perl, it does not require compilation during the development, can be used immediately, and has great cross-platform compatibility.
+- Python is an **interactive** language: you can enter the code directly after the prompt `>>>` on the command line, which makes your code easier to debug.
+- Python is easy to learn and use, and covers a wide range of topics: from simple I/O to scientific calculations and even large-scale web applications, Python can help you quickly write a program that suits your need at a very low learning cost. This could add a practical skill for your future study and work, and help your programming career in the long run.
+- Python is easy to read and widely used: this means that you can get support **faster** and solve problems **faster** than using other languages.
+- The environment of Python is easy to configure in each platform, and most of the popular Linux distributions (even `NOI Linux`) on the market have the **built-in** Python with a slightly older version, which means you can really use it during the competition, making it your best OI partner.
 
--   Python 是一种 **解释型** 语言：类似于 PHP 与 Perl，它在开发过程中无需编译，即开即用，跨平台兼容性好。
--   Python 是一种 **交互式** 语言：您可以在命令行的提示符 `>>>` 后直接输入代码，这将使您的代码更易于调试。
--   Python 易学易用，且覆盖面广：从简单的输入输出到科学计算甚至于大型 WEB 应用，Python 可以帮助您在 **极低的学习成本** 下快速写出适合自己的程序，从而让您的程序生涯如虎添翼，为以后的学习和工作增加一项实用能力。
--   Python 易读性强，且在世界广泛使用：这意味着您能够在使用过程中比其他语言 **更快获得支持** ， **更快解决问题** 。
--   哦，还有一个最重要的：它在各平台下的环境易于配置，并且目前市面上大部分流行的 Linux 发行版（甚至于 `NOI Linux` ）中也大都 **内置** 了个版本比较旧的 Python，这意味着您能真正在考场上使用它，让它成为您的最佳拍档。
+### Things to pay attention to when learning Python
 
-### 学习 Python 时需要注意的事项
+- The current Python has two versions: Python 2 and Python 3. Although Python 2 is [almost abandoned](https://pythonclock.org/), it is still used by some old systems and codebases. Usually we are not sure about the version that can be used in OIs, so we will **introduce the newer version of Python**. However, it is still recommended that readers understand the syntax of Python 2 and compare the differences between the two.
+- If you have used the C++ language before, please keep in mind that the syntax of Python is quite different from that of C++. Please be careful not to confuse it when using it.
+- Since Python is a **highly dynamic interpreted** language, there is a lot of extra overhead during its program operation. Generally speaking, the less Python code we write to achieve the same function, the faster it is (but don't go extreme). Especially **for loops are incredibly slow in Python**. Therefore, if you want to achieve high performance, try to use the built-in functions such as `filter` and `map`, or use ["list comprehension"](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) to avoid loops.
 
--   目前的 Python 分为 Python 2 和 Python 3 两个版本，其中 Python 2 虽然 [几近废弃](https://pythonclock.org/) ，但是仍被一些老旧系统和代码所使用。我们通常不能确定在考场上可以使用的版本，因而会 **介绍较新版本的 Python** ，但还是建议读者了解一下 Python 2 的相关语法，并比较两者之间的差异。
--   如果您之前使用 C++ 语言，那么很遗憾地告诉您，Python 的语法结构与 C++ 差异还是比较大的，请注意使用的时候不要混淆。
--   由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销。通常而言，实现同样功能时 Python 代码越少速度越快（但不要追求极端）。尤其是 **for 循环在 Python 中运行的奇慢无比** 。因此在使用 Python 时若想获得高性能，尽量使用 `filter` , `map` 等内置函数，或者使用 [“列表理解”](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来避免循环。
-
-## 环境安装
+## Environment setup
 
 ### Windows
 
-访问 <https://www.python.org/downloads/> ，下载自己需要的版本并安装。
-另外为了方便，请务必勾选 ** `Add Python 3.x to PATH` ** 以确保将 Python 加入环境变量！
-如在如下的 Python 3.7.4 安装界面中，应该如图勾选最下一项复选框。
+Visit <https://www.python.org/downloads/> to download the version you need and install it.
+In addition, for convenience, please be sure to check **`Add Python 3.x to PATH`** to ensure that Python is added to the environment variable.
+
+For example, in the following Python 3.7.4 installation interface, the bottom check box should be checked as shown in the figure.
 
 ![py3.7.4](./images/python1.png)
 
-安装完成后，您可以在开始菜单找到安装好的 Python。
+After the installation is complete, you can find the installed Python in the start menu.
 
 ![start](./images/python2.png)
 
-如果您按上图勾选了加入环境变量，您还可以通过 **命令提示符** ( `Win + R` -> `cmd` ）的方式使用 Python。
+If `add environment variables` is checked as shown in the figure above, you can also use Python through the **Command Prompt** (`Win + R` -> `cmd` ).
 
-正常启动后，它会先显示欢迎信息与版本信息，再显示版权声明，之后就会出现提示符 ** `>>>` ** ，一般情况下如下所示：
+After normal startup, it will first display the welcome message and version information, and then the copyright statement, and then the prompt **`>>>`** will appear, generally as follows:
 
 ```bash
 $ python3
@@ -41,112 +42,101 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-这就是 Python 的 **IDLE** 。
+This is the **IDLE** of Python.
 
-???+ note "何谓 [**IDLE**](https://docs.python.org/zh-cn/3/glossary.html#term-idle)？"
-    Python 的 IDE，“集成开发与学习环境”的英文缩写。是 Python 标准发行版附带的基本编程器和解释器环境。在其他 Python 发行版（如 Anaconda）中还包含 [IPython](https://ipython.org/) ， [Spyder](https://www.spyder-ide.org/) 等更加先进的 IDE。
+???+ note "What is [**IDLE**](https://docs.python.org/3/library/idle.html)？"
+    The IDLE of Python is the abbreviation of "Integrated Development and Learning Environment". It is the basic programming and interpreting environment that comes with the Python standard distribution. Other Python distributions (such as Anaconda) also include more advanced IDEs such as [IPython](https://ipython.org/), and [Spyder](https://www.spyder-ide.org/).
 
 ### macOS/Linux
 
-通常情况下，正如上文所说，大部分的 Linux 发行版中已经自带了 Python，如果您只打算学学语法并无特别需求，一般情况下不用再另外安装。通常而言，在 Linux 终端中运行 `python` 进入的是 Python 2，而运行 `python3` 进入的是 Python 3。
+Normally, as mentioned above, most Linux distributions already come with Python. If you only plan to learn the grammar and there is no special requirement, you don't need to install it. Generally speaking, running `python` in a Linux terminal enters Python 2, and running `python3` enters Python 3.
 
-而由于种种依赖问题（如 CentOS 的 yum )，自行编译安装后通常还要处理种种问题，这已经超出了本文的讨论范畴。
+However, due to various dependency issues (such as CentOS's yum), we usually need to deal with these after self-compiling and installation, which is beyond the scope of this article.
 
-而在这种情况下您一般能直接通过软件包管理器来进行安装，如在 Ubuntu 下安装 `Python 3` ：
+In this case, you can install it directly through the package manager, such as installing `Python 3` under Ubuntu:
 
 ```bash
 sudo apt install python3
 ```
 
-更多详情您可以直接在搜索引擎上使用关键字 `系统名称(标志版本) 安装 Python 2/3` 来找到对应教程。
+For more details, you can directly use the keyword `system name (logo version) install Python 2/3` on the search engine to find the corresponding tutorial.
 
-???+ note "运行 `python` 还是 `python3` ？"
-    根据 [Python 3 官方文档](https://docs.python.org/zh-cn/3/tutorial/interpreter.html) 的说法，在 Unix 系统中， `Python 3.X` 解释器 **默认安装** （指使用软件包管理器安装）后的执行文件并不叫作 `python` ，这样才不会与同时安装的 `Python 2.X` 冲突。同样的，默认安装的 pip 软件也是类似的情况，Python 3 包管理器的文件名为 `pip3` 您可以根据自己的使用习惯自建软链或者 shell 别名，但还请注意不要与自带的冲突。
+???+ note "Run `python` or `python3`？"
+    According to [Python 3 official documentation](https://docs.python.org/3/tutorial/interpreter.html), on Unix systems, the `Python 3.X` interpreter **is installed by default** (referring to installation using the package manager) and the executable files after the installation is not called `python`, so that it will not conflict with the `Python 2.X` installed at the same time. The pip software installed by default works the same way. The file name of the Python 3 package manager is `pip3`. You can create your own soft chain or shell alias according to your own habits, but please be careful not to conflict with the built-in software.
 
-### 关于镜像和 pip
+### About pip
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学](https://mirror.bjtu.edu.cn/python/) 、 [华为开源镜像站](https://mirrors.huaweicloud.com/python/) 和 [淘宝开源镜像站](https://npm.taobao.org/mirrors/python/) 在做，如果您有下载问题的话可以到那里尝试一下。
+???+ note "What is [**pip**](https://pypi.org/project/pip/)"
+    Pip is Python's default package manager, used to install third-party Python libraries. It is very powerful, able to handle version dependencies, and supports binary installation through the wheel file. The pip library is now hosted on the [PyPI](https://pypi.org) (ie "Python Package Index") platform, and users can also specify a third-party package hosting platform.
 
-如果您还有使用 pip 安装其他模块的需求，请参照 [TUNA 的镜像更换帮助](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 。
+## Basic syntax
 
-???+ note "[**pip**](https://pypi.org/project/pip/) 是什么？"
-    Python 的默认包管理器，用来安装第三方 Python 库。它的功能很强大，能够处理版本依赖关系，还能通过 wheel 文件支持二进制安装。pip 的库现在托管在 [PyPI](https://pypi.org) （即“Python 包索引”）平台上，用户也可以指定第三方的包托管平台。
+Python is known for its concise and easy-to-understand syntax. Its basic grammatical structure can be easily found on the Internet, for example, [Python For Beginners](https://www.python.org/about/gettingstarted/) has a good introduction. Here are only some language features that are more practical for OIers.
 
-关于 PyPI 的镜像，可以使用如下大镜像站的资源：
+### About Comment
 
--    [清华大学 TUNA 镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 
--    [中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 
--    [豆瓣的 PyPI 源](https://pypi.douban.com/simple) 
--    [华为开源镜像站](https://mirrors.huaweicloud.com/) 
-
-## 基本语法
-
-Python 以其简洁易懂的语法而出名。它基本的语法结构可以非常容易地在网上找到，例如 [菜鸟教程](http://www.runoob.com/python/python-basic-syntax.html) 就有不错的介绍。这里仅介绍一些对 OIer 比较实用的语言特性。
-
-### 关于注释
-
-在此提前声明一下 Python 中注释的写法，因为在后面的讲解中会频繁用到。
+Here is a statement in advance about the writing of comments in Python, because it will be used frequently in the following explanation.
 
 ```python3
-# 用 # 字符开头的是单行注释
+# single line comment starts with # character
 
-""" 跨多行字符串会用三个引号
-    包裹，但也常被用来做多
-    行注释.(NOTE: 在字符串中不会考虑缩进问题)
+""" Strings spanning multiple 
+    lines will be wrapped in three quotation marks, but they are also often used to make multi-line comments. (NOTE: Indentation is not considered in the string)
 """
 ```
 
-加入注释代码并不会影响程序的正常运行。我们鼓励加入注释来使您的代码更加易懂易用。
+Adding comment code will not affect the normal operation of the program. We encourage adding comments to make your code easier to understand and use.
 
-### 基本数据类型与运算
+### Basic data types and operations
 
-有人说，你可以把你系统里装的 Python 当作一个多用计算器，这是事实。  
-你可以在提示符 `>>>` 后面输入一个表达式，就像其他大部分语言（如 C++）一样使用运算符 `+` 、 `-` 、 `*` 、 `/` 来对数字进行运算；还可以使用 `()` 来进行符合结合律的分组，例如：
+Some people say that you can use the Python installed in your system as a multi-purpose calculator. And this is a fact.
+
+You can enter an expression after the prompt `>>>`, just like most other languages (such as C++), use the operators `+`, `-`, `*`, `/` to perform operations on numbers ; You can also use `()` to group according to the associative law, for example:
 
 ```python3
->>> 233 # 整数就是整数
+>>> 233
 233
 
->>> 5 + 6 # 算术也没有什么出乎意料的
+>>> 5 + 6
 11
 >>> 50 - 4 * 8
 18
 >>> (50 - 4) * 8
 368
 
->>> 15 / 3 # 但是除法除外，它会永远返回浮点 float 类型
+>>> 15 / 3 # division will always return float type
 5.0
 >>> (50 - 4 * 8) / 9
 2.0
 >>> 5 / 3
 1.6666666666666667
 
->>> 5.0 * 6 # 浮点数的运算结果也是浮点数
+>>> 5.0 * 6 # The result of a floating point operation is also a floating point number
 30.0
 ```
 
-整数（比如 `5` 、 `8` 、 `16` ）有 `int` 类型，有小数部分的（如 `2.33` 、 `6.0` ）则有 `float` 类型。随着更深入的学习你可能会接触到更多的类型，但是在速成阶段这些已经足够使用。
+Integers (such as `5`, `8`, `16`) have the `int` type, and those with a fractional part (such as `2.33`, `6.0`) have the `float` type. As you learn more deeply you may come into contact with more data types, but these are enough to use for the beginners.
 
-在上面的实践中你也看到了，除法运算（ `/` ）永远返回浮点类型（在 Python 2 中返回整数）。如果你想要整数或向下取整的结果的话，可以使用整数除法（ `//` )。同样的，你也可以像 C++ 中一样，使用模（ `%` ）来计算余数。
+In the above practice, you have also seen that division operations(`/`) always return the floating point types(integers in Python 2). If you want an integer or rounded down result, you can use integer division(`//`). Similarly, you can use modulus(`%`) to calculate the remainder as in C++.
 
 ```python3
->>> 5 / 3 # 正常的运算会输出浮点数
+>>> 5 / 3 # Normal operations will output floating point numbers
 1.6666666666666667
->>> 5 // 3 # 使用整数除法则会向下取整，输出整数类型
+>>> 5 // 3 # Use integer division to round down and output the integer type
 1
->>> -5 // 3 # 符合向下取整原则，注意与C/C++不同
+>>> -5 // 3 # Comply with the principle of rounding down, note that it is different from C/C++
 -2
->>> 5.0 // 3.0 # 如果硬要浮点数向下取整也可以这么做
+>>> 5.0 // 3.0 # You can do this if you insist on rounding down the floating point number
 1.0
->>> 5 % 3 # 取模
+>>> 5 % 3 # Get modulus
 2
->>> -5 % 3 # 负数取模结果一定是非负数，这点也与C/C++不同，不过都满足 (a//b)*b+(a%b)==a 
+>>> -5 % 3 # The result of taking the modulus of a negative number must be a non-negative number, which is also different from C/C++, but both satisfy (a//b)*b+(a%b)==a
 1
 ```
 
-特别的，Python 封装了乘方（ `**` ）的算法，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/quick-pow.md) 的高效实现。
+In particular, Python encapsulates the algorithm of exponentiation (`**`), and also provides the efficient implementation of [quick power](../math/quick-pow.md) with the built-in `pow(a, b, mod)`.
 
-同时 Python 还提供大整数支持，但是浮点数与 C/C++ 一样存在误差。
+At the same time, Python also provides support for large integers, but floating point numbers have the same errors as C/C++.
 
 ```python3
 >>> 5 ** 2
@@ -155,24 +145,24 @@ Python 以其简洁易懂的语法而出名。它基本的语法结构可以非�
 65536
 >>> 2 ** 512
 13407807929942597099574024998205846127479365820592393377723561443721764030073546976801874298166903427690031858186486050853753882811946569946433649006084096
->>> pow(2, 512, 10000) # 即 2**512 % 10000 的快速实现
+>>> pow(2, 512, 10000) # That is the fast implementation of 2**512% 10000 
 4096
 
->>> 2048 ** 2048 # 在IDLE里试试大整数？
+>>> 2048 ** 2048 # Try big integers in IDLE?
 ```
 
-### 输入输出
+### IO
 
-Python 中的输入输出主要通过内置函数 `raw_input` (Python 2)/ `input` (Python 3) 和 `print` 完成，这一部分内容可以参考 [Python 的官方文档](https://docs.python.org/3/tutorial/inputoutput.html) 。 `input` 函数用来从标准输入流中读取一行， `print` 则是向标准输出流中输出一行。在 Python 3 中对 `print` 增加了 `end` 参数指定结尾符，可以用来避免 `print` 自动换行。如果需要更灵活的输入输出操作，可以在引入 `sys` 包之后利用 `sys.stdin` 和 `sys.stdout` 操标准作输入输出流。
+Input and output in Python are mainly done through the built-in functions `raw_input` (Python 2)/ `input` (Python 3) and `print`. For this part, please refer to [Python official documentation](https://docs.python.org/3/tutorial/inputoutput.html). The `input` function is used to read a line from the standard input stream, and `print` is to output a line to the standard output stream. In Python 3, the `end` parameter is added to `print` to specify the ending character, which can be used to avoid automatic line wrapping of `print`. If you need more flexible IO operations, you can use the `sys.stdin` and `sys.stdout` operating standards as input and output streams after the introduction of the `sys` package.
 
-另外，如果要进行格式化的输出的话可以利用 Python 中字符串的语法。格式化有两种方法，一种是利用 `%` 操作符，另一种是利用 `format` 函数。前者语法与 C 兼容，后者语法比较复杂，可以参考 [官方文档](https://docs.python.org/3/library/string.html#formatstrings) 。
+In addition, if you want to format the output, you can use the string syntax in Python. There are two ways to format, one is to use the `%` operator, and the other is to use the `format` function. The former syntax is compatible with C, while the latter syntax is more complicated. You can refer to the [official Document](https://docs.python.org/3/library/string.html#formatstrings).
 
 ```python3
 >>> print(12)
 12
->>> print(12, 12) # 该方法在 Python 2 和 Python 3 中的表现不同
+>>> print(12, 12) # This method behaves differently in Python 2 and Python 3
 12 12
->>> print("%d" % 12) # 与C语法兼容
+>>> print("%d" % 12) # Compatible with C syntax
 12
 >>> print("%04d %.3f" % (12, 1.2))
 0012 1.200
@@ -180,107 +170,107 @@ Python 中的输入输出主要通过内置函数 `raw_input` (Python 2)/ `input
 binary of 5 is 101
 ```
 
-### 开数组
+### Create array
 
-从 C++ 转过来的同学可能很迷惑怎么在 Python 中开数组，这里就介绍在 Python 开数组的语法。
+Students who have transferred from C++ may be confused about how to create arrays in Python. Here is the syntax for it in Python.
 
-#### 使用 `list` 
+#### Use `list` 
 
-主要用到的是 Python 中列表（ `list` ）的特性，值得注意的是 Python 中列表的实现方式类似于 C++ 的 `vector` 。
+The main use is the feature of Python lists (`list`). It is worth noting that the implementation of lists in Python is similar to `vector` in C++.
 
 ```python3
->>> [] # 空列表
+>>> [] # Empty list
 []
->>> [1] * 10 # 开一个10个元素的数组
+>>> [1] * 10 # Create an array of 10 elements
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
->>> [1, 1] + [2, 3] # 数组拼接
+>>> [1, 1] + [2, 3] # Array concatenation 
 [1, 1, 2, 3]
->>> a1 = list(range(8)) # 建立一个自然数数组
+>>> a1 = list(range(8)) # Create an array of natural numbers
 >>> a1
 [0, 1, 2, 3, 4, 5, 6, 7]
 
->>> [[1] * 3] * 3 # 开一个3*3的数组
+>>> [[1] * 3] * 3 # Create a 3*3 array
 [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
->>> [[1] * 3 for _ in range(3)] # 同样是开一个3*3的数组
+>>> [[1] * 3 for _ in range(3)] # Create a 3*3 array
 [[1, 1, 1], [1, 1, 1], [1, 1, 1]]
->>> a2 = [[1]] * 5; a[0][0] = 2; # 猜猜结果是什么？
+>>> a2 = [[1]] * 5; a[0][0] = 2; # Guess what's the result?
 >>> a2
 [[2], [2], [2], [2], [2]]
 
->>> # 以下是数组操作的方法
->>> len(a1) # 获取数组长度
+>>> # The following is the methods of array operations
+>>> len(a1) # Length of the array
 8
->>> a1.append(8) # 向末尾添加一个数
->>> a1[0] = 0 # 访问和赋值
->>> a1[-1] = 7 # 从末尾开始访问
->>> a1[2:5] # 提取数组的一段
+>>> a1.append(8) # Add a number to the end
+>>> a1[0] = 0 # Access and assignment
+>>> a1[-1] = 7 # Visit from the end
+>>> a1[2:5] # Extract a section of the array
 [2, 3, 4]
->>> a1[5:2:-1] # 倒序访问
+>>> a1[5:2:-1] # Reverse access
 [5, 4, 3]
->>> a1.sort() # 数组排序
+>>> a1.sort() # Sort array
 
->>> a2[0][0] = 10 # 访问和赋值二维数组
+>>> a2[0][0] = 10 # Access and assign two-dimensional arrays
 >>> for i, a3 in enumerate(a2):
         for j, v in enumerate(a3):
-            temp = v # 这里的v就是a[i][j]
+            temp = v # Where v is a[i][j]
 ```
 
-注意上面案例里提到的多维数组的开法。由于列表的乘法只是拷贝引用，因此 `[[1]] * 3` 这样的代码生成的三个 `[1]` 实际上是同一个对象，修改其内容时会导致所有数组都被修改。所以开多维数组时使用 for 循环可以避免这个问题。
+Pease pay attention to the method of creating multi-dimensional arrays mentioned in the above case. Since the multiplication of a list is only a copy of a reference, the three `[1]` generated by a code like `[[1]] * 3` are actually the same object, and modifying its contents will cause all arrays to be modified. So using for loops when opening multidimensional arrays can avoid this problem.
 
-#### 使用 Numpy
+#### Use Numpy
 
-??? note "什么是 Numpy"
-     [Numpy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 Numpy 避免手写排序、求最值等算法。 `Numpy` 的核心数据结构是 `ndarray` ，即 n 维数组，它在内存中连续存储，是定长的。此外 Numpy 核心是用 C 编写的，运算效率很高。
+??? note "What is Numpy?"
+     [Numpy](https://numpy.org/) is a famous Python scientific computing library that provides high-performance numerical and matrix operations. When testing algorithm prototypes, you can use Numpy to avoid algorithms such as handwriting sorting and finding the best value. The core data structure of `Numpy` is `ndarray`, which is an n-dimensional array, which is stored continuously in memory and has a fixed length. In addition, the core of Numpy is written in C, which is very efficient.
 
-下面的代码将介绍如何利用 Numpy 建立多维数组并进行访问。
+The following code will introduce how to use Numpy to create a multidimensional array and access it.
 
 ```python3
->>> import numpy as np # Numpy 是第三方库，需要安装和引用
+>>> import numpy as np # Numpy is a third-party library that needs to be installed and imported
 
->>> np.empty(3) # 开容量为3的空数组
+>>> np.empty(3) # Create a 3 empty array
 array([0.00000000e+000, 0.00000000e+000, 2.01191014e+180])
 
->>> np.empty((3, 3)) # 开3*3的空数组
+>>> np.empty((3, 3)) # Create a 3*3 empty array
 array([[6.90159178e-310, 6.90159178e-310, 0.00000000e+000],
        [0.00000000e+000, 3.99906161e+252, 1.09944918e+155],
        [6.01334434e-154, 9.87762528e+247, 4.46811730e-091]])
 
->>> np.zeros((3, 3)) # 开3*3的数组，并初始化为0
+>>> np.zeros((3, 3)) # Create a 3*3 array and initialize it to 0
 array([[0., 0., 0.],
        [0., 0., 0.],
        [0., 0., 0.]])
 
->>> a1 = np.zeros((3, 3), dtype=int) # 开3×3的整数数组
->>> a1[0][0] = 1 # 访问和赋值
->>> a1[0, 0] = 1 # 更友好的语法
->>> a1.shape # 数组的形状
+>>> a1 = np.zeros((3, 3), dtype=int) # Open a 3×3 integer array
+>>> a1[0][0] = 1 # Access and assignment
+>>> a1[0, 0] = 1 # More friendly syntax
+>>> a1.shape # Shape of the array
 (3, 3)
->>> a1[:2, :2] # 取前两行、前两列构成的子阵，无拷贝
+>>> a1[:2, :2] # Get the sub-matrix formed by the first two rows and the first two columns without copy
 array([[1, 0],
        [0, 0]])
->>> a1[0, 2] # 获取第1和3列，无拷贝
+>>> a1[0, 2] # Get columns 1 and 3 without copy
 array([[1, 0],
        [0, 0],
        [0, 0]])
 
->>> np.max(a1) # 获取数组最大值
+>>> np.max(a1) # Get the maximum value of the array
 1
->>> a1.flatten() # 将数组展平
+>>> a1.flatten() # Flatten the array
 array([1, 0, 0, 0, 0, 0, 0, 0, 0])
->>> np.sort(a1, axis=1) # 沿行方向对数组进行排序，返回排序结果
+>>> np.sort(a1, axis=1) # Sort the array along the row direction and return the sorted result
 array([[0, 0, 1],
        [0, 0, 0],
        [0, 0, 0]])
->>> a1.sort(axis=1) # 沿行方向对数组进行原地排序
+>>> a1.sort(axis=1) # Sort the array in place along the row
 ```
 
-## 类型检查和提示
+## Type check and tips
 
-无论是打比赛还是做项目，使用类型提示可以让你更容易地推断代码、发现细微的错误并维护干净的体系结构。Python 最新的几个版本允许你指定明确的类型进行提示，有些工具可以使用这些提示来帮助你更有效地开发代码。Python 的类型检查主要是用类型标注和类型注释进行类型提示和检查。对于 OIer 来说，掌握 Python 类型检查系统的基本操作就足够了，项目实操中，如果你想写出风格更好的、易于类型检查的代码，你可以参考 [Mypy 的文档](https://mypy.readthedocs.io/) 。
+Whether you are doing a competition or building a project, using type hints can make it easier for you to infer code, find subtle errors, and maintain a clean architecture. The latest versions of Python allow you to specify specific types for hints, and some tools can use these hints to help you develop code more effectively. Python's type checking mainly uses type annotations and type comments. For OIer, it is enough to just master the basic operations of the Python type checking system. In the actual project, if you want to write code with better style and easy type checking, you can refer to [Mypy's documentation](https://mypy.readthedocs.io/).
 
-### 动态类型检查
+### Dynamic type checking
 
-Python 是一个动态类型检查的语言，以灵活但隐式的方式处理类型。Python 解释器仅仅在运行时检查类型是否正确，并且允许在运行时改变变量类型。
+Python is a dynamic type checking language that handles types in a flexible but implicit way. The Python interpreter only checks whether the type is correct at runtime, and allows the variable type to be changed at runtime.
 
 ```python
 >>> if False:
@@ -294,9 +284,9 @@ Python 是一个动态类型检查的语言，以灵活但隐式的方式处理�
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-### 类型提示简例
+### Short example of type hint
 
-我们首先通过一个例子来简要说明。假如我们要向函数中添加关于类型的信息，首先需要按如下方式对它的参数和返回值设置类型标注：
+We first briefly explain through an example. If we want to add information about the type to the function, we first need to set the type annotations for its parameters and return values as follows:
 
 ```python
 # headlines.py
@@ -311,7 +301,7 @@ print(headline("python type checking"))
 print(headline("use mypy", centered=True))
 ```
 
-但是这样添加类型提示没有运行时的效果——如果我们用错误类型的 `align` 参数，程序依然可以在不报错、不警告的情况下正常运行。
+However, adding type hints in this way has no runtime effect. If we use the wrong type of `align` parameter, the program can still run normally without reporting errors or warnings.
 
 ```bash
 $ python headlines.py
@@ -320,7 +310,7 @@ Python Type Checking
 oooooooooooooooooooo Use Mypy oooooooooooooooooooo
 ```
 
-因此，我们需要静态检查工具来排除这类错误（例如 [PyCharm](https://www.jetbrains.com/pycharm/) 中就包含这种检查）。最常用的静态类型检查工具是 [Mypy](http://mypy-lang.org/) 。
+Therefore, we need static checking tools to rule out such errors (for example, [PyCharm](https://www.jetbrains.com/pycharm/) includes this kind of checking). The most commonly used static type checking tool is [Mypy](http://mypy-lang.org/).
 
 ```bash
 $ pip install mypy
@@ -330,13 +320,13 @@ $ mypy headlines.py
 Success: no issues found in 1 source file
 ```
 
-如果没有报错，说明类型检查通过；否则，会提示出问题的地方。_值得注意的是，类型检查可以向下（subtype  not subclass）兼容，比如整数就可以在 Mypy 中通过浮点数类型标注的检查（int 是 double 的 subtype，但不是其 subclass）。_
+If no error is reported, it means it has passed the type check; otherwise, the problem will be prompted. *It is worth noting that type checking can be downward (subtype not subclass) compatible. For example, integers can pass the floating point type annotation check in Mypy (int is the subtype of double, but not its subclass).*
 
-这种检查对于写出可读性较好的代码是十分有帮助的——Bernát Gábor 曾在他的 [The State of Type Hints in Python](https://www.bernat.tech/the-state-of-type-hints-in-python/) 中说过，“类型提示应当出现在任何值得单元测试的代码里”。
+This kind of inspection is very helpful for writing code that is more readable - Bernát Gábor once wrote in his [The State of Type Hints in Python](https://www.bernat.tech/the-state-of-type-hints-in-python/) said, "Type hints should appear in any code worthy of unit testing".
 
-### 类型标注
+### Type annotation
 
-类型标注是自 Python 3.0 引入的特征，是添加类型提示的重要方法。例如这段代码就引入了类型标注，你可以通过调用 `circumference.__annotations__` 来查看函数中所有的类型标注。
+Type annotation is a feature introduced since Python 3.0, and is an important way to add type hints. For example, this code introduces type annotations. You can view all type annotations in the function by calling `circumference.__annotations__`.
 
 ```python
 import math
@@ -345,7 +335,7 @@ def circumference(radius: float) -> float:
     return 2 * math.pi * radius
 ```
 
-当然，除了函数函数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注。
+Of course, in addition to functions, variables can also be type-annotated. You can view all type annotations in the function by calling `__annotations__`.
 
 ```python
 pi: float = 3.142
@@ -354,7 +344,7 @@ def circumference(radius: float) -> float:
     return 2 * pi * radius
 ```
 
-变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
+Variable type annotation gives Python the nature of a static language, that is, the separation of declaration and assignment:
 
 ```python
 >>> nothing: str
@@ -365,9 +355,9 @@ NameError: name 'nothing' is not defined
 {'nothing': <class 'str'>}
 ```
 
-### 类型注释
+### Type comment
 
-如上所述，Python 的类型标注是 3.0 之后才支持的，这说明如果你需要编写支持遗留 Python 的代码，就不能使用标注。为了应对这个问题，你可以尝试使用类型注释——一种特殊格式的代码注释——作为你代码的类型提示。
+As mentioned above, Python's type annotation is only supported after 3.0, which means that if you need to write code that supports legacy Python, you cannot use annotation. In order to deal with this problem, you can try to use type comments, which is a special format of code comments, as a type hint for your code.
 
 ```python
 import math
@@ -392,36 +382,36 @@ def headline(
 print(headline("type comments work", width=40))
 ```
 
-这种注释不包含在类型标注中，你无法通过 `__annotations__` 找到它，同类型标注一样，你仍然可以通过 Mypy 运行得到类型检查结果。
+This kind of annotation is not included in the type annotation, and you can't find it through `__annotations__`. Like the type annotation, you can still get the type check result by running `Mypy`.
 
-## 常用内置库
+## Commonly used built-in libraries
 
-在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html) 。
+Here are some built-in libraries that could be used to write algorithms. For specific usage, you can search or read [official documents](https://docs.python.org/3/library/index.html).
 
-| 包名                                                                      | 用途               |
+| package name                                                                      | usage             |
 | ----------------------------------------------------------------------- | ---------------- |
-|  [ `array` ](https://docs.python.org/3/library/array.html)              | 定长数组             |
-|  [ `argparse` ](https://docs.python.org/3/library/argparse.html)        | 命令行参数处理          |
-|  [ `bisect` ](https://docs.python.org/3/library/bisect.html)            | 二分查找             |
-|  [ `collections` ](https://docs.python.org/3/library/collections.html)  | 提供有序字典、双端队列等数据结构 |
-|  [ `fractions` ](https://docs.python.org/3/library/fractions.html)      | 有理数              |
-|  [ `heapq` ](https://docs.python.org/3/library/heapq.html)              | 基于堆的优先级队列        |
-|  [ `io` ](https://docs.python.org/3/library/io.html)                    | 文件流、内存流          |
-|  [ `itertools` ](https://docs.python.org/3/library/itertools.html)      | 迭代器相关            |
-|  [ `math` ](https://docs.python.org/3/library/math.html)                | 常用数学函数           |
-|  [ `os.path` ](https://docs.python.org/3/library/os.html)               | 系统路径相关           |
-|  [ `random` ](https://docs.python.org/3/library/random.html)            | 随机数              |
-|  [ `re` ](https://docs.python.org/3/library/re.html)                    | 正则表达式            |
-|  [ `struct` ](https://docs.python.org/3/library/struct.html)            | 转换结构体和二进制数据      |
-|  [ `sys` ](https://docs.python.org/3/library/sys.html)                  | 系统信息             |
+|  [ `array` ](https://docs.python.org/3/library/array.html)              |  fixed-length array   |
+|  [ `argparse` ](https://docs.python.org/3/library/argparse.html)        |    command line argument parsing     |
+|  [ `bisect` ](https://docs.python.org/3/library/bisect.html)         | binary search   |
+|  [ `collections` ](https://docs.python.org/3/library/collections.html)  | provide data structures such as ordered dictionaries and deques |
+|  [ `fractions` ](https://docs.python.org/3/library/fractions.html)      |  rational number     |
+|  [ `heapq` ](https://docs.python.org/3/library/heapq.html)           |   heap-based priority queue  |
+|  [ `io` ](https://docs.python.org/3/library/io.html)    |     file stream, memory stream   |
+|  [ `itertools` ](https://docs.python.org/3/library/itertools.html)      |       iterator related      |
+|  [ `math` ](https://docs.python.org/3/library/math.html)                | commonly used mathematical functions  |
+|  [ `os.path` ](https://docs.python.org/3/library/os.html)               |   system path related     |
+|  [ `random` ](https://docs.python.org/3/library/random.html)            | random number             |
+|  [ `re` ](https://docs.python.org/3/library/re.html)                    | regular expression    |
+|  [ `struct` ](https://docs.python.org/3/library/struct.html)            |   convert structure and binary data    |
+|  [ `sys` ](https://docs.python.org/3/library/sys.html)                  | system information            |
 
-## 对比 C++ 与 Python
+## Compare C++ and Python
 
-相信大部分算法竞赛选手已经熟练掌握了 C++98 的语法。接下来我们展示一下 Python 语法的一些应用。
+You may have mastered most of OIers have mastered the syntax of C++98. Next we will show some applications of Python syntax.
 
-接下来的例子是 [Luogu P4779「【模板】单源最短路径（标准版）」](https://www.luogu.com.cn/problem/P4779) 的代码。我们将 C++ 代码与 Python 代码做出对比：
+The following example is the code of [Luogu P4779 "[Template] Single-source shortest path (standard version)" (original link in Chinese)](https://www.luogu.com.cn/problem/P4779). We will compare the C++ code with Python code:
 
-从声明一些常量开始：
+We start by declaring some constants:
 
 C++：
 
@@ -434,7 +424,7 @@ const int N = 1e5 + 5, M = 2e5 + 5;
 Python：
 
 ```python
-try: # 引入优先队列模块
+try:
     import Queue as pq #python version < 3.0
 except ImportError:
     import queue as pq #python3.*
@@ -444,7 +434,7 @@ M = int(2e5 + 5)
 INF = 0x3f3f3f3f
 ```
 
-然后是声明前向星结构体和一些其他变量。
+Then declare the linked forward star structure and some other variables.
 
 C++：
 
@@ -464,23 +454,23 @@ int dist[N];
 Python：
 
 ```python
-class qxx:  # 前向星类（结构体）
+class qxx:  # Linked forward star (structure)
     def __init__(self):
         self.nex = 0
         self.t = 0
         self.v = 0
 
-e = [qxx() for i in range(M)]  # 链表
+e = [qxx() for i in range(M)]  # linked list
 h = [0 for i in range(N)]
 cnt = 0
 
 dist = [INF for i in range(N)]
-q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+q = pq.PriorityQueue()  # Define the priority queue, the default min heap
 
-def add_path(f, t, v):  # 在前向星中加边
-    # 如果要修改全局变量，要使用global来声名
+def add_path(f, t, v):  # Add edge to forward star
+    # If you want to modify global variables, use global for statement
     global cnt, e, h
-    # 调试时的输出语句，多个变量使用元组
+    # Output statement when debugging, multiple variables use tuples
     # print("add_path(%d,%d,%d)" % (f,t,v))
     cnt += 1
     e[cnt].nex = h[f]
@@ -489,7 +479,7 @@ def add_path(f, t, v):  # 在前向星中加边
     h[f] = cnt
 ```
 
-然后是求解最短路的 Dijkstra 算法代码：
+Then there is the Dijkstra algorithm code for finding the shortest path:
 
 C++：
 
@@ -514,7 +504,7 @@ void dijkstra(int s) {
 Python：
 
 ```python
-def nextedgeid(u):  # 生成器，可以用在for循环里
+def nextedgeid(u):  # Generator, can be used in for loop
     i = h[u]
     while i:
         yield i
@@ -525,7 +515,7 @@ def dijkstra(s):
     dist[s] = 0
     q.put((0, s))
     while not q.empty():
-        u = q.get()  # get函数会顺便删除堆中对应的元素
+        u = q.get()  # The get function will also delete the corresponding element in the heap
         if dist[u[1]] < u[0]:
             continue
         for i in nextedgeid(u[1]):
@@ -537,7 +527,7 @@ def dijkstra(s):
             q.put((dist[v], v))
 ```
 
-最后是主函数部分
+Finally, the main function part.
 
 C++：
 
@@ -559,9 +549,9 @@ int main() {
 Python：
 
 ```python
-# 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+# If you run this python code directly (not called by the module), execute the command
 if __name__ == '__main__':
-    # 一行读入多个整数。注意它会把整行都读进来
+    # Read multiple integers in one line. Note that it will read the entire line in
     n, m, s = map(int, input().split())
     for i in range(m):
         u, v, w = map(int, input().split())
@@ -570,14 +560,14 @@ if __name__ == '__main__':
     dijkstra(s)
 
     for i in range(1, n+1):
-        # 两种输出语法都是可以用的
+        # both syntax are ok
         print("{}".format(dist[i]), end=' ')
         # print("%d" % dist[i],end=' ')
 
-    print()  # 结尾换行
+    print()  # end in newline
 ```
 
-完整的代码如下：
+The complete code is as follows:
 
 ??? note "C++"
     ```cpp
@@ -628,7 +618,7 @@ if __name__ == '__main__':
 
 ??? note "Python"
     ```python
-    try:  # 引入优先队列模块
+    try:
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
@@ -637,23 +627,23 @@ if __name__ == '__main__':
     M = int(2e5+5)
     INF = 0x3f3f3f3f
     
-    class qxx:  # 前向星类（结构体）
+    class qxx:  # Linked forward star (structure)
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
     
-    e = [qxx() for i in range(M)]  # 链表
+    e = [qxx() for i in range(M)]  # Linked list
     h = [0 for i in range(N)]
     cnt = 0
     
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+    q = pq.PriorityQueue()  # Define the priority queue, the default min heap
     
-    def add_path(f, t, v):  # 在前向星中加边
-        # 如果要修改全局变量，要使用global来声名
+    def add_path(f, t, v):  # Add edge to forward star
+        # If you want to modify global variables, use global for statement
         global cnt, e, h
-        # 调试时的输出语句，多个变量使用元组
+        # Output statement when debugging. Multiple variables use tuples
         # print("add_path(%d,%d,%d)" % (f,t,v))
         cnt += 1
         e[cnt].nex = h[f]
@@ -661,7 +651,7 @@ if __name__ == '__main__':
         e[cnt].v = v
         h[f] = cnt
     
-    def nextedgeid(u):  # 生成器，可以用在for循环里
+    def nextedgeid(u):  # Generator can be used in for loop
         i = h[u]
         while i:
             yield i
@@ -682,9 +672,9 @@ if __name__ == '__main__':
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
     
-    # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+    # If you run this python code directly (not called by the module), execute the command
     if __name__ == '__main__':
-        # 一行读入多个整数。注意它会把整行都读进来
+        # Read multiple integers in one line. Note that it will read the entire line in
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
@@ -693,18 +683,17 @@ if __name__ == '__main__':
         dijkstra(s)
     
         for i in range(1, n+1):
-            # 两种输出语法都是可以用的
+            # Both output syntaxes are ok
             print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
     
-        print()  # 结尾换行
+        print()  # end in newline
     ```
 
-## 参考文档
+## References
 
-1.  Python Documentation, <https://www.python.org/doc/> 
-2.  Python 官方中文教程， <https://docs.python.org/zh-cn/3/tutorial/> 
-3.  Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
-4.  Real Python Tutorials, <https://realpython.com/> 
-5.  廖雪峰的 Python 教程， <https://www.liaoxuefeng.com/wiki/1016959663602400/> 
-6.  GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 
+1. Python Documentation, <https://www.python.org/doc/> 
+2. Python Official Tutorial <https://docs.python.org/3/tutorial/> 
+3. Learn Python3 In Y Minutes, <https://learnxinyminutes.com/docs/python3/> 
+4. Real Python Tutorials, <https://realpython.com/> 
+5. GeeksforGeeks: Python Tutorials, <https://www.geeksforgeeks.org/python-programming-language/> 

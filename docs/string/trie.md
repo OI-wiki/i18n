@@ -1,36 +1,36 @@
-字典树，英文名 Trie。顾名思义，就是一个像字典一样的树。
+Trie, also called prefix tree or digital tree, is a tree like a dictionary.
 
-## 简介
+## Introduction
 
-先放一张图：
+Let's look at a figure first:
 
 ![trie1](./images/trie1.png)
 
-可以发现，这棵字典树用边来代表字母，而从根结点到树上某一结点的路径就代表了一个字符串。举个例子， $1\to4\to 8\to 12$ 表示的就是字符串 `caa` 。
+It can be found that this trie uses edges to represent letters, and the path from the root node to a node on the tree represents a string. For example, $1\to4\to 8\to 12$ represents the string `caa`.
 
-Trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ 字符指向的下一个结点，或着说是结点 $u$ 代表的字符串后面添加一个字符 $c$ 形成的字符串的结点。（ $c$ 的取值范围和字符集大小有关，不一定是 $0\sim 26$ 。）
+The structure of trie is very easy to understand. We use $\delta(u,c)$ to represent the next node pointed to by the $c$ character of the node $u$ , or it can be seen as the node representing the string which is formed by appending an character $c$ after the string represented by node $u$ . (The value range of $c$ is related to the size of the character set. It is not necessarily $0\sim 26$ .)
 
-有时需要标记插入进 Trie 的是哪些字符串，每次插入完成时在这个字符串所代表的节点处打上标记即可。
+Sometimes it is necessary to mark which strings are inserted into trie, and each time the insertion is completed, mark the node represented by this string.
 
-## 代码实现
+## Code implementation
 
-放一个结构体封装的模板：
+Here we have a template for structure encapsulation:
 
 ```cpp
 struct trie {
   int nex[100000][26], cnt;
-  bool exist[100000];  // 该结点结尾的字符串是否存在
+  bool exist[100000];  // check whether the string at the end of the node exists
 
-  void insert(char *s, int l) {  // 插入字符串
+  void insert(char *s, int l) {  // insert the string
     int p = 0;
     for (int i = 0; i < l; i++) {
       int c = s[i] - 'a';
-      if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
+      if (!nex[p][c]) nex[p][c] = ++cnt;  // if does not exist, then add node
       p = nex[p][c];
     }
     exist[p] = 1;
   }
-  bool find(char *s, int l) {  // 查找字符串
+  bool find(char *s, int l) {  // find the string
     int p = 0;
     for (int i = 0; i < l; i++) {
       int c = s[i] - 'a';
@@ -42,21 +42,21 @@ struct trie {
 };
 ```
 
-## 应用
+## Application
 
-### 检索字符串
+### Search strings
 
-字典树最基础的应用——查找一个字符串是否在“字典”中出现过。
+The most basic application of the trie is to find whether a string appeared in the "dictionary".
 
-???+note "[于是他错误的点名开始了](https://www.luogu.com.cn/problem/P2580)"
-    给你 $n$ 个名字串，然后进行 $m$ 次点名，每次你需要回答“名字不存在”、“第一次点到这个名字”、“已经点过这个名字”之一。
+???+note "[So he started the wrong roll call](https://www.luogu.com.cn/problem/P2580) (original link in Chinese)"
+    There are $n$ name strings, and we need to perform roll calls for $m$ times. Each time we need to answer one of "Name does not exist", "This name is called for the first time", or "This name has already been called".
 
-    $1\le n\le 10^4$, $1\le m\le 10^5$，所有字符串长度不超过 $50$。
+    $1\le n\le 10^4$, $1\le m\le 10^5$, and the length of all strings does not exceed $50$ .
 
-    ??? mdui-shadow-6 "题解"
-        对所有名字建 Trie，再在 Trie 中查询字符串是否存在、是否已经点过名，第一次点名时标记为点过名。
+    ??? mdui-shadow-6 "Solution"
+        Create trie for all names, and then query whether the string exists in trie and whether it has already been called. Each name is marked as called after the first call.
 
-    ??? mdui-shadow-6 "参考代码"
+    ??? mdui-shadow-6 "Template code"
         ```cpp
         #include <cstdio>
         
@@ -87,7 +87,7 @@ struct trie {
             for (int j = 1; s[j]; ++j) {
               int c = s[j] - 'a';
               u = ch[u][c];
-              if (!u) break;  // 不存在对应字符的出边说明名字不存在
+              if (!u) break;  // the absence of the corresponding character indicates that the name does not exist
             }
             if (tag[u] == 1) {
               tag[u] = 2;
@@ -102,29 +102,29 @@ struct trie {
         }
         ```
 
-### AC 自动机
+### AC automation
 
-Trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
+Trie is part of [AC automation](./ac-automaton.md).
 
-### 异或相关
+### XOR related
 
-将数的二进制表示看做一个字符串，就可以建出字符集为 $\{0,1\}$ 的 Trie 树。
+We regard the binary representation of a number as a string, so a trie whose character set is $\{0,1\}$ can be constructed.
 
-???+note "[BZOJ1954 最长异或路径](https://www.luogu.com.cn/problem/P4551)"
-    给你一棵带边权的树，求 $(u, v)$ 使得 $u$ 到 $v$ 的路径上的边权异或和最大，输出这个最大值。
+???+note "[BZOJ1954 longest XOR path](https://www.luogu.com.cn/problem/P4551) (original link in Chinese)"
+    Given a tree with edge weights, find $(u, v)$ to maximize the XOR sum of edge weights on the path from $u$ to $v$ , and output this maximum value.
 
-    点数不超过 $10^5$，边权在 $[0,2^{31})$ 内。
+    The number of nodes does not exceed $10^5$ , and the edge weight is within $[0,2^{31})$ .
 
-    ??? mdui-shadow-6 "题解"
-        随便指定一个根 $root$ ，用 $T(u, v)$ 表示 $u$ 和 $v$ 之间的路径的边权异或和，那么 $T(u,v)=T(root, u)\oplus T(root,v)$ ，因为 [LCA](../graph/lca.md) 以上的部分异或两次抵消了。
+    ??? mdui-shadow-6 "Solution"
+        Randomly specify a root $root$ , use $T(u, v)$ to represent the XOR sum of the edge weights of the path between $u$ and $v$ , then $T(u,v)=T(root, u)\oplus T(root,v)$ , because the partial XOR of tree depth till [LCA](../graph/lca.md) is offset twice.
 
-        那么，如果将所有 $T(root, u)$ 插入到一棵 Trie 中，就可以对每个 $T(root, u)$ 快速求出和它异或和最大的 $T(root, v)$ ：
+        So, if you insert all $T(root, u)$ into a trie, you can quickly find the largest XOR sum $T(root, v)$ for each $T(root, u)$ :
 
-        从 Trie 的根开始，如果能向和 $T(root, u)$ 的当前位不同的子树走，就向那边走，否则没有选择。
+        Starting from the root of the trie, if you can go to a subtree different from the present bit of $T(root, u)$ , go there, otherwise there is no choice.
 
-        贪心的正确性：如果这么走，这一位为 $1$ ；如果不这么走，这一位就会为 $0$ 。而高位是需要优先尽量大的。
+        Correctness of Greedy solution: If you go this way, the present bit will be $1$ ; if you don't go this way, it will be $0$ . And the high position needs to be as large as possible.
 
-    ??? mdui-shadow-6 "参考代码"
+    ??? mdui-shadow-6 "Template code"
         ```cpp
         #include <algorithm>
         #include <cstdio>
@@ -191,6 +191,6 @@ Trie 是 [AC 自动机](./ac-automaton.md) 的一部分。
         }
         ```
 
-### 可持久化字典树
+### Persistent trie
 
-参见 [可持久化字典树](../ds/persistent-trie.md) 。
+For more details, please see [persistent trie](../ds/persistent-trie.md).

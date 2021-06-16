@@ -1,13 +1,13 @@
-学习 IDA\*之前，请确保您已经学完了 [A\*](./astar.md) 算法和 [迭代加深搜索](./iterative.md) 。
+Before learning IDA\*, please make sure you have completed the [A\*](./astar.md) algorithm and [iterative deepening search](./iterative.md).
 
-## IDA\*简介
+## Introduction of IDA\* 
 
-IDA\*，即采用迭代加深的 A\*算法。相对于 A\*算法，由于 IDA\*改成了深度优先的方式，所以 IDA\*更实用：
+IDA\* algorithm is actually the A\* algorithm that uses iterative deepening technique. Compared with the A\* algorithm, IDA\* is more practical since it follows the depth-first rule:
 
-1.  不需要判重，不需要排序；
-2.  空间需求减少。
+1. No need to check for duplicates. No need to sort.
+2. Space requirement is reduced.
 
-     **大致框架** （伪代码）：
+     **General framework** (pseudocode):
 
 ```text
 Procedure IDA_STAR(StartState)
@@ -30,56 +30,56 @@ Begin
 end;
 ```
 
-### 优点
+### Advantage
 
-1.  空间开销小，每个深度下实际上是一个深度优先搜索，不过深度有限制，而 DFS 的空间消耗小是众所周知的；
-2.  利于深度剪枝。
+1. The space overhead is small, and deep down is actually a depth-first search with limited depth. Also, it is well known that DFS consumes smaller space.
+2. Beneficial for deep pruning.
 
-### 缺点
+### Disadvantage
 
-重复搜索：回溯过程中每次 depth 变大都要再次从头搜索。
+Repetitive search: In the process of backtracking, each time the depth increases, the search must be done again from the beginning.
 
-> 其实，前一次搜索跟后一次相差是微不足道的。
+> In fact, the difference between the previous search and the adjacent searches is negligible.
 
-## 例题
+## Sample problem
 
-??? note "埃及分数"
-     **题目描述** 
+??? note "Egypt fraction"
+     **Problem description**
 
-    在古埃及，人们使用单位分数的和（即 $\frac{1}{a}$ ， $a$ 是自然数）表示一切有理数。例如， $\frac{2}{3}=\frac{1}{2}+\frac{1}{6}$ ，但不允许 $\frac{2}{3}=\frac{1}{3}+\frac{1}{3}$ ，因为在加数中不允许有相同的。
+    In ancient Egypt, people use the sum of unit fractions (that is, $\frac{1}{a}$ , where $a\in\mathbb{N}^*$) to represent all rational numbers. For example, $\frac{2}{3}=\frac{1}{2}+\frac{1}{6}$ but $\frac{2}{3}=\frac{1}{ 3}+\frac{1}{3}$ is not allowed because same number cannot be added.ß
 
-    对于一个分数 $\frac{a}{b}$ ，表示方法有很多种，其中加数少的比加数多的好，如果加数个数相同，则最小的分数越大越好。例如， $\frac{19}{45}=\frac{1}{5}+\frac{1}{6}+\frac{1}{18}$ 是最优方案。
+    For a fraction $\frac{a}{b}$ , there are many ways to represent it. Among them, the one with less operands is preferred, and when the number of operands equals, the larger the minimum fractions, the better. For example, $\frac{19}{45}=\frac{1}{5}+\frac{1}{6}+\frac{1}{18}$ is the optimal solution.
 
-    输入整数 $a,b$ （ $0<a<b<500$ ），试编程计算最佳表达式。
+    Input integers $a,b$ ( $0<a<b<500$ ), and try to calculate the best expression.
 
-    输入样例：
+    Sample input:
 
     ```text
     495 499
     ```
 
-    输出样例：
+    Sample output:
 
     ```text
     Case 1: 495/499=1/2+1/5+1/6+1/8+1/3992+1/14970
     ```
 
- **分析** 
+ **Analysis** 
 
-这道题目理论上可以用回溯法求解，但是 **解答树** 会非常“恐怖”—不仅深度没有明显的上界，而且加数的选择理论上也是无限的。换句话说，如果用宽度优先遍历，连一层都扩展不完，因为每一层都是 **无限大** 的。
+Theoretically this problem can be solved by the backtracking method, but the **solution tree** would be a "horror" - not only the depth has no obvious upper bound, but the choice of addends is theoretically unlimited. In other words, if BFS is used, even one layer cannot be expanded, because each layer is **infinite**.
 
-解决方案是采用迭代加深搜索：从小到大枚举深度上限 $maxd$ ，每次执行只考虑深度不超过 $maxd$ 的节点。这样，只要解的深度优先，则一定可以在有限时间内枚举到。
+The solution is to use iterative deepening search: enumerate the upper limit of depth $\mathit{maxd}$ from small to large, and only consider nodes whose depth does not exceed $maxd$ for each execution. In this way, as long as the depth of the solution is prioritized, it can be enumerated in a limited time.
 
-深度上限 $maxd$ 还可以用来 **剪枝** 。按照分母递增的顺序来进行扩展，如果扩展到 i 层时，前 $i$ 个分数之和为 $\frac{c}{d}$ ，而第 $i$ 个分数为 $\frac{1}{e}$ ，则接下来至少还需要 $\frac{\frac{a}{b}-\frac{c}{d}}{\frac{1}{e}}$ 个分数，总和才能达到 $\frac{a}{b}$ 。例如，当前搜索到 $\frac{19}{45}=\frac{1}{5}+\frac{1}{100}+\cdots$ ，则后面的分数每个最大为 $\frac{1}{101}$ ，至少需要 $\frac{\frac{19}{45}-\frac{1}{5}}{\frac{1}{101}}=23$ 项总和才能达到 $\frac{19}{45}$ ，因此前 $22$ 次迭代是根本不会考虑这棵子树的。这里的关键在于：可以估计至少还要多少步才能出解。
+The maximum depth $maxd$ can also be used for **pruning**. The expansion is carried out in the order of increasing denominator. If it is expanded to level $i$ , the sum of the first $i$th fractions is $\frac{c}{d}$ , and the $i$th fraction is $\frac{1} {e}$ , then at least $\frac{\frac{a}{b}-\frac{c}{d}}{\frac{1}{e}}$ fractions are needed to achieve the total $\frac{a}{b}$ . For example, if $\frac{19}{45}=\frac{1}{5}+\frac{1}{100}+\cdots$ is currently searched, the largest element in the following fractions is up to $\frac{1 }{101}$ , and at least $\frac{\frac{19}{45}-\frac{1}{5}}{\frac{1}{101}}=23$ is required to reach the sum of $\frac {19}{45}$ . So the first $22$ iterations will not consider this subtree at all. The key point here is that it can be estimated at least how many more steps are needed to solve the problem.
 
-注意，这里的估计都是乐观的，因为用了 **至少** 这个词。说得学术一点，设深度上限为 $maxd$ ，当前结点 $n$ 的深度为 $g(n)$ ，乐观估价函数为 $h(n)$ ，则当 $g(n)+h(n)>maxd$ 时应该剪枝。这样的算法就是 IDA\*。当然，在实战中不需要严格地在代码里写出 $g(n)$ 和 $h(n)$ ，只需要像刚才那样设计出乐观估价函数，想清楚在什么情况下不可能在当前的深度限制下出解即可。
+Please note that the estimates here are all optimistic, because the word **at least** is used. To be more academically specific, suppose the upper limit of depth is $maxd$ , the depth of current node $n$ is $g(n)$ , and the optimistic valuation function is $h(n)$ , then when $g(n)+h( n)>maxd$ , pruning should be carried out. Such an algorithm is IDA\*. Of course, in reality, you don’t need to strictly implement $g(n)$ and $h(n)$ . Instead, you just need to design an optimistic valuation function like the previous one, think about the circumstances under which it is impossible to solve under the current depth limit.
 
-> 如果可以设计出一个乐观估价函数，预测从当前结点至少还需要扩展几层结点才有可能得到解，则迭代加深搜索变成了 IDA\*算法。
+> If an optimistic valuation function can be designed to predict at least how many layers of nodes need to be expanded to obtain a solution, the iterative deepening search becomes the IDA\* algorithm.
 
- **代码** 
+ **Code** 
 
 ```cpp
-// 埃及分数问题
+// Egypt fraction problem
 #include <algorithm>
 #include <cassert>
 #include <cstdio>
@@ -93,14 +93,14 @@ typedef long long LL;
 
 LL gcd(LL a, LL b) { return b == 0 ? a : gcd(b, a % b); }
 
-// 返回满足1/c <= a/b的最小c
+// return the minimum c which satisfies 1/c <= a/b
 inline int get_first(LL a, LL b) { return b / a + 1; }
 
 const int maxn = 100 + 5;
 
 LL v[maxn], ans[maxn];
 
-// 如果当前解v比目前最优解ans更优，更新ans
+// if the current solution v is better than the current optimal solution ans, update ans
 bool better(int d) {
   for (int i = d; i >= 0; i--)
     if (v[i] != ans[i]) {
@@ -109,24 +109,24 @@ bool better(int d) {
   return false;
 }
 
-// 当前深度为d，分母不能小于from，分数之和恰好为aa/bb
+// the current depth is d; the denominator cannot be less than `from`, and the sum of fractions is exactly aa/bb
 bool dfs(int d, int from, LL aa, LL bb) {
   if (d == maxd) {
-    if (bb % aa) return false;  // aa/bb必须是埃及分数
+    if (bb % aa) return false;  // aa/bb must be the Egypt fraction
     v[d] = bb / aa;
     if (better(d)) memcpy(ans, v, sizeof(LL) * (d + 1));
     return true;
   }
   bool ok = false;
-  from = max(from, get_first(aa, bb));  // 枚举的起点
+  from = max(from, get_first(aa, bb));  // beginning of enumeration
   for (int i = from;; i++) {
-    // 剪枝：如果剩下的maxd+1-d个分数全部都是1/i，加起来仍然不超过aa/bb，则无解
+    // pruning: if the remaining maxd+1-d fractions are all 1/i, and the sum still does not exceed aa/bb, there is no solution
     if (bb * (maxd + 1 - d) <= i * aa) break;
     v[d] = i;
-    // 计算aa/bb - 1/i，设结果为a2/b2
+    // calculate aa/bb-1/i and set the result as a2/b2
     LL b2 = bb * i;
     LL a2 = aa * i - bb;
-    LL g = gcd(a2, b2);  // 以便约分
+    LL g = gcd(a2, b2);  // reduce the fraction
     if (dfs(d + 1, i + 1, a2 / g, b2 / g)) ok = true;
   }
   return ok;
@@ -155,6 +155,6 @@ int main() {
 }
 ```
 
-## 练习题
+## Practice problems
 
- [旋转游戏 UVa1343](https://www.luogu.com.cn/problem/UVA1343) 
+ [The rotation game UVA1343](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=446&page=show_problem&problem=4089)

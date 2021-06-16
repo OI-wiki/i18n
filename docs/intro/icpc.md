@@ -1,54 +1,54 @@
 author: NachtgeistW
 
-## 赛事介绍
+## Introduction
 
 ### ICPC
 
- **ICPC** （英文：International Collegiate Programming Contest，中文：国际大学生程序设计竞赛）由 ICPC 基金会（英文：ICPC Foundation）举办，是最具影响力的大学生计算机竞赛。由于以前 ACM 赞助这个竞赛，也有很多人习惯叫它 ACM 竞赛。
+International Collegiate Programming Contest, or ICPC, is a competitive programming contest organized by the ICPC Foundation. It is the most influential programming competition for college students. Since ACM sponsored this competition in the past, many people are used to calling it ACM competition.
 
-ICPC 主要分为区域赛（Regionals）和总决赛（World Finals）两部分。
+ICPC is mainly divided into two parts: Regionals and World Finals.
 
-官网地址： <https://icpc.baylor.edu> 
+Official website: <https://icpc.baylor.edu> 
 
 ### CCPC
 
-官网地址： <https://ccpc.io> 
+Official website: <https://ccpc.io> 
 
-中国大学生程序设计竞赛。
+Chinese college student programming competition.
 
-和 ICPC 显著的区别是很多学校是不报销的。
+The major difference from ICPC is that many schools do not support reimbursement.
 
-## 赛制介绍
+## Competition system introduction
 
-选手在比赛时有多次提交机会。比赛实时评测并返回结果（部分比赛可以看到错误的测试样例，如 LeetCode），如果提交的结果错误会有罚时，错误次数越多，加罚的时间也越长。每个题目只有在所有数据点全部正确后才能得到分数。比赛排名根据做题数和罚时来评判。
+Contestants have multiple submission opportunities during the competition. The competition is evaluated in real time and the results are displayed (wrong test cases can be seen in some competitions, such as LeetCode). If the submitted result is wrong, there will be a penalty time. The more errors, the longer the penalty time. The score of the problem can only be obtained after the submission is accepted. The ranking is judged based on the number of questions and penalty time.
 
-除 ICPC 和 CCPC 外，众多比赛也采用该赛制，如 LeetCode 周赛及全国编程大赛、牛客小白赛练习赛挑战赛等。
+In addition to ICPC and CCPC, many competitions also adopt this competition system, such as LeetCode Weekly Contest and National Programming Contest, Nowcoder Entry-level Practice Challenge and so on.
 
-## 赛季赛程
+## Season schedule
 
--   ICPC/CCPC 网络赛（8 月底至 9 月初）
--   ICPC/CCPC 区域赛（9 月底至 11 月底）
--   ICPC EC Final/CCPC Final（12 月中旬）
--   ICPC World Finals（次年 4 月至 6 月）
+- ICPC/CCPC Online Competition (Late August to Early September)
+- ICPC/CCPC Regional Competition (Late September to Late November)
+- ICPC EC Final/CCPC Final (Mid-December)
+- ICPC World Finals (April to June of the following year)
 
-## 训练指南
+## Training guide
 
-### 多校联合训练
+### Multi-school joint training
 
-暑期在 [HDU OJ](http://acm.hdu.edu.cn) 举行的训练赛。有奖金，题目质量高，历经多年积累已有丰富资源。
+A training competition held in [HDU OJ](http://acm.hdu.edu.cn) in the summer. The competition has high quality problems and offers bonuses for winners. It has accumulated abundant resources throughout the years.
 
-OJ 里查询用的关键词： `Multi-University Training Contest` 。
+Keywords for search in OJ: `Multi-University Training Contest`.
 
-### 国内区域赛
+### Domestic regional competition
 
-在 [Virtual Judge](https://vjudge.net/) 里可以搜到精选题集。
+A collection of selected problems from OJs of universities in China can be found in [Virtual Judge](https://vjudge.net/).
 
-### 训练营
+### Training Camp
 
--   寒假的时候头条/清华/CCPC (Wannafly Camp) 举办的 Camp
--   Wannafly Camp
+- Training camp organized by [Toutiao](https://en.wikipedia.org/wiki/Toutiao)/[Tsinghua University](https://www.tsinghua.edu.cn/en/index.htm)/CCPC (Wannafly Camp) during the winter vacation.
+- Wannafly Camp.
 
-## 训练资源
+## Training resources
 
--    **OI Wiki： <https://oi-wiki.org> ** 
--   Codeforces Gym： <https://codeforces.com/gyms> 
+-  **OI Wiki： <https://oi-wiki.org>** 
+- Codeforces Gym： <https://codeforces.com/gyms> 

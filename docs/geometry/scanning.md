@@ -1,41 +1,43 @@
-## 简介
+## Introduction
 
-扫描线一般运用在图形上面，它和它的字面意思十分相似，就是一条线在整个图上扫来扫去，它一般被用来解决图形面积，周长等问题。
+Scanning lines are usually used on the graphics. It is very similar to its literal meaning, that is, a line sweeps across the entire map. It is generally used to solve problems like areas, perimeters.
 
-## Atlantis 问题
+## Atlantis problem
 
-### 题意
+### Description
 
-在二维坐标系上，给出多个矩形的左下以及右上坐标，求出所有矩形构成的图形的面积。
+In a two-dimensional coordinate system, given the lower left and upper right coordinates of multiple rectangles, find the area of the figure formed by all rectangles.
 
-### 解法
+### Solution
 
-根据图片可知总面积可以直接暴力即可求出面积，如果数据大了怎么办？这时就需要讲到 **扫描线** 算法。
+According to the figure below, it can be seen that the total area can be obtained directly using brute force solution. But what if the input is too large? At this time, we need to consider using the **scanning line** algorithm.
 
-### 流程
+### Process
 
-现在假设我们有一根线，从下往上开始扫描：
+Now suppose we have a line and start scanning from bottom to top:
 
-![](./images/scanning-1.png)
+![](./images/scanning-1-en.png)
 
-![](./images/scanning-2.png)
+![](./images/scanning-2-en.png)
 
-![](./images/scanning-3.png)
+![](./images/scanning-3-en.png)
 
-![](./images/scanning-4.png)
+![](./images/scanning-4-en.png)
 
-![](./images/scanning-5.png)
+![](./images/scanning-5-en.png)
 
-![](./images/scanning-6.png)
+![](./images/scanning-6-en.png)
 
-![](./images/scanning-7.png)
+![](./images/scanning-7-en.png)
 
--   如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
--   我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
--   还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的是 $r+1$ 和 $r-1$ 。
--   需要 [离散化](../misc/discrete.md) 。
+> The original version of above figures were made by [kk303](https://blog.csdn.net/kk303).
 
-???+note "代码实现"
+- As shown in the figure, we can divide the entire rectangle into small rectangles with different colors. Then the height of this small rectangle is the distance we swept across. And then there is one variable left, that is, the length of the rectangle that keeps changing.
+- The segment tree here is used to maintain the length of the rectangle. We mark the upper and lower sides of each rectangle in which the lower sides are marked as $1$ , while the upper sides are marked as $-1$ . Whenever we encounter a rectangle, we know the line that is marked as $1$ . We add the length of this rectangle, and when our scan reaches $-1$ , it means that this edge needs to be deleted, so did we. Using $1$ and $-1$ can easily reach this state.
+- Please note that the segment tree here does not mean an end point of a line segment, but an interval instead. So what we have to calculate are $r+1$ and $r-1$ .
+- Also, [discretization](../misc/discrete.md) is required.
+
+???+note "Code implementation"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -43,23 +45,23 @@
     #define maxn 300
     using namespace std;
     
-    int lazy[maxn << 3];  // 标记了这条线段出现的次数
+    int lazy[maxn << 3];  // the number of occurrences of this line segment
     double s[maxn << 3];
     
     struct node1 {
       double l, r;
       double sum;
-    } cl[maxn << 3];  // 线段树
+    } cl[maxn << 3];  // segment tree
     
     struct node2 {
       double x, y1, y2;
       int flag;
-    } p[maxn << 3];  // 坐标
+    } p[maxn << 3];  // coordinates
     
-    //定义sort比较
+    // define sort
     bool cmp(node2 a, node2 b) { return a.x < b.x; }
     
-    //上传
+    // push up
     void pushup(int rt) {
       if (lazy[rt] > 0)
         cl[rt].sum = cl[rt].r - cl[rt].l;
@@ -67,7 +69,7 @@
         cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
     }
     
-    //建树
+    // construct the tree
     void build(int rt, int l, int r) {
       if (r - l > 1) {
         cl[rt].l = s[l];
@@ -83,7 +85,7 @@
       return;
     }
     
-    //更新
+    // update
     void update(int rt, double y1, double y2, int flag) {
       if (cl[rt].l == y1 && cl[rt].r == y2) {
         lazy[rt] += flag;
@@ -115,9 +117,9 @@
           s[i + 1] = y1;
           s[i + n + 1] = y2;
         }
-        sort(s + 1, s + (2 * n + 1));  // 离散化
-        sort(p, p + 2 * n, cmp);  // 把矩形的边的纵坐标从小到大排序
-        build(1, 1, 2 * n);       // 建树
+        sort(s + 1, s + (2 * n + 1));  // discretization
+        sort(p, p + 2 * n, cmp);  // sort the vertical coordinates of the sides of the rectangle ascendingly
+        build(1, 1, 2 * n);       // construct the tree
         memset(lazy, 0, sizeof(lazy));
         update(1, p[0].y1, p[0].y2, p[0].flag);
         for (int i = 1; i < 2 * n; i++) {
@@ -130,18 +132,20 @@
     }
     ```
 
-## 练习
+## Practice problems
 
--    [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542) 
+-  [「HDU1542」Atlantis](http://acm.hdu.edu.cn/showproblem.php?pid=1542) 
 
--    [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828) 
+-  [「HDU1828」Picture](http://acm.hdu.edu.cn/showproblem.php?pid=1828) 
 
--    [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265) 
+-  [「HDU3265」Posters](http://acm.hdu.edu.cn/showproblem.php?pid=3265)
 
-## 参考资料
+## References
 
--    <https://www.cnblogs.com/yangsongyi/p/8378629.html> 
+> Original links in Chinese.
 
--    <https://blog.csdn.net/riba2534/article/details/76851233> 
+-  <https://www.cnblogs.com/yangsongyi/p/8378629.html> 
 
--    <https://blog.csdn.net/winddreams/article/details/38495093> 
+-  <https://blog.csdn.net/riba2534/article/details/76851233> 
+
+-  <https://blog.csdn.net/winddreams/article/details/38495093>

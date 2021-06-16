@@ -1,8 +1,8 @@
 [![Word Art](docs/images/wordArt.webp)](https://oi-wiki.org/)
 
-# 欢迎来到 **OI Wiki**！
+# Welcome to **OI Wiki**！
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/OI-wiki/OI-wiki) 
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-brightgreen?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/OI-wiki/OI-wiki)
 [![Travis](https://img.shields.io/travis/OI-WIKI/OI-wiki.svg?style=flat-square)](https://travis-ci.org/OI-wiki/OI-wiki)
 [![Uptime Robot Status](https://img.shields.io/uptimerobot/status/m781254113-3e3bac467c64fc99eafd383e.svg?style=flat-square)](https://status.oi-wiki.org/)
 [![Telegram](https://img.shields.io/badge/OI--wiki-join%20Telegram%20chat-brightgreen.svg?style=flat-square)](https://t.me/OIwiki)
@@ -12,110 +12,107 @@
 
 * * *
 
-## 内容
+## Content
 
-编程竞赛发展多年，难度越来越高，内容越来越复杂，而网上资料大多零散，初学者往往并不知道如何系统地学习相关知识，需要花费大量时间摸索。
+Programming competitions have been around for many years. Its difficulty level is increasingly higher, and the content is getting increasingly more complicated. However, most of the online materials are scattered, which takes a lot of time to explore, and beginners often do not know how to learn relevant knowledge systematically.
 
-为了方便热爱编程竞赛的小伙伴更好地入门，2018 年 7 月份，**OI Wiki** 迁移至 GitHub。随着 **OI Wiki** 的内容不断完善，越来越多的小伙伴参与其中。
+In order to make it easier for friends who love programming competitions to get started, in July 2018, **OI Wiki** was migrated to GitHub. As the content of **OI Wiki** continues to improve, more and more friends are starting to join in.
 
-**OI Wiki** 致力于成为一个免费开放且持续更新的知识整合站点，大家可以在这里获取关于 **编程竞赛 (competitive programming)** 有趣又实用的知识，我们为大家准备了竞赛中的基础知识、常见题型、解题思路以及常用工具等内容，帮助大家更快速深入地学习编程竞赛。
+**OI Wiki** is aimed to be a free, open and continuously updated knowledge integration website. You can find interesting and practical knowledge about **competitive programming** here. We have prepared the content including basic knowledge, common types of questions, problem-solving ideas, and common tools, etc., to help everyone learn programming competitions more quickly and deeply.
 
-目前，**OI Wiki** 的内容还有很多不完善的地方，知识点覆盖不够全面，存在一些低质量页面需要修改。**OI Wiki** 团队以及参与贡献的小伙伴们正在积极完善这些内容。
+Right now, the content of **OI Wiki** still has many imperfections, the coverage of knowledge points is not comprehensive enough, and there are some pages whose quality needs to be modified. The **OI Wiki** team and the contributing friends are actively improving these content.
 
-关于上述待完善内容，请参见 **OI Wiki** 的 [Issues](https://github.com/OI-wiki/OI-wiki/issues) 以及 [迭代计划](https://github.com/OI-wiki/OI-wiki/labels/Iteration%20Plan%20%2F%20%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92)。
+For the content to be improved, please refer to [Issues](https://github.com/OI-wiki/OI-wiki/issues) and [Iteration Plan](https://github.com/OI-wiki/OI-wiki/labels/Iteration%20Plan%20%2F%20%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92) of **OI Wiki**.
 
-与此同时， **OI Wiki** 源于社区，提倡 **知识自由**，在未来也绝不会商业化，将始终保持独立自由的性质。
+At the same time, **OI Wiki** originates from the community, advocating the **intellectual freedom**, and will never be commercialized in the future. We will always maintain its independent and freedom.
 
 * * *
 
-## 部署
+## Deploy
 
-本项目目前采用 [MkDocs](https://github.com/mkdocs/mkdocs) 部署在 [oi-wiki.org](https://oi-wiki.org)。
+This project is currently deployed at [oi-wiki.org](https://oi-wiki.org) using [MkDocs](https://github.com/mkdocs/mkdocs).
 
-我们在 [status.oi-wiki.org](https://status.oi-wiki.org) 维护了一份镜像站列表，它们的内容和 [oi-wiki.org](https://oi-wiki.org) 都是相同的。
+We also maintain a list of mirror sites at [status.oi-wiki.org](https://status.oi-wiki.org). The contents and [oi-wiki.org](https://oi-wiki.org) are the same.
 
-当然，也可以在本地部署。（**需要 Python 3**）
+Of course, it can also be deployed locally. (**Requires Python 3**)
 
-[点击查看用 asciinema 录制的流程](https://asciinema.org/a/220681)
+[Click to view the process of recorded with asciinema](https://asciinema.org/a/220681)
 
-**如果遇到问题，可以查阅 [F.A.Q.](https://oi-wiki.org/intro/faq/) 来了解更多信息。**
+**If you encounter any problems, you can refer to [F.A.Q.](https://oi-wiki.org/intro/faq/) for more information.**
 
 ```bash
 git clone https://github.com/OI-wiki/OI-wiki.git --depth=1
 
 cd OI-wiki
 
-# 安装 mkdocs
-pip3 install -U -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+# Install mkdocs
+pip install mkdocs
 
-# 使用我们的自定义主题（不是必须执行）
-chmod +x ./scripts/build.sh && ./scripts/build.sh
+# Use our customized theme
+chmod +x ./scripts/install_theme.sh && ./scripts/install_theme.sh
 
-# 两种方法（选其一即可）：
-# 1. 运行一个本地服务器，访问 http://127.0.0.1:8000 可以查看效果
+# Two ways(choose one is enough):
+# 1. Run a local server, visit http://127.0.0.1:8000 to view the effect
 mkdocs serve -v
 
-# 2. 在 site 文件夹下得到静态页面
+# 2. Get a static page under the site folder
 mkdocs build -v
 
-# 获取 mkdocs 的命令行工具的说明（解释了命令和参数的含义）
+# To obtain the description of the mkdocs command line tool (explains the meaning of commands and parameters), please use
 mkdocs --help
 ```
 
-我们现在在服务器端渲染 MathJax ，如果希望实现类似效果，可以参考 [netlify_build.sh](https://github.com/OI-wiki/OI-wiki/blob/master/scripts/netlify_build.sh)。（需要安装 Node.js）
+We are now rendering MathJax on the server side. If you want to achieve a similar effect, you may refer to [.travis.yml](https://github.com/OI-wiki/OI-wiki/blob/master/.travis.yml) for more details. ([Node.js](https://nodejs.org/en/download/) required)
 
-### 镜像
+### Mirror
 
 ```bash
-# Gitee 码云 上的镜像仓库和 GitHub 仓库的内容相同
+# The content of the mirror repository on Gitee is the same as the GitHub repository
 git clone https://gitee.com/OI-wiki/OI-wiki.git
 ```
 
-### 离线版
+### Offline version
 
-可以使用 `gh-pages` 分支的内容
+You can use the content of the `gh-pages` branch
 
 ```bash
 git clone https://gitee.com/OI-wiki/OI-wiki.git -b gh-pages
 ```
 
-本地启动一个 http 服务器可能会更方便一些。
+It may be more convenient to start an http server locally.
 
 ```bash
-# 如果是 python3
+# If python3
 python3 -m http.server
-# 如果是 python2
+# If python2
 python2 -m SimpleHTTPServer
-# 有些环境下找不到名叫 python3/python2 的可执行文件，不妨运行 python 试试
+# In some environments, you can’t find an executable file named python3/python2, so try running python to see if it works
 ```
 
 ### Docker
 
-详见 [Docker 部署](https://oi-wiki.org/intro/docker-deploy/)
+See [Docker deployment](https://oi-wiki.org/intro/docker-deploy/) for details.
 
 * * *
 
-## 如何参与完善 OI Wiki
+## How to contribute to OI Wiki
 
-我们非常欢迎你为 **OI Wiki** 编写内容，将自己的所学所得与大家分享。
+We always welcome you to write content for **OI Wiki** and share what you have learned with you.
 
-具体的贡献方式在 [如何参与](https://oi-wiki.org/intro/htc/)。
+The specific way to contribute is in [How to Contribute](https://oi-wiki.org/intro/htc/) page.
 
 * * *
 
-## 开源软件供应链点亮计划 —— 暑期 2020
+## Copyright Licenses
 
-OI Wiki 社区正在参加由中科院软件所与华为 openEuler 项目共同举办的 [“开源软件供应链点亮计划——暑期2020”](https://isrc.iscas.ac.cn/summer2020/) 项目。 OI Wiki 也准备好了若干需求等待大家积极参与，详情请见 [「“开源软件供应链点亮计划——暑期2020”项目提案」](https://github.com/OI-wiki/OI-wiki/wiki/Open-Source-Promotion-Plan---Summer-2020#) 。如有意愿，请加入 Telegram 群组 [Project OI Wiki Summer2020](https://t.me/joinchat/GaEGzht3n19XgNcd3giLSA) 。
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License Agreement" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
+Unless otherwise specified, except for the code part of the project, we all use <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a> plus the additional [The Star And Thank Author License](https://github.com/zTrix/sata-license) as our licenses.
 
-## 版权声明
+In other words, you may share in a reasonable manner during the use but you must sign, share in the same way without additional restrictions. And in no way should it suggest the licensor endorse you or your use.
 
-<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />
-除特别注明外，项目中除了代码部分均采用<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"> (Creative Commons BY-SA 4.0) 知识共享署名 - 相同方式共享 4.0 国际许可协议</a> 及附加的 [The Star And Thank Author License](https://github.com/zTrix/sata-license) 进行许可。
+And you need to star the GitHub repository.
 
-换言之，使用过程中您可以自由地共享、演绎，但是必须署名、以相同方式共享、分享时没有附加限制，  
-而且需要为 GitHub 仓库点赞（Star）。
-
-而如果你想要引用这个 GitHub 仓库，可以使用如下的 bibtex：
+And if you want to reference this GitHub repository, you can use the following bibtex:
 
 ```
 @misc{oiwiki,
@@ -124,25 +121,25 @@ OI Wiki 社区正在参加由中科院软件所与华为 openEuler 项目共同�
   year = {2016},
   publisher = {GitHub},
   journal = {GitHub Repository},
-  howpublished = {\url{https://github.com/OI-wiki/OI-wiki}},
+  howpublished = {\url{https://github.com/OI-wiki/i18n}},
 }
 ```
 
 * * *
 
-## 鸣谢
+## Thanks for contribution
 
-本项目受 [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
+This project is inspired by [CTF Wiki](https://ctf-wiki.github.io/ctf-wiki/), and has referenced multiple materials during the writing process. We also want to show our gratitude here.
 
-非常感谢一起完善 **OI Wiki** 的 [小伙伴们](https://github.com/OI-wiki/OI-wiki/graphs/contributors) 和为 **OI Wiki** 捐赠的 [朋友们](https://oi-wiki.org/intro/thanks/) ！！
+Thank you very much to our [friends](https://github.com/OI-wiki/OI-wiki/graphs/contributors) who worked together to improve **OI Wiki** and [friends who donated to **OI Wiki** ](https://oi-wiki.org/intro/thanks/)!!!
 
 <a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false" /></a>
 
-特别感谢 [24OI](https://github.com/24OI) 的朋友们的大力支持！
+And special thanks to the friends from [24OI](https://github.com/24OI) for their support!
 
-<!-- <img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233> 
-鸣谢 QVQNetwork 赞助的服务器。 -->
+<!-- <img src='https://i.loli.net/2018/12/07/5c0a6e4c31b30.png' alt='QVQNetWork' width=233>
+Thanks to QVQNetwork for sponsored server -->
 
-感谢 北大算协 和 Hulu 的支持！
+Thanks for the support from Peking University Computing Association and Hulu!
 
 ![](https://assets.pcmag.com/media/images/560767-hulu.png?width=333&height=245)

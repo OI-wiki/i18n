@@ -1,44 +1,48 @@
 author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne
 
-### 双向同时搜索
+### Bidirectional simultaneous search
 
-从状态图上起点和终点同时开始进行宽度/深度优先搜索，如果发现相遇了，那么可以认为是获得了可行解。
+Start BFS/DFS from the starting node and ending node on the state graph at the same time. If two searches meet, it can be assumed that a solution is obtained.
 
-双向广搜的步骤：
+The steps of bidirectional search:
 
 ```text
-开始结点 和 目标结点 入队列 q
-标记开始结点为 1
-标记目标结点为 2
-while(队列q不为空)
+push starting_node and target_node into queue q
+mark starting_node as 1
+mark target_node as 2
+while(queue q is not empty)
 {
-  从 q.front() 扩展出新的s个结点
+  expand s new nodes from q.front()
   
-  如果 新扩展出的结点已经被其他数字标记过
-    那么 表示搜索的两端碰撞
-    那么 循环结束
+  if   the newly expanded node has been marked by other numbers
+    then   both ends of the search meet
+    then   the loop is ended
   
-  如果 新的s个结点是从开始结点扩展来的
-    那么 将这个s个结点标记为1 并且入队q 
+  if   s new nodes are expanded from the starting node
+    then   mark those nodes as 1 and push them into queue q
     
-  如果 新的s个结点是从目标结点扩展来的
-    那么 将这个s个结点标记为2 并且入队q
+  if   s new nodes are expanded from the ending node
+    then   mark those nodes 2 and push them into queue q
 }
 ```
 
-### 折半搜索
+### Meet in the Middle
 
-也称 meet in the middle，主要思想是将整个搜索过程分成两半，分别搜索，最后将两半的结果合并。由于搜索的复杂度往往是指数级的，而折半搜索可以使指数减半，也就能使复杂度开方。
+Meet in the middle is a searching technique that can be used when the input data size is small but is not small enough to use brute force solution. Its main idea is to divide the entire search process into two halves, search separately, and finally merge the results of the two halves. Since the time complexity of search is often exponential, a meet in the middle search can halve the exponent, and can also get the square root value the complexity.
 
-???+note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
+???+note "Sample problem [「USACO09NOV」Lights](https://www.luogu.com.cn/problem/P2962) (original link in Chinese)"
 
-    有 $n$ 盏灯，每盏灯与若干盏灯相连，每盏灯上都有一个开关，如果按下一盏灯上的开关，这盏灯以及与之相连的所有灯的开关状态都会改变。一开始所有灯都是关着的，你需要将所有灯打开，求最小的按开关次数。
+    There are $n$ lamps. Each lamp is connected to several lamps, and each lamp has a switch. If you press the switch on a lamp, the switch status of this lamp and all lamps connected to it will change. In the beginning, all the lights are off, and you need to turn on all the lights. Please find the minimum number of operations.
 
-    $1\le n\le 35$。
+    $1\le n\le 35$ .
 
-如果这道题暴力 DFS 找开关灯的状态，时间复杂度就是 $O(2^{n})$ , 显然超时。不过，如果我们用 **meet-in-middle** 的话，时间复杂度可以优化至 $O(n2^{n/2})$ 。 **meet-in-middle** 就是让我们先找一半的状态，也就是找出只使用编号为 $1$ 到 $\mathrm{mid}$ 的开关能够到达的状态，再找出只使用另一半开关能到达的状态。如果前半段和后半段开启的灯互补，将这两段合并起来就得到了一种将所有灯打开的方案。具体实现时，可以把前半段的状态以及达到每种状态的最少按开关次数存储在 `map` 里面，搜索后半段时，每搜出一种方案，就把它与互补的第一段方案合并来更新答案。
+If we use a brute force DFS to search for the status of the light on and off, the time complexity is $O(2^{n})$ , which would obviously cause TLE. However, if we use the **Meet in the middle** search, the time complexity can be optimized to $O(n2^{n/2})$ . 
 
-??? note "参考代码"
+**Meet in the middle** search is to meet our search means to first find the half of the state, that is, find the state that can be reached using only the switches numbered from $1$ to $\mathit{mid}$ , and then find out the state when only the other half is used. If the lights turned on in the first half and the second half complement each other, we can combine these two parts and have a solution for turning on all lights. 
+
+For the implementation, you can store the first half of the state and the minimum number of times to switch to each state in the `map`. When searching for the second half, each time a solution is found, it will be combined with the complementary solution for the first half to update the answer.
+
+??? note "sample code"
     ```cpp
     #include <algorithm>
     #include <cstdio>

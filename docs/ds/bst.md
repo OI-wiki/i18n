@@ -1,69 +1,69 @@
-## 二叉搜索树简介
+## Introduction to Binary Search Tree
 
-二叉搜索树是一种二叉树的树形数据结构，其定义如下：
+Binary search tree is a tree-shape data structure of binary tree, which is defined as follows:
 
-1.  空树是二叉搜索树。
+1. An empty tree is a binary search tree.
 
-2.  若二叉搜索树的左子树不为空，则其左子树上所有点的附加权值均小于其根节点的值。
+2. If the left subtree of the binary search tree is not empty, the weight sum of all nodes on the left subtree are less than the value of its root node.
 
-3.  若二叉搜索树的右子树不为空，则其右子树上所有点的附加权值均大于其根节点的值。
+3. If the right subtree of the binary search tree is not empty, the weight of all nodes on the right subtree are greater than the value of its root node.
 
-4.  二叉搜索树的左右子树均为二叉搜索树。
+4. The left and right subtrees of a binary search tree are both binary search trees.
 
-二叉搜索树上的基本操作所花费的时间与这棵树的高度成正比。对于一个有 $n$ 个结点的二叉搜索树中，这些操作的最优时间复杂度为 $O(\log n)$ ，最坏为 $O(n)$ 。随机构造这样一棵二叉搜索树的期望高度为 $O(\log n)$ 。
+The time spent on basic operations on a binary search tree is proportional to the height of the tree. For a binary search tree with $n$ nodes, the optimal time complexity of these operations is $O(\log n)$ and the worst is $O(n)$ . The expected height of a binary search tree that is randomly built is $O(\log n)$ .
 
-## 基本操作
+## Basic operations
 
-在接下来的代码块中，我们约定 $n$ 为结点个数， $h$ 为高度， `val[x]` 为结点 $x$ 处存的数值， `cnt[x]` 为结点 $x$ 存的值所出现的次数， `lc[x]` 和 `rc[x]` 分别为结点 $x$ 的左子结点和右子结点。
+In the following code, we assume that $n$ is the number of nodes, $h$ is the height, `val[x]` is the value stored at node $x$, `cnt[x]` is the number of occurrences of the value stored in $x$ , and `lc[x]` and `rc[x]` are the left and right child nodes of node $x$, respectively.
 
-### 遍历二叉搜索树
+### Traverse binary search tree
 
-由二叉搜索树的递归定义可得，二叉搜索树的中序遍历权值的序列为非降的序列。时间复杂度为 $O(n)$ 。
+According to the recursive definition of the binary search tree, the sequence of the in-order traversal of the binary search tree is a non-decreasing sequence. The time complexity is $O(n)$ .
 
-遍历一棵二叉搜索树的代码如下：
+The code to traverse a binary search tree is shown below:
 
 ```cpp
 void print(int o) {
-  // 遍历以 o 为根节点的二叉搜索树
-  if (!o) return;  // 遇到空树，返回
-  print(lc[o]);    // 递归遍历左子树
-  for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  // 输出根节点信息
-  print(rc[o]);  // 递归遍历右子树
+  // traverse the binary search tree with root o
+  if (!o) return;  // encounter empty tree, return
+  print(lc[o]);    // recursively traverse the left subtree
+  for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  // output root node information
+  print(rc[o]);  // recursively traverse the right subtree
 }
 ```
 
-### 查找最小/最大值
+### Find min/max value
 
-由二叉搜索树的性质可得，二叉搜索树上的最小值为二叉搜索树左链的顶点，最大值为二叉搜索树右链的顶点。时间复杂度为 $O(h)$ 。
+Based on the property of the binary search tree, the minimum value on the binary search tree is the leftmost vertex of the left chain in the binary search tree, and the maximum value is the rightmost vertex of the right chain in the binary search tree. The time complexity is $O(h)$ .
 
-findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编号 $o$ ，用 `val[o]` 可以获得相应的最小/最大值。
+The findmin and findmax functions respectively return the node number $o$ corresponding to the minimum and maximum values. Use `val[o]` to get the corresponding minimum/maximum values.
 
 ```cpp
 int findmin(int o) {
   if (!lc[o]) return o;
-  return findmin(lc[o]);  // 一直向左儿子跳
+  return findmin(lc[o]);  // always go to left child
 }
 int findmax(int o) {
   if (!rc[o]) return o;
-  return findmax(rc[o]);  // 一直向右儿子跳
+  return findmax(rc[o]);  // always go to right child
 }
 ```
 
-### 插入一个元素
+### Insert an element
 
-定义 `insert(o,v)` 为在以 $o$ 为根节点的二叉搜索树中插入一个值为 $v$ 的新节点。
+Define `insert(o,v)` as the operation to insert a new node with value $v$ into the binary search tree whose root node is $o$.
 
-分类讨论如下：
+It can be classified as follows:
 
-若 $o$ 为空，直接返回一个值为 $v$ 的新节点。
+If $o$ is empty, directly return a new node with value $v$ .
 
-若 $o$ 的权值等于 $v$ ，该节点的附加域该值出现的次数自增 $1$ 。
+If the weight of $o$ is equal to $v$ , the number of occurrences of this value in the additional field of the node is increased by $1$ .
 
-若 $o$ 的权值大于 $v$ ，在 $o$ 的左子树中插入权值为 $v$ 的节点。
+If the weight of $o$ is greater than $v$ , insert a node with a weight of $v$ in the left subtree of $o$ .
 
-若 $o$ 的权值小于 $v$ ，在 $o$ 的右子树中插入权值为 $v$ 的节点。
+If the weight of $o$ is less than $v$ , insert a node with a weight of $v$ in the right subtree of $o$ .
 
-时间复杂度为 $O(h)$ 。
+The time complexity is $O(h)$ .
 
 ```cpp
 void insert(int& o, int v) {
@@ -82,23 +82,23 @@ void insert(int& o, int v) {
 }
 ```
 
-### 删除一个元素
+### Delete an element
 
-定义 `del(o,v)` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
+Define `del(o,v)` as the operation to delete a node with a value of $v$ in a binary search tree with $o$ as the root node.
 
-先在二叉搜索树中找到权值为 $v$ 的节点，分类讨论如下：
+First find a node with a weight of $v$ in the binary search tree. It can be classified as follows:
 
-若该节点的附加 $cnt$ 大于 $1$ ，只需要减少 $cnt$ 。
+If the additional $cnt$ of the node is greater than $1$ , only $cnt$ needs to be reduced.
 
-若该节点的附加 $cnt$ 为 $1$ ：
+If the additional $cnt$ of the node is $1$ :
 
-若 $o$ 为叶子节点，直接删除该节点即可。
+If $o$ is a leaf node, just delete the node directly.
 
-若 $o$ 为链节点，即只有一个儿子的节点，返回这个儿子。
+If $o$ is a chain node, that is, a node with only one child, return this child.
 
-若 $o$ 有两个非空子节点，一般是用它左子树的最大值或右子树的最小值代替它，然后将它删除。
+If $o$ has two non-empty child nodes, generally we replace it with the maximum value of its left subtree or the minimum value of its right subtree, and then delete it.
 
-时间复杂度 $O(h)$ 。
+Time complexity is $O(h)$ .
 
 ```cpp
 int deletemin(int& o) {
@@ -113,7 +113,7 @@ int deletemin(int& o) {
   }
 }
 void del(int& o, int v) {
-  // 注意 o 有可能会被修改
+  // Note that o may be modified
   siz[o]--;
   if (val[o] == v) {
     if (cnt[o] > 1) {
@@ -121,7 +121,7 @@ void del(int& o, int v) {
       return;
     }
     if (lc[o] && rc[o]) o = deletemin(rc[o]);
-    // 这里以找右子树的最小值为例
+    // Here is an example of finding the minimum value of the right subtree
     else
       o = lc[o] + rc[o];
     return;
@@ -131,13 +131,13 @@ void del(int& o, int v) {
 }
 ```
 
-### 求元素的排名
+### Find the ranking of elements
 
-排名定义为将数组元素排序后第一个相同元素之前的数的个数 $+1$ 。
+The ranking is defined as the number of numbers before the first identical element after sorting the array elements $+1$ .
 
-维护每个根节点的子树大小 $siz$ 。查找一个元素的排名，首先从根节点跳到这个元素，若向右跳，答案加上左儿子节点个数加当前节点重复的数个数，最后答案加上终点的左儿子子树大小 $+1$ 。
+Maintain the subtree size $siz$ of each root node. To find the ranking of an element, first move from the root node to this element. If you move to the right, the answer is the number of left child node of the root plus the number of duplicates of the current node, and the size of the left child subtree at the end node $+ 1$ .
 
-时间复杂度 $O(h)$ 。
+Time complexity is $O(h)$ .
 
 ```cpp
 int queryrnk(int o, int v) {
@@ -147,17 +147,17 @@ int queryrnk(int o, int v) {
 }
 ```
 
-### 查找排名为 k 的元素
+### Find the k-th element
 
-在一棵子树中，根节点的排名取决于其左子树的大小。
+In a subtree, the ranking of the root node depends on the size of its left subtree.
 
-若其左子树的大小大于等于 $k$ ，则该元素在左子树中；
+If the size of the left subtree is greater than or equal to $k$ , then the element is in the left subtree;
 
-若其左子树的大小在区间 $[k-cnt,k-1]$ ( $cnt$ 为当前结点的值的出现次数）中，则该元素为子树的根节点；
+If the size of the left subtree is in the interval $[k-\text{cnt},k-1]$ , where $cnt$ is the number of occurrences of the value of the current node, then this element is the root node of the subtree;
 
-若其左子树的大小小于 $k-cnt$ ，则该元素在右子树中。
+If the size of the left subtree is less than $k-\text{cnt}$ , then the element is in the right subtree.
 
-时间复杂度 $O(h)$ 。
+Time complexity is $O(h)$ .
 
 ```cpp
 int querykth(int o, int k) {
@@ -165,6 +165,6 @@ int querykth(int o, int k) {
   if (siz[lc[o]] < k - cnt[o])
     return querykth(rc[o], k - siz[lc[o]] - cnt[o] + 1);
   return val[o];
-  // 如要找排名为 k 的元素所对应的结点，直接 return o 即可
+  // To find the node corresponding to the k-th element, just return o directly
 }
 ```

@@ -1,54 +1,54 @@
 # Project Information
 site_name: OI Wiki
-site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
+site_description: OI Wiki aims to be a free and lively updated site that integrates resources, in which readers can get interesting and useful knowledge about competitive programming. There are basic knowledge, frequently seen problems, way of solving problems, and useful tools to help everyone to learn quicker and deeper.
 site_author: OI Wiki Team
 site_url: https://oi-wiki.org
 strict: true
 
 # Repository
-repo_name: 'OI-wiki/OI-wiki'
-repo_url: 'https://github.com/OI-wiki/OI-wiki'
-edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
+repo_name: 'OI-wiki/OI-wiki (English)'
+repo_url: 'https://github.com/OI-wiki/i18n'
+edit_uri: 'https://oiwiki-en.netlify.app/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2020 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2021 OI Wiki Team'
 google_analytics:
   - 'UA-124485594-1'
   - 'auto'
 
 # Contents
 nav:
-  - 简介:
+  - Intro:
     - Getting Started: index.md
-    - OI 赛事与赛制: intro/oi.md
-    - ICPC/CCPC 赛事与赛制: intro/icpc.md
-    - 学习路线: intro/roadmap.md
-    - 学习资源: intro/resources.md
-    - 常见错误: intro/common-mistakes.md
-    - 常见技巧: intro/common-tricks.md
-    - 非传统题: intro/non-trad.md
-    - 工具软件:
-      - 评测工具: intro/judgers.md
+    - OI Contest Format: intro/oi.md
+    - ICPC/CCPC Contest Format: intro/icpc.md
+    - Studying Roadmap: intro/roadmap.md
+    - Studying Resources: intro/resources.md
+    - Common Mistakes: intro/common-mistakes.md
+    - Common Tricks: intro/common-tricks.md
+    - Non-Trad Problems: intro/non-trad.md
+    - Software & Tools:
+      - Juding tools: intro/judgers.md
       - WSL (Windows 10): intro/wsl.md
       - Special Judge: intro/spj.md
       - Testlib:
-        - Testlib 简介: intro/testlib/index.md
-        - 通用: intro/testlib/general.md
+        - Intro to Testlib: intro/testlib/index.md
+        - General: intro/testlib/general.md
         - Generator: intro/testlib/generator.md
         - Validator: intro/testlib/validator.md
         - Interactor: intro/testlib/interactor.md
         - Checker: intro/testlib/checker.md
       - Polygon: intro/polygon.md
-      - OJ 工具: intro/oj-tool.md
-      - LaTeX 入门: intro/latex.md
-    - Docker 部署: intro/docker-deploy.md
-    - 关于本项目: intro/about.md
-    - 如何参与: intro/htc.md
+      - OJ Tools: intro/oj-tool.md
+      - Intro to LaTeX: intro/latex.md
+    - Deploy in Docker: intro/docker-deploy.md
+    - About the project: intro/about.md
+    - How to contribute: intro/htc.md
     - F.A.Q.: intro/faq.md
-    - 致谢: intro/thanks.md
-  - 语言基础:
-    - 语言基础简介: lang/index.md
-    - 编辑工具:
+    - Thanks: intro/thanks.md
+  - Programming Basics:
+    - Introduction: lang/index.md
+    - Editing tools:
       - Vim: lang/editor/vim.md
       - Emacs: lang/editor/emacs.md
       - VS Code: lang/editor/vscode.md
@@ -57,47 +57,47 @@ nav:
       - Notepad++: lang/editor/npp.md
       - Dev-C++: lang/editor/devcpp.md
       - Geany: lang/editor/geany.md
-    - C++ 基础:
+    - C++ Basics:
       - Hello, World!: lang/helloworld.md
-      - C++ 语法基础: lang/basic.md
-      - 变量: lang/var.md
-      - 运算: lang/op.md
-      - 流程控制语句:
-        - 分支: lang/branch.md
-        - 循环: lang/loop.md
-      - 高级数据类型:
-        - 数组: lang/array.md
-        - 结构体: lang/struct.md
-        - 指针: lang/pointer.md
-      - 函数: lang/func.md
-      - 文件操作: lang/file-op.md
-    - C++ 标准库:
-      - C++ 标准库简介: lang/csl/index.md
-      - STL 容器:
-        - STL 容器简介: lang/csl/container.md
-        - 迭代器: lang/csl/iterator.md
-        - 序列式容器: lang/csl/sequence-container.md
-        - 关联式容器: lang/csl/associative-container.md
-        - 无序关联式容器: lang/csl/unordered-container.md
-        - 容器适配器: lang/csl/container-adapter.md
-      - STL 算法: lang/csl/algorithm.md
+      - C++ Grammar Basics: lang/basic.md
+      - Variables: lang/var.md
+      - Expressions: lang/op.md
+      - Control Flow:
+        - Branches: lang/branch.md
+        - Loops: lang/loop.md
+      - Advanced Data Types:
+        - Array: lang/array.md
+        - Struct: lang/struct.md
+        - Pointer: lang/pointer.md
+      - Functions: lang/func.md
+      - File Operations: lang/file-op.md
+    - C++ Standard Libraries:
+      - Introduction: lang/csl/index.md
+      - STL Containers:
+        - Introduction: lang/csl/container.md
+        - Iterator: lang/csl/iterator.md
+        - Sequence Container: lang/csl/sequence-container.md
+        - Associative Container: lang/csl/associative-container.md
+        - Unordered Container: lang/csl/unordered-container.md
+        - Container Adapter: lang/csl/container-adapter.md
+      - Algorithms in STL: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
-    - C++ 进阶:
-      - 类: lang/class.md
-      - 命名空间: lang/namespace.md
-      - 引用: lang/reference.md
-      - 常值: lang/const.md
-      - 新版 C++ 特性: lang/new.md
+    - Advanced C++:
+      - Classes: lang/class.md
+      - Namespaces: lang/namespace.md
+      - References: lang/reference.md
+      - Constants: lang/const.md
+      - New features in C++: lang/new.md
       - pb_ds:
-        - pb_ds 简介: lang/pb-ds/index.md
-        - 堆: lang/pb-ds/pq.md
-        - 平衡树: lang/pb-ds/tree.md
-    - C 与 C++ 区别: lang/c-cpp.md
-    - Pascal 转 C++ 急救: lang/pas-cpp.md
-    - Python 速成: lang/python.md
-    - Java 速成: lang/java.md
-  - 算法基础:
+        - Introduction: lang/pb-ds/index.md
+        - Heap: lang/pb-ds/pq.md
+        - Balanced Tree: lang/pb-ds/tree.md
+    - C VS C++: lang/c-cpp.md
+    - Quick Guide to C++ for Pascal Users: lang/pas-cpp.md
+    - Python Quick Guide: lang/python.md
+    - Java Quick Guide: lang/java.md
+  - Algorithm:
     - 算法基础简介: basic/index.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
@@ -122,7 +122,7 @@ nav:
     - 倍增: basic/binary-lifting.md
     - 构造: basic/construction.md
     - 交互题: basic/interaction.md
-  - 搜索:
+  - Search:
     - 搜索部分简介: search/index.md
     - DFS（搜索）: search/dfs.md
     - BFS（搜索）: search/bfs.md
@@ -134,7 +134,7 @@ nav:
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
     - 优化: search/opt.md
-  - 动态规划:
+  - Dynamic Programming:
     - 动态规划部分简介: dp/index.md
     - 动态规划基础: dp/basic.md
     - 记忆化搜索: dp/memo.md
@@ -153,7 +153,7 @@ nav:
       - 四边形不等式优化: dp/opt/quadrangle.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
-  - 字符串:
+  - String:
     - 字符串部分简介: string/index.md
     - 字符串基础: string/basic.md
     - 标准库: string/lib-func.md
@@ -174,7 +174,7 @@ nav:
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
-  - 数学:
+  - Math:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
     - 复数: math/complex.md
@@ -193,6 +193,7 @@ nav:
       - 乘法逆元: math/inverse.md
       - 线性同余方程: math/linear-equation.md
       - 中国剩余定理: math/crt.md
+      - 二次剩余: math/quad-residue.md
       - BSGS: math/bsgs.md
       - 原根: math/primitive-root.md
       - 卢卡斯定理: math/lucas.md
@@ -240,7 +241,7 @@ nav:
     - 牛顿迭代法: math/newton.md
     - 数值积分: math/integral.md
     - 分段打表: math/dictionary.md
-  - 数据结构:
+  - Data Structure:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
     - 队列: ds/queue.md
@@ -295,7 +296,7 @@ nav:
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
-  - 图论:
+  - Graph Theory:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
     - 图的存储: graph/save.md
@@ -342,7 +343,7 @@ nav:
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
-  - 计算几何:
+  - Comp. Geometry:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
     - 三维计算几何基础: geometry/3d.md
@@ -358,7 +359,7 @@ nav:
     - 随机增量法: geometry/random-incremental.md
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
-  - 杂项:
+  - Misc:
     - 杂项简介: misc/index.md
     - 读入、输出优化: misc/io.md
     - 复杂度: misc/complexity.md
@@ -387,7 +388,7 @@ nav:
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
-  - 专题:
+  - Topics:
     - RMQ: topic/rmq.md
     - 图的匹配:
       - 图匹配: topic/graph-matching/graph-match.md
@@ -397,12 +398,15 @@ nav:
       - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
       - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
     - 出题: topic/problemsetting.md
-  - 关于 Hulu:
-    -  关于 Hulu: intro/hulu.md
+  - About Hulu:
+    -  About Hulu: intro/hulu.md
 
 # Theme
 theme:
-  name: 'material'
+  name: null
+  custom_dir: 'mkdocs-material/material'
+  static_templates:
+    - 404.html
   language: 'zh'
   palette:
     primary: 'white'
@@ -427,7 +431,7 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: ''
+  githash: '37d0f772'
   # notice:
   #   title: 'Hi'
   #   message: '欢迎点击这里对 OI Wiki 提一点建议'
@@ -438,7 +442,7 @@ extra:
 
 extra_javascript:
   - '_static/js/extra.js?v=16'
-  - 'https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+  
 
 
 extra_css:

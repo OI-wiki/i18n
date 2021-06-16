@@ -1,13 +1,13 @@
-## 栈
+## Stack
 
-栈是 OI 中常用的一种线性数据结构，请注意，本文主要讲的是栈这种数据结构，而非程序运行时的系统栈/栈空间
+The stack is a linear data structure commonly used in OI. Please note that this article mainly talks about the data structure called stack, not the system stack/stack-based memory in computing architectures.
 
-栈的修改是按照后进先出的原则进行的，因此栈通常被称为是后进先出（last in first out）表，简称 LIFO 表。
+The modification of the stack follows the principle of last in first out, so the stack is usually called the last in first out table, or LIFO table for short.
 
 !!! warning
-    LIFO 表达的是 **当前在容器** 内最后进来的最先出去。
+    LIFO means that the last one **currently in the container** goes out first.
     
-    我们考虑这样一个栈
+    Let's consider the following stack:
     
     ```text
     push(1)
@@ -16,59 +16,59 @@
     pop(2)
     ```
     
-    如果从整体考虑，1 最先入栈，最先出栈，2 最后入栈，最后出栈，这样就成了一个先进先出表，显然是错误的。
+    If you consider it as a whole: 1 is the first one pushed into the stack, the first one popped; 2 is the last one pushed into the stack, the last one popped. This would become a first-in first-out table, which is obviously wrong.
     
-    所以，在考虑数据结构是 LIFO 还是 FIFO 的时候，应当考虑在当前容器内的情况。
+    Therefore, when considering whether the data structure is LIFO or FIFO, the situation in current container should be considered.
 
-我们可以方便的使用数组来模拟一个栈，如下：
+We can use an array to simulate a stack easily as the code below shows:
 
 ```cpp
 int stk[N];
-// 这里使用 stk[0]( 即 *stk ) 代表栈中元素数量，同时也是栈顶下标
-// 压栈 ：
+// Here use stk[0] (i.e. *stk) to represent the number of elements in the stack, and it is also the index of the top element of the stack
+// push into the stack
 stk[++*stk] = var1;
-// 取栈顶 ：
+// get the top element from the stack
 int u = stk[*stk];
-// 弹栈 ：注意越界问题, *stk == 0 时不能继续弹出
+// pop from the stack: pay attention to the out-of-boundery problem. When *stk == 0, it can no longer be popped
 if (*stk) --*stk;
-// 清空栈
+// clear stack
 *stk = 0;
 ```
 
-同时 STL 也提供了一个方法 `std::stack` 
+Also, STL provides this method: `std::stack` 
 
 ```cpp
 #include <stack>
-// stack 构造 ：
+// stack construction:
 1. stack<Typename T> s;
 2. stack<Typename T, Container> s;
-/* stack 的 Container 需要满足有如下接口 ：
+/* The container of stack needs to implement following interfaces:
  * back()
  * push_back()
  * pop_back()
- * 标准容器 std::vector / deque / list 满足这些要求
- * 如使用 1 方式构造，默认容器使用 deque
+ * Standard container like std::vector / deque / list statisfies these requirements
+ * If you use the method 1 to construct, the default container uses deque
  */
 ```
 
- `std::stack` 支持赋值运算符 `=` 
+ `std::stack` supports assignment operator `=` 
 
-元素访问：
+Element access:
 
- `s.top()` 返回栈顶
+ `s.top()` returns the top of the stack
 
-容量：
+Capacity:
 
- `s.empty()` 返回是否为空
+ `s.empty()` returns whether is empty
 
- `s.size()` 返回元素数量
+ `s.size()` returns the number of elements
 
-修改：
+Modification:
 
- `s.push()` 插入传入的参数到栈顶
+ `s.push()` pushes the element to the top of the stack
 
- `s.pop()` 弹出栈顶
+ `s.pop()` pops the element on top of the stack
 
-其他运算符：
+Other operators:
 
- `==` 、 `!=` 、 `<` 、 `<=` 、 `>` 、 `>=` 可以按照字典序比较两个 `stack` 的值
+ `==` 、 `!=` 、 `<` 、 `<=` 、 `>` 、 `>=` can compare the values of two `stack` lexicographically

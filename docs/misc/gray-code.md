@@ -1,31 +1,31 @@
 author: sshwy
 
-格雷码是一个二进制数系，其中两个相邻数的二进制位只有一位不同。举个例子， $3$ 位二进制数的格雷码序列为
+Gray code is a binary number system in which only one bit of two adjacent numbers differs. For example, the Gray code sequence of a $3$ bit binary numbers is:
 
 $$
 000,001,011,010,110,111,101,100
 $$
 
-注意序列的下标我们以 $0$ 为起点，也就是说 $G(0)=000,G(4)=100$ 。
+Note that we use $0$ as the starting point for the subscript of the sequence, that is, $G(0)=000,G(4)=110$ .
 
-格雷码由贝尔实验室的 Frank Gray 于 1940 年发现。
+Gray code was discovered in 1940s and patented in 1953 by Frank Gray of Bell Laboratories.
 
-## 构造格雷码（变换）
+## Construct Gray code (transformation)
 
-格雷码的构造方法很多。我们首先介绍手动构造方法，然后会给出构造的代码以及正确性证明。
+There are many ways to construct Gray codes. We first introduce the manual method, then we'll offer the code constructed and proof of correctness.
 
-### 手动构造
+### Manual construction
 
- $k$ 位的格雷码可以通过以下方法构造。我们从全 $0$ 格雷码开始，按照下面策略：
+ The Gray code of $k$ bits can be constructed by the following methods. We start with all $0$ Gray code and follow the strategy below:
 
-1.  翻转最右边的位（个位）得到下一个格雷码，（例如 $000\to 001$ ）；
-2.  把最右边的 $1$ 的左边的位翻转得到下一个格雷码，（例如 $001\to 011$ ）；
+1. Flip the lowest bit to get the next Gray code (for example, $000\to 001$ );
+2. Flip the left bit of the rightmost $1$ to get the next Gray code (for example, $001\to 011$ );
 
-交替按照上述策略生成 $2^k-1$ 次，可得到 $k$ 位的格雷码序列。
+Alternately we generate $2^k-1$ times according to the strategy above, and get the Gray code sequence of $k$ bits.
 
-### 镜像构造
+### Mirror construction
 
- $k$ 位的格雷码可以从 $k-1$ 位的格雷码以上下镜射后加上新位的方式快速的得到，如下图：
+ The $k$-bits Gray code can be quickly obtained by mirroring the $k-1$-bits Gray code and adding new bits, as shown in figure below:
 
 $$
 \begin{matrix}
@@ -48,9 +48,9 @@ k=3\\
 \end{matrix}
 $$
 
-### 计算方法
+### Calculation method
 
-我们观察一下 $n$ 的二进制和 $G(n)$ 。可以发现，如果 $G(n)$ 的二进制第 $i$ 位为 $1$ ，仅当 $n$ 的二进制第 $i$ 位为 $1$ ，第 $i+1$ 位为 $0$ 或者第 $i$ 位为 $0$ ，第 $i+1$ 位为 $1$ 。于是我们可以当成一个异或的运算，即
+Let's look at the binary of $n$ and $G(n)$ . It can be found that if the binary position $i$-th bit of $G(n)$ is $1$ , only when the binary $i$-th bit of $n$ is $1$ and the $i+1$-th bit is $0$ or the $i$-th bit is $0$ , and the $i+1$-th bit is $1$ . So we can treat it as an XOR operation, that is:
 
 $$
 G(n)=n\oplus \left\lfloor\frac{n}{2}\right\rfloor
@@ -60,26 +60,26 @@ $$
 int g(int n) { return n ^ (n >> 1); }
 ```
 
-### 正确性证明
+### Proof of correctness
 
-接下来我们证明一下，按照上述公式生成的格雷码序列，相邻两个格雷码的二进制位有且近有一位不同。
+Next, let's prove that in the Gray code sequence generated according to the above formula, there exists and only exists one different bit of two adjacent Gray code.
 
-我们考虑 $n$ 和 $n+1$ 的区别。把 $n$ 加 $1$ ，相当于把 $n$ 的二进制下末位的连续的 $1$ 全部变成取反，然后把最低位的 $0$ 变成 $1$ 。我们这样表示 $n$ 和 $n+1$ 的二进制位：
+We consider the difference between $n$ and $n+1$ . Adding $n$ by $1$ is equivalent to turning all consecutive $1$ at the end of the binary $n$ into inversions, and then changing the lowest bit of $0$ to $1$ . We represent the binary bits of $n$ and $n+1$ like this:
 
 $$
 \begin{array}{rll}
-(n)_2&=&\cdots0\underbrace{11\cdots11}_{k\text{个}}\\
-(n+1)_2&=&\cdots1\underbrace{00\cdots00}_{k\text{个}}
+(n)_2&=&\cdots0\underbrace{11\cdots11}_{k\text{entries}}\\
+(n+1)_2&=&\cdots1\underbrace{00\cdots00}_{k\text{entries}}
 \end{array}
 $$
 
-于是我们在计算 $g(n)$ 和 $g(n+1)$ 的时侯，后 $k$ 位都会变成 $\displaystyle\underbrace{100\cdots00}_{k\text{个}}$ 的形式，而第 $k+1$ 位是不同的，因为 $n$ 和 $n+1$ 除了后 $k+1$ 位，其他位都是相同的。因此第 $k+1$ 位要么同时异或 $1$ ，要么同时异或 $0$ 。两种情况，第 $k+1$ 位都是不同的。而除了后 $k+1$ 位以外的二进制位也是做相同的异或运算，结果是相同的。
+So when we calculate $g(n)$ and $g(n+1)$ , the next $k$ bits will become the form like $\displaystyle\underbrace{100\cdots00}_{k\text{entries}}$ , and the $k+1$-th bit is different, because $n$ and $n+1$ are the same except for the last $k+1$ bits. Therefore, the position $k+1$ is either XORed $1$ or $0$ at the same time. In both cases, the $k+1$-th bit is different. The binary bits except the last $k+1$ bits are also subjected to the same XOR operation, and the result is the same.
 
-证毕。
+Q.E.D.
 
-## 通过格雷码构造原数（逆变换）
+## Construct the original number through Gray code (inverse transformation)
 
-接下来我们考虑格雷码的逆变换，即给你一个格雷码 $g$ ，要求你找到原数 $n$ 。我们考虑从二进制最高位遍历到最低位（最低位下标为 $1$ ，即个位；最高位下标为 $k$ ）。则 $n$ 的二进制第 $i$ 位与 $g$ 的二进制第 $i$ 位 $g_i$ 的关系如下：
+Next, we consider the inverse transformation of the Gray code, that is, given a Gray code $g$ and ask you to find the original number $n$ . We consider traversing from the highest bit of the binary to the lowest bit (the subscript of the lowest bit is $1$ , which is the one bit; and the highest bit subscript is $k$ ). Then the relationship between the $i$-th bit of $n$ and the $i$-th bit of $g$ is shown as follows:
 
 $$
 \begin{array}{rll}
@@ -100,30 +100,30 @@ int rev_g(int g) {
 }
 ```
 
-## 实际应用
+## Practical application
 
-格雷码有一些十分有用的应用，有些应用让人意想不到：
+Gray code has some very useful applications, some of which are unexpected:
 
--    $k$ 位二进制数的格雷码序列可以当作 $k$ 维空间中的一个超立方体（二维里的正方形，一维里的单位向量）顶点的哈密尔顿回路，其中格雷码的每一位代表一个维度的坐标。
+-  The Gray code sequence of a $k$ bit binary number can be regarded as a Hamiltonian loop of the vertices of a hypercube (a square in two dimensions, a unit vector in one dimension) in the $k$ dimensional space, where each bit of the Gray code represents one dimension of coordinates.
 
--   格雷码被用于最小化数字模拟转换器（比如传感器）的信号传输中出现的错误，因为它每次只改变一个位。
+-  Gray code is used to minimize errors in the signal transmission of digital-to-analog converters (such as sensors) because it only changes one bit at a time.
 
--   格雷码可以用来解决汉诺塔的问题。
+-  Gray code can be used to solve the problem of the Tower of Hanoi.
 
-    设盘的数量为 $n$ 。我们从 $n$ 位全 $0$ 的格雷码 $G(0)$ 开始，依次移向下一个格雷码（ $G(i)$ 移向 $G(i+1)$ ）。当前格雷码的二进制第 $i$ 位表示从小到大第 $i$ 个盘子。
+    Assume the number of disks as $n$ . We start from the Gray code $G(0)$ with all $0$ in $n$ and move to the next Gray code in turn ( $G(i)$ moves to $G(i+1)$ ). The $i$-th bit of the current Gray code represents the $i$-th plate from small to large.
 
-    由于每一次只有一个二进制位会改变，因此当第 $i$ 位改变时，我们移动第 $i$ 个盘子。在移动盘子的过程中，除了最小的盘子，其他任意一个盘子在移动的时侯，只能有一个放置选择。在移动第一个盘子的时侯，我们总是有两个放置选择。于是我们的策略如下：
+    Since only one binary bit changes each time, when the $i$-th bit changes, we move the $i$-th plate. While moving the plates, except for the smallest one, there can only be one placement option for any other plate when it is moving. When moving the first plate, we always have two placement options. So our strategy is as follows:
 
-    如果 $n$ 是一个奇数，那么盘子的移动路径为 $f\to t\to r\to f\to t\to r\to\cdots$ ，其中 $f$ 是最开始的柱子， $t$ 是最终我们把所有盘子放到的柱子， $r$ 是中间的柱子。
+    If $n$ is an odd number: The moving path of the plate is $f\to t\to r\to f\to t\to r\to\cdots$ , where $f$ is the first pillar, $t$ is the pillar where we put all the plates in the end, and $r$ is the pillar in the middle.
 
-    如果 $n$ 是偶数： $f \to r \to t \to f \to r \to t \to \cdots$ 
+    If $n$ is an even number: $f \to r \to t \to f \to r \to t \to \cdots$ 
 
--   格雷码也在遗传算法理论中得到应用。
+-  Gray code is also applied in genetic algorithm theory.
 
-## 习题
+## Practice problems
 
--    [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Difficulty: easy
+-  [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) (original link in Chinese) Difficulty: easy
 
--    [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
+-  [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Difficulty: medium
 
-> 本页面部分内容译自博文 [Код Грея](http://e-maxx.ru/algo/gray_code) 与其英文翻译版 [Gray code](https://cp-algorithms.com/algebra/gray-code.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。
+> Part of this page is translated from the blog post [Код Грея](http://e-maxx.ru/algo/gray_code) and its English version [Gray code](https://cp-algorithms.com/algebra/gray-code.html). The copyright license for the Russian version is Public Domain + Leave a Link; And the copyright license for the English version is CC-BY-SA 4.0.

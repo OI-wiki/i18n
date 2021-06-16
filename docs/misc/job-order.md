@@ -1,18 +1,18 @@
-你有 $n$ 个任务，要求你找到一个代价最小的的顺序执行他们。第 $i$ 个任务花费的时间是 $t_i$ ，而第 $i$ 个任务等待 $t$ 的时间会花费 $f_i(t)$ 的代价。
+Assume you have $n$ tasks, and you are required to find a order with least cost to execute them. It costs $t_i$ to finish $i$-th job and $f_i(t)$ to make this job wait for time $t$ .
 
-形式化地说，给出 $n$ 个函数 $f_i$ 和 $n$ 个数 $t_i$ ，求一个排列 $p$ ，最小化
+Formally speaking, given $n$ functions $f_i$ and $n$ number $t_i$ , find a permutation $p$ to minimize:
 
 $$
 F(p)=\sum_{i=1}^nf_{p_i}\left(\sum_{j=1}^{i-1}t_{p_j}\right)
 $$
 
-## 特殊的代价函数
+## Special cost functions
 
-### 线性代价函数
+### Linear cost function
 
-首先我们考虑所有的函数是线性的函数，即 $f_i(x)=c_ix+d_i$ ，其中 $c_i$ 是非负整数。显然我们可以事先把常数项加起来，因此函数就转化为了 $f_i(x)=c_ix$ 的形式。
+First of all, we consider the case where all functions are linear functions, that is, $f_i(x)=c_ix+d_i$ , where $c_i$ is a non-negative integer. Obviously we can sum the constants first, so the function is transformed into $f_i(x)=c_ix$ .
 
-考虑两个排列 $p$ 和 $p'$ ，其中 $p'$ 是把 $p$ 的第 $i$ 个位置上的数和 $i+1$ 个位置上的数交换得到的排列。则
+Consider two permutations $p$ and $p'$ , where $p'$ is the permutation obtained by swapping the number in the $i$-th position of $p$ with the number in the $i+1$-th position. Then:
 
 $$
 \begin{split}
@@ -22,30 +22,31 @@ F(p')-F(p)&=c_{p'_i}\sum_{j=1}^{i-1}t_{p'_j}+c_{p'_{i+1}}\sum_{j=1}^{i}t_{p'_j}
 \end{split}
 $$
 
-于是我们使用如果 $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}>0$ 就交换的策略做一下排序就可以了。写成 $\dfrac{c_{p_i}}{t_{p_i}}>\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$ 的形式，就可以理解为将排列按 $\dfrac{c_i}{t_i}$ 升序排序。
+So we use the sorting strategy that if $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}>0$ , we swap, written in the form of $\dfrac{c_{p_i}}{t_{p_i}}>\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$ , it can be understood as sorting ascendingly according to $\dfrac{c_i}{t_i}$ .
 
-处理这个问题，我们的思路是考虑微扰后的变换情况，贪心地选取最优解。
+To deal with this problem, we need to consider the transformation after small change and greedily select the optimal solution.
 
-### 指数代价函数
+### Exponential cost function
 
-考虑代价函数的形式为 $f_i(x)=c_ie^{ax}$ ，其中 $c_i\ge 0,a>0$ 。
+Consider the form of the cost function as $f_i(x)=c_ie^{ax}$ , where $c_i\ge 0,a>0$ .
 
-我们沿用之前的思路，考虑将 $i$ 和 $i+1$ 的位置上的数交换引起的代价变化。最终得到的算法是将排列按照 $\dfrac{1-e^{at_i}}{c_i}$ 升序排序。
+We follow the previous method and consider the change in cost caused by swapping the elements at $i$ and $i+1$ . The algorithm obtained is to sort the array in ascending order of $\dfrac{1-e^{at_i}}{c_i}$ .
 
-### 相同的单增函数
+### The same monotonically increasing function
 
-我们考虑所有的 $f_i(x)$ 是同一个单增函数。那么显然我们将排列按照 $t_i$ 升序排序即可。
+We consider that all $f_i(x)$ are the same monotonically increasing function. Obviously we can sort the array in ascending order according to $t_i$ .
 
-## Livshits-Kladov 定理
+## Livshits-Kladov theorem
 
-Livshits-Kladov 定理成立，当且仅当代价函数是以下三种情况：
+The Livshits-Kladov theorem is valid if and only if the cost function is one of the following three cases:
 
--   线性函数： $f_i(t) = c_it + d_i$ ，其中 $c_i\ge 0$ ；
--   指数函数： $f_i(t) = c_i e^{a t} + d_i$ ，其中 $c_i,a>0$ ；
--   相同的单增函数： $f_i(t) = \phi(t)$ ，其中 $\phi(t)$ 是一个单增函数。
+- Linear function: $f_i(t) = c_it + d_i$ , among them $c_i\ge 0$ ;
+- Exponential function: $f_i(t) = c_i e^{a t} + d_i$ , among them $c_i,a>0$ ;
+- Same monotonically increasing function: $f_i(t) = \phi(t)$ , where $\phi(t)$ is a monotonically increasing function.
 
-定理是在假设代价函数足够平滑（存在三阶导数）的条件下证明的。在这三种情况下，问题的最优解可以通过简单的排序在 $O(n\log n)$ 的时间内解决。
+The theorem is proved under the assumption that the cost function is sufficiently smooth (there is a third derivative). In these three cases, the optimal solution of the problem can be solved in $O(n\log n)$ by a simple sorting.
 
 * * *
 
- **本页面主要译自博文 [Задача Джонсона с одним станком](http://e-maxx.ru/algo/johnson_problem_1) 与其英文翻译版 [Scheduling jobs on one machine](https://cp-algorithms.com/schedules/schedule_one_machine.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 
+ **Part of this page is translated from the blog post [Задача Джонсона с одним станком](http://e-maxx.ru/algo/johnson_problem_1) and its English version [Scheduling jobs on one machine](https://cp-algorithms.com/schedules/schedule_one_machine.html). The copyright license for the Russian version is Public Domain + Leave a Link; And the copyright license for the English version is CC-BY-SA 4.0.**
+

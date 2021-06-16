@@ -1,37 +1,37 @@
-字节顺序是跨越多字节的程序对象的存储规则，表示一个对象的字节的排列方法。
+Endianness is the storage rule for program objects that cross multiple bytes, and represents the arrangement method of the bytes of an object.
 
-字节顺序有两种，分为小端序（little endian）和大端序（big endian）。
+There are two endianness: little endian and big endian.
 
-事实上，这两种字节顺序没有孰优孰劣之分。这两种顺序的名字（ `小端` 和 `大端` ），正是出自《格列佛游记》一书，书中的两个派别交战的原因是无法就从哪一端打开鸡蛋达成一致。就和鸡蛋的问题一样，选择何种字节顺序成了没有技术上理由的争论。
+In fact, there is no difference between these two endianness. The names of these two sequences (`little endian` and `big endian`) are exactly taken from the book *Gulliver's Travels*. The reason for which the two factions can't stop fighting in the book is that they cannot agree on which end to break shell of the egg. And similar to the egg problem, the choice of endianness has become an argument unrelated to technical reasons.
 
-当然，字节顺序的不一致会导致二进制数据在不同类型的机器之间进行传输时被反序。为了避免这件事情，网络应用程序建立了一套标准，保证发送过程中是使用约定好的网络标准，而不是不同机器的内部表示。
+Of course, the inconsistency of the endianness will cause the binary data to be reversed when transmitting between different types of machines. To avoid this, the network application has established a set of standards to ensure that the agreed network standard is used during the transmitting process, rather than the internal representation of different machines.
 
-下面，我们以一个位于 `0x100` 处，类型为 `int` ，十六进制值为 `0x01234567` 的变量为例介绍两种字节顺序：
+Below, we take a variable located at `0x100` with type `int` and hexadecimal value `0x01234567` as an example to introduce two endianness:
 
-（这里 `0x01` 是最高位有效字节， `0x67` 是最低位有效字节）
+Here `0x01` is the most significant byte, and `0x67` is the least significant byte.
 
-## 小端序
+## Little endian
 
-小端序是指机器选择在内存中按照从 **最低** 有效字节到 **最高** 有效字节的顺序存储对象。
+Little endian means that the machine chooses to store objects in the memory in the order from the **lowest** effective byte to the **highest** effective byte.
 
-上文提到的变量就表示如下：
+The variables mentioned above are expressed as follows:
 
 | .... | 0x100 | 0x101 | 0x102 | 0x103 | .... |
 | ---- | ----- | ----- | ----- | ----- | ---- |
 | .... | 67    | 45    | 23    | 01    | .... |
 
-## 大端序
+## Big endian
 
-大端序是指机器选择在内存中按照从 **最高** 有效字节到 **最低** 有效字节的顺序存储对象。
+Big endian means that the machine chooses to store objects in the memory in the order from the **highest** effective byte to the **lowest** effective byte.
 
-上文提到的变量就表示如下：
+The variables mentioned above are expressed as follows:
 
 | .... | 0x100 | 0x101 | 0x102 | 0x103 | .... |
 | ---- | ----- | ----- | ----- | ----- | ---- |
 | .... | 01    | 23    | 45    | 67    | .... |
 
-## 惯例
+## Convention
 
-小端序：x86, ARM processors running Android, iOS, and Windows
+Little endian: x86, ARM processors running Android, iOS, and Windows.
 
-大端序：Sun, PPC Mac, Internet
+Big endian: Sun, PPC Mac, Internet.

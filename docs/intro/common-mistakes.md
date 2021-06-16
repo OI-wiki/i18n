@@ -1,5 +1,6 @@
 This page mainly shares the mistakes commonly made in the competition.
 
+
 ## Could Cause Compile Error
 
 We left the detailed explanation out since this type of errors is pretty straightforward and self-explanatory.
@@ -20,6 +21,7 @@ We left the detailed explanation out since this type of errors is pretty straigh
 
     -    Skipped the initialization of some local variables while `switch-case`.
 
+
 ## Does not cause Compile Error but will cause Warning
 
 This kind of error is hard to find, but it will be pointed out by the compiler when compiling with the `-W{warningtype}` parameter. You might want to check out the [Warning Options](https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html) in the official documentation. Common ones in `-W{warningtype}` include `-Wall`, `- Wextra`, `-Wshadow`, etc.
@@ -30,6 +32,7 @@ This kind of error is hard to find, but it will be pointed out by the compiler w
 -   The `static` modifier is used incorrectly.
 
 -    `-1 >> 1 == 1`
+
 
 -   Cannot distinguish between assignment operator and `==`.
     -   Example:
@@ -53,6 +56,7 @@ This kind of error is hard to find, but it will be pointed out by the compiler w
 -   Uninitialized local variables, causing local variables to be assigned with initial undefined values.
 
 -   The local and global variables have the same name, causing the global variables to be accidentally overwritten. (Open `-Wshadow` to check for such errors.)
+
 
 ## Causes neither Compile Error nor Warning
 
@@ -95,6 +99,7 @@ Such errors cannot be discovered by the compiler, so you need to rely on yoursel
         ```
     -   In particular, you cannot use `freopen` after executing `ios::sync_with_stdio(false);`.
 
+
 -   Errors caused by macro expansion without parentheses:
     ```cpp
     #define square(x) x* x
@@ -126,12 +131,10 @@ f[find(a)] = find(b);  // wrong
 ```
 
 ### Could Cause RE
-
 -   Divide the integer by $0$.
     -  Inverse $0$.
 
 -   Forgets to delete the file operations (for some OJs).
-
 -   Errors in comparison functions when sorting. `std::sort` requires comparison functions to be strictly weakly ordered: `a<a` is `false`; if `a<b` is `true`, then `b<a` is `false`; if `a<b` is `true` and `b<c` is` true`, then `a<c` is `true`. Pay special attention to the second point.
     
     If the above requirements are not met, it is likely to be RE when sorting.
@@ -148,8 +151,8 @@ f[find(a)] = find(b);  // wrong
 
     In the code above, `(block[a.l]&1)^(a.r<b.r)` does not meet the strict weak order in requirement 2.
 
-    Changed to this would be correct.
-
+    Changing into this would make it correct:
+    
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -157,8 +160,7 @@ f[find(a)] = find(b);  // wrong
       else
         return block[a.l] < block[b.l];
     ```
-
--   Dereference of the null pointer.
+-   Dereferencing the null pointer.
 
 ### Could Cause TLE
 
@@ -208,7 +210,7 @@ f[find(a)] = find(b);  // wrong
     ```
 
     Will be stuck to a single query $\Theta(n)$ leading to TLE.
-
+    
 -   Forgets to delete the file operations (for some OJ).
 
 -    `for (int i = 0; i < strlen(s); ++i)`: Repeatedly execute functions with complexity other than $O(1)$ in the loop. (Strictly speaking, this may cause a change in time complexity.)
@@ -218,6 +220,7 @@ f[find(a)] = find(b);  // wrong
 -   The size of the array is too large.
 
 -   Too many elements are inserted in the STL container.
+
 
     -   It is often an endless loop that inserts elements into the STL.
 
@@ -239,11 +242,13 @@ f[find(a)] = find(b);  // wrong
 
     -   When writing a segment tree, `pushup` or `pushdown` leaf nodes.
 
+
 -   Dereference wild pointers.
 
     -   The pointer is dereferenced without initialization.
 
     -   The area pointed to by the pointer is already `free` or `delete`.
+
 
 ### Cause time complexity constant to be too large
 
@@ -252,6 +257,7 @@ f[find(a)] = find(b);  // wrong
 -   Unnecessary recursion is used (note that tail recursion is not included).
 
 -   When converting recursion into iteration, a lot of extra operations are introduced.
+
 
 ### Errors that only take effect when the program is running locally
 
