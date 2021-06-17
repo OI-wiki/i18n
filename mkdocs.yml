@@ -20,12 +20,6 @@ copyright: 'Copyright &copy; 2016 - 2021 OI Wiki Team'
 nav:
   - Intro:
     - Getting Started: index.md
-    #- OI Contest Format: intro/oi.md
-    #- ICPC/CCPC Contest Format: intro/icpc.md
-    #- Studying Roadmap: intro/roadmap.md
-    #- Studying Resources: intro/resources.md
-    #- Common Mistakes: intro/common-mistakes.md
-    #- Common Tricks: intro/common-tricks.md
     - Non-Trad Problems: intro/non-trad.md #主站删了
     - Deploy in Docker: intro/docker-deploy.md
     - About the project: intro/about.md
@@ -34,7 +28,7 @@ nav:
     - F.A.Q.: intro/faq.md
     - Thanks: intro/thanks.md
   # 同步主站更改
-  - Compeition:
+  - Competition:
     - OI Contest Format: contest/index.md
     - 赛事:
       - OI Contest Format: contest/oi.md 
@@ -181,6 +175,7 @@ nav:
     - 插头 DP: dp/plug.md
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
+    - 概率 DP: dp/probability.md # 新增
     - DP 优化:
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
@@ -199,8 +194,13 @@ nav:
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
-    - 后缀数组 (SA): string/sa.md
+    # 同步上游
+    - 后缀数组 (SA): 
+      - 后缀数组简介: string/sa.md
+      - 最优原地后缀排序算法: string/sa-optimal-inplace.md # 主站新增
+    # Endof 同步上游
     - 后缀自动机 (SAM): string/sam.md
+    - 后缀平衡树: string/suffix-bst.md # 主站新增
     - 广义后缀自动机: string/general-sam.md
     - 后缀树: string/suffix-tree.md
     - Manacher: string/manacher.md
@@ -216,8 +216,10 @@ nav:
     - 快速幂: math/quick-pow.md
     - 进位制: math/base.md
     - 高精度计算: math/bignum.md
+    - 平衡三进制: math/balanced-ternary.md # 主站新增
     - 数论:
       - 素数: math/prime.md
+      - Meissel-Lehmer 算法: math/meissel-lehmer.md # 新增
       - 最大公约数: math/gcd.md
       - 欧拉函数: math/euler.md
       - 筛法: math/sieve.md
@@ -233,7 +235,13 @@ nav:
       - 卢卡斯定理: math/lucas.md
       - 莫比乌斯反演: math/mobius.md
       - 杜教筛: math/du.md
+      - Powerful Number 筛: math/powerful-number.md # 新增
       - Min_25 筛: math/min-25.md
+      - 洲阁筛: math/zhou.md # 新增
+      - 分解质因数: math/pollard-rho.md # 新增
+      - 连分数: math/continued-fraction.md # 新增
+      - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md # Moved from misc
+      - Pell 方程: math/pell-equation.md # 新增
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -265,10 +273,13 @@ nav:
       - 排列组合: math/combination.md
       - 卡特兰数: math/catalan.md
       - 斯特林数: math/stirling.md
+      - 贝尔数: math/bell.md # 主站新增
+      - 伯努利数: math/bernoulli.md # 主站新增
       - 康托展开: math/cantor.md
       - 容斥原理: math/inclusion-exclusion-principle.md
       - 抽屉原理: math/drawer-principle.md
-    - 概率 & 期望: math/expectation.md
+      - Eulerian Number: math/eulerian.md # 主站新增
+    - 概率初步: math/expectation.md
     - 置换群: math/permutation-group.md
     - 斐波那契数列: math/fibonacci.md
     - 博弈论: math/game-theory.md
@@ -299,7 +310,7 @@ nav:
     - ST 表: ds/sparse-table.md
     - 线段树: ds/seg.md
     - 树状数组: ds/fenwick.md
-  # - 李超线段树 ds/li-chao-tree
+    - 李超线段树: ds/li-chao-tree #主站新增
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
@@ -312,7 +323,7 @@ nav:
       - 替罪羊树: ds/sgt.md
       - 笛卡尔树: ds/cartesian-tree.md
       - 左偏红黑树: ds/llrbt.md
-  # - 跳表: ds/skiplist
+    - 跳表: ds/skiplist.md #主站新增
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
       - 可持久化线段树: ds/persistent-seg.md
@@ -325,6 +336,7 @@ nav:
       - 平衡树套线段树: ds/seg-in-balanced.md
       - 线段树套平衡树: ds/balanced-in-seg.md
       - 树状数组套主席树: ds/persistent-in-bit.md
+      - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
     - 珂朵莉树: ds/odt.md
     - 动态树:
@@ -354,19 +366,19 @@ nav:
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
     - 最小生成树: graph/mst.md
-    - 最小树形图: graph/mdst.md
-    # 主站:
-    # 最小生成树: graph/mst.md
-    # - 最小树形图: graph/dmst.md
-    # - 最小直径生成树: graph/mdst.md
+    - 斯坦纳树: graph/steiner-tree.md # 主站新增
+    - 最小树形图: graph/dmst.md # 主站新增
+    - 最小直径生成树: graph/mdst.md # 主站新增
     - 最短路: graph/shortest-path.md
     - 拆点: graph/node.md
     - 差分约束: graph/diff-constraints.md
     - k 短路: graph/kth-path.md
+    - 同余最短路: graph/mod-shortest-path.md # 主站新增
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
       - 割点和桥: graph/cut.md
+      - 圆方树: graph/block-forest.md # 主站新增
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
@@ -380,6 +392,14 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
+    - Stoer-Wagner 算法: graph/stoer-wagner.md # 主站新增
+    - 图的匹配: # 主站新增
+      - 图匹配: graph/graph-matching/graph-match.md
+      - 增广路: graph/graph-matching/augment.md
+      - 二分图最大匹配: graph/graph-matching/bigraph-match.md
+      - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
+      - 一般图最大匹配: graph/graph-matching/general-match.md
+      - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
     - Prufer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
@@ -401,7 +421,6 @@ nav:
     - 计算几何杂项: geometry/misc.md
   - Misc:
     - 杂项简介: misc/index.md
-    # - 读入、输出优化: misc/io.md # 更改地址 contest/io.md
     - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
@@ -418,18 +437,18 @@ nav:
     - 分数规划: misc/frac-programming.md
     - 随机化:
       - 随机函数: misc/random.md
-      # - 随机化技巧
+      - 随机化技巧: misc/rand-technique.md # 新增
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
     - 悬线法: misc/hoverline.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
-    - Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md # 主站无
+    #- Stern-Brocot 树与 Farey 序列: misc/stern-brocot.md # 移动到数论
     - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
-    # - 主元素问题 
+    - 主元素问题: misc/main-element.md
   - Topics:
     - RMQ: topic/rmq.md
     - 图的匹配:
@@ -439,7 +458,6 @@ nav:
       - 一般图匹配: topic/graph-matching/general-match.md
       - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
       - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
-    - 出题: topic/problemsetting.md
   - About Hulu:
     -  About Hulu: intro/hulu.md
 
