@@ -1,37 +1,37 @@
-## 概述
+## Overview
 
-随机化被广泛应用于 OI 中各种 **骗分** ， **偷懒** 的场景下。
+Randomization is widely used in various scenarios like **scaming points** and **being lazy** in OI.(JK :) )
 
-当然，也有正经用途，例如：考场上造出随机数据然后对拍。
+Of course, there are some serious usage: creating random dataset during the competition and then double check.
 
-尤其是当算法期望复杂度正确且 **与输入数据无关** 时可用随机化使复杂度达到期望平衡，比如 Treap 和可并堆等。
+Especially when the expected time complexity of the algorithm is correct and **independent from the input data**, randomization can be used to achieve the desired expected time complexity, such as Treap and mergable heap.
 
-## 实现
+## Implementation
 
 ### rand
 
-用于生成一个伪随机数，缺点是比较慢，使用时需要 `#include<cstdlib>` 。
+`rand` is used to generate a pseudo-random number. The disadvantage is that it is slow, and requires `#include<cstdlib>` .
 
-使用 `rand()` 需要一个随机数种子，可以使用 `srand(seed)` 函数来将随机种子更改为 `seed` ，当然不初始化也是可以的。
+Using `rand()` requires a random seed, you can use the `srand(seed)` function to change the random seed to `seed`. Of course, not initializing it would be totally fine.
 
-相同的 `seed` 两次运行同一程序随机出的结果将会是相同的
+The same `seed` runs the same program twice and the random result would be the same.
 
-有一个选择是使用当前系统时间来作为随机种子： `srand(time(0))` 。
+One option is using the current system time as the random seed: `srand(time(0))`.
 
-调用 `rand()` 函数会返回一个随机非负整数。在 `Linux` 系统下随机范围为 $\left[0,2^{31}\right)$ 。可以用取模来限制它的大小。
+Calling the `rand()` function will return a random non-negative integer. In the `Linux` system, the random range is $\left[0,2^{31}\right)$ . You can use modulo to limit its size.
 
 !!! warning
-    在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$ ，当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数。
+    The range of the return value of `rand()` under `Windows` system is $\left[0,2^{15}\right)$ . It is recommended to use `(rand() << 15 | rand())` to generate larger random numbers when the number to be generated is no less than $2^{15}$ .
 
 ### mt19937
 
-是一个随机数生成器类，效用同 `rand` ，优点是更加随机（出现循环的周期更长）且速度比 `rand()` 快很多。使用时需要 `#include<random>` 。
+`mt19937` is a random number generator class and its function is the same as `rand`. The advantage is that it is more random (the period that appears cycle is longer) and the speed is much faster than `rand()`. It is required to use `#include<random>`.
 
- `mt19937` 基于 [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister) ，使用时用其定义一个随机数生成器即可： `std::mt19937 myrand(seed)` ， `seed` 可不填，不填 `seed` 则会使用默认随机种子。
+ `mt19937` is based on [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister). You can use it to define a random number generator: `std::mt19937 myrand(seed)`. ` Seed` can be left blank. If `seed` is not filled, the default random seed will be used.
 
- `mt19937` 重载了 `operator ()` ，需要生成随机数时调用 `myrand()` 即可返回一个随机数。
+ `mt19937` overloads the `operator ()`. When you need to generate a random number, call `myrand()` and it will return one.
 
-#### 示例
+#### Example
 
 ```cpp
 #include <ctime>
@@ -49,22 +49,22 @@ int main() {
 
 ### random_shuffle
 
-用于随机打乱指定序列。使用时需要 `#include<algorithm>` 。
+`random_shuffle` is used to randomly shuffle the specified sequence. It is required to use `#include<algorithm>`.
 
-使用时传入指定区间的首尾指针或迭代器（左闭右开）即可： `std::random_shuffle(first, last)` 或 `std::random_shuffle(first, last, myrand)` 
+When using `random_shuffle`, you can pass in the first and last pointers of the specified range or the iterator (left-closed and right-open) : `std::random_shuffle(first, last)` or `std::random_shuffle(first, last, myrand)`
 
-内部使用的随机数生成器默认为 `rand()` 。当然也可以传入自定义的随机数生成器。
+The random number generator used internally is `rand()` by default. Of course, you can always pass in a self-defined random number generator.
 
 !!! warning
-     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
+     `random_shuffle` has been deprecated in the C++14 standard and removed from the C++17 standard.
 
 ### shuffle
 
-效用同 `random_shuffle` 。使用时需要 `#include<algorithm>` 。
+The utility is the same as `random_shuffle`. It is required to use `#include<algorithm>`.
 
-区别在于必须使用自定义的随机数生成器： `std::shuffle(first, last, myrand)` 。
+The difference is that a custom random number generator must be used: `std::shuffle(first, last, myrand)`.
 
-下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据。
+The following is a random generator written with `rand()` and `random_shuffle()`. The generated data is the random small dataset for ["ZJOI2012" disaster](https://www.luogu.com.cn/problem/P2597) (original link in Chinese).
 
 ```cpp
 #include <algorithm>
@@ -90,15 +90,15 @@ int main() {
 
 ## Example I
 
-先来看一道网络流题： [「TJOI2015」线性代数](https://loj.ac/problem/2100) 。
+Let’s look at a network flow problem first: ["TJOI2015" Linear Algebra](https://loj.ac/problem/2100) (original link in Chinese).
 
-我们并不想写网络流，于是开始偷税。建模？不存在的。
+What to do if we don't want to implement network flow or modeling?
 
-### 做法
+### Solution
 
-随机一个位置，把这个位置取反，判断大小并更新答案。
+Randomize and reverse a position, then check the size and update the answer.
 
-### 代码
+### Code
 
 ```cpp
 #include <algorithm>
@@ -140,17 +140,19 @@ int main() {
 
 ## Example II
 
-当一个算法的期望复杂度正确且与输入数据无关时，我们可以通过随机化达到期望上的平衡（就是随机卡不掉的意思
+When the expected time complexity of an algorithm is correct and has nothing to do with the input data, we can achieve the expected balance through randomization (which means that the randomization cannot be optimization in bottom layer)
 
-Treap 的随机很经典了，来一发可并堆
+The randomization in Treap is very classic. Now let's look at the mergeable heap.
 
-### 做法
+### Method
 
-可并堆最常用的写法应该是左偏树了，通过维护树高让树左偏来保证合并的复杂度。然而…… **维护树高什么的好烦啊** 。
+Then we can consider using a random heap that is extremely difficult to optimize, that is, not swapping children according to tree height, but randomly swapping them.
 
-那么我们可以考虑使用极其难卡的随机堆，即不按照树高来交换儿子，而是随机交换。
+The most commonly used implementation of mergeable heap should be the leftist tree, and the time complexity of the merging can be maintained using the height of the tree and keeping the tree lean towards the left. However... **maintaining the tree height is not very convenient**.
 
-### 代码
+Then we can consider using a random heap that is extremely difficult to card, that is, not swapping sons according to the height of the tree, but randomly swapping them.
+
+### Code
 
 ```cpp
 struct Node {
