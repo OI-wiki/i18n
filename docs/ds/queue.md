@@ -1,144 +1,144 @@
-本文介绍和队列有关的数据结构及其应用。
+This article introduces the queue-related data structure and its applications.
 
-## 队列
+## Queue
 
-队列，英文名是 queue，在 C++ STL 中有 [std::queue](https://en.cppreference.com/w/cpp/container/queue) 和 [std::priority_queue](https://en.cppreference.com/w/cpp/container/priority_queue) 。
+Queue, [std::queue](https://en.cppreference.com/w/cpp/container/queue) and [std::priority_queue](https://en.cppreference.com/w/cpp/container/priority_queue) in C++ STL, is a data structure that can be modified on one end of the seuquence and removal from the other.
 
-先进入队列的元素一定先出队列，因此队列通常也被称为先进先出（first in first out）表，简称 FIFO 表。
+The first element pushed into the queue must be popped out first. So the queue follows the First-in First-out rule, or FIFO for short.
 
-注： `std::stack` 和 `std::queue` 都是容器适配器，默认底层容器为 `std::deque` （双端队列）。
+Note: `std::stack` and `std::queue` are both container adapters, and the default underlying container is `std::deque` (double-ended queue).
 
-## 双端队列
+## Deque
 
-双端队列是指一个可以在队首/队尾插入或删除元素的队列。相当于是栈与队列功能的结合。具体地，双端队列支持的操作有 4 个：
+A deque is a queue that can insert or delete elements at both the head and the end of a queue. It is equivalent to a combination of stack and queue functions. Specifically, there are 4 operations supported by the deque:
 
-1. 在队首插入一个元素
-2. 在队尾插入一个元素
-3. 在队首删除一个元素
-4. 在队尾删除一个元素
+1. Insert an element at the beginning of the deque
+2. Insert an element at the end of the deque
+3. Delete an element at the head of the deque
+4. Delete an element at the end of the deque
 
-## 数组模拟队列
+## Array simulates queue
 
-通常用一个数组模拟一个队列，用两个变量标记队列的首尾。
+Usually an array is used to simulate the queue, and two variables are used to mark the beginning and the end of the queue.
 
 ```cpp
 int q[SIZE], ql = 1, qr;
 ```
 
-插入元素： `q[++qr]=x;` 
+Insert element: `q[++qr]=x;` 
 
-删除元素： `++ql;` 
+Delete element: `++ql;` 
 
-访问队首/队尾： `q[ql]` / `q[qr]` 
+Query front/end of queue: `q[ql]` / `q[qr]` 
 
-清空队列： `ql=1;qr=0;` 
+Empty deque: `ql=1;qr=0;` 
 
-数组模拟双端队列是同理的。
+Above rules work the same for array simulation deque.
 
-## 循环队列
+## Circular queue
 
-这样会导致一个问题：随着时间的推移，整个队列会向数组的尾部移动，一旦到达数组的最末端，即使数组的前端还有空闲位置，再进行入队操作也会导致溢出。（这种数组上实际有空闲位置而发生了上溢的现象称为是“假溢出”。
+This will cause a problem: as time goes by, the entire queue will be pushed to the end of the array. Once it reaches the end, even if there is a empty place at the front of the array, the enqueue operation will cause overflow. (This kind of situation where there is actually empty space in the array but overflow still occurs is called "false overflow".)
 
-解决假溢出的办法是采用循环的方式来组织存放队列元素的数组，即将数组下标为 0 的位置看做是最后一个位置的后继。（ `x` 的后继为 `(x + 1) % Size` ）。这样就形成了循环队列。
+The solution to false overflow is to organize the array storing the queue elements in a circular manner, that is, the 0 index of the array is regarded as the successor of the last position. (The successor of `x` is `(x + 1)% Size` ). This would form a circular queue.
 
-## 双栈模拟队列
+## Double stack simulates queue
 
-其实不仅仅可以用数组模拟队列，还有一种冷门的方法是双栈模拟队列。
+In fact, not only arrays can be used to simulate queues, there is also a less popular method which is using double stacks to simulate queues.
 
-我们使用两个栈 F,S 模拟一个队列，其中 F 是队尾的栈，S 代表队首的栈，支持 push（在队尾插入），pop（在队首弹出）操作：
+We use two stacks F and S to simulate a queue, where F is the stack at the end of the queue, and S is the stack at the head of the queue. Push (insert at the end of the queue) and pop (pop at the beginning of the queue) operations are supported:
 
-1. Push：插入到栈 F 中
-2. Pop：如果 S 非空，让 S 弹栈；否则把 F 的元素倒过来圧到 S 中（其实就是一个一个弹出插入，做完后是首位颠倒的），然后再让 S 弹栈。
+1. Push: insert into stack F.
+2. Pop: if S is not empty, pop S; otherwise, turn the elements of F upside down and push them into S (which just means pop them one by one and insert, so that the first position is reversed after completion), and then pop S.
 
-容易证明，每个元素只会进入/转移/弹出一次，均摊复杂度 $O(1)$ 。
+It is easy to prove that each element will only push/transfer/pop once, and the amortized time complexity is $O(1)$ .
 
-有人问这个东西有什么用吗？参见下面这道题。这道题顺便可以给大家一个 **双栈模拟双端队列** 的方法。
+Someone might be wondering why this is usaful? Please see the problem below. It can also help you understand the **double stacks simulate deque** method.
 
-## 例题
+## Sample problem
 
- [LOJ6515「雅礼集训 2018 Day10」贪玩蓝月](https://loj.ac/problem/6515) 
+ [LOJ6515 'Yali Training 2018 Day10' Playful Blue Moon](https://loj.ac/problem/6515) (Original link in Chinese)
 
-> 一个双端队列（deque），m 个事件：
+> One deque, m operations:
 >
-> 1. 在前端插入 (w,v)
-> 2. 在后端插入 (w,v)
-> 3. 删除前端的二元组
-> 4. 删除后端的二元组
-> 5.  给定 l,r，在当前 deque 中选择一个子集 S 使得 $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ ，且最大化 $\sum_{(w,v)\in S}v$ .
+> 1.  Insert (w,v) at the front:
+> 2.  Insert (w,v) in the end;
+> 3.  Delete the tuple at the front;
+> 4.  Delete the tuple in the end;
+> 5.  Given l and r, choose a subset S from deque so that $\sum_{(w,v)\in S}w\bmod p\in[l,r]$ , and maximize $\sum_{(w,v)\in S}v$ .
 >
 >      $m\leq 5\times 10^4,p\leq 500$ .
 
-### 离线算法
+### Offline algorithm
 
-每个二元组是有一段存活时间的，因此对时间建立线段树，每个二元组做 log 个存活标记。因此我们要做的就是对每个询问，求其到根节点的路径上的标记的一个最优子集。显然这个可以 DP 做。 $f[S,j]$ 表示选择集合 S 中的物品余数为 j 的最大价值。（其实实现的时侯是有序的，直接 f[i,j]做）
+Each tuple has a survival time, so we create a segment tree of time, and each tuple is marked with log survival times. So what we have to do is to find an optimal subset of the labels on the path to the root node for each query. Obviously this can be done by DP. $f[S,j]$ represents the maximum value of j with the remainder of the items in the selection set S. (In fact, the implementation is in order, so we can use f[i,j] directly)
 
-一共有 $O(m\log m)$ 个标记，因此这么做的话复杂度是 $O(mp\log m)$ 的。
+There are totally $O(m\log m)$ tokens, so the overall time complexity is $O(mp\log m)$ .
 
-### 在线算法
+### Online algorithm
 
-这是一个在线算法比离线算法快的神奇题目。而且还比离线的好写
+This is an interesting problem where online algorithms are faster than offline algorithms. And it’s easier to implement than offline.
 
-上述离线算法其实是略微小题大做的，因为如果把题目的 deque 改成直接维护一个集合的话（即随机删除集合内元素），那么离线算法同样适用。既然是 deque，不妨在数据结构上做点文章。
+The above offline algorithm is actually a little bit of an overkill, because if the deque of the title is changed to directly maintain a set (that is, the elements in the set are randomly deleted), then the offline algorithm is also applicable. Since it is a deque, you might as well operate on the data structure.
 
-### 栈
+### Stack
 
-如果题目中维护的数据结构是一个栈呢？
+What if the data structure in the problem is a stack?
 
-直接 DP 即可。 $f[i,j]$ 表示前 i 个二元组，余数为 j 时的最大价值。
+Direct DP would be good enough. $f[i,j]$ represents the maximum value of the first $i$ tuples when the remainder is $j$ .
 
 $$
 f[i,j]=\max(f[i-1,j],f[i-1,(j-w_i)\bmod p]+v_i)
 $$
 
-妥妥的背包啊
+This is clearly a knapsack problem.
 
-删除的时侯直接指针前移即可。这样做的复杂度是 $O(mp)$ 的。
+When deleting, just move the pointer forward directly. The overall time complexity is $O(mp)$ .
 
-### 队列
+### Queue
 
-如果题目中维护的数据结构是队列？
+If the data structure in the problem is a queue?
 
-有一种操作叫双栈模拟队列。这就是这个东西的用武之地。因为用栈是可以轻松维护 DP 过程的，而双栈模拟队列的复杂度是均摊 $O(1)$ 的，因此，复杂度仍是 $O(mp)$ .
+There is an operation called double stack simulating queue. This is when it comes in. Because the stack can easily maintain the DP process, and the time complexity is evenly amortized, so the average time complexity is still $O(mp)$ .
 
-### 双端队列
+### Deque
 
-回到原题，那么 Deque 怎么做？
+Back to the original problem, what does Deque do?
 
-类比推理，我们尝试用栈模拟双端队列，于是似乎把维护队列的方法扩展一下就可以了。但如果每次是全部转移栈中的元素的话，单次操作复杂度很容易退化为 $O(m)$ .
+Similarly, we can try simulating a double-ended queue with a stack, and it seems like we can easily extend the method of maintaining the queue. But if all elements in the stack are transferred each time, the time complexity of a single operation can easily degenerate to $O(m)$ .
 
-于是乎，神仙的想一想，我们可以丢一半过去啊
+But what if we only use half of them?
 
-这样的复杂度其实均摊下来仍是常数级别。具体地说，丢一半指的是把一个栈靠近栈底的一半倒过来丢到另一个栈中。也就是说要手写栈以支持这样的操作。
+Such complexity is actually in constant level. Specifically, removing half refers to turning the half of a stack near the bottom of the stack upside down and putting it into another stack. In other words, the stack must be implemented to support such operations.
 
-### 丢一半的复杂度
+### Time complexity of losing half
 
-似乎可以用 [势能分析法](https://yhx-12243.github.io/OI-transit/records/cf601E.html) 证明。其实本蒟蒻有一个很仙的想法。我们考虑这个双栈结构的整体复杂度。m 个事件，我们希望尽可能增加这个结构的复杂度。
+It seems that it can be proved by [potential energy analysis method](https://yhx-12243.github.io/OI-transit/records/cf601E.html) (original link in Chinese). We might consider the overall complexity of this double stack structure and m events. What to do if we hope to increase the complexity of this structure as much as possible?
 
-首先，如果全是插入操作的话显然是严格 $\Theta(m)$ 的，因为插入的复杂度是 $O(1)$ 的。
+First of all, if it is all insertion operations, it is strictly $\Theta(m)$ because the time complexity of insertion is $O(1)$ .
 
-“丢一半”操作是在什么时侯触发的？当某一个栈为空又要求删除元素的时侯。设另一个栈的元素个数是 $O(k)$ ，那么丢一半的复杂度就是 $O(k)\geq O(1)$ 的。因此我们要尽可能增加“丢一半”操作的次数。
+When is the "losing half" operation triggered? When a certain stack is empty and an element is requested to be deleted. Suppose the number of elements in another stack is $O(k)$ , then the time complexity of losing half is $O(k)\geq O(1)$.  Therefore, we need to increase the number of "losing half" operations as much as possible.
 
-为了增加丢一半的操作次数，必然需要不断删元素直到某一个栈为空。由于插入操作对增加复杂度是无意义的，因此我们不考虑插入操作。初始时有 m 个元素，假设全在一个栈中。则第一次丢一半的复杂度是 $O(m)$ 的。然后两个栈就各有 $\frac{m}{2}$ 个元素。这时就需要 $O(\frac{m}{2})$ 删除其中一个栈，然后就又可以触发一次复杂度为 $O(\frac{m}{2})$ 的丢一半操作……
+In order to increase the number of operations to halve, it is necessary to keep deleting elements until a certain stack is empty. Since the insertion operation is meaningless for increasing the complexity, we do not consider it here. There are $m$ elements at the beginning, assuming they are all in one stack. Then the complexity of losing half the first time is $O(m)$ . Then the two stacks each have $\frac{m}{2}$ elements. At this time, we need $O(\frac{m}{2})$ to delete one of the stacks, and then we can trigger the operation to lose half with complexity of $O(\frac{m}{2})$ again.
 
-考虑这样做的总复杂度。
+Consider the overall time complexity for this operation:
 
 $$
 T(m)=2\cdot O(m)+T\left(\frac{m}{2}\right)
 $$
 
-解得 $T(m)=O(m)$ .
+we have $T(m)=O(m)$ .
 
-于是，总复杂度仍是 $O(mp)$ .
+Therefore, the overall time complexity is $O(mp)$ .
 
-### 询问操作
+### Query operation
 
-在询问的时侯，我们要处理的应该是“在两个栈中选若干个元素的最大价值”的问题。因此要对栈顶的 DP 值做查询，即两个 $f,g$ 对于询问[l,r]的最大价值：
+When querying, we need to deal with the problem of "selecting the greatest value of several elements in the two stacks". Therefore, it is necessary to query the DP value at the top of the stack, that is, the maximum value of two $f,g$ for querying [l,r]:
 
 $$
 \max_{0\leq i<p}\left\{f[i]+\max_{l\leq i+j\leq r}g_j\right\}
 $$
 
-这个问题暴力做是 $O(p^2)$ 的，不过一个妥妥的单调队列可以做到 $O(p)$ .
+The brute force solution has $O(p^2)$ time complexity, but the monotonic queue can solve it in $O(p)$ .
 
 ```cpp
 #include <algorithm>
@@ -168,7 +168,7 @@ const int M = 5e4 + 5, P = 505;
 int I, m, p;
 
 inline int _(int d) { return (d + p) % p; }
-namespace DQ {       // 双栈模拟双端队列
+namespace DQ {       // double stacks to simulate deque
 pii fr[M], bc[M];    // front,back; fi:w,se:v;
 int tf = 0, tb = 0;  // top
 int ff[M][P], fb[M][P];
@@ -215,7 +215,7 @@ int query(int l, int r) {
   }
   ROF(i, p - 1, 0) {
     if (ql <= qr && ~f[i] && ~g[q[ql]]) ans = max(ans, f[i] + g[q[ql]]);
-    // 删 l-i，加 r-i+1
+    // delete l-i，and add r-i+1
     if (ql <= qr && _(l - i) == q[ql]) ++ql;
     int x = g[_(r - i + 1)];
     while (ql <= qr && g[q[qr]] <= x) --qr;
