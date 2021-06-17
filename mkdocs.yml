@@ -34,7 +34,7 @@ nav:
     - F.A.Q.: intro/faq.md
     - Thanks: intro/thanks.md
   # 同步主站更改
-  - 比赛相关:
+  - Compeition:
     - OI Contest Format: contest/index.md
     - 赛事:
       - OI Contest Format: contest/oi.md 
@@ -50,7 +50,7 @@ nav:
       - 常见技巧: contest/common-tricks.md
     - 出题相关:
       - 出题: contest/problemsetting.md
-  - 工具软件:
+  - Tools:
     - 工具软件简介: tools/index.md
     - 代码编辑工具:
       - Vim: tools/editor/vim.md
@@ -80,7 +80,7 @@ nav:
     - OJ 工具: tools/oj-tool.md
     - LaTeX 入门: tools/latex.md
   # End of 同步主站更改
-  - Programming Basics:
+  - Programming:
     - Introduction: lang/index.md
     - Editing tools:
       - Vim: lang/editor/vim.md
