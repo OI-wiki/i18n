@@ -168,7 +168,7 @@ nav:
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
     - Optimizations: search/opt.md
-  - Dynamic Programming:
+  - DP:
     - Introduction: dp/index.md
     - Dynamic Programming Fundamentals: dp/basic.md
     - 记忆化搜索: dp/memo.md
