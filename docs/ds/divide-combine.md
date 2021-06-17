@@ -1,42 +1,44 @@
-解释一下本文可能用到的符号： $\wedge$ 逻辑与， $\vee$ 逻辑或。
+Some symbols we might be using in this article: $\wedge$ means logical AND, and $\vee$ means logical OR.
 
-## 关于段的问题
+The **divide-combine tree** was invented by Cheng-ao Liu(Github@[CommonAnts](https://github.com/CommonAnts)). The original Chinese name is 析合树. The English name was defined by GitHub user [sshwy](https://github.com/sshwy).
 
-我们由一个小清新的问题引入：
+## Problem about segments
 
-> 对于一个 $1-n$ 的排列，我们称一个值域连续的区间为段。问一个排列的段的个数。比如， $\{5 ,3 ,4, 1 ,2\}$ 的段有： $[1,1],[2,2],[3,3],[4,4],[5,5],[2,3],[4,5],[1,3],[2,5],[1,5]$ 。
+We start by introducing a simple problem:
 
-看到这个东西，感觉要维护区间的值域集合，复杂度好像挺不友好的。线段树可以查询某个区间是否为段，但不太能统计段的个数（也可能是因为我太菜了不会用线段树）
+> For a permutation of $1-n$ , we call a continuous range of values a segment and try to get the number of segments in an permutation. For example, the segments of $\{5 ,3 ,4, 1 ,2\}$ are: $[1,1],[2,2],[3,3],[4,4],[5,5 ],[2,3],[4,5],[1,3],[2,5],[1,5]$ .
 
-这里我们引入这个神奇的数据结构——析合树！
+It seems that the time complexity of maintaining the range set of intervals seems quite unsatisfying. The segment tree can query whether a certain interval is a segment, but it is not able to count the number of segments.
 
-## 连续段
+Here we introduce this magical data structure - Divide-combine Tree!
 
-在介绍析合树之前，我们先做一些前提条件的限定。鉴于 LCA 的课件的定义十分玄乎，为保证读者的身心健康，我就~~口糊~~一些人性化的定义吧。
+## Continuous segment
 
-### 排列与连续段
+Before introducing the divide-combine tree, we first define some preconditions. In view of the fact that the definition of LCA's course materials is not very clear, we will add some definitions for better understanding.
 
- **排列** ：定义一个 $n$ 阶排列 $P$ 是一个大小为 $n$ 的序列，使得 $P_i$ 取遍 $1,2,\cdots,n$ 。说得形式化一点， $n$ 阶排列 $P$ 是一个有序集合满足：
+### Permutation and continuous segment
+
+ **Permutation** : Define a permutation of $n$  and $P$ as a sequence of size $n$ such that $P_i$ goes over $1,2,\cdots,n$ . To put it more formally, $n$ permutation $P$ is an ordered set that satisfies:
 
 1.  $|P|=n$ .
 2.  $\forall i,P_i\in[1,n]$ .
 3.   $\nexists i,j\in[1,n],P_i=P_j$ .
 
-     **连续段** ：对于排列 $P$ ，定义连续段 $(P,[l,r])$ 表示一个区间 $[l,r]$ ，要求 $P_{l\sim r}$ 值域是连续的。说得更形式化一点，对于排列 $P$ ，连续段表示一个区间 $[l,r]$ 满足：
+     **Continuous segment** : For permutation $P$ , define a continuous segment $(P,[l,r])$ to represent an interval $[l,r]$ , requiring the range of $P_{l\sim r}$ to be continuous. To put it more formally, for permutation $P$ , a continuous segment represents an interval $[l,r]$ satisfies:
 
 $$
 (\nexists\ x,z\in[l,r],y\notin[l,r],\ P_x<P_y<P_z)
 $$
 
-特别地，当 $l>r$ 时，我们认为这是一个空的连续段，记作 $(P,\varnothing)$ 。
+In particular, when $l>r$ , we treat this as an empty continuous segment, denoted as $(P,\varnothing)$ .
 
-我们称排列 $P$ 的所有连续段的集合为 $I_P$ ，并且我们认为 $(P,\varnothing)\in I_P$ 。
+We define the set of all continuous segments of permutation of $P$ as $I_P$ , and consider $(P,\varnothing)\in I_P$ .
 
-### 连续段的运算
+### Operations on continuous segments
 
-连续段是依赖区间和值域定义的，于是我们可以定义连续段的交并差的运算。
+The continuous segment is defined by the interval and the range, so we can define the operation of intersect/union/minus of the continuous segment.
 
-定义 $A=(P,[a,b]),B=(P,[x,y])$ ，且 $A,B\in I_P$ 。于是连续段的关系和运算可以表示为：
+Define $A=(P,[a,b]),B=(P,[x,y])$ and $A,B\in I_P$ . So the relationship and operation on continuous segments can be represented as:
 
 1.  $A\subseteq B\Leftrightarrow x\le a\wedge b\le y$ .
 2.  $A=B\Leftrightarrow a=x\wedge b=y$ .
@@ -44,130 +46,132 @@ $$
 4.  $A\cup B=(P,[\min(a,x),\max(b,y)])$ .
 5.  $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$ .
 
-其实这些运算就是普通的集合交并差放在区间上而已。
+In fact, these operations are just ordinary intersect/union/minus operations of sets on the intervals.
 
-### 连续段的性质
+### Properties of continuous segments
 
-连续段的一些显而易见的性质。我们定义 $A,B\in I_P,A \cap B \neq \varnothing$ ，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$ 。
+There are some obvious properties of continuous segments. We define $A,B\in I_P,A \cap B \neq \varnothing$ , then there are $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$ .
 
-证明？证明的本质就是集合的交并差的运算。
+What about proof? The essence of proof is the operation of intersect/union/minus.
 
-## 析合树
+## Divide-combine tree
 
-好的，现在讲到重点了。你可能已经猜到了，析合树正是由连续段组成的一棵树。但是要知道一个排列可能有多达 $O(n^2)$ 个连续段，因此我们就要抽出其中更基本的连续段组成析合树。
+Okay, now we have reached the point. As you may have guessed, the divide-combine tree is a tree composed of consecutive segments. But knowing that a permutation may have as many as $O(n^2)$ continuous segments, we have to extract the more basic continuous segments to form a divide-combine tree.
 
-### 本原段
+### Primitive segment
 
-其实这个定义全称叫作 **本原连续段** 。但笔者认为本原段更为简洁。
+In fact, the full name of this definition is called **primitive continuous segment**. But we call it primitive segment to be concise. 
 
-对于排列 $P$ ，我们认为一个本原段 $M$ 表示在集合 $I_P$ 中，不存在与之相交且不包含的连续段。形式化地定义，我们认为 $X\in I_P$ 且满足 $\forall A\in I_P,\ X\cap A= (P,\varnothing)\vee X\subseteq A\vee A\subseteq X$ 。
+For the permutation $P$ , we think that a primitive segment $M$ means that in the set $I_P$ , there is no continuous segment that intersects or contains that segment. Formally defined, we think that $X\in I_P$ satisfies $\forall A\in I_P,\ X\cap A= (P,\varnothing)\vee X\subseteq A\vee A\subseteq X$ .
 
-所有本原段的集合为 $M_P$ . 显而易见， $(P,\varnothing)\in M_P$ 。
+The set of all primitive segments is $M_P$ . Obviously, $(P,\varnothing)\in M_P$ .
 
-显然，本原段之间只有相离或者包含关系。并且你发现 **一个连续段可以由几个互不相交的本原段构成** 。最大的本原段就是整个排列本身，它包含了其他所有本原段，因此我们认为本原段可以构成一个树形结构，我们称这个结构为 **析合树** 。更严格地说，排列 $P$ 的析合树由排列 $P$ 的 **所有本原段** 组成。
+Obviously, there is only separate or inclusive relationship between the primitive segments. And you may find that **a continuous segment can be composed of several disjoint primitive segments**. The largest primitive segment is the entire permutation itself, which contains all other primitive segments, so we believe that the primitive segment can form a tree structure, which we call the **divide-combine tree**. More strictly speaking, the analysis tree of permutation $P$ is composed of **all primitive segments** of permutation $P$ .
 
-前面干讲这么多的定义，不来点图怎么行。考虑排列 $P=\{9,1,10,3,2,5,7,6,8,4\}$ . 它的本原段构成的析合树如下：
+Consider the permutation $P=\{9,1,10,3,2,5,7,6,8,4\}$ . The divide-combine tree composed of its primitive segments is shown in the figure below:
 
-![p1](./images/div-com1.png)
+![p1](./images/div-com1-en.png)
 
-在图中我们没有标明本原段。而图中 **每个结点都代表一个本原段** 。我们只标明了每个本原段的值域。举个例子，结点 $[5,8]$ 代表的本原段就是 $(P,[6,9])=\{5,7,6,8\}$ 。于是这里就有一个问题： **什么是析点合点？** 
+In the figure we did not indicate the primitive segment. Instead, **each node represents a primitive segment**. We only indicated the value range of each primitive segment. For example, the primitive segment represented by the node $[5,8]$ is $(P,[6,9])=\{5,7,6,8\}$ . So here is a question: **What are the dividing or combining nodes?**
 
-### 析点与合点
+### Dividing point/Combining node
 
-这里我们直接给出定义，稍候再来讨论它的正确性。
+Here we give the definition directly, and will discuss its correctness later.
 
-1.  **值域区间** ：对于一个结点 $u$ ，用 $[u_l,u_r]$ 表示该结点的值域区间。
-2.  **儿子序列** ：对于析合树上的一个结点 $u$ ，假设它的儿子结点是一个 **有序** 序列，该序列是以值域区间为元素的（单个的数 $x$ 可以理解为 $[x,x]$ 的区间）。我们把这个序列称为儿子序列。记作 $S_u$ 。
-3.  **儿子排列** ：对于一个儿子序列 $S_u$ ，把它的元素离散化成正整数后形成的排列称为儿子排列。举个例子，对于结点 $[5,8]$ ，它的儿子序列为 $\{[5,5],[6,7],[8,8]\}$ ，那么把区间排序标个号，则它的儿子排列就为 $\{1,2,3\}$ ；类似的，结点 $[4,8]$ 的儿子排列为 $\{2,1\}$ 。结点 $u$ 的儿子排列记为 $P_u$ 。
-4.  **合点** ：我们认为，儿子排列为顺序或者逆序的点为合点。形式化地说，满足 $P_u=\{1,2,\cdots,|S_u|\}$ 或者 $P_u=\{|S_u|,|S_u-1|,\cdots,1\}$ 的点称为合点。 **叶子结点没有儿子排列，我们也认为它是合点** 。
-5.  **析点** ：不是合点的就是析点。
+1. **Value range**: For a node $u$ , use $[u_l,u_r]$ to indicate the value range of the node.
+2. **Child sequence**: For a node $u$ on the divide-combine tree, suppose its child node is an **ordered** sequence, which has a range of elements as elements (single number $x$ can be understood as the interval of $[x,x]$ ). We call this sequence the child sequence. Denoted as $S_u$ .
+3. **Child permutation**: For a child sequence $S_u$ , the permutation formed by discretizing its elements into positive integers is called the child permutation. For example, for the node $[5,8]$ , its child sequence is $\{[5,5],[6,7],[8,8]\}$ , then sort the interval by one number, its sons are arranged as $\{1,2,3\}$ ; similarly, the children of node $[4,8]$ are permutated as $\{2,1\}$ . The permutation of the children of the node $u$ is recorded as $P_u$ .
+4. **Combining node**: We believe that the node where the children are permutated in order or in reverse order is the combining node. Formally speaking, it satisfies $P_u=\{1,2,\cdots,|S_u|\}$ or $P_u=\{|S_u|,|S_u-1|,\cdots,1\}$ . **The leaf node has no child permutation, and we also think it is a combining node**.
+5. **Dividing node**: The dividing node is a node that is not a combining node.
 
-从图中可以看到，只有 $[1,10]$ 不是合点。因为 $[1,10]$ 的儿子排列是 $\{3,1,4,2\}$ 。
+It can be seen from the figure that only $[1,10]$ is not a combining node because the permutation of its children are $\{3,1,4,2\}$ .
 
-### 析点与合点的性质
+### Properties of the dividing/combining node
 
-析点与合点的命名来源于他们的性质。首先我们有一个非常显然的性质：对于析合树中任何的结点 $u$ ，其儿子序列区间的并集就是结点 $u$ 的值域区间。即 $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ 。
+The naming of the dividing node and combining node comes from their properties. First of all, we have a very obvious one: for any node $u$ in a divide-combine tree, the union of its child sequence intervals is the range of the node $u$ . That is, $\bigcup_{i=1}^{|S_u|}S_u[i]=[u_l,u_r]$ .
 
-对于一个合点 $u$ ：其儿子序列的任意 **子区间** 都构成一个 **连续段** 。形式化地说， $\forall S_u[l\sim r]$ ，有 $\bigcup_{i=l}^rS_u[i]\in I_P$ 。
+For a combining node $u$ : any **subinterval** of its child sequence constitutes a **continuous segment**. Formally speaking, $\forall S_u[l\sim r]$ has $\bigcup_{i=l}^rS_u[i]\in I_P$ .
 
-对于一个析点 $u$ ：其儿子序列的任意 **长度大于 1（这里的长度是指儿子序列中的元素数，不是下标区间的长度）** 的子区间都 **不** 构成一个 **连续段** 。形式化地说， $\forall S_u[l\sim r],l<r$ ，有 $\bigcup_{i=l}^rS_u[i]\notin I_P$ 。
+For an dividing node $u$ : Any subinterval of its child sequences whose length is greater than 1 does **not** constitute a **continuous segment**. Note that length here refers to the number of elements in the son sequence, instead of the length of the subscript interval. Formally speaking, $\forall S_u[l\sim r],l<r$ has $\bigcup_{i=l}^rS_u[i]\notin I_P$ .
 
-合点的性质不难~~口糊~~证明。因为合点的儿子排列要么是顺序，要么是倒序，而值域区间也是首位相接，因此只要是连续的一段子序列（区间）都是一个连续段。
+The property of the combining node is not difficult to prove. Because the children of the combining node are either ordered or reversely ordered, and the range interval is also the first place, so as long as it is a continuous segment (interval).
+=]\
 
-对于析点的性质可能很多读者就不太能理解了：为什么 **任意** 长度大于 $1$ 的子区间都不构成连续段？
 
-使用反证法。假设对于一个点 $u$ ，它的儿子序列中有一个 **最长的** 区间 $S_u[l\sim r]$ 构成了连续段。那么这个 $A=\bigcup_{i=l}^rS_u[i]\in I_P$ ，也就意味着 $A$ 是一个本原段！（因为 $A$ 是儿子序列中最长的，因此找不到一个与它相交又不包含的连续段）于是你就没有使用所有的本原段构成这个析合树。矛盾。
+Many readers may not understand the property of the dividing node: Why does any sub-interval whose length is greater than $1$ not constitute a continuous segment?
 
-### 析合树的构造
+Use contradiction. Assume that for a node $u$ , there is a **longest** interval in the sequence of its sons $S_u[l\sim r]$ which constitutes a continuous segment. Then this $A=\bigcup_{i=l}^rS_u[i]\in I_P$ means that $A$ is a primitive segment. (Because $A$ is the longest in the sequence of children, you cannot find a continuous segment that intersects with it and does not contain it) So you did not use all the primitive segments to form this divide-combine tree. Therefore, contradiction.
 
-前面讲了这么多零零散散的东西，现在就来具体地讲如何构造析合树。LCA 大佬的线性构造算法我是没看懂的，今天就讲一下比较好懂的 $O(n\log n)$ 的算法。
+### Construction of the divide-combine tree
 
-#### 增量法
+Now let's talk specifically about how to construct a divide-combine tree. Today we will talk about the $O(n\log n)$ algorithm that's easier to understand. If you would like to know the linear solution, please check the original paper.
 
-我们考虑增量法。用一个栈维护前 $i-1$ 个元素构成的析合森林。在这里我需要 **着重强调** ，析合森林的意思是，在任何时侯，栈中结点要么是析点要么是合点。现在考虑当前结点 $P_i$ 。
+#### Incrementing method
 
-1. 我们先判断它能否成为栈顶结点的儿子，如果能就变成栈顶的儿子，然后把栈顶取出，作为当前结点。重复上述过程直到栈空或者不能成为栈顶结点的儿子。
-2. 如果不能成为栈顶的儿子，就看能不能把栈顶的若干个连续的结点都合并成一个结点（判断能否合并的方法在后面），把合并后的点，作为当前结点。
-3. 重复上述过程直到不能进行为止。然后结束此次增量，直接把当前结点圧栈。
+We consider the incremental method. Use a stack to maintain the dividing-combining forest composed of the first $i-1$ elements. It's **worth noting** that the dividing-combining forest means that at any time, the nodes in the stack are either dividing or combining. Now consider the current node $P_i$ .
 
-接下来我们仔细解释一下。
+1. We first check whether it can be the child of the top node of the stack, and if it can, then take the top of the stack as the current node. Repeat the above process until the stack is empty or the check fails.
+2. If it cannot become the child of the top of the stack, it depends on whether you can combine several consecutive nodes on the top of the stack into one node (the method to determine whether to combine is defined later), and use the combining node as the current node.
+3. Repeat the above process until it cannot be done. Then end this increment and directly push to the current node on the stack.
 
-#### 具体的策略
+Let us explain in details.
 
-我们认为，如果当前点能够成为栈顶结点的儿子，那么栈顶结点是一个合点。如果是析点，那么你合并后这个析点就存在一个子连续段，不满足析点的性质。因此一定是合点。
+#### Specific strategy
 
-如果无法成为栈顶结点的儿子，那么我们就看栈顶连续的若干个点能否与当前点一起合并。设 $l$ 为当前点所在区间的左端点。我们计算 $L$ 表示右端点下标为 $i$ 的连续段中，左端点 $\lt l$ 的最大值。当前结点为 $P_i$ ，栈顶结点记为 $t$ 。
+We believe that if the current point can become the child of the top node of the stack, then the top node of the stack is a combining point. If it is a dividing point, then after you merge the dividing point, there is a sub-continuous segment, which does not satisfy the nature of the dividing point. So it must be the combining point.
 
-1. 如果 $L$ 不存在，那么显然当前结点无法合并；
-2. 如果 $t_l=L$ ，那么这就是两个结点合并，合并后就是一个 **合点** ；
-3. 否则在栈中一定存在一个点 $t'$ 的左端点 ${t'}_l=L$ ，那么一定可以从当前结点合并到 $t’$ 形成一个 **析点** ；
+If it cannot be the child of the node at the top of the stack, then we will see whether several consecutive points on the top of the stack can be merged with the current point. Let $l$ be the left end point of the interval where the current point is located. We calculate the maximum value of the left endpoint $\lt l$ in the continuous segment where $L$ represents the right endpoint index $i$ . The current node is $P_i$ and the top node of the stack is recorded as $t$ .
 
-#### 判断能否合并
+1. If $L$ does not exist, then obviously the current node cannot be merged;
+2. If $t_l=L$ , then this is the merging of two nodes, after the merging is a **joint**;
+3. Otherwise there must be a left end point ${t'}_l=L$ of a point $t'$ in the stack, then it must be merged from the current node to $t’$ to form an **divide-combine point**;
 
-最后，我们考虑如何处理 $L$ 。事实上，一个连续段 $(P,[l,r])$ 等价于区间极差与区间长度 -1 相等。即
+#### Determing whether can be merged
+
+Finally, we consider how to deal with $L$ . In fact, a continuous segment $(P,[l,r])$ is equivalent to the interval range and the interval length -1. which is
 
 $$
 \max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i=r-l
 $$
 
-而且由于 P 是一个排列，因此对于任意的区间 $[l,r]$ 都有
+And since P is a permutation, it has any interval $[l,r]$
 
 $$
 \max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i\ge r-l
 $$
 
-于是我们就维护 $\max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i-(r-l)$ ，那么要找到一个连续段相当于查询一个最小值！
+So we maintain $\max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i-(r-l)$ , then to find a continuous segment equivalent to querying a minimum.
 
-有了上述思路，不难想到这样的算法。对于增量过程中的当前的 $i$ ，我们维护一个数组 $Q$ 表示区间 $[j,i]$ 的极差减长度。即
+With the above ideas, it is not difficult to think of such an algorithm. For the current $i$ in the incrementing process, we maintain an array $Q$ representing the range minus length of the interval $[j,i]$. which is
 
 $$
 Q_j=\max_{j\le k\le i}P_k-\min_{j\le k\le i}P_k-(i-j),\ \ 0<j<i
 $$
 
-现在我们想知道在 $1\sim i-1$ 中是否存在一个最小的 $j$ 使得 $Q_j=0$ 。这等价于求 $Q_{1\sim i-1}$ 的最小值。求得最小的 $j$ 就是 $L_i$ 。如果没有，那么 $L_i=i$ 。
+Now we want to know whether there is a smallest $j$ in $1\sim i-1$ such that $Q_j=0$ . This is equivalent to finding the minimum value of $Q_{1\sim i-1}$ . The smallest $j$ is $L_i$ . If not, then $L_i=i$ .
 
-但是当第 $i$ 次增量结束时，我们需要快速把 $Q$ 数组更新到 i+1 的情况。原本的区间从 $[j,i]$ 变成 $[j,i+1]$ ，如果 $P_{i+1}>\max$ 或者 $P_{i+1}<\min$ 都会造成 $Q_j$ 发生变化。如何变化？如果 $P_{i+1}>\max$ ，相当于我们把 $Q_j$ 先减掉 $\max$ 再加上 $P_{i+1}$ 就完成了 $Q_j$ 的更新； $P_{i+1}<\min$ 同理，相当于 $Q_j=Q_j+\min-P_{i+1}$ .
+But when the $i$ increment ends, we need to quickly update the $Q$ array to i+1. The primitive interval is changed from $[j,i]$ to $[j,i+1]$ . If $P_{i+1}>\max$ or $P_{i+1}<\min$ , they all might cause $ Q_j$ to change. How? If $P_{i+1}>\max$ , it is equivalent to subtracting $\max$ from $Q_j$ and adding $P_{i+1}$ to complete the update of $Q_j$ ; $P_{ i+1}<\min$ is the same, equivalent to $Q_j=Q_j+\min-P_{i+1}$ .
 
-那么如果对于一个区间 $[x,y]$ ，满足 $P_{x\sim i},P_{x+1\sim i},P_{x+2\sim i},\cdots,P_{y\sim i}$ 的区间 $\max$ 都相同呢？你已经发现了，那么相当于我们在做一个区间加的操作；同理，当 $P_{x\sim i},P_{x+1\sim i},\cdots,P_{y\sim i}$ 的区间 $\min$ 都想同时也是一个区间加的操作。同时， $\max$ 和 $\min$ 的更新是相互独立的，因此可以各自更新。
+Then how to ensure for an interval $[x,y]$ , the $\max$ of range that satisfies $P_{x\sim i},P_{x+1\sim i},P_{x+2\sim i},\cdots,P_{y\sim i}$ is the same? You may have found out that it is equivalent to we are doing an interval addition operation; in the same way, the interval $\min$ of $P_{x\sim i},P_{x+1\sim i},\cdots,P_{y\sim i}$ is also an interval addition operation. At the same time, the updates of $\max$ and $\min$ are independent of each other, so they can be updated separately.
 
-因此我们对 $Q$ 的维护可以这样描述：
+Therefore, our maintenance of $Q$ can be described as follows:
 
-1. 找到最大的 $j$ 使得 $P_{j}>P_{i+1}$ ，那么显然， $P_{j+1\sim i}$ 这一段数全部小于 $P_{i+1}$ ，于是就需要更新 $Q_{j+1\sim i}$ 的最大值。由于 $P_{i},\max(P_i,P_{i-1}),\max(P_i,P_{i-1},P_{i-2}),\cdots,\max(P_i,P_{i-1},\cdots,P_{j+1})$ 是（非严格）单调递增的，因此可以每一段相同的 $\max$ 做相同的更新，即区间加操作。
-2. 更新 $\min$ 同理。
-3. 把每一个 $Q_j$ 都减 $1$ 。因为区间长度加 $1$ 。
-4. 查询 $L_i$ ：即查询 $Q$ 的最小值的所在的 **下标** 。
+1. Find the largest $j$ such that $P_{j}>P_{i+1}$ , then obviously, $P_{j+1\sim i}$ is all less than $P_{i+1}$ , So you need to update the maximum value of $Q_{j+1\sim i}$ . Since $P_{i},\max(P_i,P_{i-1}),\max(P_i,P_{i-1},P_{i-2}),\cdots,\max(P_i,P_{ i-1},\cdots,P_{j+1})$ is (non-strictly) monotonically increasing, so the same update can be done for each segment of the same $\max$ , that is, interval addition operation.
+2. Update $\min$ in the same way.
+3. Reduce each $Q_j$ by $1$ . Because the length of the interval adds $1$ .
+4. Query $L_i$ : the **index** where the minimum value of $Q$ is queried.
 
-没错，我们可以使用线段树维护 $Q$ ！现在还有一个问题：怎么找到相同的一段使得他们的 $\max/\min$ 都相同？使用单调栈维护！维护两个单调栈分别表示 $\max/\min$ 。那么显然，栈中以相邻两个元素为端点的区间的 $\max/\min$ 是相同的，于是在维护单调栈的时侯顺便更新线段树即可。
+That's right, we can use the segment tree to maintain $Q$ ! Now there is another question: how to find the same segment so that their $\max/\min$ are the same? Use monotonic stack! Maintain two monotonic stacks representing $\max/\min$ respectively. Then obviously, the $\max/\min$ of the interval with two adjacent elements as endpoints in the stack are the same, so you can update the segment tree while maintaining the monotonic stack.
 
-具体的维护方法见代码。
+See the code for specific maintenance methods.
 
-讲这么多干巴巴的想必小伙伴也听得云里雾里的，那么我们就先上图吧。长图警告！
+Let's see the figure directly. Long picture warning :)
 
-![p2](./images/div-com2.jpg)
+![p2](./images/div-com2-en.jpg)
 
-### 实现
+### Implementation
 
-最后放一个实现的代码供参考。代码转自 [大米饼的博客](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) ，被我加了一些注释。
+The reference code was from [Rice cracker's blog](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) and the comments were added by [sshwy](www.github.com/sshwy).
 
 ```cpp
 #include <bits/stdc++.h>
@@ -177,13 +181,13 @@ const int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
-//本篇代码原题应为 CERC2017 Intrinsic Interval
-// a数组即为原题中对应的排列
-// st1和st2分别两个单调栈，tp1、tp2为对应的栈顶，rt为析合树的根
-// L、R数组表示该析合树节点的左右端点，M数组的作用在析合树构造时有提到
-// id存储的是排列中某一位置对应的节点编号，typ用于标记析点还是合点
-// st为存储析合树节点编号的栈，tp为其栈顶
-struct RMQ {  // 预处理 RMQ（Max & Min）
+// The code of primitive problem is written for CERC2017 Intrinsic Interval
+// The a array is the corresponding permutation in the primitive problem
+// st1 and st2 are two monotonic stacks respectively, tp1 and tp2 are the corresponding stack tops, and rt is the root of the divide-combine tree
+// The L and R arrays represent the left and right end points of the divide-combine node. The role of the M array is mentioned in the construction of the divide-combine tree
+// stores the node number corresponding to a certain position in the permutation, typ is used to mark the divide node or the combine node
+// st is the stack storing the node number of the divide-combine tree, and tp is the top of the stack
+struct RMQ {  // pre-process RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
   void chkmn(int& x, int y) {
     if (x > y) x = y;
@@ -209,12 +213,12 @@ struct RMQ {  // 预处理 RMQ（Max & Min）
     return max(mx[l][t], mx[r - bin[t] + 1][t]);
   }
 } D;
-// 维护 L_i
+// maintain L_i
 
-struct SEG {  // 线段树
+struct SEG {  // segment tree
 #define ls (k << 1)
 #define rs (k << 1 | 1)
-  int mn[N << 1], ly[N << 1];  // 区间加；区间最小值
+  int mn[N << 1], ly[N << 1];  // Interval plus; minimum in the interval
   void pushup(int k) { mn[k] = min(mn[ls], mn[rs]); }
   void mfy(int k, int v) { mn[k] += v, ly[k] += v; }
   void pushdown(int k) {
@@ -235,7 +239,7 @@ struct SEG {  // 线段树
       update(ls, l, mid, x, mid, v), update(rs, mid + 1, r, mid + 1, y, v);
     pushup(k);
   }
-  int query(int k, int l, int r) {  // 询问 0 的位置
+  int query(int k, int l, int r) {  // query the position of 0
     if (l == r) return l;
     pushdown(k);
     int mid = (l + r) >> 1;
@@ -243,7 +247,7 @@ struct SEG {  // 线段树
       return query(ls, l, mid);
     else
       return query(rs, mid + 1, r);
-    // 如果不存在 0 的位置就会自动返回当前你查询的位置
+    // If there does not exist the position of 0, it will automatically return to the current position being queried
   }
 } T;
 
@@ -251,7 +255,7 @@ int o = 1, hd[N], dep[N], fa[N][18];
 struct Edge {
   int v, nt;
 } E[N << 1];
-void add(int u, int v) {  // 树结构加边
+void add(int u, int v) {  // add edge to the tree structure
   E[o] = (Edge){v, hd[u]};
   hd[u] = o++;
 }
@@ -278,22 +282,22 @@ int lca(int u, int v) {
   return fa[u][0];
 }
 
-// 判断当前区间是否为连续段
+// determine whether the current interval is a continuous segment
 bool judge(int l, int r) { return D.ask_mx(l, r) - D.ask_mn(l, r) == r - l; }
 
-// 建树
+// construct tree
 void build() {
   for (int i = 1; i <= n; ++i) {
-    // 单调栈
-    // 在区间 [st1[tp1-1]+1,st1[tp1]] 的最小值就是 a[st1[tp1]]
-    // 现在把它出栈，意味着要把多减掉的 Min 加回来。
-    // 线段树的叶结点位置 j 维护的是从 j 到当前的 i 的
+    // monotonic stack
+    // the minimum value in the range of [st1[tp1-1]+1,st1[tp1]] is a[st1[tp1]]
+    // popping it from the stack now means adding back the minused Min
+    // The leaf node position j of the segment tree is maintained from j to the current i
     // Max{j,i}-Min{j,i}-(i-j)
-    // 区间加只是一个 Tag。
-    // 维护单调栈的目的是辅助线段树从 i-1 更新到 i。
-    // 更新到 i 后，只需要查询全局最小值即可知道是否有解
+    // the interval addition is just a Tag
+    // the purpose of maintaining the monotonic stack is to update the segment tree from i-1 to i.
+    // after updating to i, you only need to query the global minimum to know if there is a solution
 
-    while (tp1 && a[i] <= a[st1[tp1]])  // 单调递増的栈，维护 Min
+    while (tp1 && a[i] <= a[st1[tp1]])  // monotonously increasing stack, maintaining Min
       T.update(1, 1, n, st1[tp1 - 1] + 1, st1[tp1], a[st1[tp1]]), tp1--;
     while (tp2 && a[i] >= a[st2[tp2]])
       T.update(1, 1, n, st2[tp2 - 1] + 1, st2[tp2], -a[st2[tp2]]), tp2--;
@@ -304,23 +308,23 @@ void build() {
     st2[++tp2] = i;
 
     id[i] = ++cnt;
-    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指值域的上下界
+    L[cnt] = R[cnt] = i;  // here L and R refer to the upper and lower bounds of the range
     int le = T.query(1, 1, n), now = cnt;
     while (tp && L[st[tp]] >= le) {
       if (typ[st[tp]] && judge(M[st[tp]], i)) {
-        // 判断是否能成为儿子，如果能就做
+        // check if it can become a child, do it if you can
         R[st[tp]] = i, add(st[tp], now), now = st[tp--];
       } else if (judge(L[st[tp]], i)) {
-        typ[++cnt] = 1;  // 合点一定是被这样建出来的
+        typ[++cnt] = 1;  // The joining node must be built like this
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
-        // 这里M数组的作用是保证合点的儿子排列是单调的
+        // The role of the M array here is to ensure that the permutation of the children of the junction is monotonous
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {
-        add(++cnt, now);  // 新建一个结点，把 now 添加为儿子
-        // 如果从当前结点开始不能构成连续段，就合并。
-        // 直到找到一个结点能构成连续段。而且我们一定能找到这样
-        // 一个结点。
+        add(++cnt, now);  // create a new node and add now as a child
+        // if a continuous segment cannot be formed from the current node, merge.
+        // until a node is found to form a continuous segment. And we can definitely find this
+        // a joint node
         do
           add(cnt, st[tp--]);
         while (tp && !judge(L[st[tp]], i));
@@ -328,24 +332,24 @@ void build() {
         now = cnt;
       }
     }
-    st[++tp] = now;  // 增量结束，把当前点圧栈
+    st[++tp] = now;  // at the end of the increment, put the current node on the stack
 
-    T.update(1, 1, n, 1, i, -1);  // 因为区间右端点向后移动一格，因此整体 -1
+    T.update(1, 1, n, 1, i, -1);  // because the right end of the interval moves one backward, the overall -1
   }
 
-  rt = st[1];  // 栈中最后剩下的点是根结点
+  rt = st[1];  // the last remaining point in the stack is the root node
 }
 void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
   if (typ[z] & 1)
     l = L[go(x, dep[x] - dep[z] - 1)], r = R[go(y, dep[y] - dep[z] - 1)];
-  // 合点这里特判的原因是因为这个合点不一定是最小的包含l，r的连续段.
-  // 具体可以在上面的例图上试一下查询7,10
+  // the reason why the joint point is judged here is because the joint point is not necessarily the smallest continuous segment containing l and r.
+  // specifically, you can try the query on the example figure above 7,10
   else
     l = L[z], r = R[z];
   printf("%d %d\n", l, r);
-}  // 分 lca 为析或和，这里把叶子看成析的
+}  // analyse lca as divide or combine, here the leaves are regarded as divide
 
 int main() {
   scanf("%d", &n);
@@ -362,11 +366,11 @@ int main() {
   return 0;
 }
 // 20190612
-// 析合树
+// divide-combine tree
 ```
 
-## 参考文献
+## Reference
 
-刘承奥。简单的连续段数据结构。WC2019 营员交流。
+Liu Chengao. Simple continuous segment data structure. WC2019 campers exchange.
 
- [大米饼的博客 -【学习笔记】析合树](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) 
+ [Rice Cake's Blog -[Study Notes]Divide-combine Tree](https://www.cnblogs.com/Paul-Guderian/p/11020708.html) (original link in Chinese)
