@@ -310,7 +310,7 @@ nav:
     - ST 表: ds/sparse-table.md
     - 线段树: ds/seg.md
     - 树状数组: ds/fenwick.md
-    - 李超线段树: ds/li-chao-tree #主站新增
+    - 李超线段树: ds/li-chao-tree.md #主站新增
     - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
