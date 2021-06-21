@@ -133,6 +133,7 @@ nav:
     - Greddy: basic/greedy.md
     - Sorting:
       - Introduction of Sorting: basic/sort-intro.md
+      - Complexity: misc/complexity.md
       - Selection Sort: basic/selection-sort.md
       - Bubble Sort: basic/bubble-sort.md
       - Insertion Sort: basic/insertion-sort.md
@@ -421,7 +422,6 @@ nav:
     - 计算几何杂项: geometry/misc.md
   - Misc:
     - 杂项简介: misc/index.md
-    - 复杂度: misc/complexity.md
     - 离散化: misc/discrete.md
     - 离线算法:
       - 离线算法简介: misc/offline.md
