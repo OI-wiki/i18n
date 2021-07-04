@@ -1,18 +1,20 @@
-本文介绍 C 与 C++ 之间重要的或者容易忽略的区别。尽管 C++ 几乎是 C 的超集，C/C++ 代码混用一般也没什么问题，但是了解 C/C++ 间比较重要区别可以避免碰到一些奇怪的 bug。如果你是以 C 为主力语言的 OIer，那么本文也能让你更顺利地上手 C++。C++ 相比 C 增加的独特特性可以阅读 [C++ 进阶](./class.md) 部分的教程。
+This article introduces differences between C and C++ that are important or might be easily overlooked. Although C++ is almost a superset of C, there is generally no problem with mixing C/C++ code. But understanding the important difference between C/C++ can help avoid certain strange bugs. If you are an OIer using C as the primary language, this article will also let you get started with C++ more smoothly. The uniqueness of C++ compared to C can be read in the tutorial in the [C++ Advanced](./class.md).
 
-## 宏与模板
+## Macros and templates
 
-C++ 的模板在设计之初的一个用途就是用来替换宏定义。学会模板编程是从 C 迈向 C++ 的重要一步。模板不同于宏的文字替换，在编译时会得到更全面的编译器检查，便于编写更健全的代码，利用 inline 关键字还能获得编译器充分的优化。模板特性在 C++11 后支持了可变长度的模板参数表，可以用来替代 C 中的可变长度函数并保证类型安全。
+One purpose of C++ templates at the beginning of the design is to replace macro definitions. Learning template programming is an important step from C to C++. Template is different from the text replacement of the macro. It will get a more comprehensive compiler check when compiling, thus making it easier to write more robust code. Using the inline keyword can also get the compiler's full optimization. The template feature also supports variable-length template parameter table after C++11, which can be used to replace variable-length functions in C and ensure type safety.
 
-## 指针与引用
+## Pointers and references
 
-C++ 中你仍然可以使用 C 风格的指针，但是对于变量传递而言，更推荐使用 C++ 的 [引用](./reference.md) 特性来实现类似的功能。由于引用指向的对象不能为空，因此可以避免一些空地址访问的问题。不过指针由于其灵活性，也仍然有其用武之处。值得一提的是，C 中的 `NULL` 空指针在 C++11 起有类型安全的替代品 `nullptr` 。引用和指针之间可以通过 [ `*` 和 `&` 运算符](./op.md) 相互转换。
+In C++, you can still use C-style pointers, but for variable passing, it is recommended to use [reference](./reference.md) feature in C++ to achieve similar effects. Since the object pointed to by the reference cannot be null, some null address access problems can be avoided. However, pointers still have their uses due to their flexibility. It is worth mentioning that the `NULL` in C has a type-safe alternative to `nullptr` since C++11. Reference and pointer can be converted mutually through [`*` and `&` operators](./op.md).
 
 ## struct
 
-尽管在 C 和 C++ 中都有 struct 的概念，但是他们对应的东西是不能混用的！C 中的 struct 用来描述一种固定的内存组织结构，而 C++ 中的 struct 就是一种类， **它与类唯一的区别就是它的成员和继承行为默认是 public 的** ，而一般类的默认成员是 private 的。这一点在写 C/C++ 混合代码时尤其致命。
+Although both C and C++ have the concept of struct, what they correspond to cannot be mixed! The struct in C is used to describe a fixed memory organization structure, while the struct in C++ is a kind of class. The only difference between struct in C++ and a class is that its members and inheritance behavior are public by default, while the default of general class is private. This is especially fatal when writing C/C++ mixed code.
 
-另外，声明 struct 时 C++ 也不需要像 C 那么繁琐，C 版本：
+In addition, C++ does not need to be as complicated as C when declaring struct. 
+
+C version:
 
 ```c
 typedef struct Node_t{
@@ -21,7 +23,7 @@ typedef struct Node_t{
 } Node;
 ```
 
-C++ 版本
+C++ version:
 
 ```cpp
 struct Node {
@@ -32,10 +34,10 @@ struct Node {
 
 ## const
 
-const 在 C 中只有限定变量不能修改的功能，而在 C++ 中，由于大量新特性的出现，const 也被赋予的更多用法。C 中的 const 在 C++ 中的继任者是 constexpr，而 C++ 中的 const 的用法请参见 [常值](./const.md) 页面的说明。
+In C, const only has the function of limiting variables that cannot be modified. In C++, due to the emergence of a large number of new features, const has also been given more usage. The successor of C const in C++ is constexpr. For the usage of const in C++, please refer to the description on the [constant value](./const.md).
 
-## 内存分配
+## Memory allocation
 
-C++ 中新增了 `new` 和 `delete` 关键字用来在“自由存储区”上分配空间，这个自由存储区可以是堆也可以是静态存储区，他们是为了配合“类”而出现的。其中 `delete[]` 还能够直接释放动态数组的内存，非常方便。 `new` 和 `delete` 关键字会调用类型的构造函数和析构函数，相比 C 中的 `malloc()` 、 `realloc()` 、 `free()` 函数，他们对类型有更完善的支持，但是效率不如 C 中的这些函数。
+The keywords `new` and `delete` have been added to C++ to allocate space on the "free storage area", which can either be a heap or a static area to match the "class". Among them, `delete[]` can also directly release the memory of the dynamic array, which is very convenient. The `new` and `delete` keywords will call the type's constructor and destructor. Compared with the C's `malloc()`, `realloc()`, and `free()` functions, they have a more complete type support, but not as efficient as these functions in C.
 
-简而言之，如果你需要动态分配内存的对象是基础类型或他们的数组，那么你可以使用 `malloc()` 进行更高效的内存分配；但如果你新建的对象是非基础的类型，那么建议使用 `new` 以获得安全性检查。值得注意的是尽管 `new` 和 `malloc()` 都是返回指针，但是 `new` 出来的指针 **只能** 用 `delete` 回收，而 `malloc()` 出来的指针也只能用 `free()` 回收，否则会有内存泄漏的风险。
+In short, if the object you need to dynamically allocate memory to is basic type or their array, then you can use `malloc()` for more efficient memory allocation; but if your newly created objects are non-basic types, then it is recommended to use `new` to have a security check. It is worth noting that although both `new` and `malloc()` return pointers, the pointers from `new` can only be recycled with `delete`, while the pointers from `malloc()` can only use `free()` to recycle. Otherwise there might be a risk of memory leaks.
