@@ -75,10 +75,16 @@ function foo(response) {
 if (url == "/index.md") {
   // HomePage
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs/index.md`);
+  //一个临时的导向主站的东西
+  document.getElementsByClassName('original_article')[0].setAttribute('href', `https://oi-wiki.org${url}`.split('.md')[0]);
   script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs/index.md&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
 } else if (typeof (url) != 'undefined') {
   document.getElementsByClassName('edit_history')[0].setAttribute('href', `https://github.com/OI-wiki/OI-wiki/commits/master/docs${url}`);
+  //Translate History
+  //document.getElementsByClassName('translate_history')[0].setAttribute('href', `https://github.com/OI-wiki/i18n/commits/master/docs${url}`);
+  //一个临时的导向主站的东西
+  document.getElementsByClassName('original_article')[0].setAttribute('href', `https://oi-wiki.org${url}`.split('.md')[0]);
   script.src = `https://api.github.com/repos/OI-wiki/OI-WIki/commits?path=docs${url}&callback=foo`;
   document.getElementsByTagName('head')[0].appendChild(script);
 } else {
