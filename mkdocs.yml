@@ -24,7 +24,7 @@ nav:
     - Deploy in Docker: intro/docker-deploy.md
     - About the project: intro/about.md
     - How to contribute: intro/htc.md
-    - Formatting Manual(Chinese): intro/format.md #新增
+    - Formatting Manual (Chinese): intro/format.md #新增
     - F.A.Q.: intro/faq.md
     - Thanks: intro/thanks.md
   # 同步主站更改
