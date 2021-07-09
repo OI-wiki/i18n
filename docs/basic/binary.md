@@ -8,7 +8,7 @@ The article will briefly introduce binary search, along with ternary search and 
 
 [Binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm#:~:text=In%20computer%20science%2C%20binary%20search,middle%20element%20of%20the%20array.), also known as half-interval search, logarithmic search, or binary chop, is a search algorithm used to find an element in an ordered array.
 
-###
+### Principles of Bisection method
 
 Take the example of finding a number in an ascending array.
 
