@@ -28,7 +28,7 @@ Iteration version of binary searching's space complexity is $O(1)$.
 
 Space complexity of recursive version (without tail call elimination) of binary searching is $O(\log n)$.  
 
-### Code impletion
+### Code Implementation
 
 ```cpp
 int binary_search(int start, int end, int key) {
@@ -84,7 +84,7 @@ Let's take a look at a sample problem [Luogu P1873 Cut Tree](https://www.luogu.c
 ???+note "abstract of the problem"
     You are given two integer variables $n$ ($1 \le n \le 10^6$) and $m$ ($1 \le m \le 2 \times 10^9$) and an array $a_1, a_2, \ldots , a_n$ $(a_i \le 10^9)$. Your task is to find the minimum integer $h$ satisfying $$\sum a_i - h ~(\forall i \in [1, n],  a_i > h > m)$$ 
 
-We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive approach certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 1 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
+We can enumerate the answers from $1$ to $10^9$ (1 billion), but this brute force approach certainly would not receive full marks since enumerating from $1$ to $10^9$ billion is too time-consuming. We can bisect the answer within the range of $[1,~10^9]$, and check the feasibility every time (usually using the greedy method). **This is the bisection answer algorithm**.
 
 An example solution for practice problem is listed below: 
 
