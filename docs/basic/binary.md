@@ -123,11 +123,11 @@ After reading the above code, you might be wondering about these 2 questions:
 
     Because in the end of search, it will look like this (take the legal maximum value as an example):
 
-    ![](./images/binary-final-1.png)<!---Need translate-->
+    ![](./images/binary-final-1.svg)
 
     then it will be
 
-    ![](./images/binary-final-2.png)<!---Need translate-->
+    ![](./images/binary-final-2.svg)
 
     The legal minimum value would just be the opposite.
 
