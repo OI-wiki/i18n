@@ -1,8 +1,16 @@
 author: frank-xjh
 
-本页面将简要介绍枚举算法。
+Last translate with upstream: []()
+
+This article will briefly introduce the enumerate method.
 
 ## 简介
+
+<!---
+似乎没人管这个叫Enumerate
+稍微查找了下资料，更适合叫Brute-force search或Exhaustive search
+所以枚举法的Enumerate似乎不等于「枚举」
+-->
 
 枚举（英语：Enumerate）是基于已有知识来猜测答案的一种问题求解策略。
 
