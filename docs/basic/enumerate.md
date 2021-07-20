@@ -1,48 +1,48 @@
 author: frank-xjh
+translator: CamberLoid
 
 Last translate with upstream: []()
 
 This article will briefly introduce the enumerate method.
 
-## 简介
+## Introduction
 
 <!---
 似乎没人管这个叫Enumerate
-稍微查找了下资料，更适合叫Brute-force search或Exhaustive search
+稍微查找了下资料，更适合叫Brute-force search或Exhaustive search(也就是暴力搜索)
 所以枚举法的Enumerate似乎不等于「枚举」
 -->
 
-枚举（英语：Enumerate）是基于已有知识来猜测答案的一种问题求解策略。
+Enumerate method, or exhaustive search, is a problem-solving strategy based on existing knowledge.
 
-枚举的思想是不断地猜测，从可能的集合中一一尝试，然后再判断题目的条件是否成立。
+The core principle of enumerating strategy is, by enumerating every possible answers from possible sets, then determine whether the answer satisfies the given demands.<!---??-->
 
-## 要点
+## Keypoints of Enumerating
 
-### 给出解空间
+### Find the solution space 
 
-建立简洁的数学模型。
+You need to build a simple mathematical model. 
 
-枚举的时候要想清楚：可能的情况是什么？要枚举哪些要素？
+### Smaller the space of enumerating
 
-### 减少枚举的空间
+while using enumerating method, ensure you have figured out the following two questions to avoid unnecessary time cost: 
 
-枚举的范围是什么？是所有的内容都需要枚举吗？
+- What is the range of searching?
+- Does all the possible answers 
 
-在用枚举法解决问题的时候，一定要想清楚这两件事，否则会带来不必要的时间开销。
-
-### 选择合适的枚举顺序
+### Pick an appropriate enumerating order
 
 根据题目判断。比如例题中要求的是最大的符合条件的素数，那自然是从大到小枚举比较合适。
 
-## 例题
+## Example
 
-以下是一个使用枚举解题与优化枚举范围的例子。
+Here is an example solving by enumerating method and optimization of enumerating range. 
 
-!!! 例题
-    一个数组中的数互不相同，求其中和为 $0$ 的数对的个数
+!!! Problem
+    Given an integer array without two same element. Your task is to find out the number of pairs whose sum is $0$.
 
-??? note "解题思路"
-    枚举两个数的代码很容易就可以写出来。
+??? note "Problem solving"
+    The code to enumerate two numbers can be easily coded.
     
     ```cpp
     // C++ Version
@@ -59,9 +59,9 @@ This article will briefly introduce the enumerate method.
               ans = ans + 1
     ```
     
-    来看看枚举的范围如何优化。原问题的答案由两部分构成：两个数相等的情况和不相等的情况。相等的情况只需要枚举每一个数判断一下是否合法。至于不相等的情况，由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
+    Here is how to optimize enumerate range. As the problem doesn't require the pair to be ordered, the answer is twice of the ordered one. (e.g. if `(a, b)` is a valid answer, then `(b, a)` is valid too) In this situation, we only need to calculate ordered answers, then multiply it by two. 
     
-    不妨要求第一个数要出现在靠前的位置。代码如下：
+    It may be better to require the first number to appear in the front position. Here is the code implementation:
     
     ```cpp
     // C++ Version
@@ -78,14 +78,20 @@ This article will briefly introduce the enumerate method.
               ans = ans + 1
     ```
     
-    不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
+    It is easy to find out that the enumeration range of $j$ has been shortened, which reduces the time overhead of this code.
     
-    然而这并不是最优的结果。
+    However this is not the fastest method.
     
-    两个数是否都一定要枚举出来呢？枚举其中一个数之后，题目的条件已经确定了其他的要素（另一个数），如果能找到一种方法直接判断题目要求的那个数是否存在，就可以省掉枚举后一个数的时间了。
+    Is it necessary to enumerate both elements? After enumerating one element, as the problem has already determined the condition of the other element, we can reduce the time of enumerating the other element by finding out a way to directly determine whether the element exists. When the data size allows, we can use the bucket idea to record the number of enumerated numbers.
     
     ```cpp
-    
+    // C++ Version
+    bool met[MAXN * 2];
+    memset(met, 0, sizeof(met));
+    for (int i = 0; i < n; ++i) {
+      if (met[MAXN + a[i]]) ans += 1;
+      met[MAXN + a[i]] = true;
+    }
     ```
     
     ```python
@@ -97,6 +103,6 @@ This article will briefly introduce the enumerate method.
         met[a[i] + MAXN] = True
     ```
 
-## 习题
+## Exercise
 
 - [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
