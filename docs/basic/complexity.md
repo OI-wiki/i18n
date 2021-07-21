@@ -1,14 +1,15 @@
 author: linehk
+translator: CamberLoid
 
-时间复杂度和空间复杂度是衡量一个算法效率的重要标准。
+Time complexity and space complexity are important criteria to measure the efficiency of an algorithm.
 
-## 基本操作数
+## Count of Elementary Operation 
 
-同一个算法在不同的计算机上运行的速度会有一定的差别，并且实际运行速度难以在理论上进行计算，实际去测量又比较麻烦，所以我们通常考虑的不是算法运行的实际用时，而是算法运行所需要进行的基本操作的数量。
+An algorithm has different performance in different computers. It is hard to calculate actual performance theoretically, or troublesome to measure it. Thus, we more usually consider the count of elementary operation required by algorithm's process instead of the actual time used.
 
-在普通的计算机上，加减乘除、访问变量（基本数据类型的变量，下同）、给变量赋值等都可以看作基本操作。
+For a common computer, basic arithmetic, accessing variables (which is standard data type, the same as below) or assignment of variables, all of them can be treated as elementary operations.
 
-对基本操作的计数或是估测可以作为评判算法用时的指标。
+The count or estimation of elementary operations can be criteria when evaluating the efficiency of an algorithm. 
 
 ## 时间复杂度
 
@@ -30,7 +31,7 @@ author: linehk
 
 简单来说，渐进符号忽略了一个函数中增长较慢的部分以及各项的系数（在时间复杂度相关分析中，系数一般被称作“常数”），而保留了可以用来表明该函数增长趋势的重要部分。
 
-### 大 Θ 符号
+### Θ-Notation
 
 对于函数 $f(n)$ 和 $g(n)$，$f(n)=\Theta(g(n))$，当且仅当 $\exists c_1,c_2,n_0>0$，使得 $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$。
 
@@ -38,7 +39,7 @@ author: linehk
 
 例如，$3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$。
 
-### 大 O 符号
+### O-Notation
 
 $\Theta$ 符号同时给了我们一个函数的上下界，如果只知道一个函数的渐进上界而不知道其渐进下界，可以使用 $O$ 符号。$f(n)=O(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$。
 
@@ -46,17 +47,17 @@ $\Theta$ 符号同时给了我们一个函数的上下界，如果只知道一�
 
 需要注意的是，这里的“上界”和“下界”是对于函数的变化趋势而言的，而不是对算法而言的。算法用时的上界对应的是“最坏时间复杂度”而非大 $O$ 记号。所以，使用 $\Theta$ 记号表示最坏时间复杂度是完全可行的，甚至可以说 $\Theta$ 比 $O$ 更加精确，而使用 $O$ 记号的主要原因，一是我们有时只能证明时间复杂度的上界而无法证明其下界（这种情况一般出现在较为复杂的算法以及复杂度分析），二是 $O$ 在电脑上输入更方便一些。
 
-### 大 Ω 符号
+### Ω-Notation
 
 同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。$f(n)=\Omega(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le c\cdot g(n)\le f(n)$。
 
-### 小 o 符号
+### o-Notation
 
 如果说 $O$ 符号相当于小于等于号，那么 $o$ 符号就相当于小于号。
 
 $f(n)=o(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0$，使得 $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$。
 
-### 小 ω 符号
+### 小 ω-Notation
 
 如果说 $\Omega$ 符号相当于大于等于号，那么 $\omega$ 符号就相当于大于号。
 
@@ -129,7 +130,7 @@ for i in range(0, N):
 
 需要注意的是，在进行时间复杂度相关的理论性讨论时，“算法能够解决任何规模的问题”是一个基本假设（当然，在实际中，由于时间和存储空间有限，无法解决规模过大的问题）。因此，能在常量时间内解决数据规模有限的问题（例如，对于数据范围内的每个可能输入预先计算出答案）并不能使一个算法的时间复杂度变为 $O(1)$。
 
-## 主定理 (Master Theorem)
+## Master Theorem
 
 我们可以使用 Master Theorem 来快速的求得关于递归算法的复杂度。
 假设我们有递推关系式
