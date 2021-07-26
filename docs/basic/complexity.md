@@ -7,7 +7,7 @@ Time complexity and space complexity are important criteria to measure the effic
 
 An algorithm has different performance in different computers. It is hard to calculate actual performance theoretically, or troublesome to measure it. Thus, we more usually consider the count of elementary operation required by algorithm's process instead of the actual time used.
 
-For a common computer, basic arithmetic, accessing variables (which is standard data type, the same as below) or assignment of variables, all of them can be treated as elementary operations.
+For a common computer, basic arithmetic, accessing or assignments to variables (of standard data types, the same below), all can be treated as elementary operations.
 
 The count or estimation of elementary operations can be criteria when evaluating the efficiency of an algorithm. 
 
