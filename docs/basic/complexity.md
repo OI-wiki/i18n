@@ -33,33 +33,46 @@ Briefly, the asymptotic notation ignored the slower growing part of a function a
 
 ### Θ-Notation
 
+For function $f(n), g(n)$, 
+$$ f(n) = \Theta(g(n))$$ 
+If and only if:
+$$\exists c_1,c_2,n_0>0\colon \forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$$
 
+Which is, in plain language, if $f(n) = \Theta(g(n))$, then we can find two positive numbers $c_1, c_2$, <!---不会了，ksyx救我-->
 
-例如，$3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$。
+For example $3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$.
 
 ### Big O Notation
 
-$\Theta$ 符号同时给了我们一个函数的上下界，如果只知道一个函数的渐进上界而不知道其渐进下界，可以使用 $O$ 符号。$f(n)=O(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$。
+Θ-Notation gives us upper and lower bound of a function in the same time.<!---Wondering for better expression--> We can use big O notation<!---is it necessary to use math expression?(the same below)--> if we only know its asymptotical upper bound but not lower, which is
+$$f(n)=O(g(n))$$, 
+if and only if 
+$$\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$$
 
-研究时间复杂度时通常会使用 $O$ 符号，因为我们关注的通常是程序用时的上界，而不关心其用时的下界。
+It is more common to use big O notation while researching time complexity, as we are usually concerned with the upper bound of the program's time cost rather than the lower bound.
 
-需要注意的是，这里的“上界”和“下界”是对于函数的变化趋势而言的，而不是对算法而言的。算法用时的上界对应的是“最坏时间复杂度”而非大 $O$ 记号。所以，使用 $\Theta$ 记号表示最坏时间复杂度是完全可行的，甚至可以说 $\Theta$ 比 $O$ 更加精确，而使用 $O$ 记号的主要原因，一是我们有时只能证明时间复杂度的上界而无法证明其下界（这种情况一般出现在较为复杂的算法以及复杂度分析），二是 $O$ 在电脑上输入更方便一些。
+Note that the "upper" and "lower" bounds here are for the trend of the function, not for the algorithm, whose upper case refers to worst-case time complexity but not big O notation. Therefore, using Θ-notation is completely viable to represent worst-case time complexity, and it can even be said that Θ-notation is more accurate than big O notation. As for the main reason for using O notation more often, one is we sometimes can prove the upper bound rather than lower bound (this is usually the case for more complicated algorithm and its complexity analysis), and the other is O is easier to input in a computer. 
 
 ### Ω-Notation
 
-同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。$f(n)=\Omega(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le c\cdot g(n)\le f(n)$。
+Similarly, we use Ω-Notation to describe the asymptotical lower bound of a function:
+$$f(n)=\Omega(g(n))$$ 
+If and only if
+$$\exists c,n_0 \forall n \ge n_0\colon0\le c\cdot g(n)\le f(n)$$
 
 ### o-Notation
 
-如果说 $O$ 符号相当于小于等于号，那么 $o$ 符号就相当于小于号。
+If $O$ notation is equivalent to the less-than-or-equal sign, then $o$ notation(or small o notation) is equivalent to the less-than sign. The definition is:
+$$f(n)=o(g(n))$$
+If and only if
+$$\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le f(n)< c\cdot g(n)$$
 
-$f(n)=o(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0$，使得 $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$。
+### ω-Notation
 
-### 小 ω-Notation
-
-如果说 $\Omega$ 符号相当于大于等于号，那么 $\omega$ 符号就相当于大于号。
-
-$f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0$，使得 $\forall n \ge n_0,0\le c\cdot g(n)< f(n)$。
+If $\Omega$ notation is equivalent to the greater-than-or-equal sign, then $\omega$ notation(or small omega notation) is equivalent to the greater-than sign. The definition is:
+$$f(n)=o(\omega(n))$$
+If and only if
+$$\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le c\cdot g(n)< f(n)$$
 
 ![](images/order.png)
 
