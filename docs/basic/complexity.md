@@ -11,35 +11,33 @@ For a common computer, basic arithmetic, accessing variables (which is standard 
 
 The count or estimation of elementary operations can be criteria when evaluating the efficiency of an algorithm. 
 
-## 时间复杂度
+## Time Complexity
 
-衡量一个算法的快慢，一定要考虑数据规模的大小。所谓数据规模，一般指输入的数字个数、输入中给出的图的点数与边数等等。一般来说，数据规模越大，算法的用时就越长。而在算法竞赛中，我们衡量一个算法的效率时，最重要的不是看它在某个数据规模下的用时，而是看它的用时随数据规模而增长的趋势，即 **时间复杂度**。
+To evaluate the performance of an algorithm, it is required to take the data scale<!---「数据规模」是这么翻译的喵？-->, which mostly referring to the counts of numbers inputted, the counts of points or edges of a graph inputted, into consideration. Generally, the larger the data scale, the longer the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific data scale, but its trend with the data scale growing, as known as **time complexity**.
 
-考虑用时随数据规模变化的趋势的主要原因有以下几点：
+The main reasons for considering in this way are listed below:
 
-1. 现代计算机每秒可以处理数亿乃至更多次基本运算，因此我们处理的数据规模通常很大。如果算法 A 在规模为 $n$ 的数据上用时为 $100n$ 而算法 B 在规模为 $n$ 的数据上用时为 $n^2$，在数据规模小于 $100$ 时算法 B 用时更短，但在一秒钟内算法 A 可以处理数百万规模的数据，而算法 B 只能处理数万规模的数据。在允许算法执行时间更久时，时间复杂度对可处理数据规模的影响就会更加明显，远大于同一数据规模下用时的影响。
-2. 我们采用基本操作数来表示算法的用时，而不同的基本操作实际用时是不同的，例如加减法的用时远小于除法的用时。计算时间复杂度而忽略不同基本操作之间的区别以及一次基本操作与十次基本操作之间的区别，可以消除基本操作间用时不同的影响。
+1. Modern computers are capable to process billions or more elemental operations, so the data scale we need to process is usually very large. For example, assume that algorithm A has a time cost of $100n$ for proceeding data of $n$ size, and algorithm B's time cost is $n^2$. Algorithm B takes less time when the data scale is less than $100$. But in one second algorithm A can proceed data on the scale of millions, while algorithm B only on the scale of thousands. Thus, with the longer acceptable processing time, time complexity has far more obvious impact on the scale of processable data than the impact of time cost at the same data scale.
+2. We use the counts of elementary operations to represent the time cost of an algorithm. However, different kinds of elementary operations' time cost differs, for example, time cost of addition and subtraction is far less than division. By ignoring the difference between different kinds and counts of operations when calculating time complexity, we can eliminate the impact of different time cost between operations.
 
-当然，算法的运行用时并非完全由输入规模决定，而是也与输入的内容相关。所以，时间复杂度又分为几种，例如：
+Of course, the running time of an algorithm is not entirely determined by the input scale, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
 
-1. 最坏时间复杂度，即每个输入规模下用时最长的输入对应的时间复杂度。在算法竞赛中，由于输入可以在给定的数据范围内任意给定，我们为保证算法能够通过某个数据范围内的任何数据，一般考虑最坏时间复杂度。
-2. 平均（期望）时间复杂度，即每个输入规模下所有可能输入对应用时的平均值的复杂度（随机输入下期望用时的复杂度）。
+1. Worst-case time complexity, which the largest input scale corresponds for each input scale. In competitive programming, since the input can be given arbitrarily in given data scale, to ensure an algorithm can proceed any data in some scale in time, we generally take worst-case time complexity into consideration.
+2. Average-case time complexity, which is the average of the complexity on every possible inputs of a given size for every scale of data scale. (Or, the expected complexity on random input.)
 
-所谓“用时随数据规模而增长的趋势”是一个模糊的概念，我们需要借助下文所介绍的 **渐进符号** 来形式化地表示时间复杂度。
+As "the trend of time cost's growing with data scale's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
 
-## 渐进符号
+## Asymptotic Notation
 
-简单来说，渐进符号忽略了一个函数中增长较慢的部分以及各项的系数（在时间复杂度相关分析中，系数一般被称作“常数”），而保留了可以用来表明该函数增长趋势的重要部分。
+Briefly, the asymptotic notation ignored the slower growing part of a function and its coefficient and constants, but preserved the important part representing the growing trend of this function. <!---这部分过于math需要指导-->
 
 ### Θ-Notation
 
-对于函数 $f(n)$ 和 $g(n)$，$f(n)=\Theta(g(n))$，当且仅当 $\exists c_1,c_2,n_0>0$，使得 $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$。
 
-也就是说，如果函数 $f(n)=\Theta(g(n))$，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
 
 例如，$3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$。
 
-### O-Notation
+### Big O Notation
 
 $\Theta$ 符号同时给了我们一个函数的上下界，如果只知道一个函数的渐进上界而不知道其渐进下界，可以使用 $O$ 符号。$f(n)=O(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$。
 
@@ -72,9 +70,9 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 - $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
 - $\forall a \neq 1, \log_a{n} = O(\log_2 n)$。由换底公式可以得知，任何对数函数无论底数为何，都具有相同的增长率，因此渐进时间复杂度中对数的底数一般省略不写。
 
-## 简单的时间复杂度计算的例子
+## Simple Examples of Calculating Time Complexity
 
-### for 循环
+### for-expression
 
 ```cpp
 // C++ Version
