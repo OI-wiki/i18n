@@ -76,12 +76,12 @@ $$\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le c\cdot g(n)< f(n)$$
 
 ![](images/order.png)
 
-### 常见性质
+### Common Properties
 
 - $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$
 - $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
 - $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
-- $\forall a \neq 1, \log_a{n} = O(\log_2 n)$。由换底公式可以得知，任何对数函数无论底数为何，都具有相同的增长率，因此渐进时间复杂度中对数的底数一般省略不写。
+- $\forall a \neq 1, \log_a{n} = O(\log_2 n)$。From the logarithm's change-of-base formula, we can conclude that, regardless of base, any logarithmic function has the same growth rate. Therefore, the base of an logarithm is often omitted in asymptotic time complexity.
 
 ## Simple Examples of Calculating Time Complexity
 
@@ -110,15 +110,15 @@ for i in range(0, n):
             print("hello world")
 ```
 
-如果以输入的数值 $n$ 和 $m$ 的大小作为数据规模，则上面这段代码的时间复杂度为 $\Theta(n^2m)$。
+The time complexity of the code above is $\Theta(n^2m)$ if we consider the inputted value of $n$ and $m$ as the data scale. 
 
 ### DFS
 
-在对一张 $n$ 个点 $m$ 条边的图进行 [DFS](../graph/dfs.md) 时，由于每个节点和每条边都只会被访问常数次，复杂度为 $\Theta(n+m)$。
+While performing [depth-first search (article not translated)](../graph/dfs.md) on a graph with $n$ points and $m$ edges, as each point and edges will be accessed constant times, the complexity is $\Theta(n+m)$.
 
-## 哪些量是常量？
+## Identify Constants
 
-当我们要进行若干次操作时，如何判断这若干次操作是否影响时间复杂度呢？例如：
+When we are going to perform several operations, how to determine whether these "several operations" will impact time complexity? e.g.:
 
 ```cpp
 // C++ Version
@@ -135,22 +135,21 @@ for i in range(0, N):
     print("hello world")
 ```
 
-如果 $N$ 的大小不被看作输入规模，那么这段代码的时间复杂度就是 $O(1)$。
+If the value of $N$ is not considered as data scale of input, then time complexity of these blocks of code is $O(1)$.
 
-进行时间复杂度计算时，哪些变量被视作输入规模是很重要的，而所有和输入规模无关的量都被视作常量，计算复杂度时可当作 $1$ 来处理。
-
-需要注意的是，在进行时间复杂度相关的理论性讨论时，“算法能够解决任何规模的问题”是一个基本假设（当然，在实际中，由于时间和存储空间有限，无法解决规模过大的问题）。因此，能在常量时间内解决数据规模有限的问题（例如，对于数据范围内的每个可能输入预先计算出答案）并不能使一个算法的时间复杂度变为 $O(1)$。
+When performing time complexity calculation, it is important to figure out which variable should be treated as the size of data scale. All other variables not relating to inputting data scale will be treated as constants, which will be treated as $1$(or constant time) when calculating time complexity. 
 
 ## Master Theorem
 
-我们可以使用 Master Theorem 来快速的求得关于递归算法的复杂度。
-假设我们有递推关系式
+By using [master theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)) we can quickly calculate the time complexity of a recursive algorithm.
+
+Assume we have a recurrence relation formula,
 
 $$
 T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
 $$
 
-那么
+Then, 
 
 $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
