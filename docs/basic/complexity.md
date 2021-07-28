@@ -24,7 +24,7 @@ Of course, the running time of an algorithm is not entirely determined by the in
 1. Worst-case time complexity, which the largest input size corresponds for each input size. In competitive programming, since the input can be given arbitrarily in given size, to ensure an algorithm can process any data in some size in time, we generally take worst-case time complexity into consideration.
 2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data soze. (Or, the expected complexity on random input.)
 
-As "the trend of time cost's growing with data size's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
+As "the trend of time cost growing with data size's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
 
 ## Asymptotic Notation
 
