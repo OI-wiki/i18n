@@ -1,5 +1,4 @@
 author: frank-xjh
-translator: CamberLoid
 
 Last translate with upstream: []()
 
@@ -15,7 +14,7 @@ This article will briefly introduce the enumerate method.
 
 Enumerate method, or exhaustive search, is a problem-solving strategy based on existing knowledge.
 
-The core principle of enumerating strategy is, by enumerating every possible answers from possible sets, then determine whether the answer satisfies the given demands.<!---??-->
+The core principle of enumerating strategy is, by enumerating every possible answers from possible sets, then determine whether the answer satisfies the given demands.
 
 ## Keypoints of Enumerating
 
@@ -32,7 +31,7 @@ while using enumerating method, ensure you have figured out the following two qu
 
 ### Pick an appropriate enumerating order
 
-根据题目判断。比如例题中要求的是最大的符合条件的素数，那自然是从大到小枚举比较合适。
+Judging by the question. For example, if the question is about the largest eligible prime number, then it is natural to enumerate from the largest to the smallest.
 
 ## Example
 
@@ -82,7 +81,7 @@ Here is an example solving by enumerating method and optimization of enumerating
     
     However this is not the fastest method.
     
-    Is it necessary to enumerate both elements? After enumerating one element, as the problem has already determined the condition of the other element, we can reduce the time of enumerating the other element by finding out a way to directly determine whether the element exists. When the data size allows, we can use the bucket idea to record the number of enumerated numbers.
+    Is it necessary to enumerate both elements? After enumerating one element, as the problem has already determined the condition of the other element, we can reduce the time of enumerating the other element by finding out a way to directly determine whether the element exists. When the data size allows, we can use bucket[^1] to record the number of enumerated numbers.
     
     ```cpp
     // C++ Version
@@ -106,3 +105,7 @@ Here is an example solving by enumerating method and optimization of enumerating
 ## Exercise
 
 - [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
+
+## Reference
+
+[^1]: An explanation of bucket: https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure
