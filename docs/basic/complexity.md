@@ -1,5 +1,4 @@
 author: linehk
-translator: CamberLoid
 
 Time complexity and space complexity are important criteria to measure the efficiency of an algorithm.
 
@@ -13,19 +12,19 @@ The count or estimation of elementary operations can be criteria when evaluating
 
 ## Time Complexity
 
-To evaluate the performance of an algorithm, it is required to take the data scale into consideration, which mostly referring to the amount of numbers inputted, the amount of points or edges of a graph inputted. Generally, the larger the data scale, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific data scale, but its growing trend as the data scale grows, as known as **time complexity**.
+To evaluate the performance of an algorithm, it is required to take the data size into consideration, which mostly referring to the amount of numbers inputted, the amount of points or edges of a graph inputted. Generally, the larger the data size, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific size, but its growing trend as the data size grows, as known as **time complexity**.
 
 The main reasons for considering in this way are listed below:
 
-1. Modern computers are capable to process billions or more elemental operations, so the data scale we need to process is usually very large. For example, assume that algorithm A has a time cost of $100n$ for processing data of size $n$, while that of algorithm B's is $n^2$. Algorithm B takes less time when the data scale is less than $100$. But, within one second, algorithm A can process data on the scale of millions, while algorithm B only on the scale of thousands. Thus, for longer acceptable processing time, time complexity has far more obvious impact on the what data scale it can process than the impact of time cost under the same data scale.
+1. Modern computers are capable to process billions or more elemental operations, so the data size we need to process is usually very large. For example, assume that algorithm A has a time cost of $100n$ for processing data of size $n$, while that of algorithm B's is $n^2$. Algorithm B takes less time when the data size is less than $100$. But, within one second, algorithm A can process data on the size of millions, while algorithm B only on the size of thousands. Thus, for longer acceptable processing time, time complexity has far more obvious impact on the what data size it can process than the impact of time cost under the same data size.
 2. We use the counts of elementary operations to represent the time cost of an algorithm. However, different kinds of elementary operations' time cost differs, for example, time cost of addition and subtraction is far less than division. By ignoring the difference between different kinds and counts of operations when calculating time complexity, we can eliminate the impact of different time cost between operations.
 
-Of course, the running time of an algorithm is not entirely determined by the input scale, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
+Of course, the running time of an algorithm is not entirely determined by the input size, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
 
-1. Worst-case time complexity, which the largest input scale corresponds for each input scale. In competitive programming, since the input can be given arbitrarily in given data scale, to ensure an algorithm can proceed any data in some scale in time, we generally take worst-case time complexity into consideration.
-2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data scale. (Or, the expected complexity on random input.)
+1. Worst-case time complexity, which the largest input size corresponds for each input size. In competitive programming, since the input can be given arbitrarily in given size, to ensure an algorithm can process any data in some size in time, we generally take worst-case time complexity into consideration.
+2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data soze. (Or, the expected complexity on random input.)
 
-As "the trend of time cost's growing with data scale's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
+As "the trend of time cost's growing with data size's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
 
 ## Asymptotic Notation
 
@@ -98,7 +97,7 @@ for i in range(0, n):
             print("hello world")
 ```
 
-The time complexity of the code above is $\Theta(n^2m)$ if we consider the inputted value of $n$ and $m$ as the data scale. 
+The time complexity of the code above is $\Theta(n^2m)$ if we consider the inputted value of $n$ and $m$ as the data size. 
 
 ### DFS
 
@@ -123,9 +122,9 @@ for i in range(0, N):
     print("hello world")
 ```
 
-If the value of $N$ is not considered as data scale of input, then time complexity of these blocks of code is $O(1)$.
+If the value of $N$ is not considered as data size of input, then time complexity of these blocks of code is $O(1)$.
 
-When performing time complexity calculation, it is important to figure out which variables should be treated as the size of data scale. All other variables not relating to inputting data scale will be treated as constants, and seen as $1$ (or constant time) when calculating time complexity. 
+When performing time complexity calculation, it is important to figure out which variables should be treated as the size of data size. All other variables not relating to inputting data size will be treated as constants, and seen as $1$ (or constant time) when calculating time complexity. 
 
 ## Master Theorem
 
