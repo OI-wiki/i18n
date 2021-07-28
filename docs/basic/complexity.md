@@ -13,59 +13,47 @@ The count or estimation of elementary operations can be criteria when evaluating
 
 ## Time Complexity
 
-To evaluate the performance of an algorithm, it is required to take the data scale<!---「数据规模」是这么翻译的喵？-->, which mostly referring to the counts of numbers inputted, the counts of points or edges of a graph inputted, into consideration. Generally, the larger the data scale, the longer the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific data scale, but its trend with the data scale growing, as known as **time complexity**.
+To evaluate the performance of an algorithm, it is required to take the data scale into consideration, which mostly referring to the amount of numbers inputted, the amount of points or edges of a graph inputted. Generally, the larger the data scale, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific data scale, but its growing trend as the data scale grows, as known as **time complexity**.
 
 The main reasons for considering in this way are listed below:
 
-1. Modern computers are capable to process billions or more elemental operations, so the data scale we need to process is usually very large. For example, assume that algorithm A has a time cost of $100n$ for proceeding data of $n$ size, and algorithm B's time cost is $n^2$. Algorithm B takes less time when the data scale is less than $100$. But in one second algorithm A can proceed data on the scale of millions, while algorithm B only on the scale of thousands. Thus, with the longer acceptable processing time, time complexity has far more obvious impact on the scale of processable data than the impact of time cost at the same data scale.
+1. Modern computers are capable to process billions or more elemental operations, so the data scale we need to process is usually very large. For example, assume that algorithm A has a time cost of $100n$ for processing data of size $n$, while that of algorithm B's is $n^2$. Algorithm B takes less time when the data scale is less than $100$. But, within one second, algorithm A can process data on the scale of millions, while algorithm B only on the scale of thousands. Thus, for longer acceptable processing time, time complexity has far more obvious impact on the what data scale it can process than the impact of time cost under the same data scale.
 2. We use the counts of elementary operations to represent the time cost of an algorithm. However, different kinds of elementary operations' time cost differs, for example, time cost of addition and subtraction is far less than division. By ignoring the difference between different kinds and counts of operations when calculating time complexity, we can eliminate the impact of different time cost between operations.
 
 Of course, the running time of an algorithm is not entirely determined by the input scale, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
 
 1. Worst-case time complexity, which the largest input scale corresponds for each input scale. In competitive programming, since the input can be given arbitrarily in given data scale, to ensure an algorithm can proceed any data in some scale in time, we generally take worst-case time complexity into consideration.
-2. Average-case time complexity, which is the average of the complexity on every possible inputs of a given size for every scale of data scale. (Or, the expected complexity on random input.)
+2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data scale. (Or, the expected complexity on random input.)
 
 As "the trend of time cost's growing with data scale's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
 
 ## Asymptotic Notation
 
-Briefly, the asymptotic notation ignored the slower growing part of a function and its coefficient and constants, but preserved the important part representing the growing trend of this function. <!---这部分过于math需要指导-->
+Briefly, the asymptotic notation ignored the slower growing part of a function and its coefficient and constants, but preserved the important part showing the growing trend of this function. 
 
 ### Θ-Notation
 
-For function $f(n), g(n)$, 
-$$ f(n) = \Theta(g(n))$$ 
-If and only if:
-$$\exists c_1,c_2,n_0>0\colon \forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$$
+For functions $f(n)$ and $g(n)$, we say $ f(n) = \Theta(g(n))$ if and only if $\exists c_1,c_2,n_0>0\colon \forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$.
 
-Which is, in plain language, if $f(n) = \Theta(g(n))$, then we can find two positive numbers $c_1, c_2$, <!---不会了，ksyx救我-->
+In other words, it means by saying $f(n) = \Theta(g(n))$, we mean we can find two positive numbers $c_1$ and $c_2$ that satisfies $c_1\cdot g(n)\leq f(n) \leq c_2\cdot g(n)$.
 
 For example $3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$.
 
 ### Big O Notation
 
-Θ-Notation gives us upper and lower bound of a function in the same time.<!---Wondering for better expression--> We can use big O notation<!---is it necessary to use math expression?(the same below)--> if we only know its asymptotical upper bound but not lower, which is
-$$f(n)=O(g(n))$$, 
-if and only if 
-$$\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$$
+Θ-Notation both shows the upper and lower bound of a function. However, if we only know its asymptotical upper bound but not lower, we can use $O$ notation. We say $f(n)=O(g(n))$$ if and only if $\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$.
 
 It is more common to use big O notation while researching time complexity, as we are usually concerned with the upper bound of the program's time cost rather than the lower bound.
 
-Note that the "upper" and "lower" bounds here are for the trend of the function, not for the algorithm, whose upper case refers to worst-case time complexity but not big O notation. Therefore, using Θ-notation is completely viable to represent worst-case time complexity, and it can even be said that Θ-notation is more accurate than big O notation. As for the main reason for using O notation more often, one is we sometimes can prove the upper bound rather than lower bound (this is usually the case for more complicated algorithm and its complexity analysis), and the other is O is easier to input in a computer. 
+Note that the "upper" and "lower" bounds here are for the trend of the function, not for the algorithm, whose upper case refers to worst-case time complexity but not big O notation. Therefore, using Θ-notation is completely viable to represent worst-case time complexity, and it can even be said that Θ-notation is more accurate than big O notation. As for the main reason for using O notation more often, one is we sometimes can prove the upper bound, but not lower bound (this is usually the case for more complicated algorithm and analyzing its complexity), and the other reason is the character O is easier to input in a computer. 
 
 ### Ω-Notation
 
-Similarly, we use Ω-Notation to describe the asymptotical lower bound of a function:
-$$f(n)=\Omega(g(n))$$ 
-If and only if
-$$\exists c,n_0 \forall n \ge n_0\colon0\le c\cdot g(n)\le f(n)$$
+Similarly, we use Ω-Notation to describe the asymptotical lower bound of a function. We say $f(n)=\Omega(g(n))$ if and only if $\exists c,n_0 \forall n \ge n_0\colon0\le c\cdot g(n)\le f(n)$.
 
 ### o-Notation
 
-If $O$ notation is equivalent to the less-than-or-equal sign, then $o$ notation(or small o notation) is equivalent to the less-than sign. The definition is:
-$$f(n)=o(g(n))$$
-If and only if
-$$\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le f(n)< c\cdot g(n)$$
+If $O$ notation corresponds to the less-than-or-equal sign, then $o$ notation (or small o notation) correspond to the less-than sign. We say $f(n)=o(g(n))$ if and only if $\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le f(n)< c\cdot g(n)$
 
 ### ω-Notation
 
@@ -81,7 +69,7 @@ $$\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le c\cdot g(n)< f(n)$$
 - $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$
 - $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
 - $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
-- $\forall a \neq 1, \log_a{n} = O(\log_2 n)$。From the logarithm's change-of-base formula, we can conclude that, regardless of base, any logarithmic function has the same growth rate. Therefore, the base of an logarithm is often omitted in asymptotic time complexity.
+- $\forall a \neq 1, \log_a{n} = O(\log_2 n)$. From the logarithm's change-of-base formula, we can conclude that, regardless of base, any logarithmic function has the same growth rate. Therefore, the base of an logarithm is often omitted in asymptotic time complexity.
 
 ## Simple Examples of Calculating Time Complexity
 
@@ -116,7 +104,7 @@ The time complexity of the code above is $\Theta(n^2m)$ if we consider the input
 
 While performing [depth-first search (article not translated)](../graph/dfs.md) on a graph with $n$ points and $m$ edges, as each point and edges will be accessed constant times, the complexity is $\Theta(n+m)$.
 
-## Identify Constants
+## Identifying Constants
 
 When we are going to perform several operations, how to determine whether these "several operations" will impact time complexity? e.g.:
 
@@ -137,7 +125,7 @@ for i in range(0, N):
 
 If the value of $N$ is not considered as data scale of input, then time complexity of these blocks of code is $O(1)$.
 
-When performing time complexity calculation, it is important to figure out which variable should be treated as the size of data scale. All other variables not relating to inputting data scale will be treated as constants, which will be treated as $1$(or constant time) when calculating time complexity. 
+When performing time complexity calculation, it is important to figure out which variables should be treated as the size of data scale. All other variables not relating to inputting data scale will be treated as constants, and seen as $1$ (or constant time) when calculating time complexity. 
 
 ## Master Theorem
 
