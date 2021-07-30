@@ -24,24 +24,24 @@ Here is some examples may be helpful for understanding recursion:
 3. Q: How old are you this year? A: My age in last year add one year, and I am born in 1999.
 4. [Google's example to understand recursion](https://www.google.com/search?q=recursion)
 
-递归在数学中非常常见。例如，集合论对自然数的正式定义是：1 是一个自然数，每个自然数都有一个后继，这一个后继也是自然数。
+Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number:[^refA] $1$ is a natural number, and every nature number has a successor, which is also a natural number.<!---Discuss thread: https://t.me/c/1344172945/110421-->
 
-递归代码最重要的两个特征：结束条件和自我调用。自我调用是在解决子问题，而结束条件定义了最简子问题的答案。
+Recursive codes have two most important features: terminating case and recursive case<!---使用https://en.wikipedia.org/wiki/Recursion_(computer_science)#Recursive_functions_and_algorithms中的措辞-->. The job of recursive case is to solve sub-problems, while terminating case defines result of minimum sub-problem/<!---如何表达「最小子问题」-->  
 
 ```cpp
-int func(传入数值) {
-  if (终止条件) return 最小子问题解;
-  return func(缩小规模);
+int func(some_type input_value) {
+  if (is_terminating_case) return result_of_minimum_sub_problem;
+  return func(smaller_size);
 }
 ```
 
 #### Reasons to Write Recursion
 
-1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](./merge-sort.md)：
+1.  Code will be more readable with a clearer structure. E.g., different implementation of [merge sort](./merge-sort.md)：
 
     ```cpp
     // C++ Version
-    //不使用递归的归并排序算法
+    // Implementation without recursion
     template <typename T>
     void merge_sort(vector<T> a) {
       int n = a.size();
@@ -50,7 +50,7 @@ int func(传入数值) {
           merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
     }
 
-    //使用递归的归并排序算法
+    // Implementation with recursion
     template <typename T>
     void merge_sort(vector<T> a, int front, int end) {
       if (front >= end) return;
@@ -63,7 +63,7 @@ int func(传入数值) {
 
     ```python
     # Python Version
-    #不使用递归的归并排序算法
+    # Implementation without recursion
     def merge_sort(a):
       n = len(a)
       seg, start = 1, 0
@@ -73,7 +73,7 @@ int func(传入数值) {
               start = start + seg + seg
           seg = seg + seg
       
-    #使用递归的归并排序算法
+    #Implementation with recursion
     def merge_sort(a, front, end):
       if front >= end:
           return
@@ -290,3 +290,4 @@ void traverse(TreeNode* root) {
 ## References and Footnotes
 
 [^ref1]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
+[^refA]: Assume natural numbers count from $1$.
