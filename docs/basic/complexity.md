@@ -1,5 +1,7 @@
 author: linehk
 
+Last translate with upstream: [ao32fb3](https://github.com/OI-wiki/OI-wiki/commit/a032fb3a3d37d53d14c279e562761b1aa215caea)
+
 Time complexity and space complexity are important criteria to measure the efficiency of an algorithm.
 
 ## Count of Elementary Operation 
