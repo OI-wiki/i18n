@@ -1,27 +1,28 @@
 author: fudonglai, AngelKitty, labuladong
 
-本页面将介绍递归与分治算法的区别与结合运用。
+The article will introduce difference and application of recursive algorithm and divide-and-conquer algorithm
 
-## 简介
+## Introduction
 
-递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法。
+In computer science and math, recursion is method by using functions that call themselves from within their own definition. Additionally in computer science it also refers to a method of solving problem by repeatedly decomposing problem into sub-problems of the same type as the original.
 
-分治（英语：Divide and Conquer），字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。
+From [Wikipedia](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm):
+> In computer science, divide and conquer is an algorithm design paradigm. A divide-and-conquer algorithm recursively breaks down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem. <!---中文显然就是抄英文wiki的-->
 
-## 详细介绍
+## Detailed Introduction
 
-### 递归
+### Recursion
 
-> 要理解递归，就得先理解什么是递归。
+> To understand recursion, you must first understand recursion.
 
-递归的基本思想是某个函数直接或者间接地调用自身，这样原问题的求解就转换为了许多性质相同但是规模更小的子问题。求解时只需要关注如何把原问题划分成符合条件的子问题，而不需要过分关注这个子问题是如何被解决的。
+The fundamental idea of recursion is a function call itself directly or indirectly, so that the original problem transforms into many smaller size sub-problems with similar properties. While solving problems it only needs to focus on how to decompose original problems to eligible sub-problems without too much attention about how it is solved.
 
-以下是一些有助于理解递归的例子：
+Here is some examples may be helpful for understanding recursion:
 
-1. [什么是递归？](./divide-and-conquer.md)
-2. 如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。
-3. 你今年几岁？答：去年的岁数加一岁，1999 年我出生。
-4. ![一个用于理解递归的例子](images/divide-and-conquer-1.png)
+1. [What is recursion?](./divide-and-conquer.md)
+2. Q: How to sort a pile of numbers? A: Decompose them into two halves. First sort left half and then right half, and finally merge them into one array. As for how to sort left and right halves, please read this paragraph again.
+3. Q: How old are you this year? A: My age in last year add one year, and I am born in 1999.
+4. [Google's example to understand recursion](https://www.google.com/search?q=recursion)
 
 递归在数学中非常常见。例如，集合论对自然数的正式定义是：1 是一个自然数，每个自然数都有一个后继，这一个后继也是自然数。
 
@@ -34,7 +35,7 @@ int func(传入数值) {
 }
 ```
 
-#### 为什么要写递归
+#### Reasons to Write Recursion
 
 1.  结构清晰，可读性强。例如，分别用不同的方法实现 [归并排序](./merge-sort.md)：
 
@@ -86,7 +87,7 @@ int func(传入数值) {
 
 2. 练习分析问题的结构。当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题。
 
-#### 递归的缺点
+#### Disadvantages of Recursion
 
 在程序执行中，递归是利用堆栈来实现的。每当进入一个函数调用，栈就会增加一层栈帧，每次函数返回，栈就会减少一层栈帧。而栈不是无限大的，当递归层数过多时，就会造成 **栈溢出** 的后果。
 
@@ -109,13 +110,13 @@ int size_recursion(Node *head) {
 
 ![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
-#### 递归优化
+#### Optimization of Recursion
 
 主页面：[搜索优化](../search/opt.md) 和 [记忆化搜索](../dp/memo.md)
 
 比较初级的递归实现可能递归次数太多，容易超时。这时需要对递归进行优化。[^ref1]
 
-### 分治算法
+### Divide and Conquer
 
 分治算法的核心思想就是“分而治之”。
 
@@ -149,9 +150,9 @@ void merge_sort(一个数组) {
 
 `merge` 函数的实现方式与两个有序链表的合并一致。
 
-## 要点
+## Keypoints
 
-### 写递归的要点
+### Keys of Writing Recursion
 
 **明白一个函数的作用并相信它能完成这个任务，千万不要跳进这个函数里面企图探究更多细节，** 否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊。
 
@@ -176,17 +177,17 @@ void traverse(TreeNode* root) {
 }
 ```
 
-## 区别
+## Difference
 
-### 递归与枚举的区别
+### Difference between Recursion and Enumeration
 
 递归和枚举的区别在于：枚举是横向地把问题划分，然后依次求解子问题；而递归是把问题逐级分解，是纵向的拆分。
 
-### 递归与分治的区别
+### Difference between Recursion and Divide and Conquer
 
 递归是一种编程技巧，一种解决问题的思维方式；分治算法很大程度上是基于递归的，解决更具体问题的算法思想。
 
-## 例题详解
+## Example Problems
 
 ???+note "[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)" 
     给定一个二叉树，它的每个结点都存放着一个整数值。
@@ -281,11 +282,11 @@ void traverse(TreeNode* root) {
     
     总结下，`PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
 
-## 习题
+## Exercise
 
 - [LeetCode 上的递归专题练习](https://leetcode.com/explore/learn/card/recursion-i/)
 - [LeetCode 上的分治算法专项练习](https://leetcode.com/tag/divide-and-conquer/)
 
-## 参考资料与注释
+## References and Footnotes
 
 [^ref1]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
