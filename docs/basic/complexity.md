@@ -4,20 +4,20 @@ Time complexity and space complexity are important criteria to measure the effic
 
 ## Count of Elementary Operation 
 
-An algorithm has different performance in different computers. It is hard to calculate actual performance theoretically, or troublesome to measure it. Thus, we more usually consider the count of elementary operations required by the algorithm rather than the actual time used.
+An algorithm has different performances in different computers. It is hard to calculate actual performance theoretically or troublesome to measure it. Thus, we more usually consider the count of elementary operations required by the algorithm rather than the actual time used.
 
-For a common computer, basic arithmetic, accessing or assignments to variables (of standard data types, the same below), all can be treated as elementary operations.
+For a typical computer, basic arithmetic, accessing or assignments to variables (of standard data types, the same below), can all be treated as elementary operations.
 
 The count or estimation of elementary operations can be criteria when evaluating the efficiency of an algorithm. 
 
 ## Time Complexity
 
-To evaluate the performance of an algorithm, it is required to take the data size into consideration, which mostly referring to the amount of numbers inputted, the amount of points or edges of a graph inputted. Generally, the larger the data size, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific size, but its growing trend as the data size grows, as known as **time complexity**.
+To evaluate the performance of an algorithm, the data size is required to be taken the data size into consideration, which mostly referring to the number of numbers inputted, the number of points or edges of a graph inputted. Generally, the larger the data size, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific size, but its growing trend as the data size grows, as known as **time complexity**.
 
 The main reasons for considering in this way are listed below:
 
-1. Modern computers are capable to process billions or more elemental operations, so the data size we need to process is usually very large. For example, assume that algorithm A has a time cost of $100n$ for processing data of size $n$, while that of algorithm B's is $n^2$. Algorithm B takes less time when the data size is less than $100$. But, within one second, algorithm A can process data on the size of millions, while algorithm B only on the size of thousands. Thus, for longer acceptable processing time, time complexity has far more obvious impact on the what data size it can process than the impact of time cost under the same data size.
-2. We use the counts of elementary operations to represent the time cost of an algorithm. However, different kinds of elementary operations' time cost differs, for example, time cost of addition and subtraction is far less than division. By ignoring the difference between different kinds and counts of operations when calculating time complexity, we can eliminate the impact of different time cost between operations.
+1. Modern computers are capable of processing billions or more elemental operations, so the data size we need to process is usually enormous. For example, assume that algorithm A has a time cost of $100n$ for processing data of size $n$, while that of algorithm B's is $n^2$. Algorithm B takes less time when the data size is less than $100$. But, within one second, algorithm A can process data on the size of millions, while algorithm B only on the size of thousands. Thus, for longer acceptable processing time, time complexity has a far more obvious impact on the data size it can process than the impact of time cost under the same data size.  
+2. We use the counts of elementary operations to represent the time cost of an algorithm. However, different kinds of elementary operations' time cost differs, for example, the time cost of addition and subtraction is far less than division. By ignoring the difference between different kinds and counts of operations when calculating time complexity, we can eliminate the impact of different time cost between operations.
 
 Of course, the running time of an algorithm is not entirely determined by the input size, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
 
@@ -142,50 +142,48 @@ $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
-## 均摊复杂度
+## Amortized Complexity <!---或者distributed? Amortized?-->
 
-算法往往是会对内存中的数据进行修改的，而同一个算法的多次执行，就会通过对数据的修改而互相影响。
+Algorithms tend to modify data in memory, and multiple executions of an algorithm will have impact on each other by modifying data.
 
-例如快速排序中的“按大小分类”操作，单次执行的最坏时间复杂度，看似是 $O(n)$ 的。
-但是由于快排的分治过程，先前的“分类”操作每次都减小了数组长度，所以实际的总复杂度 $O(n \log n)$，分摊在每一次“分类”操作上，是 $O(\log n)$。
+E.g., for the sorting-by-size operation in quicksort, the worst-case time complexity is seemed to be $O(n)$. But because of the divide-and-conquer process from quicksort, previous sorting operation reduces the length of the array every time. Therefore, the actual overall complexity is $O(n \log n)$, and the breakdowns over each sorting operation is $O(\log n)$. <!---这一段好难理解qaq -->
 
-多次操作的总复杂度除以操作次数，就是这种操作的 **均摊复杂度**。
+The overall complexity of multiple operations divided by the number of operations is **Amortized Complexity**.
 
-## 势能分析
+## Potential Method of Amortized Analysis 
 
-势能分析，是一种求均摊复杂度上界的方法。
-求均摊复杂度，关键是表达出先前操作对当前操作的影响。势能分析用一个函数来表达此种影响。
+Potential method of amortized analysis is a method for finding the upper bound of amortized complexity. The key to finding amortized complexity is to represent the impact to current operation from previous operation. 
 
-定义“状态”$S$：即某一时刻的所有数据。*在快排的例子中，一个“状态”就是当前过程需要排序的下标区间*
+Definition of *state*: $S$ represents all data in specific moment.
 
-定义“初始状态”$S_0$：即未进行任何操作时的状态。*在快排的例子中，“初始状态”就是整个数组*
+Definition of *initial state*: $S_0$ represents the state when no operation has been performed.
 
-假设存在从状态到数的函数 $F$，且对于任何状态 $S$，$F(S) \geq F(S_0)$，则有以下推论：
+Assume $F$ is a function from state to number, and $\forall S, F(S) \geq F(S_0)$. Then we have the following inference:
 
-设 $S_1,S_2, \cdots ,S_m$ 为从 $S_0$ 开始连续做 $m$ 次操作所得的状态序列，$c_i$ 为第 $i$ 次操作的时间开销。
+Let $S_1,S_2, \cdots ,S_m$ be a sequence produced by performing $m$ times of operation from $S_0$, and $c_i$ be the time cost of $i$th operation.  
 
-记 $p_i = c_i + F(S_i) - F(S_{i-1})$，则 $m$ 次操作的总时间花销为
+Let $p_i = c_i + F(S_i) - F(S_{i-1})$. Then the total time cost of $m$ times of operation is:
 
 $$
 \sum_{i=1}^m p_i + F(S_0) - F(S_m)
 $$
 
-（正负相消，证明显然）
+(It is obvious to prove that positive and negative cancel.)<!---不会pwp-->
 
-又因为 $F(S) \geq F(S_0)$，所以有
+And because $F(S) \geq F(S_0)$ we have
 
 $$
 \sum_{i=1}^m p_i \geq \sum_{i=1}^m c_i
 $$
 
-因此，若 $p_i = O(T(n))$，则 $O(T(n))$ 是均摊复杂度的一个上界。
+Therefore, if $p_i = O(T(n))$, then $O(T(n))$ is an upper bound of amortized time complexity
 
-势能分析使用中有很多技巧，案例在此不题。
+Potential method have many skills. Examples are skipped here.
 
-## 空间复杂度
+## Space Complexity
 
-类似地，算法所使用的空间随输入规模变化的趋势可以用 **空间复杂度** 来衡量。
+Similarly, the trend of space cost growing with input size's increasing can be measured by **space complexity** using similar methods mentioned above.
 
-## 计算复杂性
+## Calculate Complexity
 
-本文内容主要是从算法分析的角度对复杂度进行了介绍，如果有兴趣的话可以在 [计算复杂性](../misc/cc-basic.md) 进行更深入的了解。
+The article mainly introduced complexity from the perspective of algorithm analysis. If interested you can visit [Calculate complexity(not translated)](../misc/cc-basic.md) for further reading.
