@@ -22,15 +22,15 @@ Here is some examples may be helpful for understanding recursion:
 1. [What is recursion?](./divide-and-conquer.md)
 2. Q: How to sort a pile of numbers? A: Decompose them into two halves. First sort left half and then right half, and finally merge them into one array. As for how to sort left and right halves, please read this paragraph again.
 3. Q: How old are you this year? A: My age in last year add one year, and I am born in 1999.
-4. [Google's example to understand recursion](https://www.google.com/search?q=recursion)
+4. [Google's example to understand recursion](https://www.google.com/search?q=recursion) ![](images/divide-and-conquer-1.png)
 
-Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number:[^refA] $1$ is a natural number, and every nature number has a successor, which is also a natural number.<!---Discuss thread: https://t.me/c/1344172945/110421-->
+Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number:[^ref1] $1$ is a natural number, and every nature number has a successor, which is also a natural number.<!---Discuss thread: https://t.me/c/1344172945/110421-->
 
-Recursive codes have two most important features: terminating case and recursive case<!---使用https://en.wikipedia.org/wiki/Recursion_(computer_science)#Recursive_functions_and_algorithms中的措辞-->. The job of recursive case is to solve sub-problems, while terminating case defines result of minimum sub-problem/<!---如何表达「最小子问题」-->  
+Recursive codes have two most important features: terminating case and recursive case<!---使用https://en.wikipedia.org/wiki/Recursion_(computer_science)#Recursive_functions_and_algorithms中的措辞-->. The job of recursive case is to solve sub-problems, while terminating case defines result of shortest sub-problem 
 
 ```cpp
 int func(some_type input_value) {
-  if (is_terminating_case) return result_of_minimum_sub_problem;
+  if (is_terminating_case) return result_of_shortest_sub_problem;
   return func(smaller_size);
 }
 ```
@@ -52,7 +52,7 @@ int func(some_type input_value) {
 
     // Implementation with recursion
     template <typename T>
-    void merge_sort(vector<T> a, int front, int end) {
+    void merge_sort(vector<T> a,3int front, int end) {
       if (front >= end) return;
       int mid = front + (end - front) / 2;
       merge_sort(a, front, mid);
@@ -83,57 +83,55 @@ int func(some_type input_value) {
       merge(a, front, mid, end)
     ```
 
-    显然，递归版本比非递归版本更易理解。递归版本的做法一目了然：把左半边排序，把右半边排序，最后合并两边。而非递归版本看起来不知所云，充斥着各种难以理解的边界计算细节，特别容易出 bug，且难以调试。
+    Obviously, the recursive version of code is easier to understand than the non-recursive version, which is clear at a glance: sort left half first and then right half then finally merge two halves into one. However, the non-recursive version is unintelligible, full of incomprehensible details of edge computing and too buggy to debug.
 
-2. 练习分析问题的结构。当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题。
+2. Learning how to analyze the structure of problem by exercising. If you are familiar with coding recursive programs, you will sharply find out the feature that a problem can be discomposed into similar sub-problem, and then solve it efficiently
 
 #### Disadvantages of Recursion
 
-在程序执行中，递归是利用堆栈来实现的。每当进入一个函数调用，栈就会增加一层栈帧，每次函数返回，栈就会减少一层栈帧。而栈不是无限大的，当递归层数过多时，就会造成 **栈溢出** 的后果。
+During executing programs, recursions are implemented by call stack. Every function calling will add a frame in the stack, and every return will do the opposite. However the size of call stack is not infinite. Too many of recursions will lead to the consequence of stack overflow.
 
-显然有时候递归处理是高效的，比如归并排序；**有时候是低效的**，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间。比如这个例子，给一个链表头，计算它的长度：
+Obviously sometimes recursion is efficient, such as merge sort. But **sometimes it is inefficient**, such as counting hairs of Sun Wukong[^ref2]. Call stack will consume extra space, while simple iteration won't. For the example problem: You are given a head of link table, and you are asked to calculate the length of the link table. Here are two different implementations: 
 
 ```cpp
-// 典型的递推遍历框架
+// Typical iteration implementation
 int size(Node *head) {
   int size = 0;
   for (Node *p = head; p != nullptr; p = p->next) size++;
   return size;
 }
 
-// 我就是要写递归，递归天下第一
+// ... or recursion implementation
 int size_recursion(Node *head) {
   if (head == nullptr) return 0;
   return size_recursion(head->next) + 1;
 }
 ```
 
-![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+![\[Comparison between two implementation (with clang 10.0 and O1 optimization).\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "[Comparison between two implementation (with clang 10.0 and O1 optimization).](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
 #### Optimization of Recursion
 
-主页面：[搜索优化](../search/opt.md) 和 [记忆化搜索](../dp/memo.md)
+Main articles: [Optimization of searching](../search/opt.md) and [Memorized searching](../dp/memo.md)
 
-比较初级的递归实现可能递归次数太多，容易超时。这时需要对递归进行优化。[^ref1]
+More elementary level of recursion implementation may have too many recursions, which may lead to time out. This is when recursion implementation need to be optimized. [^ref3]
 
 ### Divide and Conquer
 
-分治算法的核心思想就是“分而治之”。
+Divide and Conquer is an algorithm design paradigm. Process of algorithms based on it can be divided into three parts: divide, conquer, and combine.
 
-大概的流程可以分为三步：分解 -> 解决 -> 合并。
+1. Divide: Decompose original problem into two or more similar sub-problems.
+2. Conquer: After decomposing problems into some easily solvable bound, solve the sub-problem recursively until solved.
+3. Combine: Combine results from sub-problems to obtain final results of original problem.
 
-1. 分解原问题为结构相同的子问题。
-2. 分解到某个容易求解的边界之后，进行递归求解。
-3. 将子问题的解合并成原问题的解。
+Generally, problems which can be solved with divide and conquer paradigm have these features:
 
-分治法能解决的问题一般有如下特征：
+- The problem can be easily solved when its size is down to a certain level.
+- The problem can be decomposed into several sub-problems with smaller size, i.e., the problem has the property of optimal substructure. Results of sub-problems decomposed from original problem can be used and combined into results of original problem.
+- Sub-problems decomposed from original problem are independent to each other, i.e., Sub-problems do not contain common sub-problems between them.
 
-- 该问题的规模缩小到一定的程度就可以容易地解决。
-- 该问题可以分解为若干个规模较小的相同问题，即该问题具有最优子结构性质，利用该问题分解出的子问题的解可以合并为该问题的解。
-- 该问题所分解出的各个子问题是相互独立的，即子问题之间不包含公共的子问题。
-
-???+warning "注意"
-    如果各子问题是不独立的，则分治法要重复地解公共的子问题，也就做了许多不必要的工作。此时虽然也可用分治法，但一般用 [动态规划](../dp/basic.md) 较好。
+???+warning "Warning"
+    If sub-problems are not independent, then algorithms using divide-and-conquer paradigm need to solve common sub-problems repeatedly. Thus, unnecessary works would be done. Under such circumstances it is better to use [dynamic programming](../dp/basic.md) rather than divide-and-conquer paradigm.
 
 以归并排序为例。假设实现归并排序的函数名为 `merge_sort`。明确该函数的职责，即 **对传入的一个数组排序**。这个问题显然可以分解。给一个数组排序等于给该数组的左右两半分别排序，然后合并成一个数组。
 
@@ -150,7 +148,7 @@ void merge_sort(一个数组) {
 
 `merge` 函数的实现方式与两个有序链表的合并一致。
 
-## Keypoints
+## Key points
 
 ### Keys of Writing Recursion
 
@@ -289,5 +287,6 @@ void traverse(TreeNode* root) {
 
 ## References and Footnotes
 
-[^ref1]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
-[^refA]: Assume natural numbers count from $1$.
+[^ref1]: Assume natural numbers count from $1$.
+[^ref2]: Sun Wukong is a character in Chinese mythology. As described in *Journey to the West* he has 84,000 recyclable hairs, which can be considered as countless. 
+[^ref3]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
