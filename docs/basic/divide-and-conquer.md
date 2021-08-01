@@ -1,5 +1,7 @@
 author: fudonglai, AngelKitty, labuladong
 
+Last translated with upstream [08eb0c5](https://github.com/OI-wiki/OI-wiki/commit/08eb0c53b1ad55b518b0f5f7a569c25b8c1215b2#diff-f6f59ea091666854504b33243563a98ec55edf8f4c6a26dec1b2726479de41b4)
+
 The article will introduce difference and application of recursive algorithm and divide-and-conquer algorithm
 
 ## Introduction
