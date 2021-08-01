@@ -133,28 +133,29 @@ Generally, problems which can be solved with divide and conquer paradigm have th
 ???+warning "Warning"
     If sub-problems are not independent, then algorithms using divide-and-conquer paradigm need to solve common sub-problems repeatedly. Thus, unnecessary works would be done. Under such circumstances it is better to use [dynamic programming](../dp/basic.md) rather than divide-and-conquer paradigm.
 
-以归并排序为例。假设实现归并排序的函数名为 `merge_sort`。明确该函数的职责，即 **对传入的一个数组排序**。这个问题显然可以分解。给一个数组排序等于给该数组的左右两半分别排序，然后合并成一个数组。
+Let take merge sort as an example. Assume we have a function named `merge_sort` as an implementation of merge sort. The job of this function is **to sort an input array**. The problem is obviously can be decomposed. Sorting an array is equal to sorting two halves of this array, then combine these to one.
 
 ```cpp
-void merge_sort(一个数组) {
-  if (可以很容易处理) return;
-  merge_sort(左半个数组);
-  merge_sort(右半个数组);
-  merge(左半个数组, 右半个数组);
+// This block of code has been simplified.
+void merge_sort(type* an_array) {
+  if (is_easy_to_process) return;
+  merge_sort(left_half);
+  merge_sort(right_half);
+  merge(left_half, right_half);
 }
 ```
 
-传给它半个数组，那么处理完后这半个数组就已经被排好了。注意到，`merge_sort` 与二叉树的后序遍历模板极其相似。因为分治算法的套路是 **分解 -> 解决（触底）-> 合并（回溯）**，先左右分解，再处理合并，回溯就是在退栈，即相当于后序遍历。
+If we call the function with half of the array, then after processing this half of array will become sorted. We can notice that `merge_sort` is similar with template of post-order traversal of binary tree. Like the three parts of divide and conquer mentioned before, firstly decompose left and right, then process their combination. Combining is unstacking, which is equal to post-order traversal.
 
-`merge` 函数的实现方式与两个有序链表的合并一致。
+The implementation of function `merge` is same to implementation that combines two ordered lint table into one.
 
 ## Key points
 
 ### Keys of Writing Recursion
 
-**明白一个函数的作用并相信它能完成这个任务，千万不要跳进这个函数里面企图探究更多细节，** 否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊。
+**Understand a function's purpose and believe it can finish the job. DO NOT jump into the function for discovering more details,** or you will cannot help yourself from getting out from the infinite details. <!---人脑能压几个栈啊。-->
 
-以遍历二叉树为例。
+E.g. traverse a binary tree:
 
 ```cpp
 void traverse(TreeNode* root) {
@@ -164,9 +165,9 @@ void traverse(TreeNode* root) {
 }
 ```
 
-这几行代码就足以遍历任何一棵二叉树了。对于递归函数 `traverse(root)`，只要相信给它一个根节点 `root`，它就能遍历这棵树。所以只需要把这个节点的左右节点再传给这个函数就行了。
+This block of code is enough to finish any binary tree. For the recursive function `traverse(root)`, you just need to believe that it can traverse the whole tree with one root node `root`. So, it only needs to pass the left and right sub-nodes of the node to the function again. 
 
-同样扩展到遍历一棵 N 叉树。与二叉树的写法一模一样。不过，对于 N 叉树，显然没有中序遍历。
+The same code design can be extended for traversing any tree data structure. However, for the tree it is obviously that it doesn't have in-order traversal.
 
 ```cpp
 void traverse(TreeNode* root) {
@@ -177,29 +178,25 @@ void traverse(TreeNode* root) {
 
 ## Difference
 
-### Difference between Recursion and Enumeration
+### Recursion versus Enumeration
 
-递归和枚举的区别在于：枚举是横向地把问题划分，然后依次求解子问题；而递归是把问题逐级分解，是纵向的拆分。
+The difference is, enumeration is decomposing the problem horizontally and solving them, while recursion is vertically by braking it down level-by-level.
 
-### Difference between Recursion and Divide and Conquer
+### Recursion versus Divide and Conquer
 
-递归是一种编程技巧，一种解决问题的思维方式；分治算法很大程度上是基于递归的，解决更具体问题的算法思想。
+Recursion is a coding skill, a thinking method to solve problem. Divide and conquer is a algorithm design paradigm solving detailed problem, mostly based on recursion.
 
 ## Example Problems
 
-???+note "[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)" 
-    给定一个二叉树，它的每个结点都存放着一个整数值。
+???+note "[437. Path Sum III](https://leetcode.com/problems/path-sum-iii/)" 
+    Given the `root` of a binary tree and an integer `targetSum`, return the number of paths where the sum of the values along the path equals `targetSum`.
+
+    The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
     
-    找出路径和等于给定数值的路径总数。
-    
-    路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
-    
-    二叉树不超过 1000 个节点，且节点数值范围是[-1000000,1000000]的整数。
-    
-    示例：
+    Example 1: 
     
     ```text
-    root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+    Input: root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8
     
           10
          /  \
@@ -209,7 +206,8 @@ void traverse(TreeNode* root) {
      / \   \
     3  -2   1
     
-    返回 3。和等于 8 的路径有：
+    Output: 3
+    Explanation: The paths that sum to 8 are shown.
     
     1.  5 -> 3
     2.  5 -> 2 -> 1
@@ -218,17 +216,19 @@ void traverse(TreeNode* root) {
     
     ```cpp
     /**
-     * 二叉树结点的定义
-     * struct TreeNode {
-     *     int val;
-     *     TreeNode *left;
-     *     TreeNode *right;
-     *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-     * };
-     */
+    * Definition for a binary tree node.
+    * struct TreeNode {
+    *     int val;
+    *     TreeNode *left;
+    *     TreeNode *right;
+    *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    * };
+    */
     ```
 
-??? note "参考代码"
+??? note "Example solution"
     ```cpp
     int pathSum(TreeNode *root, int sum) {
       if (root == nullptr) return 0;
@@ -243,50 +243,51 @@ void traverse(TreeNode* root) {
     }
     ```
 
-??? note "题目解析"
-    题目看起来很复杂，不过代码却极其简洁。
+??? note "Explanation"
+    The problem itself seems to be complex, but the code is very simple.
     
-    首先明确，递归求解树的问题必然是要遍历整棵树的，所以二叉树的遍历框架（分别对左右子树递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和它们的子树包含多少条符合条件的路径。好了，这道题就结束了。
+    First of all, to recursively solve a problem of tree data structure, it is required to traverse the whole tree. So the template of tree traversal, which is separately recursively call the function with left and right sub-tree, should appear in the given main function `pathSum`. So, for each nodes, what should they do? They should count how many eligible path for itself and it's sub-tree. Then, the problem is solved.
     
-    按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
+    According to the skills mentioned before, we have a clear definition for the job of each recursive function based on the analysis.
     
-    `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数。
+    Function `pathSum`: Given a node and a target value. Return the number of paths whose the sum is target value in the tree rooted at this given node.
     
-    `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。
+    Function `count`: Given a node and a target value. Return the number of paths with the node as the beginning of path, whose the sum is target value, in the tree rooted at this given node.
     
-    ??? note "参考代码（附注释）"
+    ??? note "Example solution (with comments)"
         ```cpp
         int pathSum(TreeNode *root, int sum) {
           if (root == nullptr) return 0;
-          int pathImLeading = count(root, sum);  // 自己为开头的路径数
-          int leftPathSum = pathSum(root->left, sum);  // 左边路径总数（相信它能算出来）
+          int pathImLeading = count(root, sum);  // Paths with the node itself as beginning node.
+          int leftPathSum = pathSum(root->left, sum);  // Total number of paths on the left. (Believe it can return expected results.)
           int rightPathSum =
-              pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
+              pathSum(root->right, sum);  // Total number of paths on the right. (Believe it can return expected results.)
           return leftPathSum + rightPathSum + pathImLeading;
         }
         int count(TreeNode *node, int sum) {
           if (node == nullptr) return 0;
-          // 能不能作为一条单独的路径呢？
+          // Does this node itself be treated as an independent path?
           int isMe = (node->val == sum) ? 1 : 0;
-          // 左边的，你那边能凑几个 sum - node.val ？
+          // How many paths on the left with the argument `sum` as `sum - node.val`?
           int leftNode = count(node->left, sum - node->val);
-          // 右边的，你那边能凑几个 sum - node.val ？
+          // How many paths on the right with the argument `sum` as `sum - node.val`?
           int rightNode = count(node->right, sum - node->val);
-          return isMe + leftNode + rightNode;  // 我这能凑这么多个
+          return isMe + leftNode + rightNode;  // Return the total number.
         }
         ```
     
-    还是那句话，**明白每个函数能做的事，并相信它们能够完成。**
+    As we mentioned before: **Understand a function's purpose and believe it can finish the job.**
     
-    总结下，`PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）。`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。
+    In summary, the function `pathSum` offers a template of traversing a binary tree. While traversing it calls the function `count` on every node. The function `count` is also a traversal of binary tree. Its job is to find the path whose the sum is target value with the node itself as beginning.[^ref4]
 
 ## Exercise
 
-- [LeetCode 上的递归专题练习](https://leetcode.com/explore/learn/card/recursion-i/)
-- [LeetCode 上的分治算法专项练习](https://leetcode.com/tag/divide-and-conquer/)
+- [LeetCode's Introduction to Algorithms Recursion I](https://leetcode.com/explore/learn/card/recursion-i/)
+- [LeetCode's problems with the tag divide and conquer](https://leetcode.com/tag/divide-and-conquer/)
 
 ## References and Footnotes
 
 [^ref1]: Assume natural numbers count from $1$.
 [^ref2]: Sun Wukong is a character in Chinese mythology. As described in *Journey to the West* he has 84,000 recyclable hairs, which can be considered as countless. 
 [^ref3]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
+[^ref4]: This example uses pre-order traversal as implementation. In-order, post-order traversal will do the same.
