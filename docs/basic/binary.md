@@ -56,7 +56,7 @@ int binary_search(int start, int end, int key) {
 
 Please note that the word *ordered* we mention here is generalized. If the left or right side of an array satisfies certain condition, and the other side does not, it can also be seen as being ordered (e.g. If satisfying the condition is regarded as $1$ and the unsatisfying the condition is regarded as $0$, at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (or smallest) value that satisfies a certain condition.
 
-What if we ask for the minimum possible value of the maximum value satisfying a certain condition (minimizing maximum value)? The intuitive way is to enumerate the *maximum value* from small to large to be the answer, and then check whether it is legal. However, if the answer is monotonous, then you can use the binary search to find it faster. So, if you want to use the binary search algorithm to solve this "minimize maximum" problem, it needs to meet the following three conditions:
+What if we ask for the minimum possible value of the maximum value satisfying a certain condition (minimizing maximum value)? The intuitive way is to enumerate the *maximum value* from small to large to be the answer, and then check whether it is legal. However, if the answer is monotonous, then binary search could be used to find it faster. So, to solve this "minimize maximum" problem with binary search, it needs to meet the following three conditions:
 
 1.  The answer is within a fixed interval;
 2.  It may not be very easy to find a value that meets the condition, but it is required to be able to easily check whether a value is eligible
