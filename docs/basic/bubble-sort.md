@@ -6,7 +6,7 @@ This article will briefly introduce bubble sort.
 
 Bubble sort is a simple sorting algorithm. It is called so because during the process of algorithm, smaller element "float" to the top of array like bubbles.
 
-## Operating Theory
+## Working Principles
 
 Taking ascending order as an example, the bubble sort checks two adjacent elements each time. If the previous element is larger than the following element, the adjacent two elements are swapped. When no adjacent elements need to be exchanged, the sorting is complete.
 
