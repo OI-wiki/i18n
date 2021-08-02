@@ -32,7 +32,7 @@ Recursive codes have two most important features: terminating case and recursive
 
 ```cpp
 int func(some_type input_value) {
-  if (is_terminating_case) return result_of_shortest_sub_problem;
+  if (is_terminating_case) return result_of_smallest_sub_problem;
   return func(smaller_size);
 }
 ```
