@@ -1,4 +1,4 @@
-Last translate with upstream: []()
+Last translate with upstream: [08eb0c5](https://github.com/OI-wiki/OI-wiki/commit/08eb0c53b1ad55b518b0f5f7a569c25b8c1215b2#diff-fe072ff43c0ab8facb3edd321f4ac26c2d1239221c37b5bc93fa00eddbd69c51)
 
 This article will briefly introduce sorting algorithms.
 
