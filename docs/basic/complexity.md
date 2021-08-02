@@ -58,10 +58,7 @@ If $O$ notation corresponds to the less-than-or-equal sign, then $o$ notation (o
 
 ### ω-Notation
 
-If $\Omega$ notation is equivalent to the greater-than-or-equal sign, then $\omega$ notation(or small omega notation) is equivalent to the greater-than sign. The definition is:
-$$f(n)=o(\omega(n))$$
-If and only if
-$$\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le c\cdot g(n)< f(n)$$
+If $\Omega$ notation is equivalent to the greater-than-or-equal sign, then $\omega$ notation(or small omega notation) is equivalent to the greater-than sign. That is, we say $f(n)=o(\omega(n))$ if and only if $\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le c\cdot g(n)< f(n)$.
 
 ![](images/order.png)
 
