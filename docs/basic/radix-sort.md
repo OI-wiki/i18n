@@ -8,6 +8,8 @@ Radix sort is a non-comparative sorting algorithm. It came into common use as a 
 
 The working principles is that the algorithm splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stably sort the $k$ th keywords, the $k-1$-th keywords, and then sort the $k-2$-th keywords... Finally, sort the first keywords stably, and the stable pairing of the entire sequence is completed.
 
+![An illustrated process of radix sort](images/radix-sort-1.png "An illustrated process of radix sort")
+
 Radix sort needs to use **a stable algorithm** in order to sort inner keywords.
 
 Generally, radix sorting is faster than sorting comparison-based algorithm (e.g. quicksort). However, because of the need of extra memory, when the memory space is low, in-place algorithm (e.g. quicksort) may be a better choice.[^ref1] 
