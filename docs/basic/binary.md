@@ -18,7 +18,7 @@ Each time it examines the middle element of the current interval. If the middle 
 
 #### Time Complexity
 
-The best time complexity is $O(1)$<!---when the middle element matches the query-->. 
+The best time complexity is $O(1)$, when the middle element just matches what is finding. 
 
 The average and worst complexity are both $O(\log n)$. In the binary search process, the query interval is halved each time, so for an array of length $n$ , at most $O(\log n)$ searches will be performed.
 
