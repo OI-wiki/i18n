@@ -38,7 +38,7 @@ For functions $f(n)$ and $g(n)$, we say $ f(n) = \Theta(g(n))$ if and only if $\
 
 In other words, it means by saying $f(n) = \Theta(g(n))$, we mean we can find two positive numbers $c_1$ and $c_2$ that satisfies $c_1\cdot g(n)\leq f(n) \leq c_2\cdot g(n)$.
 
-For example $3n^2+5n-3=\Theta(n^2)$,$n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$.
+For example, $3n^2+5n-3=\Theta(n^2)$, $n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$.
 
 ### Big O Notation
 
@@ -180,11 +180,11 @@ $$
 
 Therefore, if $p_i = O(T(n))$, then $O(T(n))$ is an upper bound of amortized time complexity
 
-Potential method have many skills. Examples are skipped here.
+Potential method have many tricks. Examples omitted here.
 
 ## Space Complexity
 
-Similarly, the trend of space cost growing with input size's increasing can be measured by **space complexity** using similar methods mentioned above.
+Similarly, the growing trend of space cost with input sizes' growth can be measured by **space complexity** using similar methods mentioned above.
 
 ## Calculate Complexity
 
