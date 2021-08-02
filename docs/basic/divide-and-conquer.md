@@ -2,14 +2,14 @@ author: fudonglai, AngelKitty, labuladong
 
 Last translated with upstream [08eb0c5](https://github.com/OI-wiki/OI-wiki/commit/08eb0c53b1ad55b518b0f5f7a569c25b8c1215b2#diff-f6f59ea091666854504b33243563a98ec55edf8f4c6a26dec1b2726479de41b4)
 
-The article will introduce difference and application of recursive algorithm and divide-and-conquer algorithm
+The article will introduce difference between recursive algorithm and divide-and-conquer algorithm, and how could they be used together.
 
 ## Introduction
 
 In computer science and math, recursion is method by using functions that call themselves from within their own definition. Additionally in computer science it also refers to a method of solving problem by repeatedly decomposing problem into sub-problems of the same type as the original.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm):
-> In computer science, divide and conquer is an algorithm design paradigm. A divide-and-conquer algorithm recursively breaks down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem. <!---中文显然就是抄英文wiki的-->
+> In computer science, divide and conquer is an algorithm design paradigm. A divide-and-conquer algorithm recursively breaks down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem. 
 
 ## Detailed Introduction
 
@@ -17,16 +17,16 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm):
 
 > To understand recursion, you must first understand recursion.
 
-The fundamental idea of recursion is a function call itself directly or indirectly, so that the original problem transforms into many smaller size sub-problems with similar properties. While solving problems it only needs to focus on how to decompose original problems to eligible sub-problems without too much attention about how it is solved.
+The fundamental idea of recursion is a function calling itself directly or indirectly, so that the original problem transforms into many sub-problems with similar properties but smaller size. When solving problems, we only need to focus on how to decompose original problems to proper sub-problems, but not too much attention on how it is solved.
 
-Here is some examples may be helpful for understanding recursion:
+Here are some examples that may be helpful for understanding recursion:
 
 1. [What is recursion?](./divide-and-conquer.md)
-2. Q: How to sort a pile of numbers? A: Decompose them into two halves. First sort left half and then right half, and finally merge them into one array. As for how to sort left and right halves, please read this paragraph again.
+2. Q: How to sort a sequence of numbers? A: Decompose them into two halves. First sort left half and then right half, and finally merge them into one array. As for how to sort left and right halves, please read this example again.
 3. Q: How old are you this year? A: My age in last year add one year, and I am born in 1999.
 4. [Google's example to understand recursion](https://www.google.com/search?q=recursion) ![](images/divide-and-conquer-1.png)
 
-Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number:[^ref1] $1$ is a natural number, and every nature number has a successor, which is also a natural number.<!---Discuss thread: https://t.me/c/1344172945/110421-->
+Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number[^ref1]: $1$ is a natural number, and every natural number has a successor which is also a natural number.
 
 Recursive codes have two most important features: terminating case and recursive case<!---使用https://en.wikipedia.org/wiki/Recursion_(computer_science)#Recursive_functions_and_algorithms中的措辞-->. The job of recursive case is to solve sub-problems, while terminating case defines result of shortest sub-problem 
 
@@ -39,7 +39,7 @@ int func(some_type input_value) {
 
 #### Reasons to Write Recursion
 
-1.  Code will be more readable with a clearer structure. E.g., different implementation of [merge sort](./merge-sort.md)：
+1.  Code will be more readable with a more clear structure. E.g., different implementation of [merge sort](./merge-sort.md):
 
     ```cpp
     // C++ Version
@@ -85,9 +85,9 @@ int func(some_type input_value) {
       merge(a, front, mid, end)
     ```
 
-    Obviously, the recursive version of code is easier to understand than the non-recursive version, which is clear at a glance: sort left half first and then right half then finally merge two halves into one. However, the non-recursive version is unintelligible, full of incomprehensible details of edge computing and too buggy to debug.
+    Obviously, the recursive code is easier to understand than the non-recursive version, being clear at a glance: sort left half first and then right half then finally merge two halves into one. However, the non-recursive version is unintelligible, full of incomprehensible details of edge computing and hard to debug.
 
-2. Learning how to analyze the structure of problem by exercising. If you are familiar with coding recursive programs, you will sharply find out the feature that a problem can be discomposed into similar sub-problem, and then solve it efficiently
+2. Learning how to analyze the structure of problem by exercising. If you are familiar with coding recursive programs, you will sharply find out the feature that a problem can be discomposed into similar sub-problem, and then solve it efficiently.
 
 #### Disadvantages of Recursion
 
@@ -116,26 +116,26 @@ int size_recursion(Node *head) {
 
 Main articles: [Optimization of searching](../search/opt.md) and [Memorized searching](../dp/memo.md)
 
-More elementary level of recursion implementation may have too many recursions, which may lead to time out. This is when recursion implementation need to be optimized. [^ref3]
+Straightforward recursion implementations may have too many recursions, which may lead to timeouts. This is when recursion implementations need to be optimized. [^ref3]
 
 ### Divide and Conquer
 
-Divide and Conquer is an algorithm design paradigm. Process of algorithms based on it can be divided into three parts: divide, conquer, and combine.
+Divide and Conquer is an algorithm design paradigm. Process of algorithms based on it can be divided into three parts executed in sequence: divide, conquer, and combine.
 
 1. Divide: Decompose original problem into two or more similar sub-problems.
 2. Conquer: After decomposing problems into some easily solvable bound, solve the sub-problem recursively until solved.
-3. Combine: Combine results from sub-problems to obtain final results of original problem.
+3. Combine: Combine results from sub-problems to obtain the final result of original problem.
 
 Generally, problems which can be solved with divide and conquer paradigm have these features:
 
-- The problem can be easily solved when its size is down to a certain level.
+- The problem can be easily solved when its size is small enough.
 - The problem can be decomposed into several sub-problems with smaller size, i.e., the problem has the property of optimal substructure. Results of sub-problems decomposed from original problem can be used and combined into results of original problem.
 - Sub-problems decomposed from original problem are independent to each other, i.e., Sub-problems do not contain common sub-problems between them.
 
 ???+warning "Warning"
     If sub-problems are not independent, then algorithms using divide-and-conquer paradigm need to solve common sub-problems repeatedly. Thus, unnecessary works would be done. Under such circumstances it is better to use [dynamic programming](../dp/basic.md) rather than divide-and-conquer paradigm.
 
-Let take merge sort as an example. Assume we have a function named `merge_sort` as an implementation of merge sort. The job of this function is **to sort an input array**. The problem is obviously can be decomposed. Sorting an array is equal to sorting two halves of this array, then combine these to one.
+Let take merge sort as an example. Assume we have a function named `merge_sort` as an implementation of merge sort. The job of this function is **to sort an input array**. The problem is obviously can be decomposed. Sorting an array is equivalent to sorting two halves of this array, then combine them to one.
 
 ```cpp
 // This block of code has been simplified.
@@ -147,15 +147,15 @@ void merge_sort(type* an_array) {
 }
 ```
 
-If we call the function with half of the array, then after processing this half of array will become sorted. We can notice that `merge_sort` is similar with template of post-order traversal of binary tree. Like the three parts of divide and conquer mentioned before, firstly decompose left and right, then process their combination. Combining is unstacking, which is equal to post-order traversal.
+If we call the function with half of the array, then after processing this half of array will become sorted. We can notice that `merge_sort` is similar to the template of post-order traversal of binary tree. Like the three parts of divide and conquer mentioned before, firstly decompose left and right, then process their combination. Combining is unstacking, which is equivalent to post-order traversal.
 
-The implementation of function `merge` is same to implementation that combines two ordered lint table into one.
+The implementation of function `merge` is same to implementation that combines two ordered linked lists into one.
 
 ## Key points
 
 ### Keys of Writing Recursion
 
-**Understand a function's purpose and believe it can finish the job. DO NOT jump into the function for discovering more details,** or you will cannot help yourself from getting out from the infinite details. <!---人脑能压几个栈啊。-->
+**Understand a function's purpose and believe it can finish the job. DO NOT jump into the function for discovering more details,** or you will may be unable to get out of the infinite details, since human is not so good at maintaining a stack in mind.
 
 E.g. traverse a binary tree:
 
