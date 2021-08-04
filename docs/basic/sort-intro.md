@@ -24,8 +24,6 @@ Main article: [Complexity](./complexity.md)
 
 Time complexity is used to measure the relationship between the running time of an algorithm and the input scale. Commonly it is represented as $O()$
 
-<!---Similarly, there is space complexity, which is used to describe the scale of the memory consumption of the algorithm.-->
-
 The simple method of calculating the complexity is generally to count the number of executions of elementary operations, and sometimes it can be approximated by directly measuring the number of loops.
 
 Time complexity is divided into worst-case complexity, average-case complexity, best-case complexity and so on. The worst-case complexity usually needs to be considered in competitive programming, because it represents the algorithm's worst performance, and no input will bring performance worse than that.
@@ -33,8 +31,6 @@ Time complexity is divided into worst-case complexity, average-case complexity, 
 The lower bound of the time complexity of the comparison-based sorting algorithms is $O(n\log n)$ .
 
 Of course, there are ones that are not $O(n\log n)$ . E.g., the time complexity of counting sort is $O(n+w)$ , where $w$ represents the size of the range of input data.
-
-<!---When the key sequence is relatively ordered, the insertion sort is the fastest.-->
 
 Here is an animated illustration of comparison among different sorting algorithms:
 
