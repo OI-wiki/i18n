@@ -12,7 +12,7 @@ In computer science, a **sorting algorithm** is an algorithm that puts a specifi
 
 Stability refers to whether the relative order of equal elements has changed after sorting.
 
-Sorting algorithm with stability will preserve the relative order of equal elements. That is, when we call that a sorting algorithm is stable, we mean that if there are two records $R$ and $S$ compared as equal, and in the original list $R$ comes before $S#, then in sorted list $R$ will also comes before $S$.
+Sorting algorithm with stability will preserve the relative order of equal elements. That is, when we call that a sorting algorithm is stable, we mean that if there are two records $R$ and $S$ compared as equal, and in the original list $R$ comes before $S$, then in sorted list $R$ will also comes before $S$.
 
 Radix sort, counting sort, insertion sort, bubble sort, and merging sort are stable sorting algorithms.
 
@@ -28,7 +28,7 @@ Time complexity is used to measure the relationship between the running time of 
 
 The simple method of calculating the complexity is generally to count the number of executions of elementary operations, and sometimes it can be approximated by directly measuring the number of loops.
 
-Time complexity is divided into worst-case complexity, average-case complexity, best-case complexity and so on. The worst-case complexity usually needs to be considered in competitive programming, because it represents the lower bound of the algorithm's operation, and there will be no worse results in the evaluation.
+Time complexity is divided into worst-case complexity, average-case complexity, best-case complexity and so on. The worst-case complexity usually needs to be considered in competitive programming, because it represents the algorithm's worst performance, and no input will bring performance worse than that.
 
 The lower bound of the time complexity of the comparison-based sorting algorithms is $O(n\log n)$ .
 
