@@ -6,12 +6,6 @@ This article will briefly introduce the enumerate method.
 
 ## Introduction
 
-<!---
-似乎没人管这个叫Enumerate
-稍微查找了下资料，更适合叫Brute-force search或Exhaustive search(也就是暴力搜索)
-所以枚举法的Enumerate似乎不等于「枚举」
--->
-
 Enumerate method, or exhaustive search, is a problem-solving strategy based on existing knowledge.
 
 The core principle of enumerating strategy is, by enumerating every possible answers from possible sets, then determine whether the answer satisfies the given demands.
