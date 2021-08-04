@@ -28,7 +28,7 @@ Here are some examples that may be helpful for understanding recursion:
 
 Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number[^ref1]: $1$ is a natural number, and every natural number has a successor which is also a natural number.
 
-Recursive codes have two most important features: terminating case and recursive case<!---使用https://en.wikipedia.org/wiki/Recursion_(computer_science)#Recursive_functions_and_algorithms中的措辞-->. The job of recursive case is to solve sub-problems, while terminating case defines result of shortest sub-problem 
+Recursive codes have two most important features: terminating case and recursive case. The job of recursive case is to solve sub-problems, while terminating case defines result of smallest sub-problem.
 
 ```cpp
 int func(some_type input_value) {
@@ -91,7 +91,7 @@ int func(some_type input_value) {
 
 #### Disadvantages of Recursion
 
-During executing programs, recursions are implemented by call stack. Every function calling will add a frame in the stack, and every return will do the opposite. However the size of call stack is not infinite. Too many of recursions will lead to the consequence of stack overflow.
+While executing programs, recursions are implemented by call stack. Every function call adds a frame in the stack, and every return does the opposite. However the size of call stack is, in some cases, not infinite. Too many of recursions may lead to stack overflow.
 
 Obviously sometimes recursion is efficient, such as merge sort. But **sometimes it is inefficient**, such as counting hairs of Sun Wukong[^ref2]. Call stack will consume extra space, while simple iteration won't. For the example problem: You are given a head of link table, and you are asked to calculate the length of the link table. Here are two different implementations: 
 
@@ -167,7 +167,7 @@ void traverse(TreeNode* root) {
 }
 ```
 
-This block of code is enough to finish any binary tree. For the recursive function `traverse(root)`, you just need to believe that it can traverse the whole tree with one root node `root`. So, it only needs to pass the left and right sub-nodes of the node to the function again. 
+This code block is enough for traversing any binary tree. For the recursive function `traverse(root)`, you just need to believe that it can traverse the whole tree with the input of root node `root`. So, it only needs to pass the left and right child nodes of the node to the function again. 
 
 The same code design can be extended for traversing any tree data structure. However, for the tree it is obviously that it doesn't have in-order traversal.
 
@@ -186,9 +186,9 @@ The difference is, enumeration is decomposing the problem horizontally and solvi
 
 ### Recursion versus Divide and Conquer
 
-Recursion is a coding skill, a thinking method to solve problem. Divide and conquer is a algorithm design paradigm solving detailed problem, mostly based on recursion.
+Recursion is a coding skill, and a thinking method to solve problem. Divide and conquer is a algorithm design paradigm solving exact problem, mostly based on recursion.
 
-## Example Problems
+## Example Problem
 
 ???+note "[437. Path Sum III](https://leetcode.com/problems/path-sum-iii/)" 
     Given the `root` of a binary tree and an integer `targetSum`, return the number of paths where the sum of the values along the path equals `targetSum`.
