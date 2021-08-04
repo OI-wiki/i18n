@@ -14,7 +14,7 @@ The core principle of enumerating strategy is, by enumerating every possible ans
 
 ### Find the solution space 
 
-You need to build a simple mathematical model. 
+Build a simple mathematical model. 
 
 ### Smaller the space of enumerating
 
