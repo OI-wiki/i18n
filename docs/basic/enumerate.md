@@ -81,7 +81,7 @@ Here is an example of enumerating and optimizing enumeration range.
     
     However this is not the fastest method.
     
-    Is it necessary to enumerate both elements? After enumerating one element, as the problem has already determined the condition of the other element, we can reduce the time of enumerating the other element by finding out a way to directly determine whether the element exists. When the data size allows, we can use bucket[^1] to record the number of enumerated numbers.
+    Is it necessary to enumerate both elements? After enumerating one element, as the problem has already determined the condition of the other element, we can reduce the time of enumerating the other element by finding out a way to directly determine whether the element exists. When the data size allows, we can use bucket[^1][^2] to record the number of enumerated numbers.
     
     ```cpp
     // C++ Version
@@ -109,3 +109,4 @@ Here is an example of enumerating and optimizing enumeration range.
 ## Reference
 
 [^1]: An explanation of bucket: https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure
+[^2]: Further reading: [Bucket Sort](./bucket-sort.md) and [Main Element Problem](../misc/main-element.md#_3)
