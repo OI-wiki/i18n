@@ -15,7 +15,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm):
 
 ### Recursion
 
-> To understand recursion, you must first understand recursion.
+> To understand recursion, you must first understand recursion. [^ref1]
 
 The fundamental idea of recursion is a function calling itself directly or indirectly, so that the original problem transforms into many sub-problems with similar properties but smaller size. When solving problems, we only need to focus on how to decompose original problems to proper sub-problems, but not too much attention on how it is solved.
 
@@ -26,7 +26,7 @@ Here are some examples that may be helpful for understanding recursion:
 3. Q: How old are you this year? A: My age in last year add one year, and I am born in 1999.
 4. [Google's example to understand recursion](https://www.google.com/search?q=recursion) ![](images/divide-and-conquer-1.png)
 
-Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number[^ref1]: $1$ is a natural number, and every natural number has a successor which is also a natural number.
+Recursion is very common in mathematics. For example, in set theory, we have the following definition of natural number[^ref2]: $1$ is a natural number, and every natural number has a successor which is also a natural number.
 
 Recursive codes have two most important features: terminating case and recursive case. The job of recursive case is to solve sub-problems, while terminating case defines result of smallest sub-problem.
 
@@ -93,7 +93,7 @@ int func(some_type input_value) {
 
 While executing programs, recursions are implemented by call stack. Every function call adds a frame in the stack, and every return does the opposite. However the size of call stack is, in some cases, not infinite. Too many of recursions may lead to stack overflow.
 
-Obviously sometimes recursion is efficient, such as merge sort. But **sometimes it is inefficient**, such as counting hairs of Sun Wukong[^ref2]. Call stack will consume extra space, while simple iteration won't. For the example problem: You are given a head of link table, and you are asked to calculate the length of the link table. Here are two different implementations: 
+Obviously sometimes recursion is efficient, such as merge sort. But **sometimes it is inefficient**, such as counting hairs: one hair plus the rest. Call stack will consume extra space, while simple iteration won't. For the example problem: You are given a head of link table, and you are asked to calculate the length of the link table. Here are two different implementations: 
 
 ```cpp
 // Typical iteration implementation
@@ -155,7 +155,7 @@ The implementation of function `merge` is same to implementation that combines t
 
 ### Keys of Writing Recursion
 
-**Understand a function's purpose and believe it can finish the job. DO NOT jump into the function for discovering more details,** or you will may be unable to get out of the infinite details, since human is not so good at maintaining a stack in mind.
+**Understand a function's purpose and believe it can do the jub. DO NOT jump into the function for discovering more details,** or you will may be unable to get out of the infinite details, since human is not so good at maintaining a stack in mind.
 
 E.g. traverse a binary tree:
 
@@ -186,7 +186,7 @@ The difference is, enumeration is decomposing the problem horizontally and solvi
 
 ### Recursion versus Divide and Conquer
 
-Recursion is a coding skill, and a thinking method to solve problem. Divide and conquer is a algorithm design paradigm solving exact problem, mostly based on recursion.
+Recursion is a coding trick, and a thinking method to solve problem. Divide and conquer is a algorithm design paradigm solving exact problem, mostly based on recursion.
 
 ## Example Problem
 
@@ -250,7 +250,7 @@ Recursion is a coding skill, and a thinking method to solve problem. Divide and 
     
     First of all, to recursively solve a problem of tree data structure, it is required to traverse the whole tree. So the template of tree traversal, which is separately recursively call the function with left and right sub-tree, should appear in the given main function `pathSum`. So, for each nodes, what should they do? They should count how many eligible path for itself and it's sub-tree. Then, the problem is solved.
     
-    According to the skills mentioned before, we have a clear definition for the job of each recursive function based on the analysis.
+    According to the tricks mentioned before, we have a clear definition for the job of each recursive function based on the analysis.
     
     Function `pathSum`: Given a node and a target value. Return the number of paths whose the sum is target value in the tree rooted at this given node.
     
@@ -278,7 +278,7 @@ Recursion is a coding skill, and a thinking method to solve problem. Divide and 
         }
         ```
     
-    As we mentioned before: **Understand a function's purpose and believe it can finish the job.**
+    As we mentioned before: **Understand a function's purpose and believe it can do the jub.**
     
     In summary, the function `pathSum` offers a template of traversing a binary tree. While traversing it calls the function `count` on every node. The function `count` is also a traversal of binary tree. Its job is to find the path whose the sum is target value with the node itself as beginning.[^ref4]
 
@@ -289,7 +289,7 @@ Recursion is a coding skill, and a thinking method to solve problem. Divide and 
 
 ## References and Footnotes
 
-[^ref1]: Assume natural numbers count from $1$.
-[^ref2]: Sun Wukong is a character in Chinese mythology. As described in *Journey to the West* he has 84,000 recyclable hairs, which can be considered as countless. 
-[^ref3]: [labuladong 的算法小抄 - 递归详解](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
+[^ref1]: [recursion explained](https://medium.com/@leog7one/to-understand-recursion-you-must-first-understand-recursion-recursion-explained-c574245cf788)
+[^ref2]: Assume natural numbers count from $1$.
+[^ref3]: [Recursion Explained by labuladong](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie) (Chinese)
 [^ref4]: This example uses pre-order traversal as implementation. In-order, post-order traversal will do the same.
