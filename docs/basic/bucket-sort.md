@@ -1,10 +1,22 @@
-[Bucket sort](https://en.wikipedia.org/wiki/Bucket_sort#:~:text=Bucket%20sort%2C%20or%20bin%20sort,applying%20the%20bucket%20sorting%20algorithm.) is suitable for cases where the range of data to be sorted is large but the distribution is relatively uniform. It is a sorting algorithm with an expected time complexity of $O(n)$ .
+This article will briefly introduce bucket sort
 
-The general idea is to divide the range into blocks and sort each block separately. Since there are not many elements in each block, insertion sort is generally used. If a stable algorithm is used for inner sorting, and the relative order is not changed when the elements are inserted into the bucket, then the bucket sort is stable.
+## Introduction
 
-If the data to be sorted is randomly generated, the expected time complexity of dividing the range into $n$ blocks is $O(n)$ . The proof can be found in the [introduction to algorithms](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) or [analysis of time complexity in wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Analysis).
+Bucket sort is a sorting algorithm. It is suitable for cases where the range of data to be sorted is large but the distribution is relatively uniform.
 
-C++ code:
+## Working Theory
+
+Bucket sort process 
+
+## Properties
+
+### Stability
+
+### Time Complexity
+
+## Code Implementations
+
+### C++
 
 ```cpp
 const int N = 100010;
@@ -41,3 +53,5 @@ void bucket_sort() {
   }
 }
 ```
+
+### Python 
