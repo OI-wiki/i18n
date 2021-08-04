@@ -185,4 +185,4 @@ Similarly, the growing trend of space cost with input sizes' growth can be measu
 
 ## Calculate Complexity
 
-The article mainly introduced complexity from the perspective of algorithm analysis. If interested you can visit [Calculate complexity(not translated)](../misc/cc-basic.md) for further reading.
+The article mainly introduced complexity from the perspective of algorithm analysis. If interested you can visit [Computational Complexity(not translated)](../misc/cc-basic.md) for further reading.
