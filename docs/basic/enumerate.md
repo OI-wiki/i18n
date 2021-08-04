@@ -26,8 +26,8 @@ You need to build a simple mathematical model.
 
 while using enumerating method, ensure you have figured out the following two questions to avoid unnecessary time cost: 
 
-- What is the range of searching?
-- Does all the possible answers 
+- What is the range to enumerate?
+- Is every possible answer need to be enumerated?
 
 ### Pick an appropriate enumerating order
 
@@ -35,10 +35,10 @@ Judging by the question. For example, if the question is about the largest eligi
 
 ## Example
 
-Here is an example solving by enumerating method and optimization of enumerating range. 
+Here is an example of enumerating and optimizing enumeration range. 
 
 !!! Problem
-    Given an integer array without two same element. Your task is to find out the number of pairs whose sum is $0$.
+    Given an integer array without two same elements. Your task is to find out the number of pairs whose sum is $0$.
 
 ??? note "Problem solving"
     The code to enumerate two numbers can be easily coded.
