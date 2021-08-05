@@ -20,15 +20,14 @@ By doing so, after $n-1$ operations, the array is sorted
 
 ### Make Binary Heap on an Array
 
-从根节点开始，依次将每一层的节点排列在数组里。
-
-于是有数组中下标为 `i` 的节点，对应的父结点、左子结点和右子结点如下：
+Consider using a sequence to represent heap. The two child nodes of $h_i$ are $h_2i$ and $h_{2i+1}$. Root node is $h_1$
 
 ```cpp
 iParent(i) = (i - 1) / 2;
 iLeftChild(i) = 2 * i + 1;
 iRightChild(i) = 2 * i + 2;
 ```
+(An alternative description can be found on [Binary Heap - OI Wiki](../ds/binary-heap.md#Implementation).)
 
 ## Properties
 
@@ -51,28 +50,29 @@ Heapsort is an in-place algorithm because it is possible to make heap on input a
 ```cpp
 // C++ Version
 void sift_down(int arr[], int start, int end) {
-  // 建立父结点指标和子结点指标
-  int dad = start;
-  int son = dad * 2 + 1;
-  while (son <= end) {  // 子结点指标在范围内才做比较
-    if (son + 1 <= end &&
-        arr[son] < arr[son + 1])  // 先比较两个子结点大小，选择最大的
-      son++;
-    if (arr[dad] >=
-        arr[son])  // 如果父结点比子结点大，代表调整完毕，直接跳出函数
+  // Declare pointer of parent and child nodes.
+  int parent = start;
+  int child = parent * 2 + 1;
+  while (child <= end) {  // Only compare when child node is in given range.
+    if (child + 1 <= end &&
+        arr[child] < arr[child + 1])  // Firstly compare two child nodes and choose the greater.
+      child++;
+    if (arr[parent] >=
+        arr[child])  // If parent node is greater than child node, the adjustment is complete and ready to return.
       return;
-    else {  // 否则交换父子内容，子结点再和孙结点比较
-      swap(arr[dad], arr[son]);
-      dad = son;
-      son = dad * 2 + 1;
+    else {  // Otherwise, swap parent and child node, and compare between child and child's child node.
+      swap(arr[parent], arr[child]);
+      parent = child;
+      child = parent * 2 + 1;
     }
   }
 }
 
 void heap_sort(int arr[], int len) {
-  // 从最后一个节点的父节点开始sift down以完成堆化(heapify)
-  for (int i = (len - 1 - 1) / 2; i >= 0; i--) sift_down(arr, i, len - 1);
-  // 先将第一个元素和已经排好的元素前一位做交换，再重新调整（刚调整的元素之前的元素），直到排序完毕
+  // Heapify the array by performing sifting down from the parent node of the last node.
+  for (int i = (len - 1 - 1) / 2; i >= 0; i--) 
+    sift_down(arr, i, len - 1);
+  // Firstly swap the first element and the element before ordered part of elements, then re-adjust remaining heap, until the array is sorted.
   for (int i = len - 1; i > 0; i--) {
     swap(arr[0], arr[i]);
     sift_down(arr, 0, i - 1);
@@ -85,26 +85,26 @@ void heap_sort(int arr[], int len) {
 ```python
 # Python Version
 def sift_down(arr, start, end):
-    # 建立父结点指标和子结点指标
-    dad = int(start)
-    son = int(dad * 2 + 1)
-    while son <= end: # 子结点指标在范围内才做比较
-        if son + 1 <= end and arr[son] < arr[son + 1]:
-            son += 1 # 先比较两个子结点大小，选择最大的
-        if arr[dad] >= arr[son]:
-            return # 如果父结点比子结点大，代表调整完毕，直接跳出函数
-        else: # 否则交换父子内容，子结点再和孙结点比较
-            arr[dad], arr[son] = arr[son], arr[dad]
-            dad = son
-            son = int(dad * 2 + 1)
+    # Declare pointer of parent and child nodes.
+    parent = int(start)
+    child = int(parent * 2 + 1)
+    while child <= end: # Only compare when child node is in given range.
+        if child + 1 <= end and arr[child] < arr[child + 1]:
+            child += 1 # Firstly compare two child nodes and choose the greater.
+        if arr[parent] >= arr[child]:
+            return # If parent node is greater than child node, the adjustment is complete and ready to return.
+        else: # Otherwise, swap parent and child node, and compare between child and child's child node.
+            arr[parent], arr[child] = arr[child], arr[parent]
+            parent = child
+            child = int(parent * 2 + 1)
 
 def heap_sort(arr, len):
-  # 从最后一个节点的父节点开始sift down以完成堆化(heapify)
+  # Heapify the array by performing sifting down from the parent node of the last node.
     i = (len - 1 - 1) / 2
     while(i >= 0):
         sift_down(arr, i, len - 1)
         i -= 1
-  # 先将第一个元素和已经排好的元素前一位做交换，再重新调整（刚调整的元素之前的元素），直到排序完毕
+  # Firstly swap the first element and the element before ordered part of elements, then re-adjust remaining heap, until the array is sorted.
     i = len - 1
     while(i > 0):
         arr[0], arr[i] = arr[i], arr[0]
