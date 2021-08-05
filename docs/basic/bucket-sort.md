@@ -6,19 +6,31 @@ Bucket sort is a sorting algorithm. It is suitable for cases where the range of 
 
 ## Working Theory
 
-Bucket sort process 
+Bucket sort performs in the following steps:[^ref1]
+
+1. Set up a sized array of initially empty buckets.
+2. Go over the original array, putting each object in its bucket.
+3. Sort each non-empty bucket.
+4. Visit the buckets in order and put all elements back into the original array.
 
 ## Properties
 
 ### Stability
 
+Bucket sort is stable if using stable inner sorting algorithm and relative orders are not changed when inserting elements into buckets.
+
 ### Time Complexity
+
+The average-case time complexity of bucket sort is $O(n + n^2/k + k)$, which means the time complexity of scattering the range equally into $n$ pieces plus sorting plus concatenating. When $k\approx n$ the complexity becomes $O(n)$.[^ref2]
+
+The worst-case time complexity of bucket sort is $O(n^2)$.
 
 ## Code Implementations
 
 ### C++
 
 ```cpp
+// C++ Version
 const int N = 100010;
 
 int n, w, a[N];
@@ -54,4 +66,39 @@ void bucket_sort() {
 }
 ```
 
-### Python 
+### Python
+
+```python
+# Python Version
+N = 100010
+w = n = 0
+a = [0] * N
+bucket = [[] for i in range(N)]
+
+def insertion_sort(A):
+    for i in range(1, len(A)):
+        key = A[i]
+        j = i - 1
+        while j >= 0 and A[j] > key:
+            A[j + 1] = A[j]
+            j -= 1
+        A[j + 1] = key
+
+def bucket_sort():
+    bucket_size = int(w / n + 1)
+    for i in range(0, n):
+        bucket[i].clear()
+    for i in range(1, n + 1):
+        bucket[int(a[i] / bucket_size)].append(a[i])
+    p = 0
+    for i in range(0, n):
+        insertion_sort(bucket[i])
+        for j in range(0, len(bucket[i])):
+            a[p] = bucket[i][j]
+            p += 1
+```
+
+## References and Footnotes
+
+[^ref1]: [Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort)
+[^ref2]: [Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis) (Chapter 2.2)
