@@ -1,6 +1,6 @@
 author: linehk
 
-Last translate with upstream: [ao32fb3](https://github.com/OI-wiki/OI-wiki/commit/a032fb3a3d37d53d14c279e562761b1aa215caea)
+Last translate with upstream: [a032fb3](https://github.com/OI-wiki/OI-wiki/commit/a032fb3a3d37d53d14c279e562761b1aa215caea)
 
 Time complexity and space complexity are important criteria to measure the efficiency of an algorithm.
 
@@ -141,11 +141,11 @@ $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
-## Amortized Complexity <!---或者distributed? Amortized?-->
+## Amortized Complexity 
 
 Algorithms tend to modify data in memory, and multiple executions of an algorithm will have impact on each other by modifying data.
 
-E.g., for the sorting-by-size operation in quicksort, the worst-case time complexity is seemed to be $O(n)$. But because of the divide-and-conquer process from quicksort, previous sorting operation reduces the length of the array every time. Therefore, the actual overall complexity is $O(n \log n)$, and the breakdowns over each sorting operation is $O(\log n)$. <!---这一段好难理解qaq -->
+E.g., for the sorting-by-size operation in quicksort, the worst-case time complexity is seemed to be $O(n)$. But because of the divide-and-conquer process from quicksort, previous sorting operation reduces the length of the array every time. Therefore, the actual overall complexity is $O(n \log n)$, and the breakdowns over each sorting operation is $O(\log n)$. 
 
 The overall complexity of multiple operations divided by the number of operations is **Amortized Complexity**.
 
