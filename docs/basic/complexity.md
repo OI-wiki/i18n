@@ -123,7 +123,7 @@ for i in range(0, N):
 
 If the value of $N$ is not considered as data size of input, then time complexity of these blocks of code is $O(1)$.
 
-When performing time complexity calculation, it is important to figure out which variables should be treated as the size of data size. All other variables not relating to inputting data size will be treated as constants, and seen as $1$ (or constant time) when calculating time complexity. 
+When calculating time complexity, it is important to figure out which variables should be treated as the size of data size. All other variables not relating to input data size will be treated as constants and treated as $1$ (or constant time) when calculating time complexity. 
 
 ## Master Theorem
 
