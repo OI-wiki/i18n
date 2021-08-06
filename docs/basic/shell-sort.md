@@ -70,6 +70,6 @@ def shell_sort(array, length):
         h = int(h / 3)
 ```
 
-## 参考资料与注释
+## References and Footnotes
 
 [^ref1]: [Shellsort - Wikipedia](https://en.wikipedia.org/wiki/Shellsort)

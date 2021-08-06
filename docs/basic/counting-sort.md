@@ -4,11 +4,11 @@ This article will briefly introduce counting sort.
 
 ## Introduction
 
-Counting sort is an algorithm with complexity of linear time.
+Counting sort is an algorithm with linear time complexity.
 
 ## Working Principles
 
-Counting sort operates by an extra array $S$, in which the $i$-th element is the number of elements from original unsorted array whose value is equal to $i$. Then put the element in array $A$ to the right order based on its position in $C$.
+Counting sort works with an extra array $S$, in which the $i$-th element is the number of elements from original unsorted array whose value is equal to $i$. Then sort the elements in array $A$ to the correct order based on their positions in $C$.
 
 The counting sort consists of three steps:
 
@@ -20,7 +20,7 @@ The counting sort consists of three steps:
 
 ### Stability
 
-Counting sort is a stable sorting algorithm 
+Counting sort is a stable sorting algorithm.
 
 ### Time Complexity
 
@@ -28,7 +28,7 @@ Time complexity of counting sort is $O(n+w)$ , where $w$ represents the size of 
 
 ## Code Implementations
 
-### Pseudocode:
+### Pseudocode
 
 $$
 \begin{array}{ll}
@@ -48,7 +48,7 @@ $$
 \end{array}
 $$
 
-### C++ code
+### C++
 
 ```cpp
 // C++ Version
