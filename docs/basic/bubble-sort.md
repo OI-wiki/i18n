@@ -4,7 +4,7 @@ This article will briefly introduce bubble sort.
 
 ## Introduction
 
-Bubble sort is a simple sorting algorithm. It is called so because during the process of algorithm, smaller element "float" to the top of array like bubbles.
+Bubble sort is a simple sorting algorithm. It is called so because during the process of algorithm, smaller element "float" to the top (front) of array like bubbles.
 
 ## Working Principles
 
@@ -45,7 +45,7 @@ $$
 \end{array}
 $$
 
-### C++ code:
+### C++
 
 ```cpp
 // Assuming that the size of the array is n+1, and the index starts from 1

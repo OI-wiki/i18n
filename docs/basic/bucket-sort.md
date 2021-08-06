@@ -11,7 +11,7 @@ Bucket sort is a sorting algorithm. It is suitable for cases where the range of 
 Bucket sort performs in the following steps:[^ref1]
 
 1. Set up a sized array of initially empty buckets.
-2. Go over the original array, putting each object in its bucket.
+2. Go over the original array, putting each object into its bucket.
 3. Sort each non-empty bucket.
 4. Visit the buckets in order and put all elements back into the original array.
 
