@@ -2,7 +2,7 @@ Last translate with upstream: [58b9fe6](https://github.com/OI-wiki/OI-wiki/blob/
 
 ## Bisection method
 
-The article will briefly introduce binary search, along with ternary search and binary answer.
+The article will briefly introduce binary search, along with ternary search and bisectioning answer.
 
 ### Introduction
 
@@ -80,7 +80,6 @@ When solving problems, we often consider enumerating answers and then check whet
 
 Let's take a look at a sample problem [Luogu P1873 Cut Tree](https://www.luogu.com.cn/problem/P1873) (original link in Chinese). 
 
-<!---咱觉得可以加一个题目摘要-->
 ???+note "abstract of the problem"
     You are given two integer variables $n$ ($1 \le n \le 10^6$) and $m$ ($1 \le m \le 2 \times 10^9$) and an array $a_1, a_2, \ldots , a_n$ $(a_i \le 10^9)$. Your task is to find the minimum integer $h$ satisfying $$\sum a_i - h ~(\forall i \in [1, n],  a_i > h > m)$$ 
 
