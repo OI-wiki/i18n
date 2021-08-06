@@ -1,3 +1,5 @@
+Last translate with upstream: [e4431ce](https://github.com/OI-wiki/OI-wiki/commit/e4431ce5d2a45924bb9ac8db46e756208ca37f20#diff-1192f62f7a7acdbc8fe52f352916538cb5e3aa84074bb3518e0806a37ddeacc9) ([PR #3312](https://github.com/OI-wiki/OI-wiki/pull/3312)) on July 11, 2021.
+
 This article will briefly introduce bucket sort
 
 ## Introduction

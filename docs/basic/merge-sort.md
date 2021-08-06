@@ -1,4 +1,4 @@
-Last translate with upstreamL []()
+Last translate with upstream: [ade5838](https://github.com/OI-wiki/OI-wiki/commit/ade5838af091655fbe3cbfc5558be6e7bb082e2a#diff-b97e8b19e438130ccaa688da85fce4bd7871d08b5e25c0d44b1a25947ec45ecb) ([PR #3321](https://github.com/OI-wiki/OI-wiki/pull/3321)) on July 14, 2021.
 
 This article will briefly introduce the merge sort algorithm.
 
