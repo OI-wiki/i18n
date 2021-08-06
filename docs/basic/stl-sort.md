@@ -1,3 +1,9 @@
+This article will briefly introduce sorting algorithms implemented in C/C++ standard template library.
+
+Unless otherwise specified, all functions mentioned in this article are defined in header `<algorithm>`.
+
+## qsort
+
 ## sort
 
 The standard C library implements quick sort, which is `qsort` in `stdlib.h`.
@@ -7,8 +13,6 @@ But in OI-related competitions, the library sorting function more commonly used 
 The C++ standard does not strictly specify the implementation of this function and it depends on the compiler used.
 
 The old version of the C++ standard only requires its **average** time complexity to reach $O(n\log n)$ , but the C++11 standard requires its **worst** time complexity to reach $O( n\log n)$ . You can refer to [std::sort()](https://en.cppreference.com/w/cpp/algorithm/sort).
-
-在 [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中使用的都是 [Introsort](https://en.wikipedia.org/wiki/Introsort) 。
 
 In both [libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) and [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm), [introsort](https://en.wikipedia.org/wiki/Introsort) is used.
 
@@ -26,7 +30,7 @@ std::sort(a, a + n);
 std::sort(a, a + n, cmp);  // cmp is a custom comparison function
 ```
 
-## nth_element
+## std::nth_element
 
 The function is to find with the $k$-th largest number in the selected interval, put all the elements smaller and larger than it on both sides respectively, and return its address.
 
@@ -43,7 +47,7 @@ Time complexity: Expected value of $O(n)$.
 
 Often used to build [K-D Tree](https://en.wikipedia.org/wiki/K-d_tree).
 
-## stable_sort
+## std::stable_sort
 
 Stable $O(n\log n)$ sort means that the relative positions of equal elements after the sorting are the same as the original sequence.
 
@@ -54,7 +58,7 @@ std::stable_sort(begin, end);
 std::stable_sort(begin, end, cmp);
 ```
 
-## partial_sort
+## std::partial_sort
 
 Place the top $k$ smallest elements in the first $k$ positions in the sequence (the order of equal elements is not guarnteed), and the order of the remaining elements is not specified.
 
