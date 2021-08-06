@@ -4,9 +4,9 @@ Last translate with upstream: [ao32fb3](https://github.com/OI-wiki/OI-wiki/commi
 
 Time complexity and space complexity are important criteria to measure the efficiency of an algorithm.
 
-## Count of Elementary Operation 
+## Count of Elementary Operations
 
-An algorithm has different performances in different computers. It is hard to calculate actual performance theoretically or troublesome to measure it. Thus, we more usually consider the count of elementary operations required by the algorithm rather than the actual time used.
+An algorithm has different performances on different computers. It is hard to calculate actual performance theoretically and is troublesome to measure it. Thus, we more usually consider the count of elementary operations required by the algorithm rather than the actual time used.
 
 For a typical computer, basic arithmetic, accessing or assignments to variables (of standard data types, the same below), can all be treated as elementary operations.
 
@@ -42,7 +42,7 @@ For example, $3n^2+5n-3=\Theta(n^2)$, $n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\
 
 ### Big O Notation
 
-Θ-Notation both shows the upper and lower bound of a function. However, if we only know its asymptotical upper bound but not lower, we can use $O$ notation. We say $f(n)=O(g(n))$$ if and only if $\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$.
+Θ-Notation both shows the upper and lower bound of a function. However, if we only know its asymptotical upper bound but not lower, we can use $O$ notation. We say $f(n)=O(g(n))$ if and only if $\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$.
 
 It is more common to use big O notation while researching time complexity, as we are usually concerned with the upper bound of the program's time cost rather than the lower bound.
 
@@ -167,7 +167,7 @@ $$
 \sum_{i=1}^m p_i + F(S_0) - F(S_m)
 $$
 
-(It is obvious to prove that positive and negative cancel.)<!---不会pwp-->
+(It is obvious that positive and negative ones cancel)
 
 And because $F(S) \geq F(S_0)$ we have
 
@@ -185,4 +185,4 @@ Similarly, the growing trend of space cost with input sizes' growth can be measu
 
 ## Calculate Complexity
 
-The article mainly introduced complexity from the perspective of algorithm analysis. If interested you can visit [Computational Complexity(not translated)](../misc/cc-basic.md) for further reading.
+The article mainly introduced complexity from the perspective of algorithm analysis. If interested you can visit [Computational Complexity (not translated)](../misc/cc-basic.md) for further reading.
