@@ -1,34 +1,36 @@
-## 前缀和
+This article will briefly introduce prefix sum, and its opposite strategy, adjacent difference.
 
-前缀和是一种重要的预处理，能大大降低查询的时间复杂度。可以简单理解为“数列的前 $n$ 项的和”。[^note1]
+## Prefix Sum
 
-C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中。
+Prefix sum is an important kind of preprocessing, which can significantly reduce the time complexity of querying. It can be simply understood as "the sum of the first $n$ elements of an array". [^note1]
 
-### 例题
+C++ standard library has implemented the function of constructing prefix sum array [`std::partial_sum`](https://en.cppreference.com/w/cpp/algorithm/partial_sum), defined in the header `<numeric>`.
 
-!!! 例题
-    有 $N$ 个的正整数放到数组 $A$ 里，现在要求一个新的数组 $B$，新数组的第 $i$ 个数 $B[i]$ 是原数组 $A$ 第 $0$ 到第 $i$ 个数的和。
+### Example
+
+!!! Example
+    You are given an array $A$ with $N$ positive integers. You are asked to construct a new array $B$, where the $i$-th element of new array $B[i]$ represents the sum of the $0$-th to $i$-th elements of the original array $A$.
     
-    输入：
+    Input:
     
     ```text
     5
     1 2 3 4 5
     ```
     
-    输出：
+    Output:
     
     ```text
     1 3 6 10 15
     ```
 
-??? note "解题思路"
-    对于这道题，我们有两种做法：
+??? note "Solution"
+    There are two approaches for this problem:
     
-    - 把对数组 A 的累加依次放入数组 B 中。
-    - 递推：`B[i] = B[i-1] + A[i]`，前提 `B[0] = A[0]`。
+    - Put the accumulative sum of array $A$ to array $B$ one by one.
+    - Iteration: `B[i] = B[i-1] + A[i]`, and specifically `B[0] = A[0]`。
 
-??? note "参考代码"
+??? note "Example Solution Code"
     ```cpp
     #include <iostream>
     using namespace std;
@@ -40,11 +42,11 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
         cin >> A[i];
       }
     
-      // 前缀和数组的第一项和原数组的第一项是相等的。
+      // First element of original array and prefix sum array are equivalent. 
       B[0] = A[0];
     
       for (int i = 1; i < N; i++) {
-        // 前缀和数组的第 i 项 = 原数组的 0 到 i-1 项的和 + 原数组的第 i 项。
+        // i-th element of prefix sum array = sum of 0th to (i-1)-th elements of original array + i-th element of original array
         B[i] = B[i - 1] + A[i];
       }
     
@@ -56,12 +58,12 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     }
     ```
 
-### 二维/多维前缀和
+### 2-Dimensional and Multi-Dimensional Prefix Sum 
 
-多维前缀和的普通求解方法几乎都是基于容斥原理。
+Naive approach for finding multi-dimensional prefix sum are mostly based on the [inclusion-exclusion principle](../math/inclusion-exclusion-principle.md).
 
-???+note "示例：一维前缀和扩展到二维前缀和"
-    比如我们有这样一个矩阵 $a$，可以视为二维数组：
+???+note "Example: Extending 1-dimensional prefix sum to 2-dimensional prefix sum."
+    For example, we have a matrix $a$, which can be treated as a 2-dimension array 
     
     ```text
     1 2 4 3
@@ -69,8 +71,8 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     6 3 5 9
     ```
     
-    我们定义一个矩阵 $sum$，$sum_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
-    那么这个矩阵长这样：
+    We define a matrix $sum$, where $sum_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
+    Then the matrix looks like this:
     
     ```text
     1  3  7  10
@@ -78,26 +80,26 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     12 18 29 45
     ```
     
-    第一个问题就是递推求 $sum$ 的过程，$sum_{i,j} = sum_{i - 1,j} + sum_{i,j - 1} - sum_{i - 1,j - 1} + a_{i,j}$。
+    The first problem is the process of finding $sum$ by iteration: $sum_{i,j} = sum_{i - 1,j} + sum_{i,j - 1} - sum_{i - 1,j - 1} + a_{i,j}$.
     
-    因为加了 $sum_{i - 1,j}$ 和 $sum_{i,j - 1}$ 重复了 $sum_{i - 1,j - 1}$，所以减去。
+    Because of the addition of $sum_{i - 1,j}$ and $sum_{i,j - 1}$ is duplicated with $sum_{i - 1,j - 1}$, here subtracted it.
     
-    第二个问题就是如何应用，譬如求 $(x1,y1) - (x2,y2)$ 子矩阵的和。
+    The second problem is how to apply, e.g., calculate the sum of sub-matrixes $(x1,y1) - (x2,y2)$.
     
-    那么，根据类似的思考过程，易得答案为 $sum_{x2,y2} - sum_{x1 - 1,y2} - sum_{x2,y1 - 1} + sum_{x1 - 1,y1 - 1}$。
+    Then we can easily conclude that $sum_{x2,y2} - sum_{x1 - 1,y2} - sum_{x2,y1 - 1} + sum_{x1 - 1,y1 - 1}$ based on similar idea.
 
-#### 例题
+#### Example
 
-???+note "[洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)"
-    在一个 n\*m 的只包含 0 和 1 的矩阵里找出一个不包含 0 的最大正方形，输出边长。
+???+note "[Luogu P1387](https://www.luogu.com.cn/problem/P1387)"
+    Given a $n*m$ matrix with only $0$ and $1$. Your task is to find the largest square without $0$ in the matrix and print the length of its edge.
 
-??? note "参考代码"
+??? note "Example Solution Code"
     ```cpp
     #include <algorithm>
     #include <iostream>
     using namespace std;
     int a[103][103];
-    int b[103][103];  // 前缀和数组，相当于上文的 sum[]
+    int b[103][103];  // Prefix sum array, which is equivalent to `sum[]` mentioned before.
     int main() {
       int n, m;
       cin >> n >> m;
@@ -106,7 +108,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
         for (int j = 1; j <= m; j++) {
           cin >> a[i][j];
           b[i][j] =
-              b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];  // 求前缀和
+              b[i][j - 1] + b[i - 1][j] - b[i - 1][j - 1] + a[i][j];  // Calculate the prefix sum.
         }
       }
     
@@ -129,46 +131,47 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     }
     ```
 
-### 基于 DP 计算高维前缀和
+### High-Dimensional Sum over Subsets Dynamic Programming
 
-基于容斥原理来计算高维前缀和的方法，其优点在于形式较为简单，无需特别记忆，但当维数升高时，其复杂度较高。这里介绍一种基于 [DP](../dp/basic.md) 计算高维前缀和的方法。该方法即通常语境中所称的 **高维前缀和**。
+The method of calculating multi-dimensional prefix sum based on inclusion-exclusion principle has an advantage of simple form and no need to memorize specifically. But as the dimension increases, the algorithm would have high complexity. This chapter will introduce a method of calculating high-dimensional prefix sum based on [dynamic programming](../dp/basic.md). <!--- This method is what is commonly referred to in the context as **high-dimensional prefix sum**.
 
-设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$。
+Let $U$ to be a high-dimensional space with $D$ dimensions. We need to find the high-dimensional prefix sum $\text{sum}[\cdot]$ of $f[\cdot]$. Let $\text{sum}[i][\text{state}]$ represent all contribution to high-dimensional prefix sum of $\text{state}$ from all same node of $D-i$-th dimension after $\text{state}$. From the definition we know that $\text{sum}[0][\text{state}] = f[\text{state}]$ and $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$. <!---看不懂qaq-->
 
-其递推关系为 $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$，其中 $\text{state}'$ 为第 $i$ 维恰好比 $\text{state}$ 少 $1$ 的点。该方法的复杂度为 $O(D \times |U|)$，其中 $|U|$ 为高维空间 $U$ 的大小。
+The iteration is $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$, where $\text{state}'$ is all node that $1$ smaller than $\text{state}$ in $i$-th dimension, where $|U|$ is the size of high-dimensional space $U$.
 
-一种实现的伪代码如下：
-
+Here is an example of implementation in pseudo code:
+```
     for state
       sum[state] = f[state];
     for(i = 0;i <= D;i += 1)
-      for 以字典序从小到大枚举 state
+      for state (in lexicographic order)
         sum[state] += sum[state'];
+```
 
-### 树上前缀和
+### Prefix Sum on Tree
 
-设 $sum_i$ 表示结点 $i$ 到根节点的权值总和。  
-然后：
+Let $sum_i$ represent the sum of weight from node $i$ to root node.
+Then:
 
-- 若是点权，$x,y$ 路径上的和为 $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$。
--   若是边权，$x,y$ 路径上的和为 $sum_x + sum_y - 2sum_{lca}$。
+- If weight is on nodes: Sum in path $x,y$ is $sum_x + sum_y - sum_{lca} - sum_{fa_{lca}}$.
+- If weight is on edges: Sum in path $x,y$ is $sum_x + sum_y - 2sum_{lca}$.
 
-    $lca$ 的求法参见 [最近公共祖先](../graph/lca.md)。
+About how to calculate $lca$ please refer to [Lowest Common Ancestor](../graph/lca.md).
 
-## 差分
+## Adjacent Difference
 
-差分是一种和前缀和相对的策略，可以当做是求和的逆运算。
+Adjacent difference is a strategy opposite to prefix sum, which can be treated as an inverse operation to sum.
 
-这种策略的定义是令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$
+The definition is let $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$.
 
-简单性质：
+Simple properties:
 
 - $a_i$ 的值是 $b_i$ 的前缀和，即 $a_n=\sum\limits_{i=1}^nb_i$
 - 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$
 
 它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。注意修改操作一定要在查询操作之前。
 
-???+note "示例"
+???+note "Example"
     譬如使 $[l,r]$ 中的每个数加上一个 $k$，就是
     
     $$
@@ -179,15 +182,15 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     
     最后做一遍前缀和就好了。
 
-C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference)，定义于头文件 `<numeric>` 中。
+C++ standard library has the implementation of constructing an adjacent difference array [`std::adjacent_difference`](https://en.cppreference.com/w/cpp/algorithm/adjacent_difference)，defined in header file `<numeric>`.
 
-### 树上差分
+### Adjacent Difference on Tree
 
 树上差分可以理解为对树上的某一段路径进行差分操作，这里的路径可以类比一维数组的区间进行理解。例如在对树上的一些路径进行频繁操作，并且询问某条边或者某个点在经过操作后的值的时候，就可以运用树上差分思想了。
 
 树上差分通常会结合 [树基础](../graph/tree-basic.md) 和 [最近公共祖先](../graph/lca.md) 来进行考察。树上差分又分为 **点差分** 与 **边差分**，在实现上会稍有不同。
 
-#### 点差分
+#### Point Adjacent Difference
 
 举例：对域树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
 
@@ -208,7 +211,7 @@ $$
 
 可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨将 $lca$ 左侧的直系子节点命名为 $left$。那么就有 $d_{lca}-1=a_{lca}-(a_{left}+1)$，$d_{f(lca)}-1=a_{f(lca)}-(a_{lca}+1)$。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。
 
-#### 边差分
+#### Edge Adjacent Difference
 
 若是对路径中的边进行访问，就需要采用边差分策略了，使用以下公式：
 
@@ -314,7 +317,7 @@ $$
     }
     ```
 
-## 习题
+## Exercise
 
 * * *
 
