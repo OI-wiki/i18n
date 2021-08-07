@@ -166,35 +166,35 @@ The definition is let $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\en
 
 Simple properties:
 
-- $a_i$ 的值是 $b_i$ 的前缀和，即 $a_n=\sum\limits_{i=1}^nb_i$
-- 计算 $a_i$ 的前缀和 $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$
+- $a_i$ is prefix sum of $b_i$, i.e., $a_n=\sum\limits_{i=1}^nb_i$.
+- Calculate prefix sum of $a_i$: $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$
 
-它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。注意修改操作一定要在查询操作之前。
+它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。注意修改操作一定要在查询操作之前。<!---?-->
 
 ???+note "Example"
-    譬如使 $[l,r]$ 中的每个数加上一个 $k$，就是
+    For example, adding $k$ to every element in $[l,r]$ is
     
     $$
     b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k
     $$
     
-    其中 $b_l+k=a_l+k-a_{l-1}$，$b_{r+1}-k=a_{r+1}-(a_r+k)$
+    where $b_l+k=a_l+k-a_{l-1}$，$b_{r+1}-k=a_{r+1}-(a_r+k)$.
     
-    最后做一遍前缀和就好了。
+    And perform prefix sum once in the end.
 
 C++ standard library has the implementation of constructing an adjacent difference array [`std::adjacent_difference`](https://en.cppreference.com/w/cpp/algorithm/adjacent_difference)，defined in header file `<numeric>`.
 
 ### Adjacent Difference on Tree
 
-树上差分可以理解为对树上的某一段路径进行差分操作，这里的路径可以类比一维数组的区间进行理解。例如在对树上的一些路径进行频繁操作，并且询问某条边或者某个点在经过操作后的值的时候，就可以运用树上差分思想了。
+The phrase, adjacent difference on tree, can be understood as performing adjacent difference on some path of tree, where "path" can be comprehended similar to the interval in one-dimensional array. Adjacent difference on tree can be used<!---handy?--> when, for example, operating intensively on some paths, and querying the value of some edge or node after operating.
 
-树上差分通常会结合 [树基础](../graph/tree-basic.md) 和 [最近公共祖先](../graph/lca.md) 来进行考察。树上差分又分为 **点差分** 与 **边差分**，在实现上会稍有不同。
+In competitive programming, related problems are sometimes solved in accompany with [tree](../graph/tree-basic.md) and [LCA](../graph/lca.md). In further, adjacent difference on tree can be divided into **difference on node** and **difference on edge** with slight difference in implementation.
 
-#### Point Adjacent Difference
+#### Difference on Node
 
-举例：对域树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。
+Example: Access some paths in a domain tree $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$. Find out how many times the nodes in a path $\delta(s,t)$ have been accessed.
 
-对于一次 $\delta(s,t)$ 的访问，需要找到 $s$ 与 $t$ 的公共祖先，然后对这条路径上的点进行访问（点的权值加一），若采用 DFS 算法对每个点进行访问，由于有太多的路径需要访问，时间上承受不了。这里进行差分操作：
+For an access to $\delta(s,t)$ we need to find the LCA of $s$ and $t$, and accessing all nodes in the path by adding 1 on their weight. Because there are enormous nodes needed to be accessed, we cannot afford the time cost if we adopt a DFS algorithm to access every node. Therefore here performs adjacent difference.
 
 $$
 \begin{aligned}
@@ -205,15 +205,15 @@ $$
 \end{aligned}
 $$
 
-其中 $f$ 表示 $lca$ 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。
+Where $f(lca)$ represents the parent node of $lca#, and $d_i$ is the adjacent difference array of node weight array $a_i$,
 
 ![](./images/prefix_sum1.png)
 
-可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨将 $lca$ 左侧的直系子节点命名为 $left$。那么就有 $d_{lca}-1=a_{lca}-(a_{left}+1)$，$d_{f(lca)}-1=a_{f(lca)}-(a_{lca}+1)$。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。
+In the illustration, we can acknowledge that the former two formulas operate the path tagged by blue rectangle, and latter two operate the path tagged by red rectangle. Why not name the immediate child node to the left side of $lca$ ad $left$. In this case we have $d_{lca}-1=a_{lca}-(a_{left}+1)$，$d_{f(lca)}-1=a_{f(lca)}-(a_{lca}+1)$. We can conclude that the operations of difference on edge is similar to difference on one-dimensional array.
 
-#### Edge Adjacent Difference
+#### Difference on Edge
 
-若是对路径中的边进行访问，就需要采用边差分策略了，使用以下公式：
+We need to adopt the strategy of adjacent difference on edge when accessing edges in some path. We use the following formulas:
 
 $$
 \begin{aligned}
@@ -225,14 +225,16 @@ $$
 
 ![](./images/prefix_sum2.png)
 
-由于在边上直接进行差分比较困难，所以将本来应当累加到红色边上的值向下移动到附近的点里，那么操作起来也就方便了。对于公式，有了点差分的理解基础后也不难推导，同样是对两段区间进行差分。
+Because of the difficulty of calculating difference on edges, 
 
-### 例题
+### Example problem
 
-???+note "[洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)"
-    FJ 给他的牛棚的 $N(2 \le N \le 50,000)$ 个隔间之间安装了 $N-1$ 根管道，隔间编号从 $1$ 到 $N$。所有隔间都被管道连通了。
-    
-    FJ 有 $K(1 \le K \le 100,000)$ 条运输牛奶的路线，第 $i$ 条路线从隔间 $s_i$ 运输到隔间 $t_i$。一条运输路线会给它的两个端点处的隔间以及中间途径的所有隔间带来一个单位的运输压力，你需要计算压力最大的隔间的压力是多少。
+
+???+note "[USACO 2015 December Contest, Platinum Problem 1. Max Flow](http://www.usaco.org/index.php?page=viewproblem2&cpid=576)"[^note2]
+    Farmer John has installed a new system of $N-1$ pipes to transport milk between the N stalls in his barn $N(2 \le N \le 50,000)$, conveniently numbered $1, \cdots, N$. Each pipe connects a pair of stalls, and all stalls are connected to each-other via paths of pipes.
+
+    FJ is pumping milk between K
+    pairs of stalls $K(1 \le K \le 100,000)$. For the ith such pair, you are told two stalls si and ti, endpoints of a path along which milk is being pumped at a unit rate. FJ is concerned that some stalls might end up overwhelmed with all the milk being pumped through them, since a stall can serve as a waypoint along many of the K paths along which milk is being pumped. Please help him determine the maximum amount of milk being pumped through any stall. If milk is being pumped along a path from si to ti, then it counts as being pumped through the endpoint stalls si and ti, as well as through every stall along the path between them. 
 
 ??? note "解题思路"
     需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数。这里采用倍增法进行 lca 的计算。最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了。
@@ -317,7 +319,7 @@ $$
     }
     ```
 
-## Exercise
+## Exercises
 
 * * *
 
@@ -365,3 +367,4 @@ $$
 ## 参考资料与注释
 
 [^note1]: 南海区青少年信息学奥林匹克内部训练教材
+[^note2]: Translator's note: as the time of translation, the original article refers this example problem to a [Luogu P3128](https://www.luogu.com.cn/problem/P3128), which is a repost of the original USACO problem. The example solution is based on the repost.
