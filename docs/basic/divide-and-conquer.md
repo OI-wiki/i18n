@@ -126,7 +126,7 @@ Divide and Conquer is an algorithm design paradigm. Process of algorithms based 
 2. Conquer: After decomposing problems into some easily solvable bound, solve the sub-problem recursively until solved.
 3. Combine: Combine results from sub-problems to obtain the final result of original problem.
 
-Generally, problems which can be solved with divide and conquer paradigm have these features:
+Generally, problems that can be solved with divide and conquer paradigm have these features:
 
 - The problem can be easily solved when its size is small enough.
 - The problem can be decomposed into several sub-problems with smaller size, i.e., the problem has the property of optimal substructure. Results of sub-problems decomposed from original problem can be used and combined into results of original problem.
@@ -138,7 +138,7 @@ Generally, problems which can be solved with divide and conquer paradigm have th
 Let take merge sort as an example. Assume we have a function named `merge_sort` as an implementation of merge sort. The job of this function is **to sort an input array**. The problem is obviously can be decomposed. Sorting an array is equivalent to sorting two halves of this array, then combine them to one.
 
 ```cpp
-// This block of code has been simplified.
+// Simplified code block
 void merge_sort(type* an_array) {
   if (is_easy_to_process) return;
   merge_sort(left_half);
@@ -278,7 +278,7 @@ Recursion is a coding trick, and a thinking method to solve problem. Divide and 
         }
         ```
     
-    As we mentioned before: **Understand a function's purpose and believe it can do the jub.**
+    As we mentioned before: **Understand a function's purpose and believe it can do the job.**
     
     In summary, the function `pathSum` offers a template of traversing a binary tree. While traversing it calls the function `count` on every node. The function `count` is also a traversal of binary tree. Its job is to find the path whose the sum is target value with the node itself as beginning.[^ref4]
 
