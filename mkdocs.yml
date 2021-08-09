@@ -45,8 +45,8 @@ nav:
     - 出题相关:
       - 出题: contest/problemsetting.md
   - Tools:
-    - 工具软件简介: tools/index.md
-    - 代码编辑工具:
+    - Introduction: tools/index.md
+    - Code Editor:
       - Vim: tools/editor/vim.md
       - Emacs: tools/editor/emacs.md
       - VS Code: tools/editor/vscode.md
@@ -59,8 +59,8 @@ nav:
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
       - Sublime Text 3: tools/editor/sublime3.md
-    - 评测工具: tools/judgers.md
-    - 命令行: tools/cmd.md
+    - Judgers: tools/judgers.md
+    - Terminal: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
@@ -73,18 +73,9 @@ nav:
     - Polygon: tools/polygon.md
     - OJ 工具: tools/oj-tool.md
     - LaTeX 入门: tools/latex.md
-  # End of 同步主站更改
+    - Git: tools/git.md
   - Programming:
     - Introduction: lang/index.md
-    - Editing tools:
-      - Vim: lang/editor/vim.md
-      - Emacs: lang/editor/emacs.md
-      - VS Code: lang/editor/vscode.md
-      - Atom: lang/editor/atom.md
-      - Eclipse: lang/editor/eclipse.md
-      - Notepad++: lang/editor/npp.md
-      - Dev-C++: lang/editor/devcpp.md
-      - Geany: lang/editor/geany.md
     - C++ Basics:
       - Hello, World!: lang/helloworld.md
       - C++ Grammar Basics: lang/basic.md
@@ -111,9 +102,12 @@ nav:
       - Algorithms in STL: lang/csl/algorithm.md
       - bitset: lang/csl/bitset.md
       - string: lang/csl/string.md
+      - pair: lang/csl/pair.md
     - Advanced C++:
       - Classes: lang/class.md
       - Namespaces: lang/namespace.md
+      - Value Category: lang/value-category.md
+      - Operator Overload: lang/op-overload.md
       - References: lang/reference.md
       - Constants: lang/const.md
       - New features in C++: lang/new.md
