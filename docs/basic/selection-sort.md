@@ -4,7 +4,7 @@ This article will briefly introduce selection sort.
 
 ## Introduction
 
-The principle is to find the $i$-th smallest element (that is, the smallest element in $A_{i..n}$) each time, and then swap this element with the element at position $i$ of the array.
+Selection sort is a simple and straightforward sorting algorithm. The principle is to find the $i$-th smallest element (that is, the smallest element in $A_{i..n}$) each time, and then swap this element with the element at position $i$ of the array.
 
 ![An animated example of selection sort](images/selection-sort-1-animate-example.svg)
 

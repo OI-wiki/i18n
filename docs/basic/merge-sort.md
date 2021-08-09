@@ -14,7 +14,7 @@ Merge sort has three steps:
 2. Recursively merge sort the two sub-sequence;
 3. Combine two sorted sub-sequence into one.
 
-It is not hard to tell that first two steps of merge sort can be easily implemented. However, the problem is how to combine two sub-sequence. We can notice that the two sub-sequences are in order in step two. The third step is actually to combine two **ordered** sequence. (For implementation of which, please refer to example code below.) 
+It is not hard to tell that first two steps of merge sort can be easily implemented. However, the problem is how to combine two sub-sequence. We can notice that both sub-sequences are in order in step two. The third step is actually to combine two **ordered** sequence. (For implementation of which, please refer to example code below.) 
 
 ## Properties
 

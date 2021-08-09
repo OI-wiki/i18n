@@ -4,7 +4,7 @@ This article will briefly introduce heapsort.
 
 ## Introduction
 
-Heapsort is a sorting algorithm designed based on the data structure [binary heap](../ds/binary-heap.md). The suitable data structure of heapsort is array.
+Heapsort is a sorting algorithm designed based on the data structure [binary heap](../ds/binary-heap.md) suitable for applying on arrays.
 
 ## Working Principles
 
@@ -12,15 +12,15 @@ It is a selection sort built on a heap essentially.
 
 ### Process of Sorting
 
-Firstly construct a *max heap*. Then pop the top element of the heap as maximum element, swap it with the first element from the bottom of the array, and maintain the properties of the rest of heap.
+Firstly construct a *max heap*. Then pop the top element of the heap as maximum element, swap it with the last element in the array, and maintain the properties of the rest of heap.
 
-Then pop the top element again as second maximum element, swap it with second element from the bottom of the array, maintain the properties of the rest of heap.
+Then pop the top element again as second maximum element, swap it with second element from the end of the array, and maintain the properties of the rest of heap.
 
-By doing so, after $n-1$ operations, the array is sorted
+By doing so, the array is sorted after $n-1$ operations.
 
 ### Make Binary Heap on an Array
 
-Consider using a sequence to represent heap. The two child nodes of $h_i$ are $h_2i$ and $h_{2i+1}$. Root node is $h_1$
+Consider using an array to represent heap. The two child nodes of $h_i$ are $h_2i$ and $h_{2i+1}$. Root node is $h_1$
 
 ```cpp
 iParent(i) = (i - 1) / 2;

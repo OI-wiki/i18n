@@ -11,7 +11,7 @@ Using sort, we can reduce the time complexity required to solve the problem.
 
     A naive solution is to check each pair of elements and determine whether they are equal. The time complexity is $O(n^2)$ .
 
-    We might as well sort this sequence of numbers first, and then it is not difficult to find that if there are two equal numbers, they must be in adjacent positions in the new sequence. At this point, you only need to scan the new sequence for $O(n)$ . 
+    We might as well sort this sequence of numbers first, and then it is not difficult to find that if there are two equal numbers, they must be in adjacent positions in the new sequence. At this point, you only need to scan the new sequence for the time complexity of $O(n)$ .
     
     The total time complexity is the sorting time complexity( $O(n\log n)$ ).
 

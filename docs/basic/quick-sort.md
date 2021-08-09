@@ -14,17 +14,17 @@ The working principle of quicksort is to sort a sequence using [divide and conqu
 
 Quicksort contains three steps:
 
-1. Divide the sequence into two parts (not to divide directly, but to ensure the relationship of relative size);
+1. Divide the sequence into two parts (with relationship of relative size kept);
 2. Recurse into two subsequences for quicksorting separately;
 3. No need to merge, because the sequence is already completely ordered.
 
-Unlike merge sort, first step of quicksort is not to directly divide into two sequences, but to ensure the relative size relationship during the division process. Specifically, the first step is to divide the sequence into two parts, and then ensure that the numbers in the former sub-sequence are less than the numbers in the latter sub-sequence. To ensure the average time complexity, a number $m$ is generally selected randomly as the boundary between two sub-sequences.
+Unlike merge sort, the first step of quicksort is not to directly divide into two sequences, but to ensure the relative size relationship is kept during the division process. Specifically, the first step is to divide the sequence into two parts which ensure that the numbers in the former sub-sequence are all less than the numbers in the latter one. To ensure average time complexity, a number $m$ is generally selected randomly as the boundary between two sub-sequences.
 
 After that, maintain two pointers $p$ and $q$, one after the other, and check whether the current number is placed in the position it should be placed in turn (front or back). What if the current number is not placed correctly? For example, if the following pointer $q$ encounters a number less than $m$, then you can swap the numbers at index $p$ and $q$, and then move $p$ back by one. After the current position is placed correctly, move the pointer to continue processing until the two pointers meet.
 
-In fact, quicksort does not specify how to implement the first step in detail, whether it is the process of selecting $m$ or division, there is not only one method of implementation.
+In fact, quicksort does not specify how to implement the first step in detail, whether it is the process of selecting $m$ or division, there is more than one implementation.
 
-The sequences in the third step are already ordered and the numbers in the first sequence are less than those in the second, so joining them together would be fine.
+The sequences in the third step are already ordered and the numbers in the first sequence are all less than those in the second, so simply join them together directly.
 
 ### Implementation (C++) [^ref2]
 
@@ -97,12 +97,12 @@ The best-case and average-case time complexity of quicksort is $O(n\log n)$. The
 
 ### Straightforward Optimization 
 
-If we only implement quicksort using basic principles described before (or just copy the straightforward template), then it is barely possible pass [Luogu P1177 Quicksort Template](https://www.luogu.com.cn/problem/P1177), because some toxic data may make time complexity of straightforward implementation $O(n^2)$.
+If we only implement quicksort using basic principles described before (or just copy the straightforward template code), then it is barely possible pass [Luogu P1177 Quicksort Template](https://www.luogu.com.cn/problem/P1177) (Chinese), because some toxic data may make time complexity of straightforward implementation $O(n^2)$.
 
-So that, we need to apply optimizations to our straightforward quicksort. Most commonly optimization ideas are listed below: [^ref3]
+Thus, we need to apply optimizations to our straightforward quicksort. Most commonly optimization ideas are listed below: [^ref3]
 
 - Choose pivot of two sub-sequence by picking the medium among first element, last element and middle element. By doing so can avoid degeneracy of algorithm by extreme data (e.g., ascending or descending sequence);
-- **Insertion sort** might be more efficient than quicksort when the sequence is short enough.
+- **Insertion sort** might be more efficient than quicksort when the sequence is relatively short.
 - After every sorting, cluster elements which are equal to the pivot around the pivot. By doing so can avoid degeneracy of algorithm by extreme data (e.g., if most of elements in the sequence are equivalent)
 
 <!---果然还是不知道Degeneracy用对了没-->
