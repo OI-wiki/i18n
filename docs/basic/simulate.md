@@ -1,3 +1,5 @@
+Last translate with upstream: [58b9fe6](https://github.com/OI-wiki/OI-wiki/commit/58b9fe67d667d265261d733b70b90e6cf0eaefdd) on Feb 8, 2021.
+
 This article will briefly introduce implementation method.
 
 ## Introduction
