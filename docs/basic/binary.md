@@ -12,7 +12,7 @@ The article will briefly introduce binary search, along with ternary search and 
 
 Take the example of finding a number in an ascending array.
 
-Each time it examines the middle element of the current interval. If the middle element is just what we are looking for, then the search process is ended; if the middle element is less than the target value, meaning the all values in the left side is smaller than the target one and the result will not be found there, thus only need to search in the right side; if the middle element is greater than the value found, similar as above, meaning the elements in the right side will only be larger than target value and there will be no target element. So it only needs to search in the left half.
+Each time it examines the middle element of the current interval. If the middle element is just what we are looking for, then the search process is ended; if the middle element is less than the target value, which means the left side is smaller and no elements will be found there, it just needs to search in the right side; if the middle element is greater than the value found, same as above, the right side will only be larger and there will be no target element. So it only needs to search on the left side.
 
 ### Properties
 
@@ -20,15 +20,15 @@ Each time it examines the middle element of the current interval. If the middle 
 
 The best time complexity is $O(1)$<!---when the middle element matches the query-->. 
 
-The average and worst complexity are both $O(\log n)$. In the binary search process, the query interval is halved each time, so for an array of length $n$ , at most $O(\log n)$ searches will be performed.
+The average as well as worst complexity is $O(\log n)$. In the binary search process, the query interval is halved each time, so for an array of length $n$ , at most $O(\log n)$ searches will be performed.
 
 #### Space Complexity
 
 Iteration version of binary searching's space complexity is $O(1)$.
 
-Space complexity of recursive version (without tail call elimination) of binary searching is $O(\log n)$.  
+Space complexity of Recursive version (without tail call elimination) of binary searching is $O(\log n)$.  
 
-### Code Implementation
+### Code impletion
 
 ```cpp
 int binary_search(int start, int end, int key) {
@@ -50,13 +50,13 @@ int binary_search(int start, int end, int key) {
 ```
 
 ??? note
-    In case of $n$ being a signed number, where $n\ge 0$ is guaranteed, `n >> 1` has fewer instructions than `n / 2`.
+    For the case where $n$ is a signed number, when $n\ge 0$ is guaranteed, `n >> 1` has fewer instructions than `n / 2`.
 
-### Minimizing the maximum value
+### Minimize the maximum value <!---Need mentor-->
 
-Please note that the word *ordered* we mention here is generalized. If the left or right side of an array satisfies certain condition, and the other side does not, it can also be seen as being ordered (e.g. If satisfying the condition is regarded as $1$ and the unsatisfying the condition is regarded as $0$, at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (or smallest) value that satisfies a certain condition.
+Please note that the order we mention here is generalized. If the left or right side of an array meets a certain condition, and the other side does not, it can also be seen as <!---an order-->ordered (e.g. If the satisfying condition is regarded as $1$ and the unsatisfying condition is regarded as $0$ , at least it is ordered for this dimension in this condition). In other words, the binary search algorithm can be used to find the largest (smallest) value that satisfies a certain condition.
 
-What if we ask for the minimum possible value of the maximum value satisfying a certain condition (minimizing maximum value)? The intuitive way is to enumerate the *maximum value* from small to large to be the answer, and then check whether it is legal. However, if the answer is monotonous, then you can use the binary search to find it faster. So, if you want to use the binary search algorithm to solve this "minimize maximum" problem, it needs to meet the following three conditions:
+What if we ask for the smallest maximum value that meets a certain condition (minimizing maximum value)? The first idea is to enumerate the "maximum value" as the answer from small to large, and then check whether it is legal. If the answer is monotonous, then you can use the binary search to find it faster. So, if you want to use the binary search algorithm to solve this "minimize maximum" problem, it needs to meet the following three conditions:
 
 1.  The answer is within a fixed interval;
 2.  It may not be very easy to find a value that meets the condition, but it is required to be able to easily check whether a value is eligible
@@ -68,9 +68,9 @@ The bisection method turns a problem of finding extreme values into a decision p
 
 ### Binary Search in STL
 
-One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first number greater than your value](https://en.cppreference.com/w/cpp/algorithm/upper_bound). Both of them are defined in the header file `<algorithm>`.
+One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first greater than the number of your value](https://en.cppreference.com/w/cpp/algorithm/upper_bound). Both of them are defined in the header `<algorithm>`.
 
-Please note that it must be an ordered array, as both of them are implemented in binary search algorithm; otherwise the answer may be incorrect.
+Please note that it must be an ordered array, as both of them are implemented in binary search algorithm; otherwise the answer would be unexpected. <!---修正了一点点语法问题, 以及, 感觉使用Unexpected更合适-->
 
 For detailed usage, please refer to [STL](../lang/csl/index.md) .
 
@@ -82,9 +82,9 @@ Let's take a look at a sample problem [Luogu P1873 Cut Tree](https://www.luogu.c
 
 <!---咱觉得可以加一个题目摘要-->
 ???+note "abstract of the problem"
-    You are given two integer variables $n$ ($1 \le n \le 10^6$) and $m$ ($1 \le m \le 2 \times 10^9$) and an array $a_1, a_2, \ldots , a_n$ $(a_i \le 10^9)$. Your task is to find the minimum integer $h$ satisfying $$\sum a_i - h ~(\forall i \in [1, n],  a_i > h > m)$$ 
+    You are given two integer variables $n$ ($1 \le n \le 10^6$) and $m$($1 \le m \le 2 \times 10^9$) and an array $a_1, a_2, ..., a_n (a_i \le 10^9)$. You are asked to find the minimum integer $h$ which satisfies that $$\sum a_i - h \space (\forall i \in [1, n],  a_i > h > m)$$ 
 
-We can enumerate the answers from $1$ to $10^9$ (1 billion), but this brute force approach certainly would not receive full marks since enumerating from $1$ to $10^9$ billion is too time-consuming. We can bisect the answer within the range of $[1,~10^9]$, and check the feasibility every time (usually using the greedy method). **This is the bisection answer algorithm**.
+We can enumerate the answers from 1 to 1000000000 (1 billion), but this naive approach certainly would not receive full marks. Because running from 1 to 1 billion is too time-consuming. We can divide the answer from 1 to 1 billion, and check the feasibility every time (usually using the greedy method). **This is the bisection answer**.
 
 An example solution for practice problem is listed below: 
 
@@ -125,7 +125,7 @@ After reading the above code, you might be wondering about these 2 questions:
 
     ![](./images/binary-final-1.png)<!---Need translate-->
 
-    then it will be
+    then it will
 
     ![](./images/binary-final-2.png)<!---Need translate-->
 
@@ -148,7 +148,7 @@ else
 
 [Ternary search](https://en.wikipedia.org/wiki/Ternary_search) can be used to find the maximum (minimum) value of a [convex function](https://en.wikipedia.org/wiki/Convex_function).
 
-Draw a picture would help you understand easier (Illustration to be added)
+Draw a picture would help you understand easier (Illustration to be added)<!---Illustration更适合语境-->
 
 -   
     If `lmid` and `rmid` are on the same side of the maximum (minimum) value:
