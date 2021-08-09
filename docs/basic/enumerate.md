@@ -2,7 +2,7 @@ author: frank-xjh
 
 Last translate with upstream: [2a03148](https://github.com/OI-wiki/OI-wiki/commit/2a03148fec60414dedcaa49cfa52e9580779dbfd#diff-43eae0b94ea28b3d1c02768cae9cf068e14e29d67a271336e9722baaed590c38)(Aug 1, 2021)
 
-This article will briefly introduce the enumerate method.
+This article will briefly introduce topics about enumerating.
 
 ## Introduction
 
