@@ -153,9 +153,9 @@ The overall complexity of multiple operations divided by the number of operation
 
 Potential method of amortized analysis is a method for finding the upper bound of amortized complexity. The key to finding amortized complexity is to represent the impact to current operation from previous operation. 
 
-Definition of *state*: $S$ represents all data in specific moment.
+Definition of *state*: $S$ represents all data in specific moment. *E.g., in quicksort, a "state" is an subscript interval needed to be sorted.*
 
-Definition of *initial state*: $S_0$ represents the state when no operation has been performed.
+Definition of *initial state*: $S_0$ represents the state when no operation has been performed. *E.g., in quicksort, an "initial state" is the whole array.*
 
 Assume $F$ is a function from state to number, and $\forall S, F(S) \geq F(S_0)$. Then we have the following inference:
 
