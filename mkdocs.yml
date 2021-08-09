@@ -144,6 +144,7 @@ nav:
       - Heapsort: basic/heap-sort.md
       - Bucket Sort: basic/bucket-sort.md
       - ShellSort: basic/shell-sort.md
+      - Tournament Sort: basic/tournament-sort.md
       - Sorting Methods in STL Libraries: basic/stl-sort.md
       - Usage of Sorting: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
