@@ -23,8 +23,8 @@ The main reasons for considering in this way are listed below:
 
 Of course, the running time of an algorithm is not entirely determined by the input size, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
 
-1. Worst-case time complexity, which the largest input size corresponds for each input size. In competitive programming, since the input can be given arbitrarily in given size, to ensure an algorithm can process any data in some size in time, we generally take worst-case time complexity into consideration.
-2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data soze. (Or, the expected complexity on random input.)
+1. Worst-case time complexity, referring to the input of maximum time complexity for each input size. In competitive programming, since the input can be given arbitrarily in given constraints, to ensure an algorithm can process any data in certain size in time, we generally consider the worst-case time complexity.
+2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data size. (Or, the expected complexity on random input.)
 
 As "the trend of time cost growing with data size's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
 
@@ -159,7 +159,7 @@ Definition of *initial state*: $S_0$ represents the state when no operation has 
 
 Assume $F$ is a function from state to number, and $\forall S, F(S) \geq F(S_0)$. Then we have the following inference:
 
-Let $S_1,S_2, \cdots ,S_m$ be a sequence produced by performing $m$ times of operation from $S_0$, and $c_i$ be the time cost of $i$th operation.  
+Let $S_1,S_2, \cdots ,S_m$ be a sequence produced by performing $m$ times of operation from $S_0$, and $c_i$ be the time cost of $i$-th operation.  
 
 Let $p_i = c_i + F(S_i) - F(S_{i-1})$. Then the total time cost of $m$ times of operation is:
 
