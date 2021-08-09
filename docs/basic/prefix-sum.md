@@ -1,8 +1,10 @@
+Last translate with upstream: [be4fc67](https://github.com/OI-wiki/OI-wiki/commit/be4fc670cfcee21546d0aafea55940689e1b2709) on Mar 23, 2021
+
 This article will briefly introduce prefix sum, and its opposite strategy, adjacent difference.
 
 ## Prefix Sum
 
-Prefix sum is an important kind of preprocessing, which can significantly reduce the time complexity of querying. It can be simply understood as "the sum of the first $n$ elements of an array". [^note1]
+Prefix sum is an important kind of preprocessing, which can significantly reduce the time complexity of querying. It can be simply understood as "the sum of the first $n$ elements of an array". <!-- [^note1] -->
 
 C++ standard library has implemented the function of constructing prefix sum array [`std::partial_sum`](https://en.cppreference.com/w/cpp/algorithm/partial_sum), defined in the header `<numeric>`.
 
@@ -169,7 +171,7 @@ Simple properties:
 - $a_i$ is prefix sum of $b_i$, i.e., $a_n=\sum\limits_{i=1}^nb_i$.
 - Calculate prefix sum of $a_i$: $sum=\sum\limits_{i=1}^na_i=\sum\limits_{i=1}^n\sum\limits_{j=1}^{i}b_j=\sum\limits_{i}^n(n-i+1)b_i$
 
-它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。注意修改操作一定要在查询操作之前。<!---?-->
+This can maintain the time complexity of query an element after adding a number multiply to an interval, or multiply query a element. Note that modifying operations should be former to querying operations.
 
 ???+note "Example"
     For example, adding $k$ to every element in $[l,r]$ is
@@ -225,19 +227,18 @@ $$
 
 ![](./images/prefix_sum2.png)
 
-Because of the difficulty of calculating difference on edges, 
+Because of the difficulty of calculating difference on edges, for handy operation, we move the value which is supposed to accumulate to red edge down to nearby node. As for the formulas, it is not hard to derive with knowledge of difference on nodes that performs difference to two intervals. 
 
 ### Example problem
 
-
-???+note "[USACO 2015 December Contest, Platinum Problem 1. Max Flow](http://www.usaco.org/index.php?page=viewproblem2&cpid=576)"[^note2]
+???+note "[USACO 2015 December Contest, Platinum Problem 1. Max Flow](http://www.usaco.org/index.php?page=viewproblem2&cpid=576)"
     Farmer John has installed a new system of $N-1$ pipes to transport milk between the N stalls in his barn $N(2 \le N \le 50,000)$, conveniently numbered $1, \cdots, N$. Each pipe connects a pair of stalls, and all stalls are connected to each-other via paths of pipes.
 
     FJ is pumping milk between K
     pairs of stalls $K(1 \le K \le 100,000)$. For the ith such pair, you are told two stalls si and ti, endpoints of a path along which milk is being pumped at a unit rate. FJ is concerned that some stalls might end up overwhelmed with all the milk being pumped through them, since a stall can serve as a waypoint along many of the K paths along which milk is being pumped. Please help him determine the maximum amount of milk being pumped through any stall. If milk is being pumped along a path from si to ti, then it counts as being pumped through the endpoint stalls si and ti, as well as through every stall along the path between them. 
 
 ??? note "解题思路"
-    需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数。这里采用倍增法进行 lca 的计算。最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了。
+    Because it is needed to count how many times has been every node accessed, by using the method of adjacent difference on tree to add $1$ on every node on every path, we can quickly get the number of accessing of nodes. Here uses binary lifting to calculate LCA. In the end by using DFS to traverse the whole tree, we can find the answer by calculate the sum of adjacent difference array when backtracking.
 
 ??? note "参考代码"
     ```cpp
@@ -323,48 +324,49 @@ Because of the difficulty of calculating difference on edges,
 
 * * *
 
-前缀和：
+Prefix Sum:
 
-- [洛谷 U53525 前缀和（例题）](https://www.luogu.com.cn/problem/U53525)
-- [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
-- [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi)
-- [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+- (Chinese) [Luogu U53525 Prefix Sum](https://www.luogu.com.cn/problem/U53525)
+- (Chinese) [Luogu U69096 Reverse Prefix Sum](https://www.luogu.com.cn/problem/U69096)
+- [6th JOI Final: The Largest Sum](https://www.ioi-jp.org/joi/2006/FinalRound/2007-ho-t1-en.pdf) Judge is [here](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi).
+- [USACO 2016 January Contest, Silver Problem 2. Subsequences Summing to Sevens](http://www.usaco.org/index.php?page=viewproblem2&cpid=595)
 
 * * *
 
-二维/多维前缀和：
+2-Dimensional and Multi-Dimensional Prefix Sum: 
 
 - [HDU 6514 Monitor](http://acm.hdu.edu.cn/showproblem.php?pid=6514)
-- [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
-- [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
+- (Chinese) [Luogu P1387 Largest Square](https://www.luogu.com.cn/problem/P1387)
+- (Chinese) [HNOI2003 Laser Bomb](https://www.luogu.com.cn/problem/P2280)
 
 * * *
 
-树上前缀和：
+Prefix Sum on Tree
 
-- [LOJ 10134.Dis](https://loj.ac/problem/10134)
-- [LOJ 2491. 求和](https://loj.ac/problem/2491)
-
-* * *
-
-差分：
-
-- [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
-- [P3397 地毯](https://www.luogu.com.cn/problem/P3397)
-- [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
+- (Chinese) [LOJ 10134. Dis](https://loj.ac/problem/10134)
+- (Chinese) [LOJ 2491. 求和](https://loj.ac/problem/2491)
 
 * * *
 
-树上差分：
+Adjacent Difference:
 
-- [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)
-- [JLOI2014 松鼠的新家](https://loj.ac/problem/2236)
-- [NOIP2015 运输计划](http://uoj.ac/problem/150)
-- [NOIP2016 天天爱跑步](http://uoj.ac/problem/261)
+- (Chinese) [LOJ 132. Fenwick Tree III](https://loj.ac/problem/132)
+- (Chinese) [Luogu P3397 Carpet](https://www.luogu.com.cn/problem/P3397)
+- (Chinese) [Luogu P4552 「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
 
 * * *
 
+Adjacent Difference on Tree：
+
+- [USACO 2015 December Contest, Platinum Problem 1. Max Flow](http://www.usaco.org/index.php?page=viewproblem2&cpid=576)
+- (Chinese) [JLOI2014 Squirrel's New Home](https://loj.ac/problem/2236)
+- (Chinese) [NOIP2015 Transportation Planning](http://uoj.ac/problem/150)
+- (Chinese) [NOIP2016 Running Everyday](http://uoj.ac/problem/261)
+
+* * *
+
+<!---
 ## 参考资料与注释
 
 [^note1]: 南海区青少年信息学奥林匹克内部训练教材
-[^note2]: Translator's note: as the time of translation, the original article refers this example problem to a [Luogu P3128](https://www.luogu.com.cn/problem/P3128), which is a repost of the original USACO problem. The example solution is based on the repost.
+-->
