@@ -1,34 +1,36 @@
 author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet
 
-## 介绍
+## Introduction
 
-> Dev-C++ 是一套用于开发 C/C++（C++11）的自由的集成开发环境（IDE），并以 GPL 作为散布许可。使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 的 IDE 是利用 Delphi 开发的。
+<!---此部分引用较原文有较大改动-->
+
+From Wikipedia:[^1][^2]
+
+> Dev-C++ is a free full-featured integrated development environment (IDE) distributed under the GNU General Public License for programming in C and C++. It was originally developed by Colin Laplace and first released in 1998. It is written in Delphi. 
 >
-> Dev-C++ 是一个 SourceForge 的项目，是由 Colin Laplace 这位程序员及其公司 Bloodshed Software 所开始的。当前 Dev-C++ 一般用于撰写运行于 Microsoft Windows 的程序。Dev-C++ 一度有移植到 Linux 的项目但当前被暂停了。
+> Dev-C++ is a project hosted on Sourceforge, started by Colin Laplace and his company Bloodshed Software. Currently Dev-C++ is often used to write programs running on Microsoft Windows. There was once a Linux port of Dev-C++ but staled.
 >
-> Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。Dev-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
+> <!---Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。 [和上文重复了]-->It is bundled with, and uses, the MinGW or TDM-GCC 64bit port of the GCC as its compiler. Dev-C++ can also be used in combination with Cygwin or any other GCC-based compiler.
 >
-> 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
+> Besides, older builds of Bloodshed Dev-C++ cannot compile under environment of Windows 8.
 >
-> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
+> From February 22, 2005 the project was not noticeably active, with no news posted nor any updated versions released. In a 2006 forum post, lead developer Colin Laplace stated that he was busy with real-life issues and did not have time to continue development of Dev-C++.”
 
-以上摘自 Wikipedia[^1]。
+But, is this the version you are using the one I an talking about?  
 
-不过，你在使用的版本是不是我说的这个版本呢？
+Exactly, Dev-C++ has another distribution:
 
-没错，Dev-C++ 其实还有一个全新版本：
+> Orwell Dev-C++ is a variant of Bloodshed Dev-C++. Since Bloodshed Dev-C++ is inactive for a long time from Feb 22, 2005, on June 30, 2011 an unofficial version 4.9.9.3 of Dev-C++ was released by Orwell (Johan Mes), an independent programmer, featuring the more recent GCC 4.5.2 compiler, Windows' SDK resources (Win32 and D3D), numerous bugfixes, and improved stability. 
 
-> Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
+From Orwell Dev-C++ 4.9.9.3 initially released in 2011, most of you are using Orwell Dev-C++
 
-以上摘自 Wikipedia[^2]。
+The latest build of Orwell Dev-C++ 5.11 was released on April 27, 2015, which can be download from [SourceForge](https://sourceforge.net/projects/orwelldevcpp/files/latest/download).
 
-自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orwell Dev-C++。
+<!---该应用界面简洁友好，安装便捷，适合初学者使用。-->
 
-目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本，可于 [SourceForge](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 下载。
+In 2020, Embarcadero sponsored and continued the development of original Bloodshed Dev-C++. The project is hosted on [GitHub](https://github.com/Embarcadero/Dev-Cpp) and[SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
 
-该应用界面简洁友好，安装便捷，适合初学者使用。
-
-2020 年，Embarcadero 赞助并接手了原有的 Bloodshed Dev-C++ 项目，继续开发。项目地址位于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
+After the stale development Orwell Dev-C++ in 2015, out of the need of teaching, an individual Chinese developer [royqh1979](https://github.com/royqh1979) decided to develop his personal fork of Dev-C++ named "Red Panda Dev-C++", integrating
 
 在 2015 年停止更新后，因为教学需要，一位来自中国的个人开发者 [royqh1979](https://github.com/royqh1979) 决定继续开发他的 Dev-C++ 个人分支，命名为小熊猫 Dev-C++，集成了智能提示和高版本的 MINGW64，非常便于国内的个人使用和学习，项目官网位于 [小熊猫 Dev-C++](https://royqh.net/devcpp/download)，源码地址位于 [Github](https://github.com/royqh1979/Dev-Cpp).
 
@@ -190,6 +192,6 @@ freopen("test.out", "w", stdout);
 
 ## 参考资料
 
-[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B)
+[^1]: (Chinese) [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B)
 
-[^2]: [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B)
+[^2]: [Dev-C++ - Wikipedia](https://en.wikipedia.org/wiki/Dev-C%2B%2B)
