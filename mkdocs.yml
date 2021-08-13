@@ -60,7 +60,7 @@ nav:
       - GUIDE: tools/editor/guide.md
       - Sublime Text 3: tools/editor/sublime3.md
     - Judgers: tools/judgers.md
-    - Terminal: tools/cmd.md
+    - Commandline Tools: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
