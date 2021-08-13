@@ -1,4 +1,4 @@
-Last translated with upstream: [00db033](https://github.com/OI-wiki/OI-wiki/commit/00db033180930fa4e37f003402450f90d55f490e#diff-f5b0335f7a5d7cbf96dddd362a90389bb6207b08364b659371b7c1911fec8c64) ([PR #3396](https://github.com/OI-wiki/OI-wiki/pull/3396)) on Aug 6, 2021.
+Last translated with upstream: [8eecffd](https://github.com/OI-wiki/OI-wiki/commit/8eecffd73630b0637ebf06fb0817c56dcf8d4858) ([PR #3408](https://github.com/OI-wiki/OI-wiki/pull/3408)) on Aug 7, 2021.
 
 This article will briefly introduce heapsort.
 
@@ -50,15 +50,15 @@ Heapsort is an in-place algorithm because it is possible to make heap on input a
 ```cpp
 // C++ Version
 void sift_down(int arr[], int start, int end) {
-  // Declare pointer of parent and child nodes.
+  // Calculate pointer of parent and child nodes.
   int parent = start;
   int child = parent * 2 + 1;
-  while (child <= end) {  // Only compare when child node is in given range.
-    if (child + 1 <= end &&
-        arr[child] < arr[child + 1])  // Firstly compare two child nodes and choose the greater.
+  while (child <= end) {  // Only compare when child node is in given interval of subscript.
+    // Firstly compare two child nodes and choose the greater.
+    if (child + 1 <= end && arr[child] < arr[child + 1])  
       child++;
-    if (arr[parent] >=
-        arr[child])  // If parent node is greater than child node, the adjustment is complete and ready to return.
+    // If parent node is greater than child node, the adjustment is complete and ready to return.
+    if (arr[parent] >= arr[child])  
       return;
     else {  // Otherwise, swap parent and child node, and compare between child and child's child node.
       swap(arr[parent], arr[child]);
@@ -85,14 +85,16 @@ void heap_sort(int arr[], int len) {
 ```python
 # Python Version
 def sift_down(arr, start, end):
-    # Declare pointer of parent and child nodes.
+    # Calculate pointer of parent and child nodes.
     parent = int(start)
     child = int(parent * 2 + 1)
     while child <= end: # Only compare when child node is in given range.
+        # Firstly compare two child nodes and choose the greater.
         if child + 1 <= end and arr[child] < arr[child + 1]:
-            child += 1 # Firstly compare two child nodes and choose the greater.
+            child += 1 
+        # If parent node is greater than child node, the adjustment is complete and ready to return.
         if arr[parent] >= arr[child]:
-            return # If parent node is greater than child node, the adjustment is complete and ready to return.
+            return 
         else: # Otherwise, swap parent and child node, and compare between child and child's child node.
             arr[parent], arr[child] = arr[child], arr[parent]
             parent = child
