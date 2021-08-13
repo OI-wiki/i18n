@@ -205,7 +205,7 @@ T find_kth_element(T arr[], int rk, const int len) {
   if (len <= 1) return arr[0];
   // Choose the pivot randomly.
   const T pivot = arr[rand() % len];
-  // i: Current operating element;
+  // i: Element being operated on;
   // j: First element equal to the pivot;
   // k: First element greater than the pivot.
   int i = 0, j = 0, k = len;
@@ -221,7 +221,7 @@ T find_kth_element(T arr[], int rk, const int len) {
     else
       i++;
   }
-  // Search for the $k$-th number recursively in different intervals based on the rank and two dividing lines. <!---这里有点问题-->
+  // Search for the $k$-th number recursively in different intervals based on the rank and two dividing lines.
   // If the number of elements less than pivot is more than $k$, then the $k$-th largest element must be less than pivot.
   if (rk < j) return find_kth_element(arr, rk, j);
   // Otherwise, if the number of elements less than or equal to pivot is less than $k$, then the $k$-th largest element must be greater than pivot.
@@ -238,6 +238,6 @@ T find_kth_element(T arr[], int rk, const int len) {
 
 [^ref2]: [Quicksort - Wikibooks](https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Quicksort)
 
-[^ref3]: [三种快速排序以及快速排序的优化(Three types of quicksort and their optimizations)](https://blog.csdn.net/insistGoGo/article/details/7785038)
+[^ref3]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
 
 [^ref4]: [introsort](https://en.wikipedia.org/wiki/Introsort)
