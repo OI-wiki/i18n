@@ -145,7 +145,7 @@ $$
 
 Algorithms tend to modify data in memory, and multiple executions of an algorithm will have impact on each other by modifying data.
 
-E.g., for the sorting-by-size operation in quicksort, the worst-case time complexity is seemed to be $O(n)$. But because of the divide-and-conquer process from quicksort, previous sorting operation reduces the length of the array every time. Therefore, the actual overall complexity is $O(n \log n)$, and the breakdowns over each sorting operation is $O(\log n)$. 
+E.g., for the sorting-by-size operation in quicksort, the worst-case time complexity is seemed to be $O(n)$. But because of the divide-and-conquer process from quicksort, previous sorting operation constantly reduces the length of the array. Therefore, the actual overall complexity is $O(n \log n)$, and the breakdowns over each sorting operation is $O(\log n)$. 
 
 The overall complexity of multiple operations divided by the number of operations is **Amortized Complexity**.
 
