@@ -4,9 +4,9 @@ This article will briefly introduce radix sort.
 
 ## Introduction
 
-Radix sort is a non-comparative sorting algorithm. It came into common use as a way to sort punched cards early.
+Radix sort is a non-comparative sorting algorithm. It came into common use as a way to sort punched cards in early times.
 
-The working principles is that the algorithm splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stably sort the $k$ th keywords, the $k-1$-th keywords, and then sort the $k-2$-th keywords... Finally, sort the first keywords stably, and the stable pairing of the entire sequence is completed.
+The working principles is that the algorithm splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stably sort the $k$ th keywords, the $k-1$-th keywords, and then sort the $k-2$-th keywords... Finally, sort the first keywords stably, and the stable sorting of the entire sequence is completed.
 
 ![An illustrated process of radix sort](images/radix-sort-1.png "An illustrated process of radix sort")
 
