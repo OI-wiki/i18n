@@ -60,7 +60,7 @@ $$
 ```cpp
 // C++ Version
 void merge(int ll, int rr) {
-  // The function's job is to sort an interval of array $a$ from $ll$ to $rr-1$. Array $t$ stores ordered sub-sequences temporarily.
+    // The function's job is to sort array a[] within index range $[ll, rr-1]$, with array t[] storing ordered sub-sequences temporarily.
   if (rr - ll <= 1) return;
   int mid = ll + (rr - ll >> 1);
   merge(ll, mid);

@@ -20,7 +20,7 @@ Quicksort contains three steps:
 
 Unlike merge sort, the first step of quicksort is not to directly divide into two sequences, but to ensure the relative size relationship is kept during the division process. Specifically, the first step is to divide the sequence into two parts which ensure that the numbers in the former sub-sequence are all less than the numbers in the latter one. To ensure average time complexity, a number $m$ is generally selected randomly as the boundary between two sub-sequences.
 
-After that, maintain two pointers $p$ and $q$, one after the other, and check whether the current number is placed in the position it should be placed in turn (front or back). What if the current number is not placed correctly? For example, if the following pointer $q$ encounters a number less than $m$, then you can swap the numbers at index $p$ and $q$, and then move $p$ back by one. After the current position is placed correctly, move the pointer to continue processing until the two pointers meet.
+After that, maintain two pointers $p$ and $q$, one at front and one in the end, and check whether current number is placed in the correct position (former or latter sub-sequence) in turn. What if the current number is not placed correctly? For example, if the pointer $q$ encounters a number less than $m$, then you can swap the numbers at index $p$ and $q$, and then move $p$ forward by one. After the current position is placed correctly, move the pointer to continue processing until the two pointers meet.
 
 In fact, quicksort does not specify how to implement the first step in detail, whether it is the process of selecting $m$ or division, there is more than one implementation.
 
@@ -182,7 +182,8 @@ def quick_sort(arr, l, r):
 
 Introsort, or introspective sort, is a hybrid algorithm of quicksort and [heapsort](./heap-sort.md), invented by David Musser in 1997. Introsort is an optimization to quicksort, ensuring the worst-case time complexity of $O(n\log n)$.
 
-Introsort restricts the maximum recursion depth of quicksort to $\lfloor \log_2n \rfloor$, beyond which it will converted to heapsort.
+Introsort restricts the maximum recursion depth of quicksort to $\lfloor \log_2n \rfloor$, beyond which
+will be converted to heapsort. By doing so it not only preserves quicksort's locality of reference in memory, but also prevents its degrading of performance to $O(n^2)$ under certain scenario.
 
 Started from June 2000, introsort becomes the implementation of `sort()` from `stl_algo.h` in SGI C++ STL.
 
@@ -192,7 +193,7 @@ In the following example code block, the definition of  $k$-th largest number is
 
 To find the k-th largest value (or $k$-th [order statistic](https://en.wikipedia.org/wiki/Order_statistic), the two phrase are same.) , the simplest solution is to sort first, and then directly find the element at the k-th index. The time complexity is $O(n\log n)$ , which is not really cost-effective. 
 
-To solve the problem, we can use the idea from quicksort.Consider the dividing process of quicksort. After the "division" of quicksort is over, the array $A_{p} \cdots A_{r}$ is divided into $A_{p} \cdots A_{q}$ and $A_{q+1} \cdots A_{r}$ . According to the relationship between the number of elements on the left ( $q - p + 1$ ) and the size of k, we can determine whether to solve recursively on the left or only on the right.
+To solve the problem, we can use the idea from quicksort. Consider the dividing process of quicksort. After the "division" of quicksort is over, the array $A_{p} \cdots A_{r}$ is divided into $A_{p} \cdots A_{q}$ and $A_{q+1} \cdots A_{r}$ . According to the relationship between the number of elements on the left ( $q - p + 1$ ) and the size of k, we can determine whether to solve recursively only on the left or only on the right.
 
 It can be proved that the expected value of time complexity is $O(n)$ .
 
