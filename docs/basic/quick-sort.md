@@ -105,7 +105,6 @@ Thus, we need to apply optimizations to our straightforward quicksort. Most comm
 - **Insertion sort** might be more efficient than quicksort when the sequence is relatively short.
 - After every sorting, cluster elements which are equal to the pivot around the pivot. By doing so can avoid degeneracy of algorithm by extreme data (e.g., if most of elements in the sequence are equivalent)
 
-
 Below are some relatively established ways to optimize quicksort.
 
 ### 3-way Radix Quicksort
