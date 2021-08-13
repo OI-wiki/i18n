@@ -99,25 +99,24 @@ The best-case and average-case time complexity of quicksort is $O(n\log n)$. The
 
 If we only implement quicksort using basic principles described before (or just copy the straightforward template code), then it is barely possible pass [Luogu P1177 Quicksort Template](https://www.luogu.com.cn/problem/P1177) (Chinese), because some toxic data may make time complexity of straightforward implementation $O(n^2)$.
 
-Thus, we need to apply optimizations to our straightforward quicksort. Most commonly optimization ideas are listed below: [^ref3]
+Thus, we need to apply optimizations to our straightforward quicksort. Most commonly used optimization ideas are listed below: [^ref3]
 
-- Choose pivot of two sub-sequence by picking the medium among first element, last element and middle element. By doing so can avoid degeneracy of algorithm by extreme data (e.g., ascending or descending sequence);
+- Choose pivot of two sub-sequence by picking the medium among first element, last element and middle element. By doing so can avoid degrading algorithm complexity brought by extreme input (e.g., ascending or descending sequence);
 - **Insertion sort** might be more efficient than quicksort when the sequence is relatively short.
 - After every sorting, cluster elements which are equal to the pivot around the pivot. By doing so can avoid degeneracy of algorithm by extreme data (e.g., if most of elements in the sequence are equivalent)
 
-<!---果然还是不知道Degeneracy用对了没-->
 
-Listed below are a few of the more established ways to optimize for quicksort.
+Below are some relatively established ways to optimize quicksort.
 
 ### 3-way Radix Quicksort
 
 3-way radix quicksort is a hybrid algorithm of [radix sort](./radix-sort.md) and quicksort. The idea of algorithm is based on the solution of [Dutch national flag problem](https://en.wikipedia.org/wiki/Dutch_national_flag_problem).
 
-Different from original quicksort, after picking three pivot $m$ randomly, the algorithm divides original sequence into three parts: less than, equal to, and greater than $m$. By doing so this has the effect of clustering elements which are equal to the pivot around the pivot.  
+Being different from original quicksort, after picking three pivot $m$ randomly, the algorithm divides original sequence into three parts: less than, equal to, and greater than $m$. By doing so could cluster elements equal to the pivot to be around it.  
 
 While processing array with duplicated values, 3-way radix quicksort is far more efficient than straightforward quicksort with best-case complexity of $O(n)$ 
 
-The implementation of 3-way radix quicksort is very straightforward. Below is a C++ implementation of 3-way radix quicksort. The performance of the algorithm in the template questions is not inferior to the implementation of the `sort` in standard template library.
+The implementation of 3-way radix quicksort is very straightforward. Below is a C++ implementation of it.
 
 ```cpp
 // C++ Version
@@ -128,7 +127,7 @@ void quick_sort(T arr[], const int len) {
   if (len <= 1) return;
   // Choose the pivot randomly 
   const T pivot = arr[rand() % len];
-  // i: Current operating element;
+  // i: Element being operated on;
   // j: First element equal to the pivot;
   // k: First element greater than the pivot.
   int i = 0, j = 0, k = len;
@@ -189,9 +188,9 @@ Started from June 2000, introsort becomes the implementation of `sort()` from `s
 
 ## Find the k-th largest number in linear time complexity
 
-In the following example code block, the definition of  $k$-th largest number is the number in $k$-th place when the sequence is in ascending order. (Index starts from 0.)
+In the following example code, the definition of $k$-th largest number is the number in $k$-th place when the sequence is in ascending order. (Index starts from 0.)
 
-To find the k-th largest value (or $k$-th [order statistic](https://en.wikipedia.org/wiki/Order_statistic), the two phrase are same.) , the simplest solution is to sort first, and then directly find the element at the k-th index. The time complexity is $O(n\log n)$ , which is not really cost-effective. 
+To find the $k$-th largest value (aka. $k$-th [order statistic](https://en.wikipedia.org/wiki/Order_statistic)) , the simplest solution is to sort first, and then directly find the element at the k-th index. The time complexity is $O(n\log n)$ , which is not really cost-effective. 
 
 To solve the problem, we can use the idea from quicksort. Consider the dividing process of quicksort. After the "division" of quicksort is over, the array $A_{p} \cdots A_{r}$ is divided into $A_{p} \cdots A_{q}$ and $A_{q+1} \cdots A_{r}$ . According to the relationship between the number of elements on the left ( $q - p + 1$ ) and the size of k, we can determine whether to solve recursively only on the left or only on the right.
 

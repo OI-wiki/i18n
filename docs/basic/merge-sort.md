@@ -115,7 +115,7 @@ From Wikipedia:
 -->
 <!---原文过于Ambiguous了-->
 
-The commented statement `ans += mid - p` in previous code implementation is counting the inversion number. Specifically, the algorithm replaces latter elements to former places, i.e, smaller<!---less? 不太对--> elements are placed former. Therefore, any other element former than the original position and greater than the element becomes inversion pairs with this element. The inversion number is the number of elements not yet combined, `mid - p`.
+The commented statement `ans += mid - p` in previous code implementation is counting the inversion number. Specifically, when the algorithm places latter elements to former places, (since smaller elements are placed former), any other element former than the original position and greater than the element forms inversion pairs with this element. The inversion number is the number of elements not yet combined, `mid - p`.
 
 Besides, the inversion problem can be solved with data structure like [Fenwick tree](../ds/fenwick.md) and [segment tree](../ds/seg.md). The time complexity of all three approaches is $O(n \log n)$. 
 
