@@ -4,7 +4,7 @@ This article will briefly introduce prefix sum, and its opposite strategy, adjac
 
 ## Prefix Sum
 
-Prefix sum is an important kind of preprocessing, which can significantly reduce the time complexity of querying. It can be simply understood as "the sum of the first $n$ elements of an array". <!-- [^note1] -->
+Prefix sum is an important kind of preprocessing, which can significantly reduce the time complexity of querying. It can be simply understood as "the sum of the first $n$ elements of an array".
 
 C++ standard library has implemented the function of constructing prefix sum array [`std::partial_sum`](https://en.cppreference.com/w/cpp/algorithm/partial_sum), defined in the header `<numeric>`.
 
@@ -73,8 +73,7 @@ Naive approach for finding multi-dimensional prefix sum are mostly based on the 
     6 3 5 9
     ```
     
-    We define a matrix $sum$, where $sum_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
-    Then the matrix looks like this:
+    We define a matrix $\textit{sum}$, where $\textit{sum}_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
     
     ```text
     1  3  7  10
@@ -82,18 +81,18 @@ Naive approach for finding multi-dimensional prefix sum are mostly based on the 
     12 18 29 45
     ```
     
-    The first problem is the process of finding $sum$ by iteration: $sum_{i,j} = sum_{i - 1,j} + sum_{i,j - 1} - sum_{i - 1,j - 1} + a_{i,j}$.
+    The first problem is the process of finding $sum$ by iteration: $\textit{sum}_{i,j} = \textit{sum}_{i - 1,j} + \textit{sum}_{i,j - 1} - \textit{sum}_{i - 1,j - 1} + a_{i,j}$.
     
-    Because of the addition of $sum_{i - 1,j}$ and $sum_{i,j - 1}$ is duplicated with $sum_{i - 1,j - 1}$, here subtracted it.
+    Because of the addition of $\textit{sum}_{i - 1,j}$ and $\textit{sum}_{i,j - 1}$ is duplicated with $\textit{sum}_{i - 1,j - 1}$, here subtracted it.
     
     The second problem is how to apply, e.g., calculate the sum of sub-matrixes $(x1,y1) - (x2,y2)$.
     
-    Then we can easily conclude that $sum_{x2,y2} - sum_{x1 - 1,y2} - sum_{x2,y1 - 1} + sum_{x1 - 1,y1 - 1}$ based on similar idea.
+    Then we can easily conclude that $\textit{sum}_{x2,y2} - \textit{sum}_{x1 - 1,y2} - \textit{sum}_{x2,y1 - 1} + \textit{sum}_{x1 - 1,y1 - 1}$ based on similar idea.
 
 #### Example
 
 ???+note "[Luogu P1387](https://www.luogu.com.cn/problem/P1387)"
-    Given a $n*m$ matrix with only $0$ and $1$. Your task is to find the largest square without $0$ in the matrix and print the length of its edge.
+    Given a $n\times m$ matrix with only $0$ and $1$. Your task is to find the largest square without $0$ in the matrix and print the length of its edge.
 
 ??? note "Example Solution Code"
     ```cpp
@@ -135,13 +134,13 @@ Naive approach for finding multi-dimensional prefix sum are mostly based on the 
 
 ### High-Dimensional Sum over Subsets Dynamic Programming
 
-The method of calculating multi-dimensional prefix sum based on inclusion-exclusion principle has an advantage of simple form and no need to memorize specifically. But as the dimension increases, the algorithm would have high complexity. This chapter will introduce a method of calculating high-dimensional prefix sum based on [dynamic programming](../dp/basic.md). <!--- This method is what is commonly referred to in the context as **high-dimensional prefix sum**.
+The method of calculating multi-dimensional prefix sum based on inclusion-exclusion principle has an advantage of simple form and no need to memorize specifically. But as the dimension increases, the algorithm would have high complexity. This section will introduce a method of calculating high-dimensional prefix sum based on [dynamic programming](../dp/basic.md).
 
 Let $U$ to be a high-dimensional space with $D$ dimensions. We need to find the high-dimensional prefix sum $\text{sum}[\cdot]$ of $f[\cdot]$. Let $\text{sum}[i][\text{state}]$ represent all contribution to high-dimensional prefix sum of $\text{state}$ from all same node of $D-i$-th dimension after $\text{state}$. From the definition we know that $\text{sum}[0][\text{state}] = f[\text{state}]$ and $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$. <!---看不懂qaq-->
 
 The iteration is $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$, where $\text{state}'$ is all node that $1$ smaller than $\text{state}$ in $i$-th dimension, where $|U|$ is the size of high-dimensional space $U$.
 
-Here is an example of implementation in pseudo code:
+Here is an example of implementation in pseudocode:
 ```
     for state
       sum[state] = f[state];
@@ -234,13 +233,12 @@ Because of the difficulty of calculating difference on edges, for handy operatio
 ???+note "[USACO 2015 December Contest, Platinum Problem 1. Max Flow](http://www.usaco.org/index.php?page=viewproblem2&cpid=576)"
     Farmer John has installed a new system of $N-1$ pipes to transport milk between the N stalls in his barn $N(2 \le N \le 50,000)$, conveniently numbered $1, \cdots, N$. Each pipe connects a pair of stalls, and all stalls are connected to each-other via paths of pipes.
 
-    FJ is pumping milk between K
-    pairs of stalls $K(1 \le K \le 100,000)$. For the ith such pair, you are told two stalls si and ti, endpoints of a path along which milk is being pumped at a unit rate. FJ is concerned that some stalls might end up overwhelmed with all the milk being pumped through them, since a stall can serve as a waypoint along many of the K paths along which milk is being pumped. Please help him determine the maximum amount of milk being pumped through any stall. If milk is being pumped along a path from si to ti, then it counts as being pumped through the endpoint stalls si and ti, as well as through every stall along the path between them. 
+    FJ is pumping milk between $K$ pairs of stalls $K(1 \le K \le 100,000)$. For the ith such pair, you are told two stalls $s_i$ and $t_i$, endpoints of a path along which milk is being pumped at a unit rate. FJ is concerned that some stalls might end up overwhelmed with all the milk being pumped through them, since a stall can serve as a waypoint along many of the $K$ paths along which milk is being pumped. Please help him determine the maximum amount of milk being pumped through any stall. If milk is being pumped along a path from $s_i$ to $t_i$, then it counts as being pumped through the endpoint stalls $s_i$ and $t_i$, as well as through every stall along the path between them. 
 
-??? note "解题思路"
+??? note "Analysis of Problem"
     Because it is needed to count how many times has been every node accessed, by using the method of adjacent difference on tree to add $1$ on every node on every path, we can quickly get the number of accessing of nodes. Here uses binary lifting to calculate LCA. In the end by using DFS to traverse the whole tree, we can find the answer by calculate the sum of adjacent difference array when backtracking.
 
-??? note "参考代码"
+??? note "Example Solution Code"
     ```cpp
     #include <bits/stdc++.h>
     
@@ -281,7 +279,7 @@ Because of the difficulty of calculating difference on edges, for handy operatio
       return fa[x][0];
     }
     
-    //用dfs求最大压力，回溯时将子树的权值加上
+    // Calculate the maximum amount of milk being pumped, and add the weight of sub-tree when backtracking.
     void get_ans(int u, int father) {
       for (int i = head[u]; i; i = edge[i].next) {
         int to = edge[i].to;
@@ -308,7 +306,7 @@ Because of the difficulty of calculating difference on edges, for handy operatio
       for (int i = 1; i <= k; i++) {
         scanf("%d %d", &s, &t);
         int ancestor = lca(s, t);
-        // 树上差分
+        // Adjacent difference on tree
         power[s]++;
         power[t]++;
         power[ancestor]--;
@@ -364,9 +362,3 @@ Adjacent Difference on Tree：
 - (Chinese) [NOIP2016 Running Everyday](http://uoj.ac/problem/261)
 
 * * *
-
-<!---
-## 参考资料与注释
-
-[^note1]: 南海区青少年信息学奥林匹克内部训练教材
--->
