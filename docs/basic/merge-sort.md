@@ -1,4 +1,4 @@
-Last translate with upstream: [ade5838](https://github.com/OI-wiki/OI-wiki/commit/ade5838af091655fbe3cbfc5558be6e7bb082e2a#diff-b97e8b19e438130ccaa688da85fce4bd7871d08b5e25c0d44b1a25947ec45ecb) ([PR #3321](https://github.com/OI-wiki/OI-wiki/pull/3321)) on July 14, 2021.
+Last translate with upstream: [de9838c](https://github.com/OI-wiki/OI-wiki/commit/de9838c4ea0d82161c370b86a154648e174e8910#diff-b97e8b19e438130ccaa688da85fce4bd7871d08b5e25c0d44b1a25947ec45ecb) on August 11, 2021.
 
 This article will briefly introduce the merge sort algorithm.
 
@@ -14,7 +14,7 @@ Merge sort has three steps:
 2. Recursively merge sort the two sub-sequence;
 3. Combine two sorted sub-sequence into one.
 
-It is not hard to tell that first two steps of merge sort can be easily implemented. However, the problem is how to combine two sub-sequence. We can notice that both sub-sequences are in order in step two. The third step is actually to combine two **ordered** sequence. (For implementation of which, please refer to example code below.) 
+It is not hard to tell that the first two steps of merge sort can be easily implemented. However, the problem is how to combine the two sub-sequences. We can notice that both sub-sequences are in order after the second step. The third step is to actually combine two **ordered** sequences.
 
 ## Properties
 
@@ -75,7 +75,7 @@ void merge(int ll, int rr) {
   }
   for (int i = ll; i < rr; ++i) a[i] = t[i];
 }
-// The key point of this code block is that only create array once to avoid useless construction and destruction of object in every recursive call.
+// The key point of this code block is that only create array once to avoid time cost of allocating memory in every recursive call.
 ```
 
 ### Python
@@ -107,17 +107,11 @@ def merge_sort(ll, rr):
 
 Merge sort can be used to find the [inversion number](https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics)#Inversion_number).
 
-A inversion pair $(i,j)$ is a number pair that satisfied $a_{i} > a_{j}$ and $i < j$.
-
-<!---
-From Wikipedia:
-> Let $\pi$ be a permutation. If $ i < j $ and $\pi(i)>\pi(j)$, either the pair of places $(i,j)$ or the pair of elements $\bigl (\pi (i),\pi (j)\bigr )$ is called an inversion of $\pi$. 
--->
-<!---原文过于Ambiguous了-->
+An inversion pair $(i,j)$ is, for an array $a$, a number pair that satisfied $a_{i} > a_{j}$ and $i < j$.
 
 The commented statement `ans += mid - p` in previous code implementation is counting the inversion pairs. Specifically, when the algorithm places latter elements to former places, (since smaller elements are placed former), any other element former than the original position and greater than the element forms inversion pairs with this element. The inversion number is the number of elements not yet combined, `mid - p`.
 
-Besides, the inversion problem can be solved with data structure like [Fenwick tree](../ds/fenwick.md) and [segment tree](../ds/seg.md). The time complexity of all three approaches is $O(n \log n)$. 
+Finding number of inverse pairs can also be solved with data structure like [Fenwick tree](../ds/fenwick.md) and [segment tree](../ds/seg.md). The time complexity of all three approaches is $O(n \log n)$. 
 
 ## External Links and footnotes
 
