@@ -6,7 +6,7 @@ Time complexity and space complexity are important criteria to measure the effic
 
 ## Count of Elementary Operations
 
-An algorithm has different performances on different computers. It is hard to calculate actual performance theoretically and is troublesome to measure it. Thus, we more usually consider the count of elementary operations required by the algorithm rather than the actual time used.
+An algorithm has different performances on different computers. It is hard to calculate the actual performance theoretically and is troublesome to measure it. Thus, it's more often for us to consider the count of elementary operations required by an algorithm rather than the actual time used.
 
 For a typical computer, basic arithmetic, accessing or assignments to variables (of standard data types, the same below), can all be treated as elementary operations.
 
@@ -44,7 +44,7 @@ For example, $3n^2+5n-3=\Theta(n^2)$, $n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\
 
 Θ-Notation both shows the upper and lower bound of a function. However, if we only know its asymptotical upper bound but not lower, we can use $O$ notation. We say $f(n)=O(g(n))$ if and only if $\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$.
 
-It is more common to use big O notation while researching time complexity, as we are usually concerned with the upper bound of the program's time cost rather than the lower bound.
+It is more common to use big O notation while considering time complexity, as we are usually concerned with the upper bound of the program's time cost rather than the lower bound.
 
 Note that the "upper" and "lower" bounds here are for the trend of the function, not for the algorithm, whose upper case refers to worst-case time complexity but not big O notation. Therefore, using Θ-notation is completely viable to represent worst-case time complexity, and it can even be said that Θ-notation is more accurate than big O notation. As for the main reason for using O notation more often, one is we sometimes can prove the upper bound, but not lower bound (this is usually the case for more complicated algorithm and analyzing its complexity), and the other reason is the character O is easier to input in a computer. 
 
@@ -104,7 +104,7 @@ While performing [depth-first search (article not translated)](../graph/dfs.md) 
 
 ## Identifying Constants
 
-When we are going to perform several operations, how to determine whether these "several operations" will impact time complexity? e.g.:
+When we are going to perform several operations, how to determine whether these several operations will impact time complexity? e.g.:
 
 ```cpp
 // C++ Version
