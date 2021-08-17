@@ -4,7 +4,7 @@ This article will briefly introduce implementation method.
 
 ## Introduction
 
-Implementation, or so called simulation in China, as the name implies, is the method that computers use to simulate the operations required in the problem.
+Implementation, also known as Simulation, as the name implies, is the method that use computers to simulate the operations required in the problem.
 
 Implementation problems usually have large code size, many operations, and complicated logics. And because of its large amount of code, the debugging process is really difficult. Therefore, it would be quite time-consuming if you made mistakes during contests.
 
@@ -23,7 +23,7 @@ In fact, the above steps are also very helpful in solving other types of problem
 ## Example
 
 ???+note " [Climbing Worm - HDU](http://acm.hdu.edu.cn/showproblem.php?pid=1049"
-    An inch worm is at the bottom of a well n inches deep. It has enough energy to climb u inches every minute, but then has to rest a minute before climbing again. During the rest, it slips down d inches. The process of climbing and resting then repeats. How long before the worm climbs out of the well? We'll always count a portion of a minute as a whole minute and if the worm just reaches the top of the well at the end of its climbing, we'll assume the worm makes it out.
+    An inch worm is at the bottom of a well $n$ inches deep. It has enough energy to climb $u$ inches every minute, but then has to rest a minute before climbing again. During the rest, it slips down $d$ inches. The process of climbing and resting then repeats. How long before the worm climbs out of the well? We'll always count a portion of a minute as a whole minute and if the worm just reaches the top of the well at the end of its climbing, we'll assume the worm makes it out.
 
 ??? note "Solution"
     Directly implementing the process of worm's climbing will do the trick. Use a loop statement to repeat the process of climbing, and jump out when the climbed length greater than or equal to the depth of well. Note that both ascending and descending have time cost.
@@ -50,6 +50,6 @@ In fact, the above steps are also very helpful in solving other types of problem
     
 ## Exercises
 
-- (Chinese) [NOIP2014 Rock, Paper, Scissors, Lizard, Spock](https://uoj.ac/problem/15)
-- (Chinese) [3750 World of Warcraft - OpenJudge](http://bailian.openjudge.cn/practice/3750/)
-- (Chinese) [SDOI2010: Pig Kingdoms slaughter](https://loj.ac/p/2885)
+- [NOIP2014 Rock, Paper, Scissors, Lizard, Spock](https://uoj.ac/problem/15) (Chinese)
+- [3750 World of Warcraft - OpenJudge](http://bailian.openjudge.cn/practice/3750/) (Chinese) 
+- [SDOI2010: Pig Kingdoms slaughter](https://loj.ac/p/2885) (Chinese) 
