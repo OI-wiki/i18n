@@ -6,11 +6,11 @@ This article will briefly introduce the tournament sort.
 
 Tournament sort<!---, or tree selection sort,--> is a optimization for naive [selection sort](./selection-sort.md), and a variation of [heapsort](./heap-sort.md) (with complete ). It performs based by selection sort by using a priority queue to find next element to select.
 
-The algorithm is named after a single-elimination tournament, where there are many players (or teams) that play in two-sided matches. Each much compares the players and the winning one is promoted to next round. The tournament determines the best player, but the player who was beaten in the final match may not be the second best – he may be inferior to other players the winner bested.[^ref1] <!---原文于此处部分引用了Wikipedia对其构词学的描述, 故加上ref --> 
+The algorithm is named after a single-elimination tournament, where there are many players (or teams) that play in two-sided matches. Each match compares the players and the winner is promoted to next round. The tournament determines the best player, but the player who was beaten in the final match may not be the second best – he may be inferior to other players the winner beated.[^ref1]
 
 ## Principles
 
-Here is an illustration of **minimum tournament tree** for example:
+Here is an example of **minimum tournament tree**:
 
 ![tournament-sort1](./images/tournament-sort1.png)
 
@@ -20,7 +20,7 @@ After each round of comparison among $n$ elements, we will have $\frac{n}{2}$ "w
 
 ![tournament-sort2](./images/tournament-sort2.png)
 
-After one "tournament" we need to eliminate the winner element by setting it to $\infty$ (which is similar to [heapsort](./heap-sort.md))and hold the "tournament" again to select secondly small element.
+After one "tournament" we need to eliminate the winner element by setting it to $\infty$ (which is similar to [heapsort](./heap-sort.md) and hold the "tournament" again to select secondly small element.
 
 The repeat these operations until all elements are ordered.
 

@@ -24,7 +24,7 @@ Shellsort is an unstable sorting algorithm.
 
 The best-case time complexity of shellsort is $O(n)$
 
-The average-case and worst-case complexity of shellsort is related to the selection of the spacing sequence (that is, how the spacing is reduced to 1). For example, the complexity of the shellsort of "spacing divided by 3 each time" is $O(n^{3/2})$. The best worst-case time complexity of shellsort is $O(n \log^2n)$.
+The average-case and worst-case complexity of shellsort is related to the selection of the spacing sequence (that is, how the spacing is reduced to 1). For example, the complexity of the shellsort of "spacing divided by 3 each time" is $O(n^{3/2})$. The known best worst-case time complexity of shellsort is $O(n \log^2n)$.
 
 ### Space Complexity
 

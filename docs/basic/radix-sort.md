@@ -8,7 +8,7 @@ Radix sort is a non-comparative sorting algorithm. It came into common use as a 
 
 The working principles is that the algorithm splits the elements to be sorted into $k$ keywords (when comparing two elements, first compare the first keyword, if they are the same, then compare the second keyword...), and then stably sort the $k$ th keywords, the $k-1$-th keywords, and then sort the $k-2$-th keywords... Finally, sort the first keywords stably, and the stable sorting of the entire sequence is completed.
 
-![An illustrated process of radix sort](images/radix-sort-1.png "An illustrated process of radix sort")
+![An illustrated process of radix sort](images/radix-sort-1.png)
 
 Radix sort needs to use **a stable algorithm** in order to sort inner keywords.
 
@@ -72,7 +72,7 @@ void counting_sort(int p) {
   // To ensure the stability of sorting algorithm, the looping of $i$ here 
   // should begin from $n$ to $1$.
   // I.e., if the keyword of two elements is the same, the element came before
-  // the other originally should come before the other after sorting.
+  // the other originally should still come before the other after sorting.
   for (int i = 1; i <= n; ++i) b[cnt[a[i].key[p]]--] = a[i];
   memcpy(a, b, sizeof(a));
 }

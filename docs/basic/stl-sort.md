@@ -25,7 +25,7 @@ std::sort(a, a + n);
 std::sort(a, a + n, cmp);  
 ```
 
-`std::sort` is a more commonly used sorting function defined in standard library. The third parameter requires a binary comparison function. If `cmp` is not specified the array will be sorted from smallest to largest by default (or, `std::less<>`). 
+`std::sort` is a sorting function in standard library that is more commonly used. The third parameter requires a binary comparison function. If `cmp` is not specified the array will be sorted from smallest to largest by default (or, `std::less<>`). 
 
 The old version of the C++ standard only requires its **average** time complexity to reach $O(n\log n)$ , but since the C++11 standard requires its **worst** time complexity to reach $O( n\log n)$ 
 
@@ -48,7 +48,7 @@ The implementation is the unfinished introsort.
 
 For the two usages, the C++ standard requires their average-case time complexity to be $O(n)$, where `n = std::distance(first, last)`.
 
-Often used to build [K-D Tree](https://en.wikipedia.org/wiki/K-d_tree). <!---暂时保留-->
+Often used to build [K-D Tree](https://en.wikipedia.org/wiki/K-d_tree).
 
 ## std::stable_sort
 
@@ -119,8 +119,6 @@ std::sort(da + 1, da + 1 + 10, cmp);  // use cmp function to compare, sort in de
 ### Strictly weak order
 
 Reference: [Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings)
-
-
 The sorting operator must satisfy the strict weak ordering, otherwise there will be unpredictable situations (such as runtime error, can not be sorted correctly, etc).
 
 The requirements of the strict weak order:

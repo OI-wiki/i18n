@@ -13,7 +13,7 @@ Using sort, we can reduce the time complexity required to solve the problem.
 
     We might as well sort this sequence of numbers first, and then it is not difficult to find that if there are two equal numbers, they must be in adjacent positions in the new sequence. At this point, you only need to scan the new sequence for the time complexity of $O(n)$ .
     
-    The total time complexity is the sorting time complexity( $O(n\log n)$ ).
+    The total time complexity is the sorting time complexity ( $O(n\log n)$ ).
 
 ## Preprocessing work for searching
 
