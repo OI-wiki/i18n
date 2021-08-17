@@ -6,7 +6,7 @@ This article will briefly introduce the merge sort algorithm.
 
 Merge sort is a sorting algorithm with [divide and conquer](./divide-and-conquer.md) paradigm.
 
-## Working Principles
+## Principles
 
 Merge sort has three steps:
 

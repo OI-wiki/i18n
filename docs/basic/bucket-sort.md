@@ -6,7 +6,7 @@ This article will briefly introduce bucket sort
 
 Bucket sort is a sorting algorithm. It is suitable for cases where the range of data to be sorted is large but the distribution is relatively uniform.
 
-## Working Principles
+## Principles
 
 Bucket sort performs in the following steps:[^ref1]
 

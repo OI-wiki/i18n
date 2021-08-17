@@ -6,7 +6,7 @@ This article will briefly introduce heapsort.
 
 Heapsort is a sorting algorithm designed based on the data structure [binary heap](../ds/binary-heap.md) suitable for applying on arrays.
 
-## Working Principles
+## Principles
 
 It is a selection sort built on a heap essentially.
 

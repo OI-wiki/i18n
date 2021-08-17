@@ -8,7 +8,7 @@ Tournament sort<!---, or tree selection sort,--> is a optimization for naive [se
 
 The algorithm is named after a single-elimination tournament, where there are many players (or teams) that play in two-sided matches. Each much compares the players and the winning one is promoted to next round. The tournament determines the best player, but the player who was beaten in the final match may not be the second best – he may be inferior to other players the winner bested.[^ref1] <!---原文于此处部分引用了Wikipedia对其构词学的描述, 故加上ref --> 
 
-## Working Theory
+## Principles
 
 Here is an illustration of **minimum tournament tree** for example:
 

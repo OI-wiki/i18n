@@ -6,7 +6,7 @@ This article will briefly introduce counting sort.
 
 Counting sort is an algorithm with linear time complexity.
 
-## Working Principles
+## Principles
 
 Counting sort works with an extra array $S$, in which the $i$-th element is the number of elements from original unsorted array whose value is equal to $i$. Then sort the elements in array $A$ to the correct order based on their positions in $C$.
 
