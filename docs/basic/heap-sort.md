@@ -4,7 +4,7 @@ This article will briefly introduce heapsort.
 
 ## Introduction
 
-Heapsort is a sorting algorithm designed based on the data structure [binary heap](../ds/binary-heap.md) suitable for applying on arrays.
+Heapsort is a sorting algorithm suitable for applying on arrays designed based on [binary heap](../ds/binary-heap.md).
 
 ## Working Principles
 
@@ -53,7 +53,7 @@ void sift_down(int arr[], int start, int end) {
   // Calculate pointer of parent and child nodes.
   int parent = start;
   int child = parent * 2 + 1;
-  while (child <= end) {  // Only compare when child node is in given interval of subscript.
+  while (child <= end) {  // Only compare when child node is within given interval of subscript.
     // Firstly compare two child nodes and choose the greater.
     if (child + 1 <= end && arr[child] < arr[child + 1])  
       child++;
