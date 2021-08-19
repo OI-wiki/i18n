@@ -1,24 +1,37 @@
 author: ouuan, Doveqise, partychicken, Xeonacid, StudyingFather
 
-## 介绍
+<!---Waiting for upstream PR-->
+<!---WIP-->
 
-Eclipse 是著名的跨平台开源集成开发环境（IDE）。最初主要用来 Java 语言开发，当前亦有人通过插件使其作为 C++、Python、PHP 等其他语言的开发工具。
+This article will briefly introduce Eclipse.
 
-Eclipse 的本身只是一个框架平台，但是众多插件的支持，使得 Eclipse 拥有较佳的灵活性，所以许多软件开发商以 Eclipse 为框架开发自己的 IDE。
+## Introduction
 
-Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java 的下一代 IDE 开发环境，2001 年 11 月贡献给开源社区，现在它由非营利软件供应商联盟 Eclipse 基金会（Eclipse Foundation）管理。[^ref1]
+Eclipse is a famous cross-platform open-source integrated development environment. Eclipse is initially used to develop in Java, and currently it is also used to develop in other programming language like C++, Python and PHP through plug-in. <!---注：Wikipedia对插件的表述为Plug-in-->
+
+Eclipse itself is a framework platform. However, support from various plug-ins provides Eclipse good scalability. Therefore, many software developers choose Eclipse as their framework to develop their own IDE.
+
+In the beginning, Eclipse is the next generation IDE developed by IBM as an alternative for business software Visual Age for Java. In November 2001, it was donated to open-source community, and now it is managed by Eclipse, a non-profit organization of software developers.
+
+Advantages:
+
+Drawbacks: 
 
 缺点：实测这个 IDE 打开速度比 Visual Studio 慢，而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好。
 
 优点：使用体验较好，而且许多知名公司都在使用，能够快速上手，所以比较推荐 OIer 用这个 IDE。
 
-## 安装 & 配置指南
+## Installation and Configuration Guide
 
-### 前置
+For major linux distributes, eclipse is already in their package repositories. This instruction is based on Microsoft Windows. 
 
-您需要安装 Java 和 MinGW。
+### Perquisites
 
-#### 下载并安装 Java
+You will need Java Runtime and MinGW.
+
+#### Download & Install Java Runtime
+
+As for August 18th, 2021, the latest Eclipse has integrated a Java runtime environment. You can also download an independent JRE from if needed.
 
 ![](./images/eclipse1-1.png)
 
@@ -26,41 +39,43 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse1-3.png)
 
-#### 下载并安装 MinGW
+#### Download & Install MinGW/TDM-GCC
 
-开始安装。
+TDM-GCC is a compiler suite for Microsoft Windows, providing latest stable GCC compiler and patched MinGW/MinGW-w64 runtime API.
+
+The installer of TDM-GCC can be obtained from GitHub Release or SourceForge. Here we uses 
+
+Start installation.
 
 ![](./images/eclipse1-4.png)
 
-选择版本。
+Select the version of installation. 
 
 ![](./images/eclipse1-5.png)
 
-选择安装目录。
+Select installation directory. The default is `C:\TDM-GCC-64`
 
 ![](./images/eclipse1-6.png)
 
-选择镜像下载加速源，此处可以直接用 SourceForge Default。
+Select components to install. Here we proceed with default settings.
 
-![](./images/eclipse1-7.png)
+![](./images/eclipse1-9.png)
 
-完成安装。
+Finish Installation.
 
 ![](./images/eclipse1-8.png)
 
-### 安装主体
+### Install Eclipse
 
-#### 下载 Eclipse
-
-进入 Eclipse 官网，
+Heading to the homepage of Eclipse 
 
 ![](./images/eclipse2.png)
 
-点击右面相对应系统的下载链接以下载 C++ 版本，
+Download the C++ version installer of your operating system.
 
 ![](./images/eclipse3.png)
 
-安装，然后如图填写目录信息以建造项目。
+You will get a compressed file. Extract it and initiate a new project by entering directory information.
 
 ![](./images/eclipse4.png)
 
@@ -70,11 +85,11 @@ Eclipse 最初是由 IBM 公司开发的替代商业软件 Visual Age for Java �
 
 ![](./images/eclipse7.png)
 
-## 拓展
+## Advanced Readings
 
-这个软件的帮助手册很详细，建议刚接触的同学多看帮助手册，多百度，并且这个 IDE 的使用手感与 Visual Studio 相近。
+The manual of Eclipse is detailed, therefore we recommend newly users to visit manual or google when encountering problems. And Eclipse's feel of use is similar to Visual Studio.
 
-和 [VS Code](./vscode.md) 类似，Eclipse 中也提供了很多插件，这些插件可以让 Eclipse 变得更加易用。[^ref2]
+Similar to [Visual Studio Code](./vscode.md), Eclipse provides many plug-ins, which may help Eclipse be even easy to use.
 
 ## 参考资料与注释
 
