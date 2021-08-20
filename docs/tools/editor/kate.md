@@ -127,47 +127,60 @@ In which, each item in `server` represents a language. For this language, the ar
 
 The configuration is located in `Setting`→`Configure Kate`→`LSP Client`→`User Server Settings`, where `LSP Client` is available after enabling it in `Plugins`.
 
-### 内置终端
+### Embedded Terminal
+
+???+note "For Windows Users"
+    The embedded terminal depends on Konsole of KDE, which is exclusive in *nix. In result, the feature is unavailable in Windows.
 
 Pressing <kbd>F4</kbd> or clicking `Terminal Panel` located in the left bottom corner can open or close the embedded terminal. The working directory will automatically be the same of the current editing file, and will follow the change of the file selected. The rest are not much different from general terminals.
 
 ### External Tools
 
-点击 `工具`→`外部工具` 可执行。
+To execute an external tool, click `Tools`→`External Tools` in menu bar and pick the tool you want.
 
-点击 `工具`→`外部工具`→`配置` 可以配置外部工具。
+To configure external tools, click `Tools`→`External Tools`→`Configure` in menu bar.
 
-#### 添加外部工具
+#### Add External Tools
 
-##### 从预置配置中添加
+##### Add Tools from Defaults
 
-进入配置页面后，点击左下角 `添加`→`从默认工具添加`，然后点击对应工具即可。
+After entering settings, click `Add`→`Add Tool from Defaults`, and select the specific tool to add.
 
-##### 手写配置添加
+##### Add Tools manually
 
-进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可。注意可点击如下标志查看可使用的变量。
+After entering settings, click `Add`→`Add Tool`, and fill the blanks. One can refer to [this documentation](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) when writing his/her own configurations. Note that one can click the icon to see available variables.
 
 ![](images/kate-3-var.png)
 
-#### 常用的外部工具
+#### Frequently Used External Tools
 
-##### 编译并执行单个 C++ 文件
+##### Compile and Run CPP
 
-打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可。
+For \*nix operating system, open any C++ source file, find and click `Compile and Run cpp` in external tools.
+
+???+note "For Windows Users"
+    By default, because of the executable is `sh`, it is unable to use this tool in Windows. However, user can modify the tool manually to make it available to Windows. 
+
+    To apply modification, make sure your operating system has a C++ compiler (TDM-GCC may be a good choice). Then add `Compile and Run cpp` from default, replacing `sh` in executable with `powershell`, arguments with `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"`. [^note1][^note2]
 
 ##### Git Blame
 
-打开任意文件，在外部工具里找到 `git blame`，点击之后，会打开一个窗口，展示 git blame 的结果。
+Open any file, find `git blame` in external tools. After clicking, a window will show up to represent the result of `git gui blame (file)`
 
-##### 格式化
+##### Formatting
 
-打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可。
+The formatting features requires availability of specific package or executable, e.g., C/C++ requires the availability of `clang-format`. For other language, user can refer to the executables in default configuration of external tools.
 
-此处注意，`clang-format` 可格式化选中的文本。
+Open any source file, find and click `xxx Format Full File/Selected Text`. Note that for source files in C/C++, `clang-format` is able to format selected text.
 
 ## See Also
 
-- [Kate Homepage](https://kate-editor.org)
-- [Kate Features](https://kate-editor.org/about-kate)
 - [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
-- [Configuration of User](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+- [About How to Write Your Own Configuration of LSP Clients](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+- [About How to Write Your Own Configuration of External Tools](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
+
+## References and Footnotes
+
+[^note1]: If `g++` is not in the `PATH` environment variables, replace it with its absolute path.
+
+[^note2]: Or, if using Clang instead, replace `g++` with `clang++`.
