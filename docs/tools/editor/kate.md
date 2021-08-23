@@ -1,6 +1,6 @@
 author: CoelacanthusHex, CamberLoid (as translator)
 
-<!--- WIP: Wait for PR OI-Wiki/OI-Wiki#3474 -->
+Last Translate: [622a787](https://github.com/OI-wiki/OI-wiki/commit/622a78786265bed1c5c09882072aca9003490534) on August 22, 2021.
 
 ## Introduction
 
@@ -79,9 +79,9 @@ Kate supports LSP Client since version 19.12. In the beginning, it only supports
 |      R     |           [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
 |     zig    |                         [zls](https://github.com/zigtools/zls)                         |
 
-When open a file in a specific language, Kate will automatically call the appropriate LSP server.
+To enable LSP and related features, the user need to visit `Settings` → `Configure Kate` in menu bar, the go to `Plugins` and toggle on `LSP Clients`. When open a file in a specific language, Kate will automatically call the appropriate LSP server.
 
-#### 增加配置
+#### Manually Add Configuration
 
 Furthermore, users can also write their LSP configuration file manually. Here is an example:
 
@@ -130,7 +130,7 @@ The configuration is located in `Setting`→`Configure Kate`→`LSP Client`→`U
 ### Embedded Terminal
 
 ???+note "For Windows Users"
-    The embedded terminal depends on Konsole of KDE, which is exclusive in *nix. In result, the feature is unavailable in Windows.
+    The embedded terminal depends on Konsole of KDE, which is an exclusive package in *nix. In result, the feature is unavailable in Windows.
 
 Pressing <kbd>F4</kbd> or clicking `Terminal Panel` located in the left bottom corner can open or close the embedded terminal. The working directory will automatically be the same of the current editing file, and will follow the change of the file selected. The rest are not much different from general terminals.
 
@@ -161,7 +161,7 @@ For \*nix operating system, open any C++ source file, find and click `Compile an
 ???+note "For Windows Users"
     By default, because of the executable is `sh`, it is unable to use this tool in Windows. However, user can modify the tool manually to make it available to Windows. 
 
-    To apply modification, make sure your operating system has a C++ compiler (TDM-GCC may be a good choice). Then add `Compile and Run cpp` from default, replacing `sh` in executable with `powershell`, arguments with `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"`. [^note1][^note2]
+    To apply modification, make sure your operating system has a C++ compiler. Then add `Compile and Run cpp` from default, replacing `sh` in executable with `powershell`, arguments with `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"`. [^note1][^note2]
 
 ##### Git Blame
 
