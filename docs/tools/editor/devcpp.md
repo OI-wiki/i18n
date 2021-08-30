@@ -6,13 +6,13 @@ Dev-C++ is a free full-featured integrated development environment (IDE) distrib
 
 The advantage of Dev-C++ is friendly user interface, simple installation and support single file compilation. Therefore, it becomes the first choice of many beginner C++ learners and beginner competitors of competitive programming. For NOIP, in provinces which offer Windows as a standard operation system, it generally comes with pre-installed Dev-C++.
 
-The origin of Dev-C++ is Bloodshed Dev-C++ written by Colin Laplace. From February 22, 2005, the project was stopped updating. In 2006 lead developer Colin Laplace stated for the situation that he was busy with real-life issues and did not have time to continue development of Dev-C++.
+The origin of Dev-C++ is Bloodshed Dev-C++ written by Colin Laplace. Since February 22, 2005, the project was stopped updating. In 2006, lead developer Colin Laplace stated the situation that he was busy with real-life issues and did not have time to continue development of Dev-C++.
 
-Orwell Dev-C++ is a variant of Bloodshed Dev-C++, developed and maintained by individual programmer Orwell (Johan Mes). The variant contains bug fixes and updates for compiler. Generally speaking, all Dev-C++ 5.x are Orwell Dev-C++. The variant was last updated in 2015 with version number 5.11.
+Orwell Dev-C++ is a variant of Bloodshed Dev-C++, developed and maintained by individual programmer Orwell (Johan Mes). The variant contains bug fixes and compiler updates. Generally speaking, all Dev-C++ 5.x are Orwell Dev-C++. This variant was last updated in 2015 with version 5.11.
 
 Embarcadero Dev-C++[^ref1] is a successor of Bloodshed Dev-C++ and Orwell Dev-C++. In 2020, Embarcadero sponsored and continued the development of original Bloodshed Dev-C++. It contains support for high DPI, updates of compiler, support for updated version of C++ standard and dark mode.
 
-The Dev-C++ distributions listed above are considered "official releases". Besides, after the stale development Orwell Dev-C++ in 2015, out of the need of teaching, an individual Chinese developer [royqh1979](https://github.com/royqh1979) decided to develop his personal fork of Dev-C++ named "Red Panda Dev-C++", integrating intelligent hint and updated version of MINGW64, which is convenient for personal use and studying. The project is hosted on [GitHub](https://github.com/royqh1979/Dev-Cpp).
+The Dev-C++ distributions listed above are considered "official releases". Besides, after the stale development Orwell Dev-C++ in 2015, out of the need of teaching, an individual Chinese developer [royqh1979](https://github.com/royqh1979) decided to develop his personal fork of Dev-C++ named "Red Panda Dev-C++", integrating intelligent hint and updated version of MinGW64, which is convenient for personal use and studying. The project is hosted on [GitHub](https://github.com/royqh1979/Dev-Cpp).
 
 ## Getting Started to Use
 
@@ -44,8 +44,8 @@ The Dev-C++ distributions listed above are considered "official releases". Besid
 - `Ctrl + R`: Replace
 - `F3`: Search next
 - `Shift + F3`: Search previous
-- `Ctrl + G`: Jump to certain line
-- `Shift + Ctrl + G`: Jump to certain function
+- `Ctrl + G`: Jump to line
+- `Shift + Ctrl + G`: Jump to function
 - `Ctrl +[1 ~ 9]`: Add bookmark(s)
 - `Alt +[1 ~ 9]`: Jump to bookmark
 
@@ -71,7 +71,7 @@ The Dev-C++ distributions listed above are considered "official releases". Besid
 
 ### Process of Debugging
 
-1. Switch compiler to "TDM-GCC (Version) 64-bit Debug";
+1. Switch compiler to `TDM-GCC (Version) 64-bit Debug`;
 2. Press `F4` to set or cancel debugging breakpoint;
 3. Put cursor to a variable and press `Alt + A` to add monitoring variables;
 4. Press `F5` to start debugging;
@@ -95,7 +95,7 @@ Select the "Optimization Level (-Ox)" option in the "Code Generation" sub-tab, a
 
 #### Choose Language Standard
 
-This option enables using new language features defined in updated standard, or trying to compile code in older standard and execute it.
+This option enables using new language features in updated standards, or trying to compile code in older standard.
 
 Select the "Language Standard (-std)" option in the "Code Generation" sub-tab, and choose the standard you wan to use.
 
@@ -127,7 +127,7 @@ This may prevent stack overflow caused by too many recursions (like depth-first 
 
 Add `-Wl,--stack=128000000` to "Add the following commands when calling the linker".
 
-The example above resized the stack to approximately 128MB, and can be adjusted if needed.
+The example above resized the stack to about 128MB, and can be adjusted as needed.
 
 ![](./images/Dev-C++-15.png)
 
