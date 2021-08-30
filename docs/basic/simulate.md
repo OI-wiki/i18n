@@ -14,7 +14,7 @@ When writing solution for implementation problems, the following suggestions bel
 
 - Before writing the code, write down the process of your implementation on scratch paper as complete as possible;
 - In the code, try to modularize each part as a function, structure, or class;
-- For some concepts that may be reused, they can be transformed in a unified way so they are easier to handle: for example, if a problem gives you "YY-MM-DD hour:minute", processing it in a function into seconds format will help reduce confusion;
+- For some concepts that may be reused, they can be transformed in a unified way so they are easier to handle: for example, if a problem gives you "YY-MM-DD hour:minute", use a function to turn it into seconds format will help reduce confusion;
 - When debugging, debug in blocks. The advantage of modularity is that it is convenient to adjust a certain part separately;
 - When writing the code, think clearly. Do not think intuitively, instead, follow the steps you have written on the scratch paper.
 
