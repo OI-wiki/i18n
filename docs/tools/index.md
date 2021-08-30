@@ -1,5 +1,5 @@
-This chapter will introduce tools and softwares related to competitive programming, including some introductions of code editor and tools about OJ.
+This chapter will introduce tools and softwares related to competitive programming, including some introductions of code editor and tools for OJ's.
 
-Program is a tool solving problems in competitive programming, and proficiency with code editors is a prerequisite for learning knowledge of competitive programming.
+Programming is a tool to solve problems in competitive programming, and proficiency with code editors is a prerequisite for learning knowledge of competitive programming.
 
-Understanding tools relating to OJ will make your journey of competitive programming easier.
+Knowing tools for OJ's will make your journey of competitive programming easier.
