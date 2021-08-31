@@ -1,25 +1,24 @@
-author: ouuan, Doveqise, partychicken, Xeonacid, StudyingFather
+author: ouuan, Doveqise, partychicken, Xeonacid, StudyingFather, CamberLoid (as translator)
 
-<!---Waiting for upstream PR-->
-<!---WIP-->
+Last translated on August 31st, 2021, with commit [663c0d0](https://github.com/OI-wiki/OI-wiki/commit/663c0d00574ae5528ecd8490403e0527672cd2ae)
 
 This article will briefly introduce Eclipse.
 
 ## Introduction
 
-Eclipse is a famous cross-platform open-source integrated development environment. Eclipse is initially used to develop in Java, and currently it is also used to develop in other programming language like C++, Python and PHP through plug-in. <!---注：Wikipedia对插件的表述为Plug-in-->
+Eclipse is a famous cross-platform open-source integrated development environment. Eclipse is initially used to develop in Java, and currently it is also used to develop in other programming language like C++, Python and PHP through plug-in. 
 
 Eclipse itself is a framework platform. However, support from various plug-ins provides Eclipse good scalability. Therefore, many software developers choose Eclipse as their framework to develop their own IDE.
 
 In the beginning, Eclipse is the next generation IDE developed by IBM as an alternative for business software Visual Age for Java. In November 2001, it was donated to open-source community, and now it is managed by Eclipse, a non-profit organization of software developers.
 
-Advantages:
+Advantages: 
+- Better experience;
+- Easy to getting started.
 
 Drawbacks: 
-
-缺点：实测这个 IDE 打开速度比 Visual Studio 慢，而且这个 IDE 更新速度玄学，插件更新速度跟不上 IDE 的更新速度，所以对于经常更新的同学很不友好。
-
-优点：使用体验较好，而且许多知名公司都在使用，能够快速上手，所以比较推荐 OIer 用这个 IDE。
+- Eclipse is slower in opening than Visual Studio;
+- Unpredictable updating frequency, which means updating of plug-ins may not be not able to follow up Eclipse's. 
 
 ## Installation and Configuration Guide
 
@@ -91,7 +90,7 @@ The manual of Eclipse is detailed, therefore we recommend newly users to visit m
 
 Similar to [Visual Studio Code](./vscode.md), Eclipse provides many plug-ins, which may help Eclipse be even easy to use.
 
-## 参考资料与注释
+## References and Footnotes
 
 [^ref1]: [Eclipse - 维基百科](https://zh.wikipedia.org/wiki/Eclipse)
 
