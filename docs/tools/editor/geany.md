@@ -2,49 +2,49 @@ author: xingjiapeng, MingqiHuang
 
 # Geany
 
-Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者较为友好。
+Geany is a lightweight, easy-to-use text editor. It is friendly for beginners in Linux environment.
 
-与 Dev-C++ 一样，它可以编译运行单个文件。
+Like Dev-C++, it supports single file compilation.
 
-不过，它可以在 Linux/Windows/macOS 下运行。
+However, it is compatible in Linux, Windows and macOS.
 
-其官网为：<https://geany.org/>
+The homepage of Geany is <https://geany.org/>
 
-## 优缺点
+## Pros & Cons
 
-### 优点
+### Pros
 
-1. 轻量；
-2. 可以编译运行单个文件；
-3. 不需要太多配置；
-4. 跨平台。
+1. Lightweight;
+2. Support for single file compilation;
+3. No much need to configure;
+4. Cross-platform.
 
-### 缺点
+### Cons
 
-1. 没有太多人使用；
+1. Not many users;
 2. 在 macOS Catalina 下有一些权限问题[^1]；
-3. 新建文件时，默认不会有语法高亮，需要手动切换文件类型。
+3. No syntax highlighting by default when creating a new document. You may need to manually set filetype.
 
-## 安装
+## Installation
 
 ### Windows/macOS
 
-在官网上下载安装包安装
+It is simple - just download installer from its official site and install it.
 
 ### Linux
 
-#### 方法一
+#### Using Package Manager
 
-使用包管理器进行安装，如在 Ubuntu 或 NOI Linux 中，运行
+Linux users can install Geany via package managers. For example, in debian-based distributions like Ubuntu or NOI Linux, run the following command and it will be automatically installed:
 
 ```bash
 sudo apt install geany
 ```
 
-#### 方法二
+#### Build from Source
 
-1. 从官网下载源码
-2. 终端下运行：
+1. Obtain sources from its repository or homesite
+2. Run the following commands in terminal:
 
 ```bash
 ./configure
@@ -52,43 +52,43 @@ make
 sudo make install
 ```
 
-如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev`。
+Note: you may need install a dependency `libgtk2.0-dev` if it reports `No package 'gtk+-2.0' found`.
 
-## 使用技巧
+## Skills
 
-### 切换文件类型
+### Switch filetype
 
-在*文档 -> 设置文件类型*中进行切换。
+Click `Document -> Set Filetype` to switch filetype.
 
-如 C++ 语言，点击*文档 -> 设置文件类型 -> 编程语言 -> C++ 源文件*，即可看到文件已被转换为 C++ 语言的语法高亮了。
+For example, click `Document -> Set Filetype -> Programming Source -> C++ Source`, and you will see its syntax highlighting has been converted to C++.
 
-### 设置文件模板
+### Set File Template
 
-在配置文件目录下建立 templates/files 文件夹，建立在其中的文件即为模板文件，再次打开 Geany，就可以在*文件 -> 从模板新建*中找到它了。
+Create a new folder `templates/files` under configuration directory, where files inside are template files. Restart Geany, and you will find `File -> New (With Template)` in menubar.
 
-配置文件目录可以通过*帮助 -> 调试信息*的第二、三行找出。
+The current configuration file path can be found in the second and third line of `Help -> Debug Message`.
 
-这里给出 macOS 和 Linux 下的默认模板配置文件目录：
+The following is default configuration file path of templates for macOS and Linux:
 
-- 系统目录：`/usr/share/geany/templates/files/`
-- 用户目录：`~/.config/geany/templates/files/`[^2]
+- System-wide directory: `/usr/share/geany/templates/files/`
+- User directory: `~/.config/geany/templates/files/`[^2]
 
-## 常见问题
+## Troubleshoot
 
-### 兼容深度终端
+### Compatibility with Deepin Terminal
 
-在*首选项 -> 工具 -> 虚拟终端*，修改终端的命令为：
+In `Edit -> Preferences -> Tools -> Terminal`, replace it with the following command:
 
 ```bash
 deepin-terminal -x "/bin/sh" %c
 ```
 
-点击“应用”按钮即可。[^3]
+And click `Apply` to apply changes.
 
-## 参考资料与注释
+## References & Footnotes
 
-[^1]: 详见：<https://github.com/geany/geany/issues/2344>
+[^1]: <https://github.com/geany/geany/issues/2344>
 
-[^2]: 来源：<https://wiki.geany.org/config/templates>
+[^2]: <https://wiki.geany.org/config/templates>
 
-[^3]: 来源：Deepin Wiki <https://wiki.deepin.org/>
+[^3]: Deepin Wiki <https://wiki.deepin.org/>
