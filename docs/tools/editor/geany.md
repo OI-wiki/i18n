@@ -22,7 +22,7 @@ The homepage of Geany is <https://geany.org/>
 ### Cons
 
 1. Not many users;
-2. 在 macOS Catalina 下有一些权限问题[^1]；
+2. An access control issue was reported in macOS Catalina [^1].
 3. No syntax highlighting by default when creating a new document. You may need to manually set filetype.
 
 ## Installation
