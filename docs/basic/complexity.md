@@ -100,7 +100,7 @@ The time complexity of the code above is $\Theta(n^2m)$ if we consider the input
 
 ### DFS
 
-While performing [depth-first search (article not translated)](../graph/dfs.md) on a graph with $n$ points and $m$ edges, as each point and edges will be accessed constant times, the complexity is $\Theta(n+m)$.
+While performing [depth-first search (article not translated)](../graph/dfs.md) on a graph with $n$ points and $m$ edges, as each point and edges will be visited constant times, the complexity is $\Theta(n+m)$.
 
 ## Identifying Constants
 
