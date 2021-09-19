@@ -14,7 +14,7 @@ The count or estimation of elementary operations can be criteria when evaluating
 
 ## Time Complexity
 
-To evaluate the performance of an algorithm, the data size is required to be taken the data size into consideration, which mostly referring to the number of numbers inputted, the number of points or edges of a graph inputted. Generally, the larger the data size, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific size, but its growing trend as the data size grows, as known as **time complexity**.
+To evaluate the performance of an algorithm, the data size is required to be taken the data size into consideration, which mostly referring to how many nodes, edges, or numbers are in the input. Generally, the larger the data size, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific size, but its growing trend as the data size grows, as known as **time complexity**.
 
 The main reasons for considering in this way are listed below:
 
