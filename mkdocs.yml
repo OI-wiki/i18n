@@ -127,13 +127,13 @@ nav:
     - Java Quick Guide: lang/java.md
   - Algorithm:
     - Introduction to Algorithm: basic/index.md
+    - Complexity: basic/complexity.md
     - Enumerate: basic/enumerate.md
     - Simulate: basic/simulate.md #似乎又叫Implementation Problem
     - 递归 & 分治: basic/divide-and-conquer.md #Recursion? 
     - Greddy: basic/greedy.md
     - Sorting:
       - Introduction of Sorting: basic/sort-intro.md
-      - Complexity: misc/complexity.md
       - Selection Sort: basic/selection-sort.md
       - Bubble Sort: basic/bubble-sort.md
       - Insertion Sort: basic/insertion-sort.md
