@@ -1,7 +1,13 @@
 <!---i18n/docs/lang/basic.md-->
-## 代码框架
+<!---Translation reference: 
+1. https://www.cplusplus.com/doc/tutorial/program_structure/
+2. https://docs.microsoft.com/en-us/cpp/preprocessor/hash-include-directive-c-cpp?view=msvc-160
+3. https://docs.microsoft.com/en-us/cpp/cpp/address-of-operator-amp?view=msvc-160
+4. https://docs.microsoft.com/en-us/cpp/preprocessor/preprocessor
+-->
+## Basic Structure
 
-如果你不想深究背后的原理，初学时可以直接将这个“框架”背下来：
+In case you don't want to dig deeper how it works, you can just getting started in hard way by remembering the following structure:
 
 ```cpp
 #include <cstdio>
@@ -13,137 +19,136 @@ int main() {
 }
 ```
 
-??? note "什么是 include？"
-    `#include` 其实是一个预处理命令，意思为将一个文件“放”在这条语句处，被“放”的文件被称为头文件。也就是说，在编译时，编译器会“复制”头文件 `iostream` 中的内容，“粘贴”到 `#include <iostream>` 这条语句处。这样，你就可以使用 `iostream` 中提供的 `std::cin`、`std::cout`、`std::endl` 等对象了。
+??? note "What is `#include`?"
+    `#include` is a preprocessor directive. It tells the preprocessor to include the contents of a specified file at the point where the directive appears, which means, for example, when compiling the compiler will copy the header file `iostream` to the directive  `#include <iostream>`. By doing so you will be able to use objects provided by `iostream` like `std::cin`, `std::cout` and `std::endl`.
     
-    如果你学过 C 语言，你会发现目前我们接触的 C++ 中的头文件一般都不带 `.h` 后缀，而那些 C 语言中的头文件 `xx.h` 都变成了 `cxx`，如 `stdio.h` 变成了 `cstdio`。因为 C++ 为了和 C 保持兼容，都直接使用了 C 语言中的头文件，为了区分 C++ 的头文件和 C 的头文件，使用了 `c` 前缀。
+    If you are familiar with C, you may notice that headers we come across so far in C++ don't have `.h` suffix. Header files in C `balabala.c` have transformed to `cbalabala`, i.e., `stdio.h` to `cstdio`. This is because of C++'s forward compatibility to C, it uses all headers in C. To distinguish headers of C++ and C, a prefix `c` is introduced.
+
+    Generally speaking, you should determine which header you need to `#include` based on your program. However, adding more headers will only increase compiling time and has barely no impact to performance. So far we have only come across `iostream` and `cstdio` the two headers. `#include<iostream>` will be not needed if you only use `scanf` and `printf`.
     
-    一般来说，应当根据你需要编写的 C++ 程序的需要来确定你要 `#include` 哪些头文件。但如果你 `#include` 了多余的头文件，只会增加编译时间，几乎不会对运行时间造成影响。目前我们只接触到了 `iostream` 和 `cstdio` 两个头文件，如果你只需要 `scanf` 和 `printf`，就可以不用 `#include <iostream>`。
+    Is it possible to `#include` self-defined headers? The answer is yes.
     
-    可以 `#include` 自己写的头文件吗？答案是，可以。
+    You can write a your own header, for example, `myheader.h`. Then, place it to the folder where your code located. Finally `#include "myheader.h"`. Be cautious that custom headers should use quotation mark `""` instead of angle bracket `<>`. Of course, you can also use compiling parameters `-I <header_file_path>` to tell compiler where to find headers. This will save you from placing headers to the same directory of code.
+
+??? note "What is `main()`?"
+    When a program runs, it will run codes in `main()` first.
     
-    你可以自己写一个头文件，如：`myheader.h`。然后，将其放到和你的代码相同的目录里，再 `#include "myheader.h"` 即可。需要注意的是，自定义的头文件需要使用引号而非尖括号。当然，你也可以使用编译命令 `-I <header_file_path>` 来告诉编译器在哪找头文件，就不需要将头文件放到和代码相同的目录里了。
+    Actually, `main` function is called by system or external programs. E.g., running your program in your terminal is equal to calling `main` funtion in your program. (Before which it first finishes construction of [global variables](./var.md).)
 
-??? note "什么是 `main()` ？"
-    可以理解为程序运行时就会执行 `main()` 中的代码。
+    The `return 0;` in the end indicates that program has successful ran and exit. By default, a return value of 0 represents all-green, otherwise it represents error codes. (For Windows it can be referred by [Windows Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/).) You may wonder who does the value return to? It returns to operating system or external programs calling the program you wrote, which will receive the value when your program exits. Even if you choose not to write `return` statement it will return 0 when the program normally exits.
     
-    实际上，`main` 函数是由系统或外部程序调用的。如，你在命令行中调用了你的程序，也就是调用了你程序中的 `main` 函数（在此之前先完成了全局 [变量](./var.md) 的构造）。
-    
-    最后的 `return 0;` 表示程序运行成功。默认情况下，程序结束时返回 0 表示一切正常，否则返回值表示错误代码（在 Windows 下这个错误代码的十六进制可以通过 [Windows Error Codes 网站](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/) 进行查询）。这个值返回给谁呢？其实就是调用你写的程序的系统或外部程序，它会在你的程序结束时接收到这个返回值。如果不写 `return` 语句的话，程序正常结束默认返回值也是 0。
-    
-    在 C 或 C++ 中，程序的返回值不为 0 会导致运行时错误（RE）。
+    In competitive programming,; for C and C++, a non-zero return value will end up with a runtime error (RE).
 
-## 注释
+## Comments
 
-在 C++ 代码中，注释有两种写法：
+In C++ code, there are two types of comments:
 
-1.  行内注释
+1.  Single-line comments
 
-    以 `//` 开头，行内位于其后的内容全部为注释。
+    A single-line comment starts with `//`. Anything after it in the line are comments.
 
-2.  注释块
+2.  Multi-line comments
 
-    以 `/*` 开头，`*/` 结尾，中间的内容全部为注释，可以跨行。
+    A multi-line comment begins with `/*` and ends with `*/`, Anything between which are considered to be comments. 
 
-注释对程序运行没有影响，可以用来解释程序的意思，还可以在让某段代码不执行（但是依然保留在源文件里）。
+Comments have no affect on the operation of program. It can be used to explain programs, and make a certain block of code not to be compiled without being deleted from source file. 
 
 在工程开发中，注释可以便于日后维护、他人阅读。
 
-在 OI 中，很少有人写许多注释，但注释可以便于在写代码的时候理清思路，或者便于日后复习。而且，如果要写题解、教程的话，适量的注释可以便于读者阅读，理解代码的意图。
+Few people write many comments in competitive programming. However, comments can be useful for clarifying ideas when writing codes, or for reviewing later. Additionally, an appropriate amount of comments is useful for readers to read and comprehend the purpose of code.
 
-## 输入与输出
+## Input and Output
 
-### `cin` 与 `cout`
+### `cin` and `cout`
 
 ```cpp
 #include <iostream>
 
 int main() {
-  int x, y;                          // 声明变量
-  std::cin >> x >> y;                // 读入 x 和 y
+  int x, y;                          // Declare Variable
+  std::cin >> x >> y;                // Read x and y.
   std::cout << y << std::endl << x;  // 输出 y，换行，再输出 x
   return 0;                          // 结束主函数
 }
 ```
 
-???+note "什么是变量？"
-    可以参考 [变量](./var.md) 页面。
+???+note "What is `variables`"
+    Please refer to main article: [Variables](./var.md)
 
-???+note " 什么是 `std` ？" 
-    std 是 C++ 标准库所使用的 **命名空间**。使用命名空间是为了避免重名。
-    
-    关于命名空间的详细知识，可以参考 [命名空间](./namespace.md) 页面。
+???+note "What is `std`" 
+    Main article: [Namespace](./namespace.md)
+    `std` is a namespace used by C++ standard library. The purpose of using namespaces in programming is to avoid name collisions.
 
-### `scanf` 与 `printf`
+### `scanf` and `printf`
 
-`scanf` 与 `printf` 其实是 C 语言提供的函数。大多数情况下，它们的速度比 `cin` 和 `cout` 更快，并且能够方便地控制输入输出格式。
+`scanf` and `printf` is functions provided by C. In most cases they are faster than `cin` and `cout`, and can easily control the format of input and output.
 
 ```cpp
 #include <cstdio>
 
 int main() {
   int x, y;
-  scanf("%d%d", &x, &y);   // 读入 x 和 y
+  scanf("%d%d", &x, &y);   // Read x and y.
   printf("%d\n%d", y, x);  // 输出 y，换行，再输出 x
   return 0;
 }
 ```
 
-其中，`%d` 表示读入/输出的变量是一个有符号整型 (`int` 型）的变量。
+In which, a `%d` indicates that the inputting/outputting variable is a signed integer(`int`) type variable.
 
-类似地：
+Similarly:
 
-1. `%s` 表示字符串。
-2. `%c` 表示字符。
-3. `%lf` 表示双精度浮点数 (`double`)。
-4. `%lld` 表示长整型 (`long long`)。根据系统不同，也可能是 `%I64d`。
-5. `%u` 表示无符号整型  (`unsigned int`)。
-6. `%llu` 表示无符号长整型 (`unsigned long long`)，也可能是 `%I64u`。
+1. `%s` represents a string `char[]`;
+2. `%c` represents a character;
+3. `%lf` represents a double‑precision floating‑point (`double`);
+4. `%lld` (or `%I64d` in certain operating system) represents a long integer (`long long`);
+5. `%u` represents an unsigned integer (`unsigned int`);
+6. `%llu` (or `%I64u` in certain operating system) represents a long unsigned integer (`unsigned long long`).
 
-除了类型标识符以外，还有一些控制格式的方式。许多都不常用，选取两个常用的列举如下：
+Besides format string specifications, there are other ways to control the format, which are not frequently used. Here take two commonly used ways listed below as example: 
 
-1. `%1d` 表示长度为 1 的整型。在读入时，即使没有空格也可以逐位读入数字。在输出时，若指定的长度大于数字的位数，就会在数字前用空格填充。若指定的长度小于数字的位数，就没有效果。
-2. `%.6lf`，用于输出，保留六位小数。
+1. `%1d` represents an integer whose length is 1. While inputting, it can read numbers digit by digit even there is no spaces; When outputting, if the specified length is longer than the number of digits, it will be filled with spaces before the number; Otherwise nothing will happen.
+2. `.6lf`, which represents retaining six decimal digits when outputting.
 
-这两种运算符的相应地方都可以填入其他数字，例如 `%.3lf` 表示保留三位小数。
+Both format string specifications mentioned above can be filled with other numbers in the corresponding places, for example, `%.3lf` means that three decimal places are reserved.
 
-??? note "“双精度浮点数”，“长整型”是什么"
-    这些表示变量的类型。和上面一样，会留到 [变量](./var.md) 中统一讲解。
+??? note "What is double‑precision floating‑point? And what is long integer?"
+    Both of them represents different types of variables. For more please refer to main article: [Variables](./var.md).
 
-??? note "为什么 `scanf` 中有 `&` 运算符？"
-    在这里，`&` 实际上是取址运算符，返回的是变量在内存中的地址。而 scanf 接收的参数就是变量的地址。具体可能要在 [指针](./pointer.md) 才能完全清楚地说明，现在只需要记下来就好了。
+??? note "Why there is a `&` operator in `scanf`?"
+    Here `&` is an address-of operator, returning the variable's address in memory which is the parameter received by scanf. For more detail please refer to main article [Pointers](./pointer.md).
 
-??? note " 什么是 `\n` ？" 
-    `\n` 是一种 **转义字符**，表示换行。
+??? note "What is `\n`" 
+    `\n` is one of **escape characters**, indicating that there is a line break.
     
-    转义字符用来表示一些无法直接输入的字符，如由于字符串字面量中无法换行而无法直接输入的换行符，由于有特殊含义而无法输入的引号，由于表示转义字符而无法输入的反斜杠。
+    Escape characters represents characters that cannot by typed directly, such as, newlines as string literal cannot break new line directly, or quotes as they have special meanings, or backslashes as they are used to present escape characters.  
     
-    常用的转义字符有：
+    Here lists some frequently used escape characters:
     
-    1. `\t` 表示制表符。
+    1. `\t` represents a tab;
     
-    2. `\\` 表示 `\`。
+    2. `\\` represents `\`;
     
-    3. `\"` 表示 `"`。
+    3. `\"` represents `"`;
     
-    4. `\0` 表示空字符，用来表示 C 风格字符串的结尾。
+    4. `\0` represents empty characters, which are used as the ending of C-style string;
     
-    5. `\r` 表示回车。Linux 中换行符为 `\n`，Windows 中换行符为 `\r\n`。在 OI 中，如果输出需要换行，使用 `\n` 即可。但读入时，如果使用逐字符读入，可能会由于换行符造成一些问题，需要注意。例如，`gets` 将 `\n` 作为字符串结尾，这时候如果换行符是 `\r\n`，`\r` 就会留在字符串结尾。
+    5. `\r` represents newline. For linux it is `\n`, and for Windows it is `\r\n`. In competitive programming, for a newline you can just use `\n`. However, be cautious that some issues may occur because of newline characters if read character by character. For example, `gets()` takes `\n` as the ending of a string, and if the newline character if `\r\n`, the `\r` will be retained at the end of string.
     
-    6. 特殊地，`%%` 表示 `%`，只能用在 `printf` 或 `scanf` 中，在其他字符串字面量中只需要简单使用 `%` 就好了。
+    6. Specially, in and only in `printf` and `scanf`, `%%` represents `%`. For other literals you may just simply use `%`.
     
-    ??? note "什么是字面量？"
-        “字面量”是在代码里直接作为一个值的程序段，例如 `3` 就是一个 `int` 字面量，`'c'` 就是一个 char 字面量。我们上面写的程序中的 `"hello world"` 也是一个字符串字面量。
-        
-        不加解释、毫无来由的字面量又被称为“魔术数”（magic number），如果代码需要被人阅读的话，这是一种十分不被推荐的行为。
+    ??? note "What are *literals*?"
+        A literal is a notation for representing a fixed value in source code. For example, `3` is a literal of `int`, `'c'` is a literal of `char`. `"hello world"` from previous code is also a string literal.
 
-## 一些扩展内容
+        A literal without explanations and reasons are also called a *magic number*, which is strongly discouraged if the code is needed to be read by others. 
 
-### C++ 中的空白字符
+## Advanced Readings
 
-在 C++ 中，所有空白字符（空格、制表符、换行），多个或是单个，都被视作是一样的。（当然，引号中视作字符串的一部分的不算。）
+### Whitespace Characters
 
-因此，你可以自由地使用任何代码风格（除了行内注释、字符串字面量与预处理命令必须在单行内），例如：
+In C++, all the whitespace characters, including space, tab and newline, multi or single, are all treaded as same the by the compiler. (Not including characters as a part of a string.)
+
+Because of which, you are able to use any code style freely, as long as  in-line comments, string literals and preprocessing directives are on a single line. E.g.,
 
 ```cpp
 /* clang-format off */
@@ -164,7 +169,7 @@ int/**/x, y;  std::cin
     return       0;     }
 ```
 
-当然，这么做是不被推荐的。
+Of course, doing so is not recommended.
 
 一种也被广泛使用但与 **OI Wiki** 要求的码风不同的代码风格：
 
@@ -184,31 +189,32 @@ int main()
 }
 ```
 
-### `#define` 命令
+### `#define` Preprocessor
 
-`#define` 是一种预处理命令，用于定义宏，本质上是文本替换。例如：
+`#define` is a preprocessor directive using to create a macro, or essentially, text replacement. For example:
 
 ```cpp
 #include <iostream>
 #define n 233
-// n 不是变量，而是编译器会将代码中所有 n 文本替换为 233，但是作为标识符一部分的
-// n 的就不会被替换，如 fn 不会被替换成 f233，同样，字符串内的也不会被替换
+// n is not a variable. However, the compiler will replace all `n` appearing as an identifier with the token `233`,
+// which is, the `n` will not be replaced if it is appeared as a part of longer identifier, e.g., `n` in `fn`.
+// Similarly, identifier appears in a string will not be replaced either.
 
 int main() {
-  std::cout << n;  // 输出 233
+  std::cout << n;  // Print "233" to terminal.
   return 0;
 }
 ```
 
-??? note "什么是标识符？"
-    标识符就是可以用作变量名的一组字符。例如，`abcd` 和 `abc1` 都是合法的标识符，而 `1a` 和 `c+b` 都不是合法的标识符。
+??? note "What is an identifier?"
+    Identifier is a group of characters which can be used as the name of a variable. For example, `abcd` and `abc1` are legal identifiers in C/C++, while `1a` and `c+b` are illegal.
     
-    标识符由英文字母、下划线开头，中间只允许出现英文字母、下划线和数字。值得注意的是，关键字（如 `int`,`for`,`if`）不能用作标识符。
+    In C/C++, an identifier can only start with english characters and undersocre, and consist of english characters, underscore and numbers. It is noteworthy that keywords like `int`, `for` and `if` cannot be used as an identifier.
 
-??? note "什么是预处理命令？"
-    预处理命令就是预处理器所接受的命令，用于对代码进行初步的文本变换，比如 文件包含操作 `#include` 和 处理宏 `#define` 等，对 GCC 而言，默认不会保留预处理阶段的输出 `.i` 文件。可以用 `-E` 选项保留输出文件。
+??? note "What is preprocessor directives?"
+    Preprocessor directives are directives accepted by preprocessor. It is used to perform early-stage text manipulation of code. For example, the previous file includes operations `#include` and `#define`. By defaults GCC doesn't keep the output `.i` file of preprocessing stage, and it can be kept by adding `-E` parameter.
 
-宏可以带参数，带参数的宏可以像函数一样使用：
+A macro can be along with arguments. Macro with arguments can be used like a function:
 
 ```cpp
 #include <iostream>
@@ -216,16 +222,16 @@ int main() {
 #define square(x) ((x) * (x))
 
 int main() {
-  std::cout << sum(1, 2) << ' ' << 2 * sum(3, 5) << std::endl;  // 输出 3 16
+  std::cout << sum(1, 2) << ' ' << 2 * sum(3, 5) << std::endl;  // Expected output: 3 16
 }
 ```
 
-但是带参数的宏和函数有区别。因为宏是文本替换，所以会引发许多问题。如：
+However, there are differences between a macro with arguments and a function. It may cause some issues as macros are literally text replacing. E.g.:
 
 ```cpp
 #include <iostream>
 #define sum(x, y) x + y
-// 这里应当为 #define sum(x, y) ((x) + (y))
+// Which should be: #define sum(x, y) ((x) + (y))
 #define square(x) ((x) * (x))
 
 int main() {
@@ -233,19 +239,19 @@ int main() {
   // 输出为 3 11，因为 #define 是文本替换，后面的语句被替换为了 2 * 3 + 5
   int i = 1;
   std::cout << square(++i) << ' ' << i;
-  // 输出未定义，因为 ++i 被执行了两遍
-  // 而同一个语句中多次修改同一个变量是未定义行为（有例外）
+  // The output is undefined because `++i` were performed twice,
+  // as multiple modifying a same variable in a same statement is an undefined behaviour. (With exceptions.)
 }
 ```
 
-使用 `#define` 是有风险的（由于 `#define` 作用域是整个程序，因此可能导致文本被意外地替换，需要使用 `#undef` 及时取消定义），因此应谨慎使用。较为推荐的做法是：使用 `const` 限定符声明常量，使用函数代替宏。
+Using `#define` is so risky that it should be used cautiously, as `#define`'s scope is the whole program, which may lead to accidental text replacement, and needs to be canceled by using `#undef` in time. A recommended practice is that using `const` to declare a constant and using functions instead of macros.
 
-但是，在 OI 中，`#define` 依然有用武之处（以下两种是不被推荐的用法，会降低代码的规范性）：
+However, in competitive programming, `#define` still has its use. Note that the following two example is not recommended because it will reduce the specification <!---?--> of the code:
 
-1. `#define int long long`+`signed main()`。通常用于避免忘记开 long long 导致的错误，或是调试时排除忘开 long long 导致错误的可能性。（也可能导致增大常数甚至 TLE，或者因为爆空间而 MLE）
-2. `#define For(i, l, r) for (int i = (l); i <= (r); ++i)`、`#define pb push_back`、`#define mid ((l + r) / 2)`，用于减短代码长度。
+1. `#define int long long`+`signed main()`: This is usually used to avoid issues caused by forgetting to use `long long`. Note that this may lead to TLE as the increasing pressure of bottom layer,<!---!!!--> or MLE as it increases memory used.
+2. `#define For(i, l, r) for (int i = (l); i <= (r); ++i)`, `#define pb push_back`, `#define mid ((l + r) / 2)`: This is usually used to shorten the code.
 
-不过，`#define` 也有优点，比如结合 `#if` 等预处理指令有奇效，比如：
+Nevertheless, `#define` has its pros, especially, for example, with the `#if` preprocessor declaratives, it works with unexpectedly awesome effect. E.g.,
 
 ```cpp
 #ifdef LINUX
@@ -255,6 +261,6 @@ int main() {
 #endif
 ```
 
-可以在编译的时候通过 `-DLINUX` 来控制编译出的代码，而无需修改源文件。这还有一个优点：通过 `-DLINUX` 编译出的可执行文件里并没有其他操作系统的代码，那些代码在预处理的时候就已经被删除了。
+In the example, we use the compiler parameter `-DLINUX` to control the code compiled without modifying the source. Another advantage is that the output executable file compiled with `-DLINUX` doesn't contain codes of systems other than linux, as they are deleted in the preprocessing stage. 
 
-`#define` 还能使用 `#`、`##` 运算符，极大地方便调试。
+`#define` can also work with the `#`, `##` operators, which greatly simplifies debugging.
