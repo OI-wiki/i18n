@@ -130,7 +130,7 @@ nav:
     - Complexity: basic/complexity.md
     - Enumerate: basic/enumerate.md
     - Simulate: basic/simulate.md #似乎又叫Implementation Problem
-    - 递归 & 分治: basic/divide-and-conquer.md #Recursion? 
+    - Recursion & Divide and Conquer: basic/divide-and-conquer.md #Recursion? 
     - Greddy: basic/greedy.md
     - Sorting:
       - Introduction of Sorting: basic/sort-intro.md
