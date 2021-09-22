@@ -62,7 +62,7 @@ C++ standard library has implemented the function of constructing prefix sum arr
 
 ### 2-Dimensional and Multi-Dimensional Prefix Sum 
 
-Naive approach for finding multi-dimensional prefix sum are mostly based on the [inclusion-exclusion principle](../math/inclusion-exclusion-principle.md).
+Approches for finding multi-dimensional prefix sum are mostly based on the [inclusion-exclusion principle](../math/inclusion-exclusion-principle.md).
 
 ???+note "Example: Extending 1-dimensional prefix sum to 2-dimensional prefix sum."
     For example, we have a matrix $a$, which can be treated as a 2-dimension array 
