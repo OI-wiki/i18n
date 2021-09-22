@@ -252,9 +252,9 @@ Recursion is a coding trick, and a thinking method to solve problem. Divide and 
     
     According to the tricks mentioned before, we have a clear definition for the job of each recursive function based on the analysis.
     
-    Function `pathSum`: Given a node and a target value. Return the number of paths whose the sum is target value in the tree rooted at this given node.
+    Function `pathSum`: Give a node and a target value and return the number of paths whose the sum is target value in the tree with given node as root
     
-    Function `count`: Given a node and a target value. Return the number of paths with the node as the beginning of path, whose the sum is target value, in the tree rooted at this given node.
+    Function `count`: Give a node and a target value and return the number of paths with the node as the beginning of path, whose the sum is target value, in the tree rooted at this given node.
     
     ??? note "Example solution (with comments)"
         ```cpp
