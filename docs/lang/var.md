@@ -166,3 +166,9 @@ The compiler will throw an error during compiling if a constant is modified: `er
 [^note2]: When declaring a variable, it is allowed to contain other qualifier other than type identifier<!---看不懂-->. For more information please refer to [Declarations - cppreference](https://en.cppreference.com/w/cpp/language/declarations).
 
 [^note3]: Or more accurate, [point of declaration](https://en.cppreference.com/w/cpp/language/scope#Point_of_declaration).
+
+## Translation Information
+
+- Original Article: https://oi-wiki.org/lang/var/
+- Last Translated commit: https://github.com/OI-wiki/OI-wiki/pull/3566/commits/c0b8844d80af280c579c58f4928b2e2f624057c8
+- Translator: CamberLoid
