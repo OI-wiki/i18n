@@ -47,16 +47,16 @@ Length:
 
 The table below displays that, **in general situations**, the size of bit widths and range of values of each integer types. Notice that minor platforms may have different range of values.
 
-| Type Name                      | Bit Width   | Range of Values                   |
-| ------------------------ | ---- | ---------------------- |
-| `short int`              | $16$ | $-2^{15}\sim 2^{15}-1$ |
-| `unsigned short int`     | $16$ | $0 \sim 2^{16}-1$      |
-| `int`                    | $32$ | $-2^{31}\sim 2^{31}-1$ |
-| `unsigned int`           | $32$ | $0 \sim 2^{32}-1$      |
-| `long int`               | $32$ | $-2^{31}\sim 2^{31}-1$ |
-| `unsigned long int`      | $32$ | $0 \sim 2^{32}-1$      |
-| `long long int`          | $64$ | $-2^{63}\sim 2^{63}-1$ |
-| `unsigned long long int` | $64$ | $0 \sim 2^{64}-1$      |
+| Type Name                | Bit Width | Range of Values        |
+| ------------------------ | --------- | ---------------------- |
+| `short int`              | $16$      | $-2^{15}\sim 2^{15}-1$ |
+| `unsigned short int`     | $16$      | $0 \sim 2^{16}-1$      |
+| `int`                    | $32$      | $-2^{31}\sim 2^{31}-1$ |
+| `unsigned int`           | $32$      | $0 \sim 2^{32}-1$      |
+| `long int`               | $32$      | $-2^{31}\sim 2^{31}-1$ |
+| `unsigned long int`      | $32$      | $0 \sim 2^{32}-1$      |
+| `long long int`          | $64$      | $-2^{63}\sim 2^{63}-1$ |
+| `unsigned long long int` | $64$      | $0 \sim 2^{64}-1$      |
 
 ???+note "Equivalent Type Description"
     Without raising ambiguity, it is allowed to omit some qualifier keywords, or adjust their order, which means that one type may have multiple equivalent expressions.
