@@ -14,7 +14,7 @@ for (初始化; 判断条件; 更新) {
 
 执行顺序：
 
-![](images/loop1.png)
+![](images/for-loop.svg)
 
 e.g. 读入 n 个数：
 
@@ -38,7 +38,7 @@ while (判断条件) {
 
 执行顺序：
 
-![](images/loop2.png)
+![](images/while-loop.svg)
 
 e.g. 验证 3x+1 猜想：
 
@@ -64,7 +64,7 @@ do {
 
 执行顺序：
 
-![](images/loop3.png)
+![](images/do-while-loop.svg)
 
 与 while 语句的区别在于，do...while 语句是先执行循环体再进行判断的。
 
@@ -123,7 +123,7 @@ for (;;) {
 }
 ```
 
-这两种方式都是永远循环下去。（可以使用 `break` （见下文）退出。）
+这两种方式都是永远循环下去。（可以使用 `break`（见下文）退出。）
 
 可以看出，三种语句可以彼此代替，但一般来说，语句的选用遵守以下原则：
 
