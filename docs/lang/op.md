@@ -1,162 +1,162 @@
 author: Ir1d, aofall
 
-## 算术运算符
+## Arithmetic Operators
 
-| 运算符       | 功能  |
-| --------- | --- |
-|  `+` （单目） | 正   |
-|  `-` （单目） | 负   |
-|  `*` （双目） | 乘法  |
-|  `/`      | 除法  |
-|  `%`      | 取模  |
-|  `+` （双目） | 加法  |
-|  `-` （双目） | 减法  |
+| Operator      | Function             |
+| ------------- | -------------------- |
+|  `+` (Unary)  | Positive(Signedness) |
+|  `-` (Unary)  | Negative(Signedness) |
+|  `*` (Binary) | Multiplication       |
+|  `/`          | Division             |
+|  `%`          | Modulo               |
+|  `+` (Binary) | Addition             |
+|  `-` (Binary) | Subtraction          |
 
-??? note "单目与双目运算符"
-    单目运算符（又称一元运算符）指被操作对象只有一个的运算符，而双目运算符（又称二元运算符）的被操作对象有两个。例如 `1 + 2` 中加号就是双目运算符，它有 `1` 和 `2` 两个被操作数。此外 C++ 中还有唯一的一个三目运算符 `?:` 。
+??? note "Unary Operator and Binary Operator "
+    A unary operator is an operator with only one operand, while a binary operator has two operands. For example, the addition operator in `1 + 2` is a binary operator, with two operands `1` and `2`. Besides, C++ has a lone ternary operator `?:`.
 
-算术运算符中有两个单目运算符（正、负）以及五个双目运算符（乘法、除法、取模、加法、减法），其中单目运算符的优先级最高。
+Arithmetic operators consist of two unary operators (positive and negative) and five binary operators (multiply, division, modulo, addition, subtraction). The unary operator has the higher precedence.
 
-其中取模运算符 `%` 意为计算两个整数相除得到的余数，即求余数。
+The modulo operator `%` means calculating the remainder of a division between two integers.
 
-而 `-` 为双目运算符时做减法运算符，如 `2-1` ；为单目运算符时做负值运算符，如 `-1` 。
+`-` is a subtraction operator when being a binary operator, e.g., `2-1`; when being a unary operator it is unary minus, e.g., `-1`.
 
-使用方法如下
+Here is an example usage of arithmetic operator:
 
- `op=x-y*z` 
+`op=x-y*z` 
 
-得到的 `op` 的运算值遵循数学中加减乘除的优先规律，首先进行优先级高的运算，同优先级自左向右运算，括号提高优先级。
+The result value of `op` follows the precedence law of four basic rules of arithmetic: Perform high-precedent operations first; Operate from left to right if the precedences are same; a pair of brackets will promote the precedence.
 
-### 算术运算中的类型转换
+### Conversions during Arithmetic Operations
 
-对于双目算术运算符，当参与运算的两个变量类型相同时，不发生 [类型转换](./var.md#variable-conversion) ，运算结果将会用参与运算的变量的类型容纳，否则会发生类型转换，以使两个变量的类型一致。
+For binary arithmetic operators, if two operands have the same data type, no variable conversion will happen and the result will be the same type of operands. Otherwise, a variable conversion will happen to ensure the two variables having the same data type.
 
-转换的规则如下：
+The rules of conversion are listed below:
+<!---The following is compiled from original article and https://en.cppreference.com/w/cpp/language/operator_arithmetic-->
+- First, promote any `` 
+- Otherwise, if either operand is `long double`, the other operand is converted to long `double`; 
+- Otherwise, if either operand is `double`, the other operand is converted to `double`; 
+- Otherwise, if either operand is `float`, the other operand is converted to `float`; 
+- Otherwise, or, if two operands both have integer types:
+    - If both operands are signed or both are unsigned, the operand with lesser conversion rank is converted to the operand with the greater integer conversion rank;
+    - Otherwise, if the unsigned operand's conversion rank is greater or equal to the conversion rank of the signed operand, the signed operand is converted to the unsigned operand's type;
+    - Otherwise, if the signed operand's type can represent all values of the unsigned operand, the unsigned operand is converted to the signed operand's type;
+    - Otherwise, both operands are converted to the unsigned counterpart of the signed operand's type. 
 
-- 先将 `char` ， `bool` ， `short` 等类型提升至 `int` （或 `unsigned int` ，取决于原类型的符号性）类型；
-- 若存在一个变量类型为 `long double` ，会将另一变量转换为 `long double` 类型；
-- 否则，若存在一个变量类型为 `double` ，会将另一变量转换为 `double` 类型；
-- 否则，若存在一个变量类型为 `float` ，会将另一变量转换为 `float` 类型；
--   否则（即参与运算的两个变量均为整数类型）：
-    - 若两个变量符号性一致，则将位宽较小的类型转换为位宽较大的类型；
-    - 否则，若无符号变量的位宽不小于带符号变量的位宽，则将带符号数转换为无符号数对应的类型；
-    - 否则，若带符号操作数的类型能表示无符号操作数类型的所有值，则将无符号操作数转换为带符号操作数对应的类型；
-    - 否则，将带符号数转换为相对应的无符号类型。
+For example, for an integer variable (`int`) $x$ and a double-precision floating-point type variable `double`:
 
-例如，对于一个整型（ `int` ）变量 $x$ 和另一个双精度浮点型（ `double` ）类型变量 $y$ ：
+- The return of `x/3` will be an integer;
+- The return of `x/3.0` will be a `double`;
+- The return of `x/y` will be a `double`;
+- The return of `x*1/3` will be a integer;
+- The return of `x*1.0/3` will be a `double`.
 
--  `x/3` 的结果将会是整型；
--  `x/3.0` 的结果将会是双精度浮点型；
--  `x/y` 的结果将会是双精度浮点型；
--  `x*1/3` 的结果将会是整型；
--  `x*1.0/3` 的结果将会是双精度浮点型；
+## Bitwise Operators
 
-## 位运算符
+| Operator      | Function            |
+| ------------- | ------------------- |
+|  `~`          | Bitwise NOT         |
+|  `&` (Binary) | Bitwise AND         |
+|  `|`          | Bitwise OR          |
+|  `^`          | Bitwise XOR         |
+|  `<<`         | Bitwise left shift  |
+|  `>>`         | Bitwise right shift |
 
-| 运算符       | 功能   |
-| --------- | ---- |
-|  `~`      | 逐位非  |
-|  `&` （双目） | 逐位与  |
-|  `|`      | 逐位或  |
-|  `^`      | 逐位异或 |
-|  `<<`     | 逐位左移 |
-|  `>>`     | 逐位右移 |
+For the detail of bitwise operation, please refer to the [main article](../math/bit.md). Be cautious that the precedence of bitwise operator is lower than normal arithmetic operators.
 
-位操作的意义请参考 [位运算](../math/bit.md) 页面。需要注意的是，位运算符的优先级低于普通的算数运算符。
+## Increment/decrement Operators
 
-## 自增/自减 运算符
+Increment and decrement operators `++` and `--` are useful when we need to add or subtract one to the variable.
 
-有时我们需要让变量进行增加 1（自增）或者减少 1（自减），这时自增运算符 `++` 和自减运算符 `--` 就派上用场了。
-
-自增/自减运算符可放在变量前或变量后面，在变量前称为前缀，在变量后称为后缀，单独使用时前缀后缀无需特别区别，如果需要用到表达式的值则需注意，具体可看下面的例子。详细情况可参考 [引用](./reference.md) 介绍的例子部分。
+Increment and decrement operators can be placed before or after the variable, calling prefix or suffix increment or decrement operators. No special distinction between them when using alone. However you need to pay attention if using them inside a expression. Details are in the following example. For more details please refer to examples in [reference](./reference.md).
 
 ```cpp
 i = 100;
 
-op1 = i++;  // op1 = 100，先 op1 = i，然后 i = i + 1
+op1 = i++;  // op1 = 100, equivalent to `op1 = i; i = i + 1;`
 
 i = 100;
 
-op2 = ++i;  // op2 = 101，先 i = i + 1，然后赋值 op2
+op2 = ++i;  // op2 = 101, equivalent to `i = i + 1; op2 = i;`
 
 i = 100;
 
-op3 = i--;  // op3 = 100，先赋值 op3，然后 i = i - 1
+op3 = i--;  // op3 = 100, equivalent to `op3 = i; i = i - 1;`
 
 i = 100;
 
-op4 = --i;  // op4 = 99，先 i = i - 1，然后赋值 op4
+op4 = --i;  // op4 = 99, equivalent to `i = i + 1; op4 = i;`
 ```
 
-## 复合赋值运算符
+## Compound Assignment Operators
 
-复合赋值运算符实际上是表达式的缩写形式。
+Compound assignment operators are actually abbreviated form of expressions.
 
- `op=op+2` 可写为 `op+=2` 
+`op=op+2` is equivalent to `op+=2`;
 
- `op=op-2` 可写为 `op-=2` 
+`op=op-2` is equivalent to `op-=2`;
 
- `op=op*2` 可写为 `op*=2` 
+`op=op*2` is equivalent to `op*=2`.
 
-## 比较运算符
+## Comparison Operators
 
-| 运算符    | 功能   |
-| ------ | ---- |
-|  `>`   | 大于   |
-|  `>=`  | 大于等于 |
-|  `<`   | 小于   |
-|  `<=`  | 小于等于 |
-|  `==`  | 等于   |
-|  `!=`  | 不等于  |
+| Operator | Function                 |
+| -------- | ------------------------ |
+|  `>`     | Greater than             |
+|  `>=`    | Greater than or equal to |
+|  `<`     | Less than                |
+|  `<=`    | Less than or equal to    |
+|  `==`    | Equal to                 |
+|  `!=`    | Not equal to             |
 
-其中特别需要注意的是要将等于运算符 `==` 和赋值运算符 `=` 区分开来，这在判断语句中尤为重要。
+One thing that you should pay more attention is the difference between equal-to operator and the assignment operator. This is significantly important in conditional execution statements.
 
- `if(op=1)` 与 `if(op==1)` 看起来类似，但实际功能却相差甚远。第一条语句是在对 op 进行赋值，若赋值为非 0 时为真值，表达式的条件始终是满足的，无法达到判断的作用；而第二条语句才是对 `op` 的值进行判断。
+For example, even though `if(op=1)` seems similar to `if(op==1)`, they are completely different from each other. The former statement is performing an assignment to op. This returns true if the value is non-zero, which always satisfies the condition of expression. The expression doesn't serve as a condition checker. The latter statement is the one that actually check the value of `op`. 
 
-## 逻辑运算符
+## Logical Operators
 
-| 运算符    | 功能  |
-| ------ | --- |
-|  `&&`  | 逻辑与 |
-|  `||`  | 逻辑或 |
-|  `!`   | 逻辑非 |
+| Operator | Function       |
+| -------- | -------------- |
+|  `&&`    | AND            |
+|  `||`    | Inclusive OR   |
+|  `!`     | Negation / NOT |
 
 ```cpp
-Result = op1 && op2;  // 当 op1 与 op2 都为真时则 Result 为真
+Result = op1 && op2;  // Result will be true if `op1` and `op2` are all true.
 
-Result = op1 || op2;  // 当 op1 或 op2 其中一个为真时则 Result 为真
+Result = op1 || op2;  // Result will be true if either `op1` or `op2` is true.
 
-Result = !op1;  // 当 op1 为假时则 Result 为真
+Result = !op1;  // Result will be true if `op1` is false.
 ```
 
-## 逗号运算符
+## Comma Operator
 
-逗号运算符可将多个表达式分隔开来，被分隔开的表达式按从左至右的顺序依次计算，整个表达式的值是最后的表达式的值。逗号表达式的优先级在所有运算符中的优先级是 **最低** 的。
+The comma operator can separate multiple expressions. Expressions separated by the operator will be computed from left to right in order, and returns the value of last separated expression. Comma expressions have the **lowest** precedence among all operators'.
 
 ```cpp
-exp1, exp2, exp3;  // 最后的值为 exp3 的运算结果。
+exp1, exp2, exp3;  // The final value is the result of `exp3`.
 
 Result = 1 + 2, 3 + 4, 5 + 6;
-//得到 Result 的值为 3 而不是 11，因为赋值运算符 "="
-//的优先级比逗号运算符高，先进行了赋值运算才进行逗号运算。
+// The value of `Result` is 3 instead of 11. This is because assignment operator has higher precedence 
+// than comma assignment's. The assignment operation is performed first and then comma operation.
 
 Result = (1 + 2, 3 + 4, 5 + 6);
 
-// 若要让 Result 的值得到逗号运算的结果则应将整个表达式用括号提高优先级，此时
-// Result 的值才为 11。
+// To make the value of `Result` to be the result of the whole comma operation, you need to promote the 
+// precedence of expression by using brackets operators. By doing so the value of `Result` will be 11.
 ```
 
-## 成员访问运算符
+## Member Access Operators
 
-| 运算符       | 功能       |
-| --------- | -------- |
-|  `[]`     | 数组下标     |
-|  `.`      | 对象成员     |
-|  `&` （单目） | 取地址/获取引用 |
-|  `*` （单目） | 间接寻址/解引用 |
-|  `->`     | 指针成员     |
+| Operator     | Function                |
+| ------------ | ----------------------- |
+|  `[]`        | Subscript (of an array) |
+|  `.`         | Member of object        |
+|  `&` (Unary) | Address of              |
+|  `*` (Unary) | Indirection             |
+|  `->`        | Member of pointer       |
 
-这些运算符用来访问对象的成员或者内存，除了最后一个运算符外上述运算符都可被重载。与 `&` ， `*` 和 `->` 相关的内容请阅读 [指针](./pointer.md) 和 [引用](./reference.md) 教程。这里还省略了两个很少用到的运算符 `.*` 和 `->*` ，其具体用法可以参见 [C++ 语言手册](https://zh.cppreference.com/w/cpp/language/operator_member_access) 。
+These operators are used to access member of object or memory. All operator except `->` are overloadable. Detailed contents related to `&`, `*` and `->` please refer to the two article: [Pointer](./pointer.md) and [Reference](./reference.md). Here are omitted two rarely used operator `.*` and `->*`. For detail please refer to [cppreference](https://en.cppreference.com/w/cpp/language/operator_member_access).
 
 ```cpp
 auto result1 = v[1];  // 获取v中下标为2的对象
@@ -166,13 +166,13 @@ auto result4 = &v;      // 获取指向v的指针
 auto result5 = *v;      // 获取v指针指向的对象
 ```
 
-## C++ 运算符优先级总表
+## C++ Operator Precedence
 
-来自 [百度百科](https://baike.baidu.com/item/运算符优先级/4752611) ，有修改。
+This is compiled from [C++ Operator Precedence - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_precedence) and [Baidu Baike(Chinese)](https://baike.baidu.com/item/运算符优先级/4752611 )with modifications.
 
-|          运算符         |    描述    |                              例子                              | 可重载性 |
+| Operator             | Description | Example | Overloadable |
 | :------------------: | :------: | :----------------------------------------------------------: | :--: |
-|       **第一级别**       |          |                                                              |      |
+| **Level 1**          |          |                                                              |      |
 |         `::`         |  作用域解析符  |                       `Class::age = 2;`                      | 不可重载 |
 |       **第二级别**       |          |                                                              |      |
 |         `()`         |   函数调用   |                        `isdigit('1')`                        |  可重载 |
@@ -250,3 +250,6 @@ auto result5 = *v;      // 获取v指针指向的对象
 |        `throw`       |   异常抛出   |                  `throw EClass("Message");`                  | 不可重载 |
 |       **第十七级别**      |          |                                                              |      |
 |          `,`         |   逗号分隔符  |          `for (i = 0, j = 0; i < 10; i++, j++) ...`          |  可重载 |
+
+
+<!---Reference: https://en.wikipedia.org/wiki/Modulo_operation-->
