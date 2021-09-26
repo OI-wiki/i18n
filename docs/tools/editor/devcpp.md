@@ -10,7 +10,7 @@ The origin of Dev-C++ is Bloodshed Dev-C++ written by Colin Laplace. Since Febru
 
 Orwell Dev-C++ is a variant of Bloodshed Dev-C++, developed and maintained by individual programmer Orwell (Johan Mes). The variant contains bug fixes and compiler updates. Generally speaking, all Dev-C++ 5.x are Orwell Dev-C++. This variant was last updated in 2015 with version 5.11.
 
-Embarcadero Dev-C++[^ref1] is a successor of Bloodshed Dev-C++ and Orwell Dev-C++. In 2020, Embarcadero sponsored and continued the development of original Bloodshed Dev-C++. It contains support for high DPI, updates of compiler, support for updated version of C++ standard and dark mode.
+Embarcadero Dev-C++[^ref1] is a successor of Bloodshed Dev-C++ and Orwell Dev-C++. In 2020, Embarcadero sponsored and continued the development of original Bloodshed Dev-C++. It contains support for high DPI, compiler updates and support new C++ standards, and dark mode.
 
 The Dev-C++ distributions listed above are considered "official releases". Besides, after the stale development Orwell Dev-C++ in 2015, out of the need of teaching, an individual Chinese developer [royqh1979](https://github.com/royqh1979) decided to develop his personal fork of Dev-C++ named "Red Panda Dev-C++", integrating intelligent hint and updated version of MinGW64, which is convenient for personal use and studying. The project is hosted on [GitHub](https://github.com/royqh1979/Dev-Cpp).
 

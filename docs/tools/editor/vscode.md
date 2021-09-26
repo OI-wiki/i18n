@@ -12,18 +12,18 @@ Official site: [Visual Studio Code - Code Editing. Redefined](https://code.visua
 
 After installing and configuring extensions, VS Code will have support for C/C++. However the process is complicated. A simple solution to compile and run C++ programs is to install Code Runner extension.
 
-Code Runner is an extension that allows one to run code in one click. In projects it is often used to verify code _____. It supports over 40 programming languages including Node.js, Python, C, C++, Java, PHP, Perl, Ruby and Go.
+Code Runner is an extension that allows one to run code in one click. In projects it is often used to verify code segments. It supports over 40 programming languages including Node.js, Python, C, C++, Java, PHP, Perl, Ruby and Go.
 
-On installing method is to search Code Runner in extension marketplace and click Install; Another is go to [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) and click Install, then the browser will call VS Code automatically and start installation.
+One way to install is to search Code Runner in extension marketplace and click Install; Another is go to [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) and click Install, then the browser will call VS Code automatically and start installation.
 
 ![](./images/vscode-1.jpg)
 
-After finishing installation, open file that need to be run, click the upper-right little triangle icon to run code. Pressing shortcut key <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>(or, for macOS, <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) will do the same
+After finishing installation, open file to run, and click the little triangle icon at upper-right to run code. Pressing shortcut key <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>(or, for macOS, <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) will do the same.
 
 ???+ warning
-    If code is still unable to run after install VS Code and Code Runner, it it probably because of the lack of C/C++ running environment in the operating system. For installation of environment please refer to Hello, World!](../../lang/helloworld.md).
+    If code is still unable to run after installing VS Code and Code Runner, it it probably because of the lack of C/C++ running environment in the operating system. For installation of environment please refer to [Hello, World!](../../lang/helloworld.md).
 
-    Remember to toggle on Run In Terminal in preferences as the following image: ![](./images/vscode-7.png)
+    Remember to toggle on Run In Terminal in preferences as in the following image: ![](./images/vscode-7.png)
 
 ## Compile and Debug using C/C++ extensions
 
@@ -34,7 +34,7 @@ Open extension store in VS Code, type `C++` or `@category:"programming languages
 ![](./images/vscode-2.png)
 
 ???+ warning
-    Before continue to config, please make sure the that system has installed a C++ or Clang, and has added them to `$PATH`. Please use CMD or Powershell instead of Git Bash.
+    Before continue to config, please make sure the that G++ or Clang has been installed, and has added them to `$PATH`. Please use CMD or Powershell instead of Git Bash.
 
 ### Configuring Compilation
 
@@ -42,13 +42,13 @@ First, open a folder in VS Code, and then press <kbd>F1</kbd>, type `C/C++: Edit
 
 ![vscode-3](images/vscode-3.png)
 
-Choose the path where G++ or Clang located in Compiler Path. re-check whether the path of compiler has been added to `PATH` environment variable of operating system if there is nothing to choose.
+Choose the path where G++ or Clang located in Compiler Path. Check again whether the path of compiler has been added to `PATH` environment variable if there is nothing to choose from.
 
 ### Configuring IntelliSense
 
 This section is talking about adjusting smart auto-completion of VS Code.
 
-If you are using Clang as compiler, remember to choose `clang-x64` instead of default `msvc-x64`, or for G++ compiler users, choose `gcc-x64`, to enable features like auto-completion. Otherwise you will encounter an error "Intellisense mode msvc-x64 is incompatible with compiler path".
+If you are using Clang or G++ as compiler, remember to choose `clang-x64` (`gcc-x64` for G++) instead of default `msvc-x64` to enable features like auto-completion. Otherwise you will encounter an error saying "Intellisense mode msvc-x64 is incompatible with compiler path".
 
 ![](images/vscode-4.png)
 
@@ -63,11 +63,11 @@ Then, VS Code will finish initialization automatically and open a `launch.json` 
 
 At this point, all configuration processes have been completed. Press <kbd>F5</kbd> again and you will see debugging informations.
 
-All files needed to be compiled and debugged are required to be saved in this folder in the future. If you need to compile and debug codes in other folders, you need to perform above steps again, or copy `.vscode` sub-folder in original folder to new folder.
+All files needed to be compiled and debugged are required to be saved in this folder in the future. If you need to compile and debug codes in other folders, you need to perform above steps again, or copy `.vscode` sub-folder in original folder to the new one.
 
 ### Debugging Code
 
-To set a breakpoint on a certain row, open a code in VS Code, hover the cursor over the blank space to the left of the row number, and click the appeared red point. Re-click it will cancel the breakpoint.
+To set a breakpoint on a certain line, open a code in VS Code, hover the cursor over the blank space to the left of the row number, and click the appeared red point. Re-click it will cancel the breakpoint.
 
 ![](images/vscode-5.apng)
 
@@ -75,16 +75,15 @@ Press <kbd>F5</kbd> to enter debug mode, where a debug toolbar will appear on th
 
 ![](images/vscode-6.png)
 
-In case that the editor doesn't redirect automatically, you can enter debugging window by clicking `Run and Debug` in the left toolbar. Then values of variables will appear.
+In case that the editor did not jump automatically, you can enter debugging window by clicking `Run and Debug` in the left toolbar. Then the values of variables will appear.
 
 
-In debugging mode, the code editor will 
-display codes that will be executed next in yellow background.
+In debugging mode, the code editor will display codes that will be executed next in yellow background.
 
 ## Configure clangd
 
 ???+ warning
-    Because of conflict, IntelliSense from C/C++ extension will be automatically disabled. (Some features like debugging still use C/C++.)  If encountering problems of clangd's features, you may want to check whether IntelliSense from C/C++ is disabled.
+    Because of conflict, IntelliSense from C/C++ extension will be automatically disabled after installing clangd extension, while some features like debugging still use C/C++ extension. If encountered problems of clangd's features, you may want to check whether IntelliSense from C/C++ is disabled.
 
 ### Introduction
 
@@ -92,7 +91,7 @@ From LLVM official site
 
 > Clangd is an implementation of the Language Server Protocol leveraging Clang. Clangd’s goal is to provide language“smartness”features like code completion, find references, etc. for clients such as C/C++ Editors.
 
-Briefly talking, clangd provides some smart features like project-wide indexing, cross-references, variables renaming, faster auto-completion, errors and warnings and formatting. Though is is officially described as an implementation of LSP protocol, its functions are more similar to a language server than a protocol itself.
+In short, clangd provides some smart features like project-wide indexing, cross-references, variable renaming, faster auto-completion, errors and warnings and formatting. Though is is officially described as an implementation of LSP protocol, its functions are rather more similar to a language server than a protocol itself.
 
 VS Code's C/C++ extension also has features like auto-completion. However, comparing with clangd, it is inferior in accuracy of the legibility of the prompt information, etc. Therefore, we may sometimes use clangd instead of the C/C++ plugin to implement features such as code auto-completion.
 

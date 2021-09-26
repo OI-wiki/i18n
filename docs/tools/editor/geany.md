@@ -64,7 +64,7 @@ For example, click `Document -> Set Filetype -> Programming Source -> C++ Source
 
 ### Set File Template
 
-Create a new folder `templates/files` under configuration directory, where files inside are template files. Restart Geany, and you will find `File -> New (With Template)` in menubar.
+Create a new folder `templates/files` under configuration directory, with template files inside. Restart Geany, and you will find `File -> New (With Template)` in menu bar.
 
 The current configuration file path can be found in the second and third line of `Help -> Debug Message`.
 

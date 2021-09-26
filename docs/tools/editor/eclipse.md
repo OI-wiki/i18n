@@ -8,13 +8,13 @@ This article will briefly introduce Eclipse.
 
 Eclipse is a famous cross-platform open-source integrated development environment. Eclipse is initially used to develop in Java, and currently it is also used to develop in other programming language like C++, Python and PHP through plug-in. 
 
-Eclipse itself is a framework platform. However, support from various plug-ins provides Eclipse good scalability. Therefore, many software developers choose Eclipse as their framework to develop their own IDE.
+Eclipse itself is a framework platform. However, supports from various plug-ins provides Eclipse good scalability. Therefore, many software developers choose Eclipse as the framework to develop their own IDE.
 
-In the beginning, Eclipse is the next generation IDE developed by IBM as an alternative for business software Visual Age for Java. In November 2001, it was donated to open-source community, and now it is managed by Eclipse, a non-profit organization of software developers.
+Eclipse is originally the next generation IDE developed by IBM as an alternative of commercial software Visual Age for Java. In November 2001, it was donated to open-source community, and is now being managed by Eclipse, a non-profit organization.
 
 Advantages: 
 - Better experience;
-- Easy to getting started.
+- Easy to get started.
 
 Drawbacks: 
 - Eclipse is slower in opening than Visual Studio;
@@ -22,7 +22,7 @@ Drawbacks:
 
 ## Installation and Configuration Guide
 
-For major linux distributes, eclipse is already in their package repositories. This instruction is based on Microsoft Windows. 
+For major linux distributions, Eclipse is already in their package repositories. This instruction is based on Microsoft Windows. 
 
 ### Perquisites
 
@@ -74,7 +74,7 @@ Download the C++ version installer of your operating system.
 
 ![](./images/eclipse3.png)
 
-You will get a compressed file. Extract it and initiate a new project by entering directory information.
+Extract the compressed file downloaded and create a new project by entering directory information.
 
 ![](./images/eclipse4.png)
 
@@ -86,7 +86,7 @@ You will get a compressed file. Extract it and initiate a new project by enterin
 
 ## Advanced Readings
 
-The manual of Eclipse is detailed, therefore we recommend newly users to visit manual or google when encountering problems. And Eclipse's feel of use is similar to Visual Studio.
+The manual of Eclipse is detailed, therefore we recommend newly users to read the manual or Google when encountering problems. And Eclipse's feel of use is similar to Visual Studio.
 
 Similar to [Visual Studio Code](./vscode.md), Eclipse provides many plug-ins, which may help Eclipse be even easy to use.
 
