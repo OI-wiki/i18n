@@ -1,19 +1,19 @@
 author: tsagaanbar, Enter-tainer, Xeonacid
 
-## 变量的地址、指针
+## Address and Pointer
 
-在程序中，我们的数据都有其存储的地址。在程序每次的实际运行过程中，变量在物理内存中的存储位置不尽相同。不过，我们仍能够在编程时，通过一定的语句，来取得数据在内存中的地址。
+Every data has the address where it stores. During each actual execution of program, the locations of variables in physical memory are different. However, we are still able to obtain the address of data in memory by a certain statement while programming.
 
-地址也是数据。存放地址所用的变量类型有一个特殊的名字，叫做“指针变量”，有时也简称做“指针”。
+Addresses are also data. The variable type that stores address has a special name called *pointer variable*, or simply, *pointer*.
 
-???+ note "指针变量的大小"
-    指针变量的大小在不同环境下有差异。在 32 位机上，地址用 32 位二进制整数表示，因此一个指针的大小为 4 字节。而 64 位机上，地址用 64 位二进制整数表示，因此一个指针的大小就变成了 8 字节。
+???+ note "The Size of Pointer Variable"
+    In different environment, the sizes of a pointer variable are different. In a machine of 32-bits, an address is represented by a binary integer of 32 bits long. Therefore the size of a pointer variable is 4 bytes. As for 64-bits machine, an address is represented by a binary integer of 64 bits long. Therefore the size will be 8 bytes.
 
-地址只是一个刻度一般的数据，为了针对不同类型的数据，“指针变量”也有不同的类型，比如，可以有 `int` 类型的指针变量，其中存储的地址（即指针变量存储的数值）对应一块大小为 32 位的空间的起始地址；有 `char` 类型的指针变量，其中存储的地址对应一块 8 位的空间的起始地址。
+<!---地址只是一个刻度一般的数据，--> Pointer variables have different type for different type of data. E.g., the stored address in a pointer variable with type of `int` corresponds the beginning address of a 32-bit long space; the stored address in a pointer variable with type of `char` corresponds the beginning address of a 8-bit long space.
 
-事实上，用户也可以声明指向指针变量的指针变量。
+Actually, users can also declare a pointer variable pointing to pointer variable.
 
-假如用户自定义了一个结构体：
+Assume that the user declares a struct:
 
 ```cpp
 struct ThreeInt {
@@ -23,15 +23,15 @@ struct ThreeInt {
 };
 ```
 
-则 `ThreeInt` 类型的指针变量，对应着一块 3 × 32 = 96 bit 的空间。
+Then, a pointer to `ThreeInt` corresponds a space of $3 \times 32 = 96 \text{bit}$.
 
-## 使用指针变量
+## Declaration and Usage of Pointer
 
-C/C++ 中，指针变量的类型为类型名后加上一个星号 `*`。比如，`int` 类型的指针变量的类型名即为 `int*`。
+In C/C++, the data specifier of pointer variable is original data specifier plus a asterisk `*`. E.g., the specifier of pointer variable of `int` is `int*`.
 
-我们可以使用 `&` 符号取得一个变量的地址。
+We can use `&` operator to get the address of a variable.
 
-要想访问指针变量地址所对应的空间（又称指针所 **指向** 的空间），需要对指针变量进行 **解引用**（dereference），使用 `*` 符号。
+To access the memory corresponding to the stored address of pointer, or the memory **pointed to** by the pointer, we need to perform **dereference** on pointer variable using `*` operator.
 
 ```cpp
 int main() {
@@ -41,7 +41,7 @@ int main() {
 }
 ```
 
-对结构体变量也是类似。如果要访问指针指向的结构中的成员，需要先对指针进行解引用，再使用 `.` 成员关系运算符。不过，更推荐使用“箭头”运算符 `->` 这一更简便的写法。
+It is similar to struct variables. To access members of struct pointed to by the pointer, it is required to perform dereference to pointer, then use member-of-object operator `.`. However, it is more recommended to use the "arrow" member-of-pointer operator `->`, which is a simpler way of writing codes.
 
 ```cpp
 struct ThreeInt {
@@ -59,39 +59,39 @@ int main() {
 }
 ```
 
-## 指针的偏移
+## Pointer Offset
 
-指针变量也可以 **和整数** 进行加减操作。对于 `int` 型指针，每加 1（递增 1），其指向的地址偏移 32 位（即 4 个字节）；若加 2，则指向的地址偏移 2 × 32 = 64 位。同理，对于 `char` 型指针，每次递增，其指向的地址偏移 8 位（即 1 个字节）。
+Pointer variables are able to perform addition or subtraction operation **with integers**. For pointer of `int`, every increment of $1$ makes the pointed address shift for $32 \text{bits} = 4 \text{bytes}$; if the increment is $2$ it will shift for $2 \times 32 = 64 \text{bits}$. Similarly, for pointer of `char`, every increment of $1$ makes the pointed address shift for $8 \text{bits} = 1 \text{byte}$. 
 
-### 使用指针偏移访问数组
+### Using Pointer Offset to Access Array
 
-我们前面说过，数组是一块连续的存储空间。而在 C/C++ 中，直接使用数组名，得到的是数组的起始地址。
+As we mentioned before, an array is a continuum of memory space. In C/C++, the lone array's identifier represents the beginning address of this array.
 
 ```cpp
 int main() {
   int a[3] = {1, 2, 3};
-  int* p = a;  // p 指向 a[0]
-  *p = 4;      // a: [4, 2, 3]
-  p = p + 1;   // p 指向 a[1]
-  *p = 5;      // a: [4, 5, 3]
-  p++;         // p 指向 a[2]
-  *p = 6;      // a: [4, 5, 6]
+  int* p = a;  // `p` points to `a[0]`
+  *p = 4;      // `a`: [4, 2, 3]
+  p = p + 1;   // `p` points to `a[1]`
+  *p = 5;      // `a`: [4, 5, 3]
+  p++;         // `p` points to `a[2]`
+  *p = 6;      // `a`: [4, 5, 6]
 }
 ```
 
-当通过指针访问数组中的元素时，往往需要用到“指针的偏移”，换句话说，即通过一个基地址（数组起始的地址）加上偏移量来访问。
+When accessing elements in arrays by pointers, it is always needed to use pointer offset. In other words, access elements by a base address plus offsets.
 
-我们常用 `[]` 运算符来访问数组中某一指定偏移量处的元素。比如 `a[3]` 或者 `p[4]`。这种写法和对指针进行运算后再引用是等价的，即 `p[4]` 和 `*(p + 4)` 是等价的两种写法。
+We usually use subscript operator `[]` to access element in an arrya at a certain offset. E.g., `a[3]` and `p[4]`. This kind of expression is equivalent to computing pointer and dereferencing then. E.g., `p[4]` and `*(p + 4)` are two equivalent expressions. 
 
-## 指针的使用
+## Advanced Usage of Pointer
 
-使用指针，使得程序编写者可以操作程序运行时中各处的数据，而不必局限于作用域。
+With pointer, the programmer is able to manipulate data everywhere during the execution of program without limitation of scopes.
 
-### 引用传参
+### Pass by Pointer
 
-在 C/C++ 中，调用函数（过程）时使用的参数，均以拷贝的形式传入子过程中（引用除外，会在后续介绍）。默认情况下，函数仅能通过返回值，将结果返回到调用处。但是，如果某个函数希望修改其外部的数据，或者某个结构体/类的数据量较为庞大、不宜进行拷贝，这时，则可以通过向其传入外部数据的地址，便得以在其中访问甚至修改外部数据。
+Except passing by reference, parameters are passed to sub-process by copying when calling a function (process). In default, a function can only return the result bu returning value. However, in such situations that if a function is willing to modify external data, or when the data of some struct/class is too large to perform copy, we can pass the address of external data to access or even modify external data inside the sub-process.
 
-下面的 `my_swap` 方法，通过接收两个 `int` 型的指针，在函数中使用中间变量，完成对两个 `int` 型变量值的交换。
+For example, the function `my_swap` in the following code swaps the value of two variables of `int` type by receiving two pointer of `int` type and using middle variable.
 
 ```cpp
 void my_swap(int *a, int *b) {
@@ -104,17 +104,17 @@ void my_swap(int *a, int *b) {
 int main() {
   int a = 6, b = 10;
   my_swap(&a, &b);
-  // 调用后，main 函数中 a 变量的值变为 10，b 变量的值变为 6
+  // After calling, the value of `a` in `main()` becomes 10 and `b`'s becomes 6.
 }
 ```
 
-C++ 中引入了引用的概念，相对于指针来说，更易用，也更安全。详情可以参见 [C++：引用](./reference.md) 以及 [C 与 C++ 的区别：指针与引用](./c-cpp.md#指针与引用)。
+C++ introduces reference, which is easier to use and safer than pointer. For detail please refer to p[C++: Reference](./reference.md) and [Differences between C and C++: Pointer and Reference](./c-cpp.md).
 
-### 动态创建类型
+### Dynamical Instantiation
 
-除此之外，程序编写时往往会涉及到动态内存分配，即，程序会在运行时，向操作系统动态地申请或归还存放数据所需的内存。当程序通过调用操作系统接口申请内存时，操作系统将返回程序所申请空间的地址。要使用这块空间，我们需要将这块空间的地址存储在指针变量中。
+When programming it is always involved dynamical memory allocation. That is, the program will dynamically allocate or return memory from the operating system that used to store data during execution. To use the space we need to store the address to a pointer.
 
-在 C++ 中，我们使用 `new` 运算符来获取一块内存，使用 `delete` 运算符释放某指针所指向的空间。
+In C++, we use the operator `new` to obtain a block of memory, and use the operator `delete` to free a space pointed to by a pointer. 
 
 ```cpp
 int* p = new int(1234);
@@ -122,9 +122,9 @@ int* p = new int(1234);
 delete p;
 ```
 
-上面的语句使用 `new` 运算符向操作系统申请了一块 `int` 大小的空间，将其中的值初始化为 1234，并声明了一个 `int` 型的指针 `p` 指向这块空间。
+Statements in the example above use the operator `new` to allocate a memory with size of `int` from the operating system, initialize it to `1234`, and declare a pointer with the type of `int` pointing to the space.
 
-同理，也可以使用 `new` 开辟新的对象：
+Similarly, we can create a new object using new-statement:
 
 ```cpp
 class A {
@@ -141,7 +141,7 @@ int main() {
 }
 ```
 
-如上，「`new` 表达式」将尝试开辟一块对应大小的空间，并尝试在这块空间上构造这一对象，并返回这一空间的地址。
+As above shows, the `new` expression will try to allocating a block of memory space of corresponding size, and return the address of this space.
 
 ```cpp
 struct ThreeInt {
@@ -158,13 +158,13 @@ int main() {
 ```
 
 ???+ note "列表初始化"
-    `{}` 运算符可以用来初始化没有构造函数的结构。除此之外，使用 `{}` 运算符可以使得变量的初始化形式变得统一。详见「[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)」。
+    The operators `{}` can be used to initialize struct that doesn't have its constructor. Besides, the using of operators `{}` can make the form of variable initialization more unified. For more detail please refer to [list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization).
 
-需要注意，当使用 `new` 申请的内存不再使用时，需要使用 `delete` 释放这块空间。不能对一块内存释放两次或以上。而对空指针 `nullptr` 使用 `delete` 操作是合法的。
+Be cautious that it is needed to use delete-statement to free the space if not using memory allocated by the new-statement. It is not allowed to free one block of memory twice or more times. But use delete-statement for  null pointer `nullptr` is legal.。
 
-### 动态创建数组
+### Dynamically Create Array
 
-也可以使用 `new[]` 运算符创建数组，这时 `new[]` 运算符会返回数组的首地址，也就是数组第一个元素的地址，我们可以用对应类型的指针存储这个地址。释放时，则需要使用 `delete[]` 运算符。
+You can also use operator `new[]` to create a array, which returns the beginning address of created array, also known as the address of the first element of array. We can store this address with pointer of correct type. When freeing it is needed to use operator `delete[]`.
 
 ```cpp
 size_t element_cnt = 5;
@@ -172,9 +172,9 @@ int *p = new int[element_cnt];
 delete[] p;
 ```
 
-数组中元素的存储是连续的，即 `p + 1` 指向的是 `p` 的后继元素。
+The storage of elements in a array is continuous. That is, `p + 1` is pointing to the successor of `p`.
 
-### 二维数组
+### 2-Dimensional Array
 
 在存放矩阵形式的数据时，可能会用到“二维数组”这样的数据类型。从语义上来讲，二维数组是一个数组的数组。而计算机内存可以视作一个很长的一维数组。要在计算机内存中存放一个二维数组，便有“连续”与否的说法。
 
@@ -185,7 +185,7 @@ delete[] p;
 ???+note "二维数组的存储方式"
     这种按照“行（row）”存储数据的方式，称为行优先存储；相对的，也可以按照列（column）存储数据。由于计算机内存访问的特性，一般来说，访问连续的数据会得到更高的效率。因此，需要按照数据可能的使用方式，选择“行优先”或“列优先”的存储方式。
 
-### 动态创建二维数组
+### Dynamically Create 2-Dimensional Array
 
 在 C/C++ 中，我们可以使用类似下面这样的语句声明一个 N 行（row）M 列（column）的二维数组，其空间在物理上是连续的。
 
@@ -264,7 +264,7 @@ int main() {
 
 由于指向数组的指针也是一种确定的数据类型，因此除数组的第一维外，其他维度的长度均须为一个能在编译器确定的常量。不然，编译器将无法翻译如 `a[n]` 这样的表达式（`a` 为指向数组的指针）。
 
-## 指向函数的指针
+## Pointer Pointing to a Function
 
 关于函数的介绍请参见 [C++ 函数](./func.md) 章节。
 
