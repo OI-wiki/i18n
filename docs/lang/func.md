@@ -1,47 +1,47 @@
 author: Ir1d, tsagaanbar
 
-## 函数的声明
+## Declaration of Function
 
-编程中的函数（function）一般是若干语句的集合。我们也可以将其称作“**子过程**（subroutine）”。在编程中，如果有一些重复的过程，我们可以将其提取出来，形成一个函数。函数可以接收若干值，这叫做函数的参数。函数也可以返回某个值，这叫做函数的返回值。
+A function in programming is generally a compound of several statements. We can also call it **subroutine**. While programming, if there are some repetitive routine, we can extract it and form a function. A function can receive several values called the parameters of function. A function can also return a certain value called the returning value of function.
 
-声明一个函数，我们需要返回值类型、函数的名称，以及参数列表。
+Declaring a function, we need to determine the type of returning value, the identifier of function, and its parameter list.
 
 ```cpp
-// 返回值类型 int
-// 函数的名称 some_function
-// 参数列表 int, int
+// Returning Type: int
+// Identifier of Function: some_function
+// Parameter List: int, int
 int some_function(int, int);
 ```
 
-如上图，我们声明了一个名为 `some_function` 的函数，它需要接收两个 `int` 类型的参数，返回值类型也为 `int`。可以认为，这个函数将会对传入的两个整数进行一些操作，并且返回一个同样类型的结果。
+In the example above, we declared a function named `some_function`. It is required to receive two parameters of `int`, and the returning value is also `int`. The type of returning value is also `int`. <!---可以认为，这个函数将会对传入的两个整数进行一些操作，并且返回一个同样类型的结果。(是不是啰嗦了)-->
 
-## 实现函数：编写函数的定义
+## Implementing an Function
 
-只有函数的声明（declaration）还不够，他只能让我们在调用时能够得知函数的 **接口** 类型（即接收什么数据、返回什么数据），但其缺乏具体的内部实现，也就是函数的 **定义**（definition）。我们可以在 **声明之后的其他地方** 编写代码 **实现**（implement）这个函数（也可以在另外的文件中实现，但是需要将分别编译后的文件在链接时一并给出）。
+It is not enough if there is only declaration of function, as it only let us know the interface type (i.e., what data should receive or return) of a function when calling. It lacks of implementation, also known as its definition. We can implement it at any place after its declaration. (Or, implement in another file. However, it is needed to be given with other separately compiled file when linking.)  
 
-如果函数有返回值，则需要通过 `return` 语句，将值返回给调用方。函数一旦执行到 `return` 语句，则直接结束当前函数，不再执行后续的语句。
+If a function has its returning value, then it will return the value to the caller by using return-statement. Once the function executes to the return-statement, the current function is immediately terminated and any statement after it won't be executed.
 
 ```cpp
-int some_function(int, int);  // 声明
+int some_function(int, int);  // Declaration
 
 /* some other code here... */
 
-int some_function(int x, int y) {  // 定义
+int some_function(int x, int y) {  // Implementation
   int result = 2 * x + y;
   return result;
-  result = 3;  // 这条语句不会被执行
+  result = 3;  // This statement won't be executed.
 }
 ```
 
-在定义时，我们给函数的参数列表的变量起了名字。这样，我们便可以在函数定义中使用这些变量了。
+In the definition, we named variables in the parameter list. Then we will be able to use these variables in the implementation of functions.
 
-如果是同一个文件中，我们也可以直接将 **声明和定义合并在一起**，换句话说，也就是在声明时就完成定义。
+If they are in the same file, we can also **put the declaration and its implementation together**, or in other word, finish its implementation when declaring.
 
 ```cpp
 int some_function(int x, int y) { return 2 * x + y; }
 ```
 
-如果函数不需要有返回值，则将函数的返回值类型标为 `void`；如果函数不需要参数，则可以将参数列表置空。同样，无返回值的函数执行到 `return;` 语句也会结束执行。
+If one function doesn't need a returning value, the returning type will be `void`; If one function doesn't need parameters, the parameter list can be empty. Similarly, a function without returning value will be terminated after executing to `return;`.
 
 ```cpp
 void say_hello() {
@@ -49,17 +49,17 @@ void say_hello() {
   cout << "hello!\n";
   cout << "hello!\n";
   return;
-  cout << "hello!\n";  // 这条语句不会被执行
+  cout << "hello!\n";  // This statement won't be executed.
 }
 ```
 
-## 函数的调用
+## Calling of Functions
 
-和变量一样，函数需要先被声明，才能使用。使用函数的行为，叫做“调用（call）”。我们可以在任何函数内部调用其他函数，包括这个函数自身。函数调用自身的行为，称为 **递归**（recursion）。
+Like variables, a function need to declare first and then become available to usable. <!---使用函数的行为，叫做“调用（call）”。这句话英文语境下没有用-->We can call function inside any other function, including the function itself. The behaviour that a function is calling itself is called **recursion**.
 
-在大多数语言中，调用函数的写法，是 **函数名称加上一对括号** `()`，如 `foo()`。如果函数需要参数，则我们将其需要的参数按顺序填写在括号中，以逗号间隔，如 `foo(1, 2)`。函数的调用也是一个表达式，**函数的返回值** 就是 **表达式的值**。
+For most programming language, the way to call a method is by using **the identifier of the function plus a pair of brackets** `()`. For example, `foo()`. If parameters are required, we need to fill them in order into the brackets and separating them by comma. For example, `foo(1, 2)`. The calling of a function is also an expression, **the value of which** is the **returning value**.
 
-函数声明时候写出的参数，可以理解为在函数 **当前次调用的内部** 可以使用的变量，这些变量的值由调用处传入的值初始化。看下面这个例子：
+Parameters written in the declaration can be considered as available variables inside current calling of the function. These value will be initialized by the passed value. Look  the following example below:
 
 ```cpp
 int foo(int, int);
@@ -75,14 +75,14 @@ void foo(int x, int y) {
 
 a = 1;
 b = 1;
-// 调用前：a = 1, b = 1
-foo(a, b);  // 调用 foo
-            // 调用后：a = 1, b = 1
+// Before calling: a = 1, b = 1
+foo(a, b);  // Calling: foo
+            // After calling: a = 1, b = 1
 ```
 
-在上面的例子中，`foo(a, b)` 是一次对 `foo` 的调用。调用时，`foo` 中的 `x` 和 `y` 变量，分别由调用处 `a` 和 `b` 的值初始化。因此，在 `foo` 中对变量 `x` 和 `y` 的修改，**并不会影响到调用处的变量的值**。
+In the example above, `foo(a, b)` is a calling of `foo`. When calling, the variables `x` and `y` from `foo` is separately initialized by the value of `a` and `b` from where it is called. Therefore, modification of `x` and `y` from `foo` **won't affect the value of variable where it is called**.
 
-如果我们需要在函数（子过程）中修改变量的值，则需要采用“传引用”的方式。
+If we need to modify the value of variables in the function (subroutine), we need to *pass by reference*.
 
 ```cpp
 void foo(int& x, int& y) {
@@ -94,20 +94,20 @@ void foo(int& x, int& y) {
 
 a = 1;
 b = 1;
-// 调用前：a = 1, b = 1
-foo(a, b);  // 调用 foo
-            // 调用后：a = 2, b = 4
+// Before calling: a = 1, b = 1
+foo(a, b);  // Calling foo
+            // After calling: a = 2, b = 4
 ```
 
-上述代码中，我们看到函数参数列表中的“`int`”后面添加了一个“`&`（and 符号）”，这表示对于 `int` 类型的 **引用**（reference）。在调用 `foo` 时，调用处 `a` 和 `b` 变量分别初始化了 `foo` 中两个对 `int` 类型的引用 `x` 和 `y`。在 `foo` 中的 `x` 和 `y`，可以理解为调用处 `a` 和 `b` 变量的“别名”，即 `foo` 中对 `x` 和 `y` 的操作，就是对调用处 `a` 和 `b` 的操作。
+As the code shows, we can see there is a and-character `&` after the `int` in the functions's parameter list, which means it is a **reference** of `int`. When calling `foo`, the `a` and `b` initialize two references of `int`, `x` and `y`, from `foo`, which can be considered as an alternative name of `a` and `b`. Operating `x` and `y` of `foo` is operating `a` and `b` from where it calls.
 
-## `main` 函数
+## The `main` Function
 
-特别的，每个 C/C++ 程序都需要有一个名为 `main` 的函数。任何程序都将从 `main` 函数开始运行。
+Specially, every executable C/C++ program need a function called `main`. Any program will begin from the function `main`.
 
-> `main` 函数也可以有参数，通过 `main` 函数的参数，我们可以获得外界传给这个程序的指令（也就是“命令行参数”），以便做出不同的反应。
+> The main function is allowed to have its parameter, by using which we can get commands passed from external environments, also known as *command arguments*, to have different behaviours.
 
-下面是一段调用了函数（子过程）的代码：
+The following shows a block of code calling function (or subroutine).
 
 ```cpp
 // hello_subroutine.cpp
