@@ -157,7 +157,7 @@ int main() {
 }
 ```
 
-???+ note "列表初始化"
+???+ note "List Initializations"
     The operators `{}` can be used to initialize struct that doesn't have its constructor. Besides, the using of operators `{}` can make the form of variable initialization more unified. For more detail please refer to [list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization).
 
 Be cautious that it is needed to use delete-statement to free the space if not using memory allocated by the new-statement. It is not allowed to free one block of memory twice or more times. But use delete-statement for  null pointer `nullptr` is legal.。
@@ -176,52 +176,52 @@ The storage of elements in a array is continuous. That is, `p + 1` is pointing t
 
 ### 2-Dimensional Array
 
-在存放矩阵形式的数据时，可能会用到“二维数组”这样的数据类型。从语义上来讲，二维数组是一个数组的数组。而计算机内存可以视作一个很长的一维数组。要在计算机内存中存放一个二维数组，便有“连续”与否的说法。
+When storing data in form of matrix, you may need to use a data type called 2-dimensional array, which is an array consists of arrays in semantically speaking. However, a computer's memory can be regarded as a long long 1-dimensional array. Therefore, a concept about whether the array is contiguous or not appears when storing a 2-dimensional array in computer.
 
-所谓“连续”，即二维数组的任意一行（row）的末尾与下一行的起始，在物理地址上是毗邻的，换言之，整个二维数组可以视作一个一维数组；反之，则二者在物理上不一定相邻。
+When we saying a 2-dimensional array is contiguous, we indicate that the ending of any row and the beginning of next row are adjacent in physical address. In other words, the whole 2-dimensional array can be treated as a 1-dimensional array. Otherwise, the two are not always adjacent to each other physically.
 
-对于“连续”的二维数组，可以仅使用一个循环，借由一个不断递增的指针即可遍历数组中的所有数据。而对于非连续的二维数组，由于每一行不连续，则需要先取得某一行首的地址，再访问这一行中的元素。
+For a contiguous 2-dimensional array, one is able to use only one loop to enumerate all data of the array by using a incremental pointer. But for a non-contiguous array, it is needed to get the address of row beginning first and then access elements inside, as each rows are not contiguous.
 
-???+note "二维数组的存储方式"
+???+note "Storing 2-dimensional Array"
     这种按照“行（row）”存储数据的方式，称为行优先存储；相对的，也可以按照列（column）存储数据。由于计算机内存访问的特性，一般来说，访问连续的数据会得到更高的效率。因此，需要按照数据可能的使用方式，选择“行优先”或“列优先”的存储方式。
 
 ### Dynamically Create 2-Dimensional Array
 
-在 C/C++ 中，我们可以使用类似下面这样的语句声明一个 N 行（row）M 列（column）的二维数组，其空间在物理上是连续的。
+In C/C++, we can declare a 2-dimensional array with $N$ rows and $M$ columns using statements similar to the following example, which will be contiguous physically.
 
 ???+note "描述数组的维度"
-    更通用的方式是使用第 n 维（dimension）的说法。对于“行优先”的存储形式，数组的第一维长度为 N，第二维长度为 M。
+    Another common way to describe the multi-dimensional array is using the n-th dimension concept. E.g., for row-first storage, the length of 1st dimension is $N$ and 2nd dimension is $M$
 
 ```cpp
 int a[N][M];
 ```
 
-这种声明方式要求 N 和 M 为在编译期即可确定的常量表达式。
+Using this method of declaration requires that $N$ and $M$ are constant expressions that can be determined in compile time.
 
-在 C/C++ 中，数组的第一个元素下标为 0，因此 `a[r][c]` 这样的式子代表二维数组 a 中第 r + 1 行的第 c + 1 个元素，我们也称这个元素的下标为 `(r,c)`。
+In C/C++, the subscript of the first element of an array is `0`. Therefore, for example, an expression like `a[r][c]` represents the $c+1$-th element in the $r+1$-th row of 2-dimensional array `a`. It also calls the subscript of this element as `(r, c)`.
 
-不过，实际使用中，（二维）数组的大小可能不是固定的，需要动态内存分配。
+However, in practice, the size of a multi-dimensional array is not always fixed. It is needed to allocate memory dynamically.
 
-常见的方式是声明一个长度为 N × M 的 **一维数组**，并通过下标 `r * M + c` 访问二维数组中下标为 `(r, c)` 的元素。
+A common approach is to declare an **1-dimensional array** with length of $N \times M$, where we access 2-dimensional element with subscript `(r, c)` by using subscript `[r * m + c]`.
 
 ```cpp
 int* a = new int[N * M];
 ```
 
-这种方法可以保证二维数组是 **连续的**。
+Using this method can guarantee the 2-dimensional array is **contiguous**.
 
-???+note "数组在物理层面上的线性存储"
-    实际上，数据在内存中都可以视作线性存放的，因此在一定的规则下，通过动态开辟一维数组的空间，即可在其上存储 n 维的数组。
+???+note "Linear Storage of Array in Physical Layer"
+    In fact, data can be considered to be stored linearly in memory. So it is able to store n-dimensional array by dynamically allocate memory of 1-dimensional array under certain rules.
 
-此外，亦可以根据“数组的数组”这一概念来进行内存的获取与使用。对于一个存放的若干数组的数组，实际上为一个存放的若干数组的首地址的数组，也就是一个存放若干指针变量的数组。
+Besides, it is able to allocate and use memory basing on the concept *array of arrays*. An array storing several arrays is actually an array storing several beginning addresses of arrays, i.e., an array storing several pointers.
 
-我们需要一个变量来存放这个“数组的数组”的首地址——也就是一个指针的地址。这个变量便是一个“指向指针的指针”，有时也称作“二重指针”，如：
+We need a variable to store the beginning address of this "array of arrays", which is the address of a pointer. This variable is a *pointer pointing to a pointer*, also known as *double pointer*, as the example below:
 
 ```cpp
 int** a = new int*[5];
 ```
 
-接着，我们需要为每一个数组申请空间：
+Then we need to allocate memory for each arrays:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
@@ -229,7 +229,7 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-至此，我们便完成了内存的获取。而对于这样获得的内存的释放，则需要进行一个逆向的操作：即先释放每一个数组，再释放存储这些数组首地址的数组，如：
+To this point, we finished the allocation of memory. As for freeing memory allocated by this method, it is required to perform a reverse operation: free every sub-array first, then free the array storing the beginning addresses of arrays, as the following example:
 
 ```cpp
 for (int i = 0; i < 5; i++) {
@@ -238,9 +238,9 @@ for (int i = 0; i < 5; i++) {
 delete[] a;
 ```
 
-需要注意，这样获得的二维数组，不能保证其空间是连续的。
+Be cautious that the contiguousness of the space allocated by this way cannot be guaranteed.
 
-还有一种方式，需要使用到“指向数组的指针”。
+There is another approach using the *pointer pointing to arrays*:
 
 ???+note 
     我们之前说到，在 C/C++ 中，直接使用数组名，值等于数组首元素的地址。但是数组名表示的这一变量的类型实际上是整个数组，而非单个元素。
