@@ -89,7 +89,7 @@ With pointer, the programmer is able to manipulate data everywhere during the ex
 
 ### Pass by Pointer
 
-Except passing by reference, parameters are passed to sub-process by copying when calling a function (process). In default, a function can only return the result bu returning value. However, in such situations that if a function is willing to modify external data, or when the data of some struct/class is too large to perform copy, we can pass the address of external data to access or even modify external data inside the sub-process.
+Except passing by reference, parameters are passed to subroutine by copying when calling a function (process). In default, a function can only return the result bu returning value. However, in such situations that if a function is willing to modify external data, or when the data of some struct/class is too large to perform copy, we can pass the address of external data to access or even modify external data inside the subroutine.
 
 For example, the function `my_swap` in the following code swaps the value of two variables of `int` type by receiving two pointer of `int` type and using middle variable.
 
