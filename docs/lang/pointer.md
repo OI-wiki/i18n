@@ -243,6 +243,8 @@ Be cautious that the contiguousness of the space allocated by this way cannot be
 There is another approach using the *pointer pointing to arrays*:
 
 ???+note 
+    This part is incomplete and waiting for upstream fix.
+    
     我们之前说到，在 C/C++ 中，直接使用数组名，值等于数组首元素的地址。但是数组名表示的这一变量的类型实际上是整个数组，而非单个元素。
     
     ```cpp
@@ -260,16 +262,23 @@ int main() {
 }
 ```
 
+Memory allocated by this approach is contiguous, but one can directly use expressions in form of `a[n]` to get the beginning address of the $n+1$-th row. Therefore, one can access element with subscript of `(r, c)` using expressions in form of `a[r][c]`.
 这种方式获得到的也是连续的内存，但是可以直接使用 `a[n]` 的形式获得到数组的第 n + 1 行（row）的首地址，因此，使用 `a[r][c]` 的形式即可访问到下表为 `(r, c)` 的元素。
 
+Because pointer pointing to array is a certain data type, it is required that the length of other dimension must be a constant which can be determined in compile time except the first dimension of array. Otherwise, the compiler will not understand expressions like `a[n]`.
 由于指向数组的指针也是一种确定的数据类型，因此除数组的第一维外，其他维度的长度均须为一个能在编译器确定的常量。不然，编译器将无法翻译如 `a[n]` 这样的表达式（`a` 为指向数组的指针）。
+
+???+warning "Work In Progress"
+    The following content is currently work in progress and waiting for upstream update.
 
 ## Pointer Pointing to a Function
 
-关于函数的介绍请参见 [C++ 函数](./func.md) 章节。
+For introductions about functions, please refer the main article [C++ Function](./func.md).
 
+In short, to call a function, it is needed to know the type of returning value and its parameter's number and types. <!---这些也统一称作接口类型-->These are called interface type.<!---不准确，需要查资料--> 
 简单地说，要调用一个函数，需要知晓该函数的参数类型、个数以及返回值类型，这些也统一称作接口类型。
 
+It is available to call a function by a function pointer. Sometimes, when the interface type of several functions are same, it is able to **dynamically** select the function to call. In other word, one can 
 可以通过函数指针调用函数。有时候，若干个函数的接口类型是相同的，使用函数指针可以根据程序的运行 **动态地** 选择需要调用的函数。换句话说，可以在不修改一个函数的情况下，仅通过修改向其传入的参数（函数指针），使得该函数的行为发生变化。
 
 假设我们有若干针对 `int` 类型的二元运算函数，则函数的参数为 2 个 `int`，返回值亦为 `int`。下边是一个使用了函数指针的例子：
@@ -298,7 +307,8 @@ int main() {
 }
 ```
 
-???+ note "`&`、`*` 和函数指针"
+???+ note "`&` and `*` and function pointer"
+    In C language,
     在 C 语言中，诸如 `void (*p)() = foo;`、`void (*p)() = &foo;`、`void (*p)() = *foo;`、`void (*p)() = ***foo` 等写法的结果是一样的。
     
     因为函数（如 `foo`）是能够被隐式转换为指向函数的指针的，因此 `void (*p)() = foo;` 的写法能够成立。
