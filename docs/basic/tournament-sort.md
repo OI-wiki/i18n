@@ -4,7 +4,7 @@ This article will briefly introduce the tournament sort.
 
 ## Introduction
 
-Tournament sort<!---, or tree selection sort,--> is a optimization for naive [selection sort](./selection-sort.md), and a variation of [heapsort](./heap-sort.md) (with complete ). It performs based by selection sort by using a priority queue to find next element to select.
+Tournament sort is a optimization for naive [selection sort](./selection-sort.md), and a variation of [heapsort](./heap-sort.md) (with complete ). It performs based by selection sort by using a priority queue to find next element to select.
 
 The algorithm is named after a single-elimination tournament, where there are many players (or teams) that play in two-sided matches. Each match compares the players and the winner is promoted to next round. The tournament determines the best player, but the player who was beaten in the final match may not be the second best – he may be inferior to other players the winner beated.[^ref1]
 
