@@ -4,7 +4,7 @@ This article will briefly introduce the shellsort.
 
 ## Introduction
 
-Shellsort is an optimization of [insertion sort](./insertion-sort.md). <!---「缩小增量排序法」找不到对应的名词，可能thesis翻得不够多-->Shellsort is named after its inventor, also known as reduced incremental sorting. 
+Shellsort is an optimization of [insertion sort](./insertion-sort.md) which is named after its inventor. 
 
 ## Principles
 

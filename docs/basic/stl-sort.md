@@ -78,7 +78,7 @@ std::partial_sort(first, mid, last, cmp);
 
 Place the top $k$ smallest elements in the first $k$ positions in the sequence (the order of equal elements is not guaranteed), and the order of the remaining elements is not specified. If `cmp` is not specified the array will be sorted from smallest to largest by default (or, `std::less<>`). 
 
-Time complexity: Approximately performing $(last-first)\log(mid-first)$ times `cmp()`.
+Time complexity: Approximately performing `cmp()` for $(last-first)\log(mid-first)$ times.
 
 Principle:
 
@@ -136,7 +136,7 @@ Common mistakes:
 
 ## External Links
 
-- [Talking about the application of neighbor exchange sorting and problems that need attention](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) (Original link in Chinese).
+- [Discussing the application of neighbor exchange sorting and problems that need attention](https://ouuan.github.io/浅谈邻项交换排序的应用以及需要注意的问题/) (Original link in Chinese).
 
 ## Footnotes
 

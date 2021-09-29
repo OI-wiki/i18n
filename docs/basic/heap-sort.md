@@ -4,7 +4,7 @@ This article will briefly introduce heapsort.
 
 ## Introduction
 
-Heapsort is a sorting algorithm suitable for applying on arrays designed based on [binary heap](../ds/binary-heap.md).
+Heapsort is a sorting algorithm designed based on [binary heap](../ds/binary-heap.md) that is suitable for applying on arrays .
 
 ## Principles
 
@@ -37,7 +37,7 @@ Heapsort is an unstable sorting algorithm due to swapping operations, just like 
 
 ### Time Complexity
 
-The worst-case, average-case, best-case time complexity of heapsort are all $O(n\log n)$.
+The worst-, average-, and best-case time complexity of heapsort are all $O(n\log n)$.
 
 ### Space Complexity
 

@@ -109,7 +109,7 @@ Merge sort can be used to find the [inversion number](https://en.wikipedia.org/w
 
 An inversion pair $(i,j)$ is, for an array $a$, a number pair that satisfied $a_{i} > a_{j}$ and $i < j$.
 
-The commented statement `ans += mid - p` in previous code implementation is counting the inversion pairs. Specifically, when the algorithm places latter elements to former places, (since smaller elements are placed former), any other element former than the original position and greater than the element forms inversion pairs with this element. The inversion number is the number of elements not yet combined, `mid - p`.
+The commented statement `ans += mid - p` in previous code implementation is counting the inversion pairs. Specifically, when the algorithm places latter elements to former places (since smaller elements are placed former), any other elements former than the original position and greater than the element forms inversion pairs with this element. The inversion number is the number of elements not yet combined, i.e. `mid - p`.
 
 Finding number of inverse pairs can also be solved with data structure like [Fenwick tree](../ds/fenwick.md) and [segment tree](../ds/seg.md). The time complexity of all three approaches is $O(n \log n)$. 
 

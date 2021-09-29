@@ -6,7 +6,7 @@ This article will briefly introduce the usage of sorting.
 
 Using sort, we can reduce the time complexity required to solve the problem.
 
-???+note "Example: Check whether the given array have equivalent elements."
+???+note "[Example] Check whether an array have equivalent elements"
     Consider a sequence of numbers and you need to check whether there are any equal elements.
 
     A straightforward solution is to check each pair of elements and determine whether they are equal. The time complexity is $O(n^2)$ .
