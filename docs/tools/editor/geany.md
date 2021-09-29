@@ -4,9 +4,7 @@ author: xingjiapeng, MingqiHuang
 
 Geany is a lightweight, easy-to-use text editor. It is friendly for beginners in Linux environment.
 
-Like Dev-C++, it supports single file compilation.
-
-However, it is compatible in Linux, Windows and macOS.
+Like Dev-C++, it supports single file compilation but is compatible in Linux, Windows and macOS.
 
 The homepage of Geany is <https://geany.org/>
 
@@ -22,8 +20,8 @@ The homepage of Geany is <https://geany.org/>
 ### Cons
 
 1. Not many users;
-2. An access control issue was reported in macOS Catalina [^1].
-3. No syntax highlighting by default when creating a new document. You may need to manually set filetype.
+2. An issue relating to permission was reported in macOS Catalina [^1].
+3. No syntax highlighting by default when creating a new document. You may need to manually choose filetype.
 
 ## Installation
 
@@ -54,7 +52,7 @@ sudo make install
 
 Note: you may need install a dependency `libgtk2.0-dev` if it reports `No package 'gtk+-2.0' found`.
 
-## Skills
+## Tricks
 
 ### Switch filetype
 
