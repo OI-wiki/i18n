@@ -4,7 +4,7 @@ author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagn
 
 Dev-C++ is a free full-featured integrated development environment (IDE) distributed under the GNU General Public License for programming in C and C++ (including C++11). It is bundled with, and uses, MinGW and GDB as its compiler and debugger. Dev-C++ runs in Microsoft Windows.
 
-The advantage of Dev-C++ is friendly user interface, simple installation and support single file compilation. Therefore, it becomes the first choice of many beginner C++ learners and beginner competitors of competitive programming. For NOIP, in provinces which offer Windows as a standard operation system, it generally comes with pre-installed Dev-C++.
+The advantage of Dev-C++ is friendly user interface, simple installation and its support of single file compilation. Therefore, it becomes the first choice of many C++ beginners and competitive programming contestants. For NOIP, in provinces which use Windows as contest operation system, it generally comes with pre-installed Dev-C++.
 
 The origin of Dev-C++ is Bloodshed Dev-C++ written by Colin Laplace. Since February 22, 2005, the project was stopped updating. In 2006, lead developer Colin Laplace stated the situation that he was busy with real-life issues and did not have time to continue development of Dev-C++.
 

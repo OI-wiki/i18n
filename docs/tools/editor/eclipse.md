@@ -6,7 +6,7 @@ This article will briefly introduce Eclipse.
 
 ## Introduction
 
-Eclipse is a famous cross-platform open-source integrated development environment. Eclipse is initially used to develop in Java, and currently it is also used to develop in other programming language like C++, Python and PHP through plug-in. 
+Eclipse is a famous cross-platform open-source integrated development environment. Eclipse is initially used to develop in Java, and currently it is also used to develop in other programming language like C++, Python and PHP with plug-in. 
 
 Eclipse itself is a framework platform. However, supports from various plug-ins provides Eclipse good scalability. Therefore, many software developers choose Eclipse as the framework to develop their own IDE.
 
@@ -31,6 +31,9 @@ You will need Java Runtime and MinGW.
 #### Download & Install Java Runtime
 
 As for August 18th, 2021, the latest Eclipse has integrated a Java runtime environment. You can also download an independent JRE from if needed.
+
+???+warning "Warning"
+    Eclipse builds after version 2020-09 require Java runtime environment newer than 11. However, most Java runtime installers obtained from Java.com are Java 8, which requires for readers to pay more attentions.
 
 ![](./images/eclipse1-1.png)
 
