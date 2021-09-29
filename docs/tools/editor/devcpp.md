@@ -137,7 +137,7 @@ Macro is useful when testing locally with file I/O or other purposes.
 
 Add `-D[string]` to "Add the following commands when calling the linker", where `[string]` is the macro needed to define.
 
-In the following example, the parameter `-DLOCAL` make the following code to read from the file `test.in` and print to file `test.out`. <!---Which means, without the parameter the following code won't be compiled.-->
+In the following example, the argument `-DLOCAL` make the following code to read from the file `test.in` and output to file `test.out`, equivalent to `#define LOCAL`.
 
 ![](./images/Dev-C++-16.png)
 
