@@ -159,11 +159,11 @@ Result = (1 + 2, 3 + 4, 5 + 6);
 These operators are used to access member of object or memory. All operator except `->` are overloadable. Detailed contents related to `&`, `*` and `->` please refer to the two article: [Pointer](./pointer.md) and [Reference](./reference.md). Here are omitted two rarely used operator `.*` and `->*`. For detail please refer to [cppreference](https://en.cppreference.com/w/cpp/language/operator_member_access).
 
 ```cpp
-auto result1 = v[1];  // 获取v中下标为2的对象
-auto result2 = p.q;   // 获取p对象的q成员
-auto result3 = p -> q;  // 获取p指针指向的对象的q成员，等价于 (*p).q
-auto result4 = &v;      // 获取指向v的指针
-auto result5 = *v;      // 获取v指针指向的对象
+auto result1 = v[1];    // Get object in v with subscript of 2
+auto result2 = p.q;     // Get member q of object p
+auto result3 = p -> q;  // Get member q of the object pointed by pointer p, equivalent to (*p).q
+auto result4 = &v;      // Get the pointer pointing to v
+auto result5 = *v;      // Get the object pointed by pointer v
 ```
 
 ## C++ Operator Precedence
