@@ -2,7 +2,7 @@ An array is a container for storing objects of the same type. The objects stored
 
 ## Array definition
 
-The definition of an array is in the form of `a[d]`, where `a` is the name of the array, and `d` is the number of elements in the array. While compiling, `d` should be known, that is, `d` should be a fixed integer.
+The definition of an array is in the form of `a[d]`, where `a` is the name of the array, and `d` is the number of elements in the array. While compiling, `d` should be known, that is, `d` should be an integral constant expression.
 
 ```cpp
 unsigned int d1 = 42;
