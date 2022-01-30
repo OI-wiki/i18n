@@ -27,26 +27,24 @@ nav:
     - Formatting Manual (Chinese): intro/format.md #新增
     - F.A.Q.: intro/faq.md
     - Thanks: intro/thanks.md
-  # 同步主站更改
   - Competition:
     - OI Contest Format: contest/index.md
-    - 赛事:
+    - Compeitions:
       - OI Contest Format: contest/oi.md 
       - ICPC/CCPC Contest Format: contest/icpc.md
-    - 题型:
-      - 题型概述: contest/problems.md
-      - 交互题: contest/interaction.md
+    - Problem Types:
+      - Introduction: contest/problems.md
+      - Interaction Problem: contest/interaction.md
     - Studying Roadmap: contest/roadmap.md
     - External Resources: contest/resources.md #修改了翻译
-    - 技巧:
-      - 读入、输出优化: contest/io.md
-      - 常见错误: contest/common-mistakes.md
-      - 常见技巧: contest/common-tricks.md
-    - 出题相关:
-      - 出题: contest/problemsetting.md
+    - Tricks:
+      - IO Optimization: contest/io.md
+      - Common Mistakes: contest/common-mistakes.md
+      - Common Tricks: contest/common-tricks.md
+    - Problemsetting: contest/problemsetting.md
   - Tools:
-    - 工具软件简介: tools/index.md
-    - 代码编辑工具:
+    - Introduction: tools/index.md
+    - Editors and IDEs:
       - Vim: tools/editor/vim.md
       - Emacs: tools/editor/emacs.md
       - VS Code: tools/editor/vscode.md
@@ -59,21 +57,20 @@ nav:
       - Xcode: tools/editor/xcode.md
       - GUIDE: tools/editor/guide.md
       - Sublime Text 3: tools/editor/sublime3.md
-    - 评测工具: tools/judgers.md
-    - 命令行: tools/cmd.md
+    - Judging Tools: tools/judgers.md
+    - Commandline: tools/cmd.md
     - WSL (Windows 10): tools/wsl.md
     - Special Judge: tools/special-judge.md
     - Testlib:
-      - Testlib 简介: tools/testlib/index.md
-      - 通用: tools/testlib/general.md
+      - Introduction: tools/testlib/index.md
+      - General: tools/testlib/general.md
       - Generator: tools/testlib/generator.md
       - Validator: tools/testlib/validator.md
       - Interactor: tools/testlib/interactor.md
       - Checker: tools/testlib/checker.md
     - Polygon: tools/polygon.md
-    - OJ 工具: tools/oj-tool.md
-    - LaTeX 入门: tools/latex.md
-  # End of 同步主站更改
+    - OJ Tools: tools/oj-tool.md
+    - Beginner LaTeX: tools/latex.md
   - Programming:
     - Introduction: lang/index.md
     - Editing tools:
@@ -130,7 +127,7 @@ nav:
     - Complexity: basic/complexity.md
     - Enumerate: basic/enumerate.md
     - Simulate: basic/simulate.md #似乎又叫Implementation Problem
-    - 递归 & 分治: basic/divide-and-conquer.md #Recursion? 
+    - Recursion, Divide and Conquer: basic/divide-and-conquer.md
     - Greddy: basic/greedy.md
     - Sorting:
       - Introduction of Sorting: basic/sort-intro.md
@@ -146,103 +143,100 @@ nav:
       - ShellSort: basic/shell-sort.md
       - Sorting Methods in STL Libraries: basic/stl-sort.md
       - Usage of Sorting: basic/use-of-sort.md
-    - 前缀和 & 差分: basic/prefix-sum.md
+    - Prefix Sum & Differences: basic/prefix-sum.md
     - Bisect: basic/binary.md
-    - 倍增: basic/binary-lifting.md
+    - Binary Lifting: basic/binary-lifting.md
     - Constructive Algorithms: basic/construction.md
-    # - 交互题: basic/interaction.md #Moved to /Contest
   - Search:
     - Introduction of Searching: search/index.md
     - Depth-First Search (DFS): search/dfs.md
     - Breadth-First Search (BFS): search/bfs.md
-    - 双向搜索: search/bidirectional.md
-    - 启发式搜索: search/heuristic.md
+    - Bidrectional Search: search/bidirectional.md
+    - Heuristic Search: search/heuristic.md
     - A*: search/astar.md
-    - 迭代加深搜索: search/iterative.md
+    - Iterative Search: search/iterative.md
     - IDA*: search/idastar.md
-    - 回溯法: search/backtracking.md
+    - Backtracing: search/backtracking.md
     - Dancing Links: search/dlx.md
     - Optimizations: search/opt.md
   - DP:
     - Introduction: dp/index.md
     - Dynamic Programming Fundamentals: dp/basic.md
-    - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/knapsack.md
-    - 区间 DP: dp/interval.md
-    - DAG 上的 DP: dp/dag.md
-    - 树形 DP: dp/tree.md
-    - 状压 DP: dp/state.md
-    - 数位 DP: dp/number.md
-    - 插头 DP: dp/plug.md
-    - 计数 DP: dp/count.md
-    - 动态 DP: dp/dynamic.md
-    - 概率 DP: dp/probability.md # 新增
-    - DP 优化:
-      - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
-      - 斜率优化: dp/opt/slope.md
-      - 四边形不等式优化: dp/opt/quadrangle.md
-      - 状态设计优化: dp/opt/state.md
-    - 其它 DP 方法: dp/misc.md
+    - Memorized Search: dp/memo.md
+    - Knapsack: dp/knapsack.md
+    - Interval DP: dp/interval.md
+    - DP on DAG: dp/dag.md
+    - Tree DP: dp/tree.md
+    - State Compression DP: dp/state.md
+    - Digit DP: dp/number.md
+    - Plug DP: dp/plug.md
+    - Counting DP: dp/count.md
+    - Dynamic DP: dp/dynamic.md
+    - Probability DP: dp/probability.md # 新增
+    - Optimizations:
+      - Monotonous Queue/Stack: dp/opt/monotonous-queue-stack.md
+      - Slope: dp/opt/slope.md
+      - Quadrangle: dp/opt/quadrangle.md
+      - State Designing: dp/opt/state.md
+    - Misc. DP: dp/misc.md
   - String:
-    - 字符串部分简介: string/index.md
-    - 字符串基础: string/basic.md
-    - 标准库: string/lib-func.md
-    - 字符串匹配: string/match.md
-    - 字符串哈希: string/hash.md
-    - 字典树 (Trie): string/trie.md
-    - 前缀函数与 KMP 算法: string/kmp.md
-    - Boyer-Moore算法: string/bm.md
-    - Z 函数（扩展 KMP）: string/z-func.md
-    - 自动机: string/automaton.md
-    - AC 自动机: string/ac-automaton.md
-    # 同步上游
-    - 后缀数组 (SA): 
-      - 后缀数组简介: string/sa.md
-      - 最优原地后缀排序算法: string/sa-optimal-inplace.md # 主站新增
-    # Endof 同步上游
-    - 后缀自动机 (SAM): string/sam.md
-    - 后缀平衡树: string/suffix-bst.md # 主站新增
-    - 广义后缀自动机: string/general-sam.md
-    - 后缀树: string/suffix-tree.md
+    - Introduction: string/index.md
+    - Basics: string/basic.md
+    - Standard Library: string/lib-func.md
+    - String Matching: string/match.md
+    - Hashing: string/hash.md
+    - Trie: string/trie.md
+    - Prefix Function & KMP: string/kmp.md
+    - Boyer-Moore: string/bm.md
+    - Z Function (Ex. KMP): string/z-func.md
+    - Automation: string/automaton.md
+    - AC Automation: string/ac-automaton.md
+    - Suffix Array: 
+      - Introduction: string/sa.md
+      - Optimal In-place Suffix Sort: string/sa-optimal-inplace.md
+    - Suffix Automation (SAM): string/sam.md
+    - Suffix Binary Search Tree: string/suffix-bst.md
+    - General SAM: string/general-sam.md
+    - Suffix Sum: string/suffix-tree.md
     - Manacher: string/manacher.md
-    - 回文树: string/pam.md
-    - 序列自动机: string/seq-automaton.md
-    - 最小表示法: string/minimal-string.md
-    - Lyndon 分解: string/lyndon.md
+    - Palindrome Tree: string/pam.md
+    - Sequence Automation: string/seq-automaton.md
+    - Minimal Representation: string/minimal-string.md
+    - Lyndon Decomposition: string/lyndon.md
   - Math:
-    - 数学部分简介: math/index.md
-    - 符号: math/notation.md
-    - 复数: math/complex.md
-    - 位运算: math/bit.md
-    - 快速幂: math/quick-pow.md
-    - 进位制: math/base.md
-    - 高精度计算: math/bignum.md
-    - 平衡三进制: math/balanced-ternary.md # 主站新增
-    - 数论:
-      - 素数: math/prime.md
-      - Meissel-Lehmer 算法: math/meissel-lehmer.md # 新增
-      - 最大公约数: math/gcd.md
-      - 欧拉函数: math/euler.md
-      - 筛法: math/sieve.md
-      - 欧拉定理 & 费马小定理: math/fermat.md
-      - 类欧几里德算法: math/euclidean.md
-      - 裴蜀定理: math/bezouts.md
-      - 乘法逆元: math/inverse.md
-      - 线性同余方程: math/linear-equation.md
-      - 中国剩余定理: math/crt.md
-      - 二次剩余: math/quad-residue.md
+    - Introduction: math/index.md
+    - Notations: math/notation.md
+    - Complex Number: math/complex.md
+    - Bit Operations: math/bit.md
+    - Quick Power: math/quick-pow.md
+    - Bases: math/base.md
+    - BigNum: math/bignum.md
+    - Balanced Ternary: math/balanced-ternary.md # 主站新增
+    - Number Theory:
+      - Prime: math/prime.md
+      - Meissel-Lehmer Algorithm: math/meissel-lehmer.md # 新增
+      - Greatest Common Divisor: math/gcd.md
+      - Euler Function: math/euler.md
+      - Sieve of Eratosthenes: math/sieve.md
+      - Euler & Fermat's Little Theorem: math/fermat.md
+      - Euclidean-like Algorithm: math/euclidean.md
+      - Bezout's Theorem: math/bezouts.md
+      - Multiplicative Inverse: math/inverse.md
+      - Congruence Equation: math/linear-equation.md
+      - Chinese Remainder Theorem: math/crt.md
+      - Quad Residue: math/quad-residue.md
       - BSGS: math/bsgs.md
-      - 原根: math/primitive-root.md
-      - 卢卡斯定理: math/lucas.md
-      - 莫比乌斯反演: math/mobius.md
-      - 杜教筛: math/du.md
-      - Powerful Number 筛: math/powerful-number.md # 新增
-      - Min_25 筛: math/min-25.md
-      - 洲阁筛: math/zhou.md # 新增
-      - 分解质因数: math/pollard-rho.md # 新增
-      - 连分数: math/continued-fraction.md # 新增
-      - Stern-Brocot 树与 Farey 序列: math/stern-brocot.md # Moved from misc
-      - Pell 方程: math/pell-equation.md # 新增
+      - Primitive Root: math/primitive-root.md
+      - Lucas's Theorem: math/lucas.md
+      - Mobius Inversion Formula: math/mobius.md
+      - Du's Algorithm: math/du.md # dont know how to ranslate
+      - Powerful Number (Ex. Du's): math/powerful-number.md # dont know how to ranslate
+      - Min_25's Algotithm: math/min-25.md # dont know how to ranslate
+      - Zhouge Algorithm: math/zhou.md # dont know how to ranslate
+      - Pollard-Rho: math/pollard-rho.md # 新增
+      - Continued Fraction: math/continued-fraction.md # 新增
+      - Stern-Brocot Tree & Farey Sequence: math/stern-brocot.md # Moved from misc
+      - Pell Equation: math/pell-equation.md # 新增
     - 多项式:
       - 多项式部分简介: math/poly/intro.md
       - 拉格朗日插值: math/poly/lagrange.md
@@ -293,64 +287,65 @@ nav:
     - Queue: ds/queue.md
     - Linked List: ds/linked-list.md
     - Hash Table: ds/hash.md
-    - 并查集: ds/dsu.md
-    - 并查集时间复杂度证明: ds/dsu-complexity.md # 主站无
-    - 堆:
-      - 堆简介: ds/heap.md
-      - 二叉堆: ds/binary-heap.md
-      - 配对堆: ds/pairing-heap.md
-      - 左偏树: ds/leftist-tree.md
-    - 块状数据结构:
-      - 分块思想: ds/decompose.md
-      - 块状数组: ds/block-array.md
-      - 块状链表: ds/block-list.md
-      - 树分块: ds/tree-decompose.md
+    - Joint Set:
+      - Joint Set: ds/dsu.md
+      - Time Complexity: ds/dsu-complexity.md # 主站无
+    - Heap:
+      - Introduction: ds/heap.md
+      - Binary Heap: ds/binary-heap.md
+      - Pairing Heap: ds/pairing-heap.md
+      - Leftist Tree: ds/leftist-tree.md
+    - Block Data Structure:
+      - Core Idea: ds/decompose.md
+      - Array: ds/block-array.md
+      - Linked List: ds/block-list.md
+      - Tree: ds/tree-decompose.md
       - Sqrt Tree: ds/sqrt-tree.md
-    - 单调栈: ds/monotonous-stack.md
-    - 单调队列: ds/monotonous-queue.md
-    - ST 表: ds/sparse-table.md
-    - 线段树: ds/seg.md
-    - 树状数组: ds/fenwick.md
-    - 李超线段树: ds/li-chao-tree.md #主站新增
-    - 区间最值操作 & 区间历史最值: ds/seg-beats.md
-    - 划分树: ds/dividing.md
-    - 二叉搜索树 & 平衡树:
-      - 二叉搜索树简介: ds/bst.md
+    - Monotonous Stack: ds/monotonous-stack.md
+    - Monotonous Queue: ds/monotonous-queue.md
+    - Sparse Table: ds/sparse-table.md
+    - Segment Tree: ds/seg.md
+    - Fenwick: ds/fenwick.md
+    - Li Chao Tree: ds/li-chao-tree.md #主站新增
+    - Segment History Extreme: ds/seg-beats.md
+    - Dividing Tree: ds/dividing.md
+    - Binary Search / Balanced Trees:
+      - Introduction: ds/bst.md
       - Treap: ds/treap.md
       - Splay: ds/splay.md
       - WBLT: ds/wblt.md
       - Size Balanced Tree: ds/sbt.md
-      - AVL 树: ds/avl.md
-      - 替罪羊树: ds/sgt.md
-      - 笛卡尔树: ds/cartesian-tree.md
-      - 左偏红黑树: ds/llrbt.md
-    - 跳表: ds/skiplist.md #主站新增
-    - 可持久化数据结构:
-      - 可持久化数据结构简介: ds/persistent.md
-      - 可持久化线段树: ds/persistent-seg.md
-      - 可持久化块状数组: ds/persistent-block-array.md
-      - 可持久化平衡树: ds/persistent-balanced.md
-      - 可持久化字典树: ds/persistent-trie.md
-      - 可持久化可并堆: ds/persistent-heap.md
-    - 树套树:
-      - 线段树套线段树: ds/seg-in-seg.md
-      - 平衡树套线段树: ds/seg-in-balanced.md
-      - 线段树套平衡树: ds/balanced-in-seg.md
-      - 树状数组套主席树: ds/persistent-in-bit.md
-      - 分块套树状数组: ds/bit-in-block-array.md
+      - AVL: ds/avl.md
+      - Scapegoat Tree: ds/sgt.md
+      - Cartesian Tree: ds/cartesian-tree.md
+      - Left-leaning Red/Black Tree: ds/llrbt.md
+    - Skiplist: ds/skiplist.md #主站新增
+    - Persistent Data Structure:
+      - Introduction: ds/persistent.md
+      - Segment Tree: ds/persistent-seg.md
+      - Block Array: ds/persistent-block-array.md
+      - Balanced Tree: ds/persistent-balanced.md
+      - Trie: ds/persistent-trie.md
+      - Heap: ds/persistent-heap.md
+    - Tree in Tree:
+      - Segment in Segment: ds/seg-in-seg.md
+      - Segment in Balanced: ds/seg-in-balanced.md
+      - Balanced in Segment: ds/balanced-in-seg.md
+      - Persistent Segment in Fenwick: ds/persistent-in-bit.md
+      - Fenwick in Block Array: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
-    - 珂朵莉树: ds/odt.md
-    - 动态树:
+    - ODT: ds/odt.md
+    - Dynamic Tree:
       - Link Cut Tree: ds/lct.md
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
-    - 析合树: ds/divide-combine.md
+    - Divide Combine Tree: ds/divide-combine.md
   - Graph Theory:
-    - 图论部分简介: graph/index.md
-    - 图论相关概念: graph/concept.md
-    - 图的存储: graph/save.md
-    - DFS（图论）: graph/dfs.md
-    - BFS（图论）: graph/bfs.md
+    - Introduction: graph/index.md
+    - Concepts: graph/concept.md
+    - Storage: graph/save.md
+    - DFS（Graph Theory）: graph/dfs.md
+    - BFS（Graph Theory）: graph/bfs.md
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 树的直径: graph/tree-diameter.md
@@ -421,7 +416,7 @@ nav:
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
   - Misc:
-    - 杂项简介: misc/index.md
+    - Introduction: misc/index.md
     - 离散化: misc/discrete.md
     - 离线算法:
       - 离线算法简介: misc/offline.md
