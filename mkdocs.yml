@@ -447,13 +447,6 @@ nav:
     - 主元素问题: misc/main-element.md
   - Topics:
     - RMQ: topic/rmq.md
-    - 图的匹配:
-      - 图匹配: topic/graph-matching/graph-match.md
-      - 增广路: topic/graph-matching/augment.md
-      - 二分图最大匹配: topic/graph-matching/bigraph-match.md
-      - 一般图匹配: topic/graph-matching/general-match.md
-      - 二分图最大权匹配: topic/graph-matching/bigraph-weight-match.md
-      - 一般图最大权匹配: topic/graph-matching/general-weight-match.md
   - About Hulu:
     -  About Hulu: intro/hulu.md
 
