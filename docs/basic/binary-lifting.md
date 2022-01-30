@@ -84,7 +84,7 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
     }
     ```
 
-这题的 $m\leq 10^{18}$ ，虽然看似恐怖，但是实际上只需要预处理出 $65$ 以内的 $i$ ，就可以轻松解决，比起暴力枚举快了很多。用行话讲，这个做法的 [时间复杂度](../misc/complexity.md) 是预处理 $\Theta(n\log m)$ ，查询每次 $\Theta(\log m)$ 。
+这题的 $m\leq 10^{18}$ ，虽然看似恐怖，但是实际上只需要预处理出 $65$ 以内的 $i$ ，就可以轻松解决，比起暴力枚举快了很多。用行话讲，这个做法的 [时间复杂度](../basic/complexity.md) 是预处理 $\Theta(n\log m)$ ，查询每次 $\Theta(\log m)$ 。
 
 倍增除了作为一种独立的思想以外，还经常被应用到各种算法里面，例如 LCA 和 RMQ 问题，可以在下面查看。
 
