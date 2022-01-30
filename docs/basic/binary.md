@@ -71,7 +71,6 @@ The bisection method turns a problem of finding extreme values into a decision p
 One thing worth noting is that for an ordered array you can use `std::lower_bound()` to find [the first number greater than or equal to your value](http://www.cplusplus.com/reference/algorithm/lower_bound/), and `std::upper_bound()` to find the [first number greater than your value](https://en.cppreference.com/w/cpp/algorithm/upper_bound). Both of them are defined in the header file `<algorithm>`.
 
 Please note that it must be an ordered array, as both of them are implemented in binary search algorithm; otherwise the answer may be incorrect.
-
 For detailed usage, please refer to [STL](../lang/csl/index.md) .
 
 ### Bisection answer
