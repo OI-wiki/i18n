@@ -1,28 +1,28 @@
-## 数据类型
+## Data types
 
-C++ 内置了六种基本数据类型：
+C++ has six basic built-in data types:
 
-| 类型   | 关键字    |
+| Type   |  Keyword  |
 | ---- | ------ |
-| 布尔型  | bool   |
-| 字符型  | char   |
-| 整型   | int    |
-| 浮点型  | float  |
-| 双浮点型 | double |
-| 无类型  | void   |
+| Boolean  | bool   |
+| Character  | char   |
+| Integer   | int  |
+| Floating point | float  |
+| Double floating point | double |
+| Void | void   |
 
-| 类型     | 字节数   | 范围                                              |
+| Type   | Number of bytes  | Range                                              |
 | ------ | ----- | ----------------------------------------------- |
-| char   | 1 个字节 | -128 到 127 或者 0 到 255                           |
-| int    | 4 个字节 | -2147483648 到 2147483647( $2^{31} - 1$ )        |
-| float  | 4 个字节 |  $-3.4\times 10^{38}$ 到 $3.4\times 10^{38}$     |
-| double | 8 个字节 |  $-1.7\times 10^{-308}$ 到 $1.7\times 10^{308}$  |
+| char   | 1 byte | -128 ~ 127 or 0 ~ 255                           |
+| int    | 4 bytes | -2147483648 ~ 2147483647( $2^{31} - 1$ )        |
+| float  | 4 bytes |  $-3.4\times 10^{38}$ ~ $3.4\times 10^{38}$     |
+| double | 8 bytes |  $-1.7\times 10^{-308}$ ~ $1.7\times 10^{308}$  |
 
-一些基本类型可以使用一个或多个类型修饰符进行修饰，例如 `signed` ， `unsigned` 修饰类型表示所修饰的数有没有符号， `short` ， `long` 表示类型的长短，即类型所能表示的范围。另外还有一些其他的修饰符例如 `const` ，可以用来描述一些更加复杂的东西，将会在下面讲解。
+Some basic types can be modified with one or more type specifiers, such as `signed` and `unsigned` indicate whether the modified number has a sign; `short` and `long` indicate the length of the type, that is, the range the type can represent. In addition, there are some other specifiers such as `const`, which can be used to describe some more complicated situations which will explain in details below.
 
-## 声明变量
+## Variable declaration
 
-使用关键词加上变量名即可声明。
+Declare using keywords with variable names.
 
 ```c++
 int oi;
@@ -30,42 +30,42 @@ double wiki;
 char org = 'c';
 ```
 
-在目前我们所接触到的程序段中，声明在花括号包裹的地方的变量是局部变量，而声明在没有花括号包裹的地方的变量是全局变量。实际有例外，但是现在不必了解。
+In the code segment we have seen so far, the variables declared in the curly braces are local variables, and the variables declared without curly braces are global variables. There are actual exceptions, but you don't need to understand right now.
 
-声明时没有初始化值的全局变量会被初始化为 0。而局部变量没有这种特性，需要手动赋初始值，否则可能引起难以发现的 bug。
+Global variables that have no initial value at the time of declaration will be initialized to 0. However, local variables do not have this feature and initial value needs to be manually assigned. Otherwise it may cause bugs that are difficult to find.
 
-## 变量作用域
+## Variable scope
 
-作用域是变量可以发挥作用的代码块。
+A scope is a block of code where a variable can function properly.
 
-变量分为全局变量和局部变量，意义已经在上面讲解。
+Variables are divided into global variables and local variables. We have explained their meaning above.
 
-全局变量的作用域是整个文件，全局变量一旦声明，在整个程序中都是可用的。
+The scope of a global variable is the entire file. Once a global variable is declared, it is available in the entire program.
 
-局部变量的作用域是声明语句所在的代码块，局部变量只能被函数内部或者代码块内部的语句使用。
+The scope of a local variable is the code block where the statement is declared, and it can only be used by the statement inside the function or the code block.
 
-由一对大括号括起来的若干语句构成一个代码块。
+Several statements enclosed by a pair of braces form a code block.
 
 ```c++
-int g = 20;  // 声明全局变量
+int g = 20;  // declare global variables
 int main() {
-  int g = 10;         // 声明局部变量
-  printf("%d\n", g);  // 输出 g
+  int g = 10;         // declare local variables
+  printf("%d\n", g);  // output g
   return 0;
 }
 ```
 
-在一个代码块中，局部变量会覆盖掉同名的全局变量，比如上面的代码输出的 g 就是 10 而不是 20。为了防止出现意料之外的错误，请尽量避免局部变量与全局变量重名的情况。
+In a code block, local variables will overwrite global variables with the same name. For example, the output g of the above code is 10 instead of 20. In order to prevent unexpected errors, please try to avoid using the same name for local and global variables.
 
-## 常量
+## Constant
 
-常量是固定值，在程序执行期间不会改变。
+Constants are fixed values and will not change during program execution.
 
-常量的值在定义后不能被修改。声明时加一个 `const` 关键字即可。
+The value of a constant cannot be modified after it is defined. Just add a `const` keyword in the declaration.
 
 ```c++
 const int a = 2;
 a = 3;
 ```
 
-如果修改了常量的值，在编译环节就会报错： `error: assignment of read-only variable‘a’` 。
+If the value of the constant is modified, an error will be reported during the compilation process: `error: assignment of read-only variable‘a’`.

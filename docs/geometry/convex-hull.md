@@ -1,80 +1,80 @@
-## 二维凸包
+## Two-dimensional convex hull
 
-### 凸多边形
+### Convex polygon
 
-凸多边形是指所有内角大小都在 $[0,\pi]$ 范围内的 **简单多边形** 。
+Convex polygon is a **simple polygon** in which all interior angles are within $[0,\pi]$ .
 
-### 凸包
+### Convex hull
 
-在平面上能包含所有给定点的最小凸多边形叫做凸包。
+The smallest convex polygon that can enclose all given points on the plane is called the convex hull.
 
-其定义为：对于给定集合 $X$ ，所有包含 $X$ 的凸集的交集 $S$ 被称为 $X$ 的 **凸包** 。
+It is defined as: for a given set $X$ , the intersection of all convex sets containing $X$ $S$ is called the **convex hull** of $X$.
 
-实际上可以理解为用一个橡皮筋包含住所有给定点的形态。
+In fact, it can be understood as a form that contains all given points with a rubber band.
 
-凸包用最小的周长围住了给定的所有点。如果一个凹多边形围住了所有的点，它的周长一定不是最小，如下图。根据三角不等式，凸多边形在周长上一定是最优的。
+The convex hull encloses all the given points with the smallest perimeter. If a concave polygon encloses all points, its perimeter must not be the smallest, as shown in the figure below. According to the triangle inequality, the convex polygon must be the optimal in perimeter.
 
 ![](./images/ch.png)
 
-### 凸包的求法
+### How to find the convex hull
 
-常用的求法有 Graham 扫描法和 Andrew 算法，这里主要介绍 Andrew 算法。
+Common methods for finding convex hulls include Graham's scan and Andrew's algorithm. Here we will focus on introducing Andrew's algorithm.
 
-#### Andrew 算法求凸包
+#### Andrew's algorithm for finding the convex hull
 
-首先把所有点以横坐标为第一关键字，纵坐标为第二关键字排序。
+First, sort all the points with the horizontal coordinate as the first keyword and the vertical ordinate as the second keyword.
 
-显然排序后最小的元素和最大的元素一定在凸包上。而且因为是凸多边形，我们如果从一个点出发逆时针走，轨迹总是“左拐”的，一旦出现右拐，就说明这一段不在凸包上。因此我们可以用一个单调栈来维护上下凸壳。
+Obviously, the smallest element and the largest element must be on the convex hull after sorting. And because it is a convex polygon, if we move counterclockwise starting from a point, the trajectory will always "turn left". Once there is a right turn, it means that this segment is not on the convex hull. So we can use a monotonic stack to maintain the upper and lower convex hulls.
 
-因为从左向右看，上下凸壳所旋转的方向不同，为了让单调栈起作用，我们首先 **升序枚举** 求出下凸壳，然后 **降序** 求出上凸壳。
+Seeing from left to right, since the upper and lower convex hulls rotate in different directions seeing from left to right, we first **ascending enumeration** to find the lower convex hull, and then **descending** to find the upper convex hull to make the monotonic stack work.
 
-求凸壳时，一旦发现即将进栈的点（ $P$ ）和栈顶的两个点（ $S_1,S_2$ ，其中 $S_1$ 为栈顶）行进的方向向右旋转，即叉积小于 $0$ ： $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ ，则弹出栈顶，回到上一步，继续检测，直到 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0$ 或者栈内仅剩一个元素为止。
+When finding a convex hull, once the point $P$ that is about to be pushed into the stack and the rotation direction of two points on the top of the stack ( $S_1,S_2$ , where $S_1$ is the top of the stack) is right, i.e. the cross product is less than $0$, or $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ formally, pop the top of the stack, go back to the previous step, and continue testing until $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0 $ or there is only one element left in the stack.
 
-通常情况下不需要保留位于凸包边上的点，因此上面一段中 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ 这个条件中的“ $<$ ”可以视情况改为 $\le$ ，同时后面一个条件应改为 $>$ 。
+Normally, there is no need to keep the points on the edge of the convex hull, so the "$<$" in the above condition $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ can be changed to $\ le$ , and the latter condition should be changed to $>$ correspondingly.
 
-???+note "代码实现"
+???+note "Code implementation"
     ```cpp
-    // stk[]是整型，存的是下标
-    // p[]存储向量或点
-    tp = 0;                       // 初始化栈
-    std::sort(p + 1, p + 1 + n);  // 对点进行排序
+    // stk[] is an integer array which stores subscript
+    // p[] stores vectors or points
+    tp = 0;                       // initialize stack
+    std::sort(p + 1, p + 1 + n);  // sort the points
     stk[++tp] = 1;
-    //栈内添加第一个元素，且不更新used，使得1在最后封闭凸包时也对单调栈更新
+    // the first element is added to the stack, and used(the variable) is not updated; so that 1 also updates the monotonic stack when the convex hull is closed at the end
     for (int i = 2; i <= n; ++i) {
-      while (tp >= 2  // 下一行*被重载为叉积
+      while (tp >= 2  // the * in the next line is overloaded as a cross product
              && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
         used[stk[tp--]] = 0;
-      used[i] = 1;  // used表示在凸壳上
+      used[i] = 1;  // used represents that the current state is on the convex hull
       stk[++tp] = i;
     }
-    int tmp = tp;  // tmp表示下凸壳大小
+    int tmp = tp;  // tmp represents the size of the lower convex hull
     for (int i = n - 1; i > 0; --i)
       if (!used[i]) {
-        //      ↓求上凸壳时不影响下凸壳
+        //      ↓does not affect the lower convex hull when finding the upper convex hull
         while (tp > tmp && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
           used[stk[tp--]] = 0;
         used[i] = 1;
         stk[++tp] = i;
       }
-    for (int i = 1; i <= tp; ++i)  // 复制到新数组中去
+    for (int i = 1; i <= tp; ++i)  // copy to the new array
       h[i] = p[stk[i]];
     int ans = tp - 1;
     ```
 
-根据上面的代码，最后凸包上有 $ans$ 个元素（额外存储了 $1$ 号点，因此 $h$ 数组中有 $ans+1$ 个元素），并且按逆时针方向排序。周长就是
+According to the code above, there are \textit{ans} elements on the final convex hull (the additional $1$ is also stored, so there are \textit{ans+1} elements in the $h$ array), and they are sorted counterclockwise. Perimeter is
 
 $$
 \sum_{i=1}^{ans}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
 
-### 例题
+### Sample problems
 
  [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673) 
 
- [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742) 
+ [「USACO5.1」Fencing the Cows](https://www.luogu.com.cn/problem/P2742) (original link in Chinese)
 
  [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873) 
 
  [POJ1113 Wall](http://poj.org/problem?id=1113) 
 
- [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829) 
+ [「SHOI2012」Credit Card Convex Hull](https://www.luogu.com.cn/problem/P3829) (original link in Chinese)
