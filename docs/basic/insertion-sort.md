@@ -1,10 +1,30 @@
-Insertion sort divides the sequence into two parts, "sorted" and "unsorted". Each time, it selects one from the "unsorted" elements to insert into the correct position of the "sorted" part.
+Last translated with upstream: [ade5838](https://github.com/OI-wiki/OI-wiki/commit/ade5838af091655fbe3cbfc5558be6e7bb082e2a#diff-fbb83b65764ddda9d8b8dd2ce94d74ee494cdf84a2f1f87f1e7b43fb9b2714d8)(Jun 14, 2021)
 
-The worst case time complexity and average case time complexity of insertion sort are both $O(n^2)$ , but their efficiency is very high when the sequence is almost ordered.
+This article will briefly introduce insertion sort.
+
+## Introduction
+
+Insertion sort is a simple and straightforward sorting algorithm. Its working principle is by dividing the sequence into two parts, "sorted" and "unsorted". Each time, it selects one from the "unsorted" elements to insert into the correct position of the "sorted" part.
+
+A similar operation is that, when playing poker, grab a card from deck, insert it to hand by its value, and then grab next card. Here is an animated illustration:
+
+![insertion-sort-1-animate-example](images/insertion-sort-1-animate-example.svg)
+
+## Properties
+
+### Stability
 
 Insertion sort is a stable sort.
 
-Pseudocode:
+### Time Complexity
+
+The best-case time complexity of insertion sort is $O(n)$, whose efficiency is very high when the array is almost ordered.
+
+The worst-case time complexity and average-case time complexity of insertion sort are both $O(n^2)$.
+
+## Code Implementations
+
+### Pseudocode
 
 $$
 \begin{array}{ll}
@@ -21,7 +41,7 @@ $$
 \end{array}
 $$
 
-C++ code
+### C++ code
 
 ```cpp
 void insertion_sort(int* a, int n) {
@@ -36,4 +56,18 @@ void insertion_sort(int* a, int n) {
     a[j + 1] = key;
   }
 }
+```
+
+### Python
+
+```python
+# Python Version
+def insertion_sort(a, n):
+    for i in range(2, n + 1):
+        key = a[i]
+        j = i - 1
+        while j > 0 and a[j] > key:
+            a[j + 1] = a[j]
+            j = j - 1
+        a[j + 1] = key
 ```
