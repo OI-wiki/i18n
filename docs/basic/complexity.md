@@ -1,101 +1,188 @@
 author: linehk
 
-复杂度是我们衡量一个算法好坏的重要的标准。在算法竞赛中，我们通常关注于算法的时间复杂度和空间复杂度。
+Last translate with upstream: [a032fb3](https://github.com/OI-wiki/OI-wiki/commit/a032fb3a3d37d53d14c279e562761b1aa215caea)
 
-一般来说，复杂度是一个关于数据规模的函数。对于某些算法来说，相同数据规模的不同数据依然会造成算法的运行时间/空间的不同，因此我们通常使用算法的最坏时间复杂度，记为 $T(n)$。对于一些特殊的情况，我们可能会关心它的平均情况复杂度（特别是对于随机算法 (randomized algorithm)），这个时候我们通过使用随机分析 (probabilistic analysis) 来得到期望的复杂度。
+Time complexity and space complexity are important criteria to measure the efficiency of an algorithm.
 
-## 渐进符号
+## Count of Elementary Operations
 
-我们通常使用渐进符号来描述一个算法的复杂度。
+An algorithm has different performances on different computers. It is hard to calculate the actual performance theoretically and is troublesome to measure it. Thus, it's more often for us to consider the count of elementary operations required by an algorithm rather than the actual time used.
 
-### 大 Θ 符号
+For a typical computer, basic arithmetic, accessing or assignments to variables (of standard data types, the same below), can all be treated as elementary operations.
 
-对于给定的一个函数 $g(n)$，$f(n)=\Theta(g(n))$，当且仅当 $\exists c_1,c_2,n_0>0$，使得 $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$。
+The count or estimation of elementary operations can be criteria when evaluating the efficiency of an algorithm. 
 
-也就是说，如果函数 $f(n)=\Theta(g(n))$，那么我们能找到两个正数 $c_1, c_2$ 使得 $f(n)$ 被 $c_1\cdot g(n)$ 和 $c_2\cdot g(n)$ 夹在中间。
+## Time Complexity
 
-### 大 O 符号
+To evaluate the performance of an algorithm, the data size is required to be taken the data size into consideration, which mostly referring to how many nodes, edges, or numbers are in the input. Generally, the larger the data size, the longer time the algorithm performs. But when we evaluate the performance in competitive programming, the most important is not its time cost in a specific size, but its growing trend as the data size grows, as known as **time complexity**.
 
-$\Theta$ 符号同时给了我们一个函数的上下界，如果我们只有一个函数的渐进上界的时候，我们使用 $O$ 符号。对于一个给定的函数 $g(n)$, 我们把它记作 $O(g(n))$。$f(n)=O(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le f(n)\le c\cdot g(n)$。
+The main reasons for considering in this way are listed below:
 
-研究时间复杂度时通常会使用 $O$ 符号，因为我们关注的通常是程序用时的上界，而不关心其用时的下界。
+1. Modern computers are capable of processing billions or more elemental operations, so the data size we need to process is usually enormous. For example, assume that algorithm A has a time cost of $100n$ for processing data of size $n$, while that of algorithm B's is $n^2$. Algorithm B takes less time when the data size is less than $100$. But, within one second, algorithm A can process data on the size of millions, while algorithm B only on the size of thousands. Thus, for longer acceptable processing time, time complexity has a far more obvious impact on the data size it can process than the impact of time cost under the same data size.  
+2. We use the counts of elementary operations to represent the time cost of an algorithm. However, different kinds of elementary operations' time cost differs, for example, the time cost of addition and subtraction is far less than division. By ignoring the difference between different kinds and counts of operations when calculating time complexity, we can eliminate the impact of different time cost between operations.
 
-### 大 Ω 符号
+Of course, the running time of an algorithm is not entirely determined by the input size, but is also correlated with the content of the input. Therefore, the time complexity is further divided into several categories. For example:
 
-同样的，我们使用 $\Omega$ 符号来描述一个函数的渐进下界。$f(n)=\Omega(g(n))$，当且仅当 $\exists c,n_0$，使得 $\forall n \ge n_0,0\le c\cdot g(n)\le f(n)$。
+1. Worst-case time complexity, referring to the input of maximum time complexity for each input size. In competitive programming, since the input can be given arbitrarily in given constraints, to ensure an algorithm can process any data in certain size in time, we generally consider the worst-case time complexity.
+2. Average-case time complexity, which is the average of the complexity on every possible inputs under constraints for each data size. (Or, the expected complexity on random input.)
 
-### 小 o 符号
+As "the trend of time cost growing with data size's increasing" is an ambiguous concept, we need to represent the time complexity formally using **asymptotic notation** introduced below.
 
-如果说 $O$ 符号相当于小于等于号，那么 $o$ 符号就相当于小于号。
+## Asymptotic Notation
 
-$f(n)=o(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0$，使得 $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$。
+Briefly, the asymptotic notation ignored the slower growing part of a function and its coefficient and constants, but preserved the important part showing the growing trend of this function. 
 
-### 小 ω 符号
+### Θ-Notation
 
-如果说 $\Omega$ 符号相当于大于等于号，那么 $\omega$ 符号就相当于大于号。
+For functions $f(n)$ and $g(n)$, we say $ f(n) = \Theta(g(n))$ if and only if $\exists c_1,c_2,n_0>0\colon \forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$.
 
-$f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0$，使得 $\forall n \ge n_0,0\le c\cdot g(n)< f(n)$。
+In other words, it means by saying $f(n) = \Theta(g(n))$, we mean we can find two positive numbers $c_1$ and $c_2$ that satisfies $c_1\cdot g(n)\leq f(n) \leq c_2\cdot g(n)$.
+
+For example, $3n^2+5n-3=\Theta(n^2)$, $n\sqrt n + n\log^5 n+m\log m+nm=\Theta(n\sqrt n+m\log m+nm)$.
+
+### Big O Notation
+
+Θ-Notation both shows the upper and lower bound of a function. However, if we only know its asymptotical upper bound but not lower, we can use $O$ notation. We say $f(n)=O(g(n))$ if and only if $\exists c,n_0\colon \forall n \ge n_0,0\le f(n)\le c\cdot g(n)$.
+
+It is more common to use big O notation while considering time complexity, as we are usually concerned with the upper bound of the program's time cost rather than the lower bound.
+
+Note that the "upper" and "lower" bounds here are for the trend of the function, not for the algorithm, whose upper case refers to worst-case time complexity but not big O notation. Therefore, using Θ-notation is completely viable to represent worst-case time complexity, and it can even be said that Θ-notation is more accurate than big O notation. As for the main reason for using O notation more often, one is we sometimes can prove the upper bound, but not lower bound (this is usually the case for more complicated algorithm and analyzing its complexity), and the other reason is the character O is easier to input in a computer. 
+
+### Ω-Notation
+
+Similarly, we use Ω-Notation to describe the asymptotical lower bound of a function. We say $f(n)=\Omega(g(n))$ if and only if $\exists c,n_0 \forall n \ge n_0\colon0\le c\cdot g(n)\le f(n)$.
+
+### o-Notation
+
+If $O$ notation corresponds to the less-than-or-equal sign, then $o$ notation (or small o notation) correspond to the less-than sign. We say $f(n)=o(g(n))$ if and only if $\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le f(n)< c\cdot g(n)$
+
+### ω-Notation
+
+If $\Omega$ notation is equivalent to the greater-than-or-equal sign, then $\omega$ notation(or small omega notation) is equivalent to the greater-than sign. That is, we say $f(n)=o(\omega(n))$ if and only if $\forall c > 0, \exists n_0 \forall n \ge n_0\colon 0\le c\cdot g(n)< f(n)$.
 
 ![](images/order.png)
 
-### 常见性质
+### Common Properties
 
 - $f(n) = \Theta(g(n))\Leftrightarrow f(n)=O(g(n))\land f(n)=\Omega(g(n))$
 - $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
 - $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
-- $\forall a \neq 1, \log_a{n} = O(\log_2 n)$。由换底公式可以得知，任何对数函数无论底数为何，都具有相同的增长率，因此渐进时间复杂度中对数的底数一般省略不写。
+- $\forall a \neq 1, \log_a{n} = O(\log_2 n)$. From the logarithm's change-of-base formula, we can conclude that, regardless of base, any logarithmic function has the same growth rate. Therefore, the base of an logarithm is often omitted in asymptotic time complexity.
 
-## 主定理 (Master Theorem)
+## Simple Examples of Calculating Time Complexity
 
-我们可以使用 Master Theorem 来快速的求得关于递归算法的复杂度。
-假设我们有递推关系式
+### for-expression
+
+```cpp
+// C++ Version
+int n, m;
+std::cin >> n >> m;
+for (int i = 0; i < n; ++i) {
+  for (int j = 0; j < n; ++j) {
+    for (int k = 0; k < m; ++k) {
+      std::cout << "hello world\n";
+    }
+  }
+}
+```
+
+```python
+# Python Version
+n = int(input())
+m = int(input())
+for i in range(0, n):
+    for j in range(0, n):
+        for k in range(0, m):
+            print("hello world")
+```
+
+The time complexity of the code above is $\Theta(n^2m)$ if we consider the inputted value of $n$ and $m$ as the data size. 
+
+### DFS
+
+While performing [depth-first search (article not translated)](../graph/dfs.md) on a graph with $n$ points and $m$ edges, as each point and edges will be visited constant times, the complexity is $\Theta(n+m)$.
+
+## Identifying Constants
+
+When we are going to perform several operations, how to determine whether these several operations will impact time complexity? e.g.:
+
+```cpp
+// C++ Version
+const int N = 100000;
+for (int i = 0; i < N; ++i) {
+  std::cout << "hello world\n";
+}
+```
+
+```python
+# Python Version
+N = 100000
+for i in range(0, N):
+    print("hello world")
+```
+
+If the value of $N$ is not considered as data size of input, then time complexity of these blocks of code is $O(1)$.
+
+When calculating time complexity, it is important to figure out which variables should be treated as the size of data size. All other variables not relating to input data size will be treated as constants and treated as $1$ (or constant time) when calculating time complexity. 
+
+## Master Theorem
+
+By using [master theorem](https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)) we can quickly calculate the time complexity of a recursive algorithm.
+
+Assume we have a recurrence relation formula,
 
 $$
 T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
 $$
 
-那么
+Then, 
 
 $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}) \\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
-## 均摊复杂度
+## Amortized Complexity 
 
-算法往往是会对内存中的数据进行修改的，而同一个算法的多次执行，就会通过对数据的修改而互相影响。
+Algorithms tend to modify data in memory, and multiple executions of an algorithm will have impact on each other by modifying data.
 
-例如快速排序中的“按大小分类”操作，单次执行的最坏时间复杂度，看似是 $O(n)$ 的。
-但是由于快排的分治过程，先前的“分类”操作每次都减小了数组长度，所以实际的总复杂度 $O(n \log n)$，分摊在每一次“分类”操作上，是 $O(\log n)$。
+E.g., for the sorting-by-size operation in quicksort, the worst-case time complexity is seemed to be $O(n)$. But because of the divide-and-conquer process from quicksort, previous sorting operation constantly reduces the length of the array. Therefore, the actual overall complexity is $O(n \log n)$, and the breakdowns over each sorting operation is $O(\log n)$. 
 
-多次操作的总复杂度除以操作次数，就是这种操作的 **均摊复杂度**。
+The overall complexity of multiple operations divided by the number of operations is **Amortized Complexity**.
 
-## 势能分析
+## Potential Method of Amortized Analysis 
 
-势能分析，是一种求均摊复杂度上界的方法。
-求均摊复杂度，关键是表达出先前操作对当前操作的影响。势能分析用一个函数来表达此种影响。
+Potential method of amortized analysis is a method for finding the upper bound of amortized complexity. The key to finding amortized complexity is to represent the impact to current operation from previous operation. 
 
-定义“状态”$S$：即某一时刻的所有数据。*在快排的例子中，一个“状态”就是当前过程需要排序的下标区间*
+Definition of *state*: $S$ represents all data in specific moment. *E.g., in quicksort, a "state" is an subscript interval needed to be sorted.*
 
-定义“初始状态”$S_0$：即未进行任何操作时的状态。*在快排的例子中，“初始状态”就是整个数组*
+Definition of *initial state*: $S_0$ represents the state when no operation has been performed. *E.g., in quicksort, an "initial state" is the whole array.*
 
-假设存在从状态到数的函数 $F$，且对于任何状态 $S$，$F(S) \geq F(S_0)$，则有以下推论：
+Assume $F$ is a function from state to number, and $\forall S, F(S) \geq F(S_0)$. Then we have the following inference:
 
-设 $S_1,S_2, \cdots ,S_m$ 为从 $S_0$ 开始连续做 $m$ 次操作所得的状态序列，$c_i$ 为第 $i$ 次操作的时间开销。
+Let $S_1,S_2, \cdots ,S_m$ be a sequence produced by performing $m$ times of operation from $S_0$, and $c_i$ be the time cost of $i$-th operation.  
 
-记 $p_i = c_i + F(S_i) - F(S_{i-1})$，则 $m$ 次操作的总时间花销为
+Let $p_i = c_i + F(S_i) - F(S_{i-1})$. Then the total time cost of $m$ times of operation is:
 
 $$
 \sum_{i=1}^m p_i + F(S_0) - F(S_m)
 $$
 
-（正负相消，证明显然）
+(It is obvious that positive and negative ones cancel)
 
-又因为 $F(S) \geq F(S_0)$，所以有
+And because $F(S) \geq F(S_0)$ we have
 
 $$
 \sum_{i=1}^m p_i \geq \sum_{i=1}^m c_i
 $$
 
-因此，若 $p_i = O(T(n))$，则 $O(T(n))$ 是均摊复杂度的一个上界。
+Therefore, if $p_i = O(T(n))$, then $O(T(n))$ is an upper bound of amortized time complexity
 
-势能分析使用中有很多技巧，案例在此不题。
+Potential method have many tricks. Examples omitted here.
+
+## Space Complexity
+
+Similarly, the growing trend of space cost with input sizes' growth can be measured by **space complexity** using similar methods mentioned above.
+
+## Calculate Complexity
+
+The article mainly introduced complexity from the perspective of algorithm analysis. If interested you can visit [Computational Complexity (not translated)](../misc/cc-basic.md) for further reading.

@@ -1,69 +1,106 @@
 author: frank-xjh
 
-枚举是基于已有知识来猜测答案的一种问题求解策略。
+Last translate with upstream: [2a03148](https://github.com/OI-wiki/OI-wiki/commit/2a03148fec60414dedcaa49cfa52e9580779dbfd#diff-43eae0b94ea28b3d1c02768cae9cf068e14e29d67a271336e9722baaed590c38)(Aug 1, 2021)
 
-!!! 例题
-    求小于 N 的最大素数
+This article will briefly introduce topics about enumerating.
 
-找不到合适的一个数学公式来直接计算答案，不妨依次尝试一个数是否是答案。
+## Introduction
 
-如果我们从大到小枚举小于 $N$ 的数，那么原问题转化为如何判断一个数是不是素数。
+Enumerate method, or exhaustive search, is a problem-solving strategy based on existing knowledge.
 
-注意到素数的性质要求不能被 $1$ 和它本身之外的数整除，可以直接用于判断。
+The core principle of enumerating strategy is, by enumerating every possible answers from possible sets, then determine whether the answer satisfies the given demands.
 
-枚举的思想是不断地猜测，从可能的集合中一一尝试，然后再判断题目的条件是否成立。
+## Keypoints of Enumerating
 
-## 给出解空间
+### Find the solution space 
 
-建立简洁的数学模型。
+Build a simple mathematical model. 
 
-枚举的时候要想清楚可能的情况是什么，要枚举哪些要素？
+### Smaller the space of enumerating
 
-## 减少枚举的空间
+while using enumerating method, ensure you have figured out the following two questions to avoid unnecessary time cost: 
 
-枚举的范围是什么？是所有的内容都需要枚举吗？
+- What is the range to enumerate?
+- Is every possible answer need to be enumerated?
 
-在用枚举法解决问题的时候，一定要想清楚这两件事，否则会带来不必要的时间开销。
+### Pick an appropriate enumerating order
 
-!!! 例题
-    一个数组中的数互不相同，求其中和为 $0$ 的数对的个数
+Judging by the question. For example, if the question is about the largest eligible prime number, then it is natural to enumerate from the largest to the smallest.
 
-枚举两个数的代码很容易就可以写出来。
+## Example
 
-```cpp
-for (int i = 0; i < n; ++i)
-  for (int j = 0; j < n; ++j)
-    if (a[i] + a[j] == 0) ++ans;
-```
+Here is an example of enumerating and optimizing enumeration range. 
 
-我们来看看枚举的范围如何优化。原问题的答案由两部分构成，两个数相等的情况和不相等的情况。相等的情况只需要枚举每一个数判断一下是否合法。至于不相等的情况，由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。我们对于这种情况只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
+!!! Problem
+    Given an integer array without two same elements. Your task is to find out the number of pairs whose sum is $0$.
 
-我们不妨要求第一个数要出现在靠前的位置。代码如下：
+??? note "Problem solving"
+    The code to enumerate two numbers can be easily coded.
+    
+    ```cpp
+    // C++ Version
+    for (int i = 0; i < n; ++i)
+      for (int j = 0; j < n; ++j)
+        if (a[i] + a[j] == 0) ++ans;
+    ```
+    
+    ```python
+    # Python Version
+    for i in range(0, n):
+      for j in range(0, n):
+          if(a[i] + a[j] == 0):
+              ans = ans + 1
+    ```
+    
+    Here is how to optimize enumerate range. As the problem doesn't require the pair to be ordered, the answer is twice of the ordered one. (e.g. if `(a, b)` is a valid answer, then `(b, a)` is valid too) In this situation, we only need to calculate ordered answers, then multiply it by two. 
+    
+    It may be better to require the first number to appear in the front position. Here is the code implementation:
+    
+    ```cpp
+    // C++ Version
+    for (int i = 0; i < n; ++i)
+      for (int j = 0; j < i; ++j)
+        if (a[i] + a[j] == 0) ++ans;
+    ```
+    
+    ```python
+    # Python Version
+    for i in range(0, n):
+      for j in range(0, i):
+          if(a[i] + a[j] == 0):
+              ans = ans + 1
+    ```
+    
+    It is easy to find out that the enumeration range of $j$ has been shortened, which reduces the time overhead of this code.
+    
+    However this is not the fastest method.
+    
+    Is it necessary to enumerate both elements? After enumerating one element, as the problem has already determined the condition of the other element, we can reduce the time of enumerating the other element by finding out a way to directly determine whether the element exists. When the data size allows, we can use bucket[^1][^2] to record the number of enumerated numbers.
+    
+    ```cpp
+    // C++ Version
+    bool met[MAXN * 2];
+    memset(met, 0, sizeof(met));
+    for (int i = 0; i < n; ++i) {
+      if (met[MAXN + a[i]]) ans += 1;
+      met[MAXN + a[i]] = true;
+    }
+    ```
+    
+    ```python
+    # Python Version
+    met = [False] * MAXN * 2
+    for i in range(0, n):
+        if met[MAXN - a[i]]:
+            ans = ans + 1
+        met[a[i] + MAXN] = True
+    ```
 
-```cpp
-for (int i = 0; i < n; ++i)
-  for (int j = 0; j < i; ++j)
-    if (a[i] + a[j] == 0) ++ans;
-```
+## Exercise
 
-不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
+- [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
 
-然而这并不是最优的结果。
+## Reference
 
-两个数是否都一定要枚举出来呢？这里我们发现枚举其中一个数之后，题目的条件已经帮我们确定了其他的要素（另一个数），如果能找到一种方法直接判断题目要求的那个数是否存在，就可以省掉枚举后一个数的时间了。
-
-```cpp
-// 要求 a 数组中的数的绝对值都小于 MAXN
-bool met[MAXN * 2];
-// 初始化 met 数组为 0；
-memset(met, 0, sizeof(met));
-for (int i = 0; i < n; ++i) {
-  if (met[MAXN - a[i]]) ++ans;
-  // 为了避免负数下标
-  met[a[i] + MAXN] = 1;
-}
-```
-
-## 选择合适的枚举顺序
-
-比如第一个例题中要求的是最大的符合条件的素数。自然是从大到小枚举比较合适。
+[^1]: An explanation of bucket: https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure
+[^2]: Further reading: [Bucket Sort](./bucket-sort.md) and [Main Element Problem](../misc/main-element.md#_3)

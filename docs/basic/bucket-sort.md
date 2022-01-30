@@ -1,12 +1,38 @@
-[Bucket sort](https://en.wikipedia.org/wiki/Bucket_sort#:~:text=Bucket%20sort%2C%20or%20bin%20sort,applying%20the%20bucket%20sorting%20algorithm.) is suitable for cases where the range of data to be sorted is large but the distribution is relatively uniform. It is a sorting algorithm with an expected time complexity of $O(n)$ .
+Last translate with upstream: [e4431ce](https://github.com/OI-wiki/OI-wiki/commit/e4431ce5d2a45924bb9ac8db46e756208ca37f20#diff-1192f62f7a7acdbc8fe52f352916538cb5e3aa84074bb3518e0806a37ddeacc9) ([PR #3312](https://github.com/OI-wiki/OI-wiki/pull/3312)) on July 11, 2021.
 
-The general idea is to divide the range into blocks and sort each block separately. Since there are not many elements in each block, insertion sort is generally used. If a stable algorithm is used for inner sorting, and the relative order is not changed when the elements are inserted into the bucket, then the bucket sort is stable.
+This article will briefly introduce bucket sort
 
-If the data to be sorted is randomly generated, the expected time complexity of dividing the range into $n$ blocks is $O(n)$ . The proof can be found in the [introduction to algorithms](https://en.wikipedia.org/wiki/Introduction_to_Algorithms) or [analysis of time complexity in wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Analysis).
+## Introduction
 
-C++ code:
+Bucket sort is a sorting algorithm. It is suitable for cases where the range of data to be sorted is large but the distribution is relatively uniform.
+
+## Principles
+
+Bucket sort performs in the following steps:[^ref1]
+
+1. Set up a sized array of initially empty buckets.
+2. Go over the original array, putting each object into its bucket.
+3. Sort each non-empty bucket.
+4. Visit the buckets in order and put all elements back into the original array.
+
+## Properties
+
+### Stability
+
+Bucket sort is stable if using stable inner sorting algorithm and relative orders are not changed when inserting elements into buckets.
+
+### Time Complexity
+
+The average-case time complexity of bucket sort is $O(n + n^2/k + k)$, which means the time complexity of scattering the range equally into $n$ pieces plus sorting plus concatenating. When $k\approx n$ the complexity becomes $O(n)$.[^ref2]
+
+The worst-case time complexity of bucket sort is $O(n^2)$.
+
+## Code Implementations
+
+### C++
 
 ```cpp
+// C++ Version
 const int N = 100010;
 
 int n, w, a[N];
@@ -41,3 +67,40 @@ void bucket_sort() {
   }
 }
 ```
+
+### Python
+
+```python
+# Python Version
+N = 100010
+w = n = 0
+a = [0] * N
+bucket = [[] for i in range(N)]
+
+def insertion_sort(A):
+    for i in range(1, len(A)):
+        key = A[i]
+        j = i - 1
+        while j >= 0 and A[j] > key:
+            A[j + 1] = A[j]
+            j -= 1
+        A[j + 1] = key
+
+def bucket_sort():
+    bucket_size = int(w / n + 1)
+    for i in range(0, n):
+        bucket[i].clear()
+    for i in range(1, n + 1):
+        bucket[int(a[i] / bucket_size)].append(a[i])
+    p = 0
+    for i in range(0, n):
+        insertion_sort(bucket[i])
+        for j in range(0, len(bucket[i])):
+            a[p] = bucket[i][j]
+            p += 1
+```
+
+## References and Footnotes
+
+[^ref1]: [Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort)
+[^ref2]: [Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis) (Chapter 2.2)
