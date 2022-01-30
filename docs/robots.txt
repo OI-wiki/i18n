@@ -1,1 +1,1 @@
-Sitemap: https://oi-wiki.org/sitemap.xml
+Sitemap: https://en.oi-wiki.org/sitemap.xml
