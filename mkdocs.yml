@@ -144,7 +144,7 @@ nav:
       - Tournament Sort: basic/tournament-sort.md
       - Sorting Methods in STL Libraries: basic/stl-sort.md
       - Usage of Sorting: basic/use-of-sort.md
-    - Prefix Sum & Differences: basic/prefix-sum.md
+    - Prefix Sum & Adjacent Difference: basic/prefix-sum.md
     - Bisect: basic/binary.md
     - Binary Lifting: basic/binary-lifting.md
     - Constructive Algorithms: basic/construction.md
