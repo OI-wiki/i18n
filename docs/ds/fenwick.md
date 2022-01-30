@@ -1,6 +1,6 @@
 author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro
 
-## 简介
+## Introduction
 
 The [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree)(or, binary indexed tree) and the segment tree are always mentioned together, but there are still some differences between them after all:
 
