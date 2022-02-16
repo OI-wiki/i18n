@@ -1,62 +1,65 @@
-author: CoelacanthusHex
+author: CoelacanthusHex, CamberLoid (as translator)
 
-## 软件简介
+Last Translate: [622a787](https://github.com/OI-wiki/OI-wiki/commit/622a78786265bed1c5c09882072aca9003490534) on August 22, 2021.
 
-Kate 是一个具有众多功能的跨平台文本编辑器。Kate 还附带了多种插件，包括一个嵌入式终端，可以让你直接从 Kate 中启动控制台命令，强大的搜索和替换插件，以及一个预览插件，可以渲染 MD、HTML 甚至 SVG 文件。支持通过交换文件在系统崩溃时恢复数据，带参数提示的自动补全，同时支持 [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) 以获得更为强大的补全。
+## Introduction
 
-## 下载与安装
+Kate is a feature-packed cross-platform editor. It comes with a variety of plugins, including an embedded terminal that lets you launch console commands directly from Kate, powerful search and replace plugins, and a preview plugin that is able to show markdown, HTML and even SVG file. Kate supports swap files to recover data on system crash, auto complete with argument hints, and [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) for more powerful auto complete.
 
-可打开 [Kate 官网](https://kate-editor.org/)，然后进入 [获取页面](https://kate-editor.org/zh-cn/get-it/)。随后，根据你使用的系统和喜欢的安装方式进行安装。接下来以 Windows 为例讲解安装。
+## Download and Installation Guide
 
-![Windows 上的安装方式](images/kate-1-windows-install-1.png)
+One can visit [the homepage and Kate](https://kate-editor.org) and enter [the get-it page](https://kate-editor.org/get-it/). For major GNU/Linux distributions, Kate is already included in their package repositories with out-of-the-box feature. In the following guide we take Microsoft Windows as an example to explain how to install.  
 
-如图，从上到下依次为从 MS Store 安装，通过 Chocolatey 安装，下载 Kate 正式版安装包，下载 Kate 每夜构建版安装包和下载源码手动构建。从 MS Store 安装只需点击链接然后点击安装即可；通过 Chocolatey 安装则需要打开命令行输入 `choco install kate`；接下来两个则需首先点击链接，然后你将看到如下界面：
+![Installation method on Windows](images/kate-1-windows-install-1.png)
+
+As shown in the illustration, they are install via MS Store, install via Chocolatey, download a stable release installer, download a nightly build installer, and build it from source. To install via Microsoft Store, just follow the link and install it; To install it via Chocolatey (if chocolatey is installed), one need to open Powershell and type `choco install kate`; To install via other two installer options one needs to follow the link and then he/she may see a page similar to the following screenshot: 
 
 ![](images/kate-2-windows-install-2.png)
 
-其中形如 `kate-21.04.0-1-1272-windows-msvc2019_64-cl-sideload.appx` 格式的是供手动安装的商店版本，`kate-21.04.0-1-1272-windows-msvc2019_64-cl.exe` 格式的则是安装包，下载双击即可。
+Where installer with `.appx` extension is the package of Microsoft Store version but requires manually installation, while installer with `.exe` is an executable installer. For both of them, just download and double-click to install.
 
-## 用法与功能
+## Usages and Features
 
-### 交换文件防止数据丢失
+### Swap Files to Avoid Data Loss
 
-与 Vim 类似，Kate 会将未保存的更改写入一个交换文件（一般是原文件名前面加点后面加 `.kate-swp`），如果遭遇断电或程序崩溃等意外，下次启动时不会丢失未保存的更改。
+Similar to Vim, Kate will write unsaved modified buffer to a swap file, generally named with `.kate-swp` extension after the original file name. If accident happens, like power failure or program crash, unsaved modifications won't be lost in the next start.
 
-### 代码高亮
+### Syntax Highlighting
 
-Kate 支持三百余种语言的语法高亮。一般来说，Kate 可以自动地选择对应的语言进行语法高亮，不过偶尔也有错误的时候，这时候可以点击最右下角的按钮，选择正确的语言。
+Kate supports syntax highlighting for over 300 languages. Generally, Kate will choose the correct language to apply syntax highlighting. However, when Kate makes mistake on syntax highlighting, one can select the correct language manually by clicking the button in the right bottom corner. 
 
-#### 自己编写语法高亮文件
+#### Write Your Own Syntax Definition Files
 
-尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件。
-Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置。[CoelacanthusHex/dotfiles@80a913c/pam_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有我编写的一个配置文件可供参考。
+Despites the supports of syntax highlighting for over 300 languages, it is unable to avoid some language from being not covered. In this situation, users can write their syntax highlight definition files.
 
-### 切换语言
+A list of built-in definition files is here: [Syntax Highlighting - Kate](https://kate-editor.org/syntax/). For grammar, one can refer to [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html) when writing. To install or test a syntax definition file after finishing writing, place it according to [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files). [CoelacanthusHex/dotfiles@80a913c/pam_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) is a definition file written by the author for reference.
 
-点击上方工具栏里的 `设置`/`Setting`，然后点击 `配置语言`/`Configure Language`，随后选择语言即可，注意可以选择备选语言。
+### Switch Editor Language
 
-### 编码与行尾符
+Click the `Setting` in the menu bar, and select `Configure Language`, then select the editor language. Note that one can select a fallback language.
 
-Kate 可以自动识别当前文件使用的是什么编码，如果识别错误，可以点击右下角倒数第二个按钮，选择正确的编码。
+### Encoding and EOL
 
-同时，Kate 也可以自动识别当前文件使用的行尾符，如果识别错误，可以点击 `工具`→`行尾`/`Tool`→`End of line` 选择正确的行尾符。
+Kate is able to detect the encoding of current editing file. In case of mistakenly detection, the user can select the correct encoding manually by clicking the fourth button in thr right bottom corner.
 
-### 查找与替换
+Besides, it is able to detect the end-of-line symbol of the current file. In case of mistakenly detection, the user can click `Tool` in the menu bar, and then select `End of line` to select the correct end-of-line symbol manually.
 
-依次单击 `编辑`→`查找`（快捷键<kbd>Ctrl</kbd>+<kbd>F</kbd>）即可打开“查找”页面。依次单击 `编辑`→`替换`（快捷键<kbd>Ctrl</kbd>+<kbd>R</kbd>）即可打开“查找与替换”页面。同时，点击左下角 `搜索与替换` 也可打开“查找与替换”页面。
+### Search and Replace
 
-具体操作和其他编辑器并无太大差别，但是支持一些额外的特性，例如：
+Click `Edit`→`Find` (Shortcut: <kbd>Ctrl</kbd> + <kbd>F</kbd>) to open the incremental search bar in the bottom. Click `Edit`→`Replace` (Shortcut: <kbd>Ctrl</kbd> + <kbd>R</kbd>) to open the power search and replace bar in the bottom. Besides, clicking the `Search and Replace` button in the left bottom will also open the Search in Files tool view.
 
-1. 是否区分大小写
-2. 支持正则表达式（包括捕获组）
-3. 从当前文件到多文件再到当前工程不等的范围
-4. 对查找的结果进行选择替换
+The detailed usage is not much different from other editors. However, Kate supports some extra features, such as:
+
+1. Case sensitive;
+2. Support of Regular Expression, including capturing group feature;
+3. The rance from current file to multi files, and even the current project;
+4. Perform replacing the result of searching.
 
 ### Language Server Protocol
 
-Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
+Kate supports LSP Client since version 19.12. In the beginning, it only supports C/C++, D, Fortran, Go, LaTeX/BibTeX, OCaml, Python, Rust. And now it supports languages lists below:
 
-|     语言     |                                       LSP Server                                       |
+|  Language  |                                       LSP Server                                       |
 | :--------: | :------------------------------------------------------------------------------------: |
 |    Bash    |        [bash-language-server](https://github.com/bash-lsp/bash-language-server)        |
 |    LaTeX   |                          [texlab](https://texlab.netlify.com/)                         |
@@ -76,11 +79,11 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 |      R     |           [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
 |     zig    |                         [zls](https://github.com/zigtools/zls)                         |
 
-当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server。
+To enable LSP and related features, the user need to visit `Settings` → `Configure Kate` in menu bar, the go to `Plugins` and toggle on `LSP Clients`. When open a file in a specific language, Kate will automatically call the appropriate LSP server.
 
-#### 增加配置
+#### Manually Add Configuration
 
-此外，用户还可以手动编写配置，具体格式为：
+Furthermore, users can also write their LSP configuration file manually. Here is an example:
 
 ```json
 {
@@ -120,44 +123,64 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 }
 ```
 
-其中 `server` 里的每一项代表一种语言，在这个语言里，`command` 代表启动 LSP Server 所使用的命令，`command` 是一个数组，是所需要执行的命令以空格分词的结果；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置。
+In which, each item in `server` represents a language. For this language, the array `command` represents the command to spin up an LSP Server, the elements in which is a result of the actual command split by a space; The `url` represents the website of the LSP Server; `rootIndicationFileNames` represent the file used to determine the root directory of a project; `highlightingModeRegex` is used to determine which LSP to use by matching the name of specific syntax highlighting; If `use` exist then its value represents the syntax highlighting configuration with the name to use.
 
-该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`。
+The configuration is located in `Setting`→`Configure Kate`→`LSP Client`→`User Server Settings`, where `LSP Client` is available after enabling it in `Plugins`.
 
-### 内置终端
+### Embedded Terminal
 
-按<kbd>F4</kbd>可打开或关闭内置终端，也可点击左下角 `终端` 按钮打开，内置终端的当前目录会自动与当前文件保持一致，并随着你选择的文件而改变。其余与一般终端并无太大不同。
+???+note "For Windows Users"
+    The embedded terminal depends on Konsole of KDE, which is an exclusive package in *nix. In result, the feature is unavailable in Windows.
 
-### 外部工具
+Pressing <kbd>F4</kbd> or clicking `Terminal Panel` located in the left bottom corner can open or close the embedded terminal. The working directory will automatically be the same of the current editing file, and will follow the change of the file selected. The rest are not much different from general terminals.
 
-点击 `工具`→`外部工具` 可执行。
+### External Tools
 
-点击 `工具`→`外部工具`→`配置` 可以配置外部工具。
+To execute an external tool, click `Tools`→`External Tools` in menu bar and pick the tool you want.
 
-#### 添加外部工具
+To configure external tools, click `Tools`→`External Tools`→`Configure` in menu bar.
 
-##### 从预置配置中添加
+#### Add External Tools
 
-进入配置页面后，点击左下角 `添加`→`从默认工具添加`，然后点击对应工具即可。
+##### Add Tools from Defaults
 
-##### 手写配置添加
+After entering settings, click `Add`→`Add Tool from Defaults`, and select the specific tool to add.
 
-进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可。注意可点击如下标志查看可使用的变量。
+##### Add Tools manually
+
+After entering settings, click `Add`→`Add Tool`, and fill the blanks. One can refer to [this documentation](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) when writing his/her own configurations. Note that one can click the icon to see available variables.
 
 ![](images/kate-3-var.png)
 
-#### 常用的外部工具
+#### Frequently Used External Tools
 
-##### 编译并执行单个 C++ 文件
+##### Compile and Run CPP
 
-打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可。
+For \*nix operating system, open any C++ source file, find and click `Compile and Run cpp` in external tools.
+
+???+note "For Windows Users"
+    By default, because of the executable is `sh`, it is unable to use this tool in Windows. However, user can modify the tool manually to make it available to Windows. 
+
+    To apply modification, make sure your operating system has a C++ compiler. Then add `Compile and Run cpp` from default, replacing `sh` in executable with `powershell`, arguments with `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"`. [^note1][^note2]
 
 ##### Git Blame
 
-打开任意文件，在外部工具里找到 `git blame`，点击之后，会打开一个窗口，展示 git blame 的结果。
+Open any file, find `git blame` in external tools. After clicking, a window will show up to represent the result of `git gui blame (file)`
 
-##### 格式化
+##### Formatting
 
-打开任意源文件，在外部工具里找到 `用 xxx 格式化`，点击即可。
+The formatting features requires availability of specific package or executable, e.g., C/C++ requires the availability of `clang-format`. For other language, user can refer to the executables in default configuration of external tools.
 
-此处注意，`clang-format` 可格式化选中的文本。
+Open any source file, find and click `xxx Format Full File/Selected Text`. Note that for source files in C/C++, `clang-format` is able to format selected text.
+
+## See Also
+
+- [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
+- [About How to Write Your Own Configuration of LSP Clients](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+- [About How to Write Your Own Configuration of External Tools](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
+
+## References and Footnotes
+
+[^note1]: If `g++` is not in the `PATH` environment variables, replace it with its absolute path.
+
+[^note2]: Or, if using Clang instead, replace `g++` with `clang++`.

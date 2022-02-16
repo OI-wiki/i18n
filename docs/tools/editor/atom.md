@@ -1,11 +1,11 @@
 author: ouuan, ChungZH, partychicken, Xeonacid
 
-Atom，GitHub 家的编辑器。
+Atom, editor from Github.
 
-## 简介
+## Introduction
 
-Atom 是一个免费、开源、跨平台的文本编辑器，由 GitHub 开发。它是用 JavaScript 编写的，并且采用 Electron 架构。它的一个较大缺点就是性能差。
+Atom is a free and open-source cross-platform text editor developed by Github. It is written in Javascript and based on Electron. A relatively serious disadvantage is bad performance.
 
-## 外部链接
+## External Links
 
-- [Atom 官网](https://atom.io)
+- [Homepage of Atom](https://atom.io)

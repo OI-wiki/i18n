@@ -1,163 +1,143 @@
-author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet
+author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet, CamberLoid
 
-## 介绍
+## Introduction
 
-> Dev-C++ 是一套用于开发 C/C++（C++11）的自由的集成开发环境（IDE），并以 GPL 作为散布许可。使用 MinGW 及 GDB 作为编译系统与调试系统。Dev-C++ 的 IDE 是利用 Delphi 开发的。
->
-> Dev-C++ 是一个 SourceForge 的项目，是由 Colin Laplace 这位程序员及其公司 Bloodshed Software 所开始的。当前 Dev-C++ 一般用于撰写运行于 Microsoft Windows 的程序。Dev-C++ 一度有移植到 Linux 的项目但当前被暂停了。
->
-> Bloodshed Dev-C++ 是一款全功能的 C 和 C++ 编程语言的集成开发环境（IDE）。它使用的 GCC MinGW 或 TDM-GCC 的 64 位版本作为它的编译器。Dev-C++ 也可以使用 Cygwin 或任何其他基于 GCC 编译器组合使用。
->
-> 此外，Dev-C++ 较旧的版本无法在 win8 环境下编译。
->
-> 该项目已不再明显活跃，从 2005 年 2 月 22 日开始至 2011 年 6 月，Dev-C++ 的官方网站一直没有再发出新消息或是释放新版本，说明 Dev-C++ 的开发已经进入了迟滞状态。2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：“因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发。”
+Dev-C++ is a free full-featured integrated development environment (IDE) distributed under the GNU General Public License for programming in C and C++ (including C++11). It is bundled with, and uses, MinGW and GDB as its compiler and debugger. Dev-C++ runs in Microsoft Windows.
 
-以上摘自 Wikipedia[^1]。
+The advantage of Dev-C++ is friendly user interface, simple installation and its support of single file compilation. Therefore, it becomes the first choice of many C++ beginners and competitive programming contestants. For NOIP, in provinces which use Windows as contest operation system, it generally comes with pre-installed Dev-C++.
 
-不过，你在使用的版本是不是我说的这个版本呢？
+The origin of Dev-C++ is Bloodshed Dev-C++ written by Colin Laplace. Since February 22, 2005, the project was stopped updating. In 2006, lead developer Colin Laplace stated the situation that he was busy with real-life issues and did not have time to continue development of Dev-C++.
 
-没错，Dev-C++ 其实还有一个全新版本：
+Orwell Dev-C++ is a variant of Bloodshed Dev-C++, developed and maintained by individual programmer Orwell (Johan Mes). The variant contains bug fixes and compiler updates. Generally speaking, all Dev-C++ 5.x are Orwell Dev-C++. This variant was last updated in 2015 with version 5.11.
 
-> Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本。Orwell 鉴于 Dev-C++ 的长时间（从 2005 年 2 月 22 日起）不再更新，对 Dev-C++ 源代码进行错误修正，并更新编译器后发布的版本。
+Embarcadero Dev-C++[^ref1] is a successor of Bloodshed Dev-C++ and Orwell Dev-C++. In 2020, Embarcadero sponsored and continued the development of original Bloodshed Dev-C++. It contains support for high DPI, compiler updates and support new C++ standards, and dark mode.
 
-以上摘自 Wikipedia[^2]。
+The Dev-C++ distributions listed above are considered "official releases". Besides, after the stale development Orwell Dev-C++ in 2015, out of the need of teaching, an individual Chinese developer [royqh1979](https://github.com/royqh1979) decided to develop his personal fork of Dev-C++ named "Red Panda Dev-C++", integrating intelligent hint and updated version of MinGW64, which is convenient for personal use and studying. The project is hosted on [GitHub](https://github.com/royqh1979/Dev-Cpp).
 
-自 2011 年的 Dev-C++ 4.9.9.3 版本之后，你使用的版本均为 Orwell Dev-C++。
+## Getting Started to Use
 
-目前最新版本为 2015 年 4 月 27 日的 Dev-C++ 5.11 版本，可于 [SourceForge](https://sourceforge.net/projects/orwelldevcpp/files/latest/download) 下载。
+### Frequently-used Shortcut Keys
 
-该应用界面简洁友好，安装便捷，适合初学者使用。
+#### File
 
-2020 年，Embarcadero 赞助并接手了原有的 Bloodshed Dev-C++ 项目，继续开发。项目地址位于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
+- `Ctrl + N`: Create a source file.
+- `Ctrl + O`: Open a source file.
+- `Ctrl + W`: Close a source file.
+- `Ctrl + P`: Print a source file.
 
-在 2015 年停止更新后，因为教学需要，一位来自中国的个人开发者 [royqh1979](https://github.com/royqh1979) 决定继续开发他的 Dev-C++ 个人分支，命名为小熊猫 Dev-C++，集成了智能提示和高版本的 MINGW64，非常便于国内的个人使用和学习，项目官网位于 [小熊猫 Dev-C++](https://royqh.net/devcpp/download)，源码地址位于 [Github](https://github.com/royqh1979/Dev-Cpp).
+#### Formatting
 
-## 使用教程
+- `Ctrl + /`：Comment and uncomment.
+- `Tab`: Insert indent.
+- `Shift + Tab`: Undo indent.
 
-### 常用快捷键
+#### Line Operation
 
-#### 文件部分
+- `Ctrl + E`: Copy selected line.
+- `Ctrl + D`: Delete selected line.
+- `Ctrl + Shift + Up`: Move cursor upward.
+- `Ctrl + Shift + Down`: Move cursor downward.
 
-- `Ctrl + N`: 创建源代码
-- `Ctrl + O`: 打开文件
-- `Ctrl + W`: 关闭文件
-- `Ctrl + P`: 打印文件
+#### Jumping
 
-#### 格式部分
+- `Ctrl + F`: Search
+- `Ctrl + R`: Replace
+- `F3`: Search next
+- `Shift + F3`: Search previous
+- `Ctrl + G`: Jump to line
+- `Shift + Ctrl + G`: Jump to function
+- `Ctrl +[1 ~ 9]`: Add bookmark(s)
+- `Alt +[1 ~ 9]`: Jump to bookmark
 
-- `Ctrl + /`：注释和取消注释
-- `Tab`: 缩进
-- `Shift + Tab`: 取消缩进
+#### Display
 
-#### 行操作
+- `Ctrl + Mouse wheel`: Resize font
+- `Ctrl + F11`: Toggle fullscreen 
 
-- `Ctrl + E`: 复制行
-- `Ctrl + D`: 删除行
-- `Ctrl + Shift + Up`: 向上移动
-- `Ctrl + Shift + Down`: 向下移动
+#### Executing
 
-#### 跳转部分
+- `F9`: Compile only
+- `F10`: Execute only
+- `F11`: Compile and execute
+- `F12`: Re-compile all
 
-- `Ctrl + F`: 搜索
-- `Ctrl + R`: 替换
-- `F3`: 搜索下一个
-- `Shift + F3`: 搜索上一个
-- `Ctrl + G`: 到指定行号
-- `Shift + Ctrl + G`: 到指定函数
-- `Ctrl +[1 ~ 9]`: 设置书签
-- `Alt +[1 ~ 9]`: 跳转书签
+#### Debugging
 
-#### 显示部分
+- `F2`: Jump to breakpoint
+- `F4`: Set breakpoint or delete
+- `F5`: Debugging execute
+- `F6`: Stop
+- `F7`: Debug step-by-step
 
-- `Ctrl + 滚轮`：字号放大或缩小
-- `Ctrl + F11`: 全屏或恢复
+### Process of Debugging
 
-#### 运行部分
+1. Switch compiler to `TDM-GCC (Version) 64-bit Debug`;
+2. Press `F4` to set or cancel debugging breakpoint;
+3. Put cursor to a variable and press `Alt + A` to add monitoring variables;
+4. Press `F5` to start debugging;
+5. Press `F7` or `Alt + N` to debug step-by-step;
+6. Press `Alt + S` to jump to next debugging breakpoint;
+7. Press `F6` to stop debugging.
 
-- `F9`: 只编译
-- `F10`: 只运行
-- `F11`: 编译并运行
-- `F12`: 全部重新编译
+## Advanced
 
-#### 调试部分
+### Add Compile Options
 
-- `F2`: 转到断点
-- `F4`: 设置断点或取消
-- `F5`: 调试运行
-- `F6`: 停止
-- `F7`: 逐步调试
+Click "Tools" -> "Compiler Options..." and select the "Settings" tab. Here introduces some options frequently used by the author:
 
-### 调试流程
+#### Enable Optimization from Compiler
 
-1. 将编译器配置设定为 "TDM-GCC 4.9.2 64-bit Debug"
-2. 按 `F4` 设置或取消调试断点
-3. 将光标放置在变量上，按 `Alt + A` 向调试窗口添加监控变量
-4. 按 `F5` 启动调试
-5. 按 `F7` 或 `Alt + N` 逐步调试
-6. 按 `Alt + S` 跳至下一个调试断点
-7. 按 `F6` 停止调试
+This option will optimize the time spent or space used by programs. 
 
-## 扩展
-
-### 增加编译选项
-
-点击工具 -> 编译选项，然后选择 "代码生成/优化" 选项卡，下面介绍我自己常用的几个编译选项。
-
-#### 开启优化
-
-优化代码运行时间或占用空间。
-
-选择 "代码生成" 子选项卡中的 "优化级别（-Ox)" 选项标签。
+Select the "Optimization Level (-Ox)" option in the "Code Generation" sub-tab, and choose the level you wan to use.
 
 ![](./images/Dev-C++-11.png)
 
-#### 更换语言标准
+#### Choose Language Standard
 
-使用新语言特性或试图让代码在旧标准中运行使用。
+This option enables using new language features in updated standards, or trying to compile code in older standard.
 
-选择 "代码生成" 子选项卡中的 "语言标准（-std)" 选项标签。
+Select the "Language Standard (-std)" option in the "Code Generation" sub-tab, and choose the standard you wan to use.
 
-![](./images/Dev-C++-12.png)
+![](./images/Dev-C++-12.png) 
 
-#### 显示最多警告信息
+#### Show All The Warnings
 
-查错小助手。
+This option assists user to debug.
 
-选择 "代码警告" 子选项卡中的 "显示最多警告信息（-Wall)" 选项标签。
+Toggle "Show most warnings (-Wall)" option in the "Warnings" sub-tab to enable the feature. 
 
 ![](./images/Dev-C++-13.png)
 
-#### 生成调试信息
+#### Generate Debugging Informations
 
-当显示 "项目没有调试信息，您想打开项目调试选项并重新生成吗？" 点击后闪退或想使用调试功能时需开启此功能。
+This option is needed when the user clicks "Debug" and the editor pops up a window "You have not enabled debugging info (-g) and/or stripped it from the executable (-s) in Compiler Options" and it crashed after the user clicked "Yes", or the user wants the debugging feature to be always-on.
 
-选择 "连接器" 子选项卡中的 "产生调试信息" 选项标签。
+Toggle "Generate debugging information (-g3)" option in "Linker" sub-tab to yes to enable it.
 
 ![](./images/Dev-C++-14.png)
 
-### 编译小 trick
+### Tricks of Compiling
 
-点击工具 -> 编译选项，然后选择 "编译器" 选项卡，接下来介绍几个常用 trick。
+Click "Tools" -> "Compiler Options...", and select the tab "General". Below is some frequently used tricks.
 
-#### 开大栈
+#### Extend the Stack
 
-防止 DFS 爆系统栈之类的情况出现。
+This may prevent stack overflow caused by too many recursions (like depth-first search).
 
-在 "连接器命令行加入以下命令" 中加入 `-Wl,--stack=128000000` 命令。
+Add `-Wl,--stack=128000000` to "Add the following commands when calling the linker".
 
-此命令将栈开到了约 128MB 的大小，有需要可以自行增加。
+The example above resized the stack to about 128MB, and can be adjusted as needed.
 
 ![](./images/Dev-C++-15.png)
 
-#### 定义宏
+#### Define Marco
 
-方便本地评测使用文件输入输出或作其他用途。
+Macro is useful when testing locally with file I/O or other purposes.
 
-在 "连接器命令行加入以下命令" 中加入 `-D[String]` 命令。
+Add `-D[string]` to "Add the following commands when calling the linker", where `[string]` is the macro needed to define.
 
-其中 `[String]` 改为你需要的宏名。
-
-如图，当开启编译选项后便可将以下代码从 `test.in` 文件读入数据并在 `test.out` 文件中输出。
+In the following example, the argument `-DLOCAL` make the following code to read from the file `test.in` and output to file `test.out`, equivalent to `#define LOCAL`.
 
 ![](./images/Dev-C++-16.png)
 
@@ -168,28 +148,26 @@ freopen("test.out", "w", stdout);
 #endif
 ```
 
-### 美化
+### Eye Candies
 
-#### 代码格式化
+#### Code Formatting
 
-点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化。
+To format the code, click "Astyle" -> "Format Current File" in toolbar or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>.
 
 ![](./images/Dev-C++-17.png)
 
-#### 字体
+#### Fonts
 
-点击工具 -> 编辑器选项，然后选择 "显示" 选项卡。
+To set fonts, click "Tools" -> "Editor Options..." and select "Fonts" tab. 
 
 ![](./images/Dev-C++-9.png)
 
-#### 主题
+#### Color Scheme
 
-点击工具 -> 编辑器选项，然后选择 "语法" 选项卡，可以使用预设主题，也可以自行调整。
+To set color scheme, or theme, click "Tools" -> "Editor Options..." and select "Colors" tab. You can use the default theme, or adjust them yourself.
 
 ![](./images/Dev-C++-10.png)
 
-## 参考资料
+## References
 
-[^1]: [Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Dev-C%2B%2B)
-
-[^2]: [Orwell Dev-C++ - 维基百科](https://zh.wikipedia.org/wiki/Orwell_Dev-C%2B%2B)
+[^ref1]: The project is hosted on [GitHub](https://github.com/Embarcadero/Dev-Cpp) and [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).

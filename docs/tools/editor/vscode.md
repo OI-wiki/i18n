@@ -1,79 +1,128 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, 
 
-## 简介
+Last translated on September 16th, 2021, with commit [353b1f6](https://github.com/OI-wiki/OI-wiki/commit/353b1f64c8a2c756695bb5e99f036d1e80819dbe)
 
-Visual Studio Code（以下简称 VS Code) 是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
+## Introduction
 
-官网：[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
+Visual Studio Code, or VS Code, is an open-source code editor developed by Microsoft, supporting Windows, Linux and macOS. VS Code is written in TypeScript, and based on Electron framework. It bundled with built-in support for JavaScript, TypeScript and Node.js, and provides a rich ecosystem of extensions for other language like C, C++, Java, Python, PHP and Go.
 
-## 使用 Code Runner 插件运行代码
+Official site: [Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
-VS Code 安装并配置插件后可实现对 C/C++ 的支持，但配置过程比较复杂。一个简单的编译与运行 C++ 程序的方案是安装 Code Runner 插件。
+## Execute Code Using Code Runner
 
-Code Runner 是一个可以一键运行代码的插件，在工程上一般用来验证代码片段，支持 Node.js、Python、C、C++、Java、PHP、Perl、Ruby、Go 等 40 多种语言。
+After installing and configuring extensions, VS Code will have support for C/C++. However the process is complicated. A simple solution to compile and run C++ programs is to install Code Runner extension.
 
-安装的方式是在插件商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装。
+Code Runner is an extension that allows one to run code in one click. In projects it is often used to verify code segments. It supports over 40 programming languages including Node.js, Python, C, C++, Java, PHP, Perl, Ruby and Go.
+
+One way to install is to search Code Runner in extension marketplace and click Install; Another is go to [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) and click Install, then the browser will call VS Code automatically and start installation.
 
 ![](./images/vscode-1.jpg)
 
-安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
+After finishing installation, open file to run, and click the little triangle icon at upper-right to run code. Pressing shortcut key <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>(or, for macOS, <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) will do the same.
 
 ???+ warning
-    如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
-    
-    记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
+    If code is still unable to run after installing VS Code and Code Runner, it it probably because of the lack of C/C++ running environment in the operating system. For installation of environment please refer to [Hello, World!](../../lang/helloworld.md).
 
-## 使用 C/C++ 插件编译并调试
+    Remember to toggle on Run In Terminal in preferences as in the following image: ![](./images/vscode-7.png)
 
-### 安装插件
+## Compile and Debug using C/C++ extensions
 
-在 VS Code 中打开插件商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"`，然后找到 C/C++，点击 Install 安装插件。
+### Installation
+
+Open extension store in VS Code, type `C++` or `@category:"programming languages"`, and find C/C++, and press Install to install it.
 
 ![](./images/vscode-2.png)
 
 ???+ warning
-    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
+    Before continue to config, please make sure the that G++ or Clang has been installed, and has added them to `$PATH`. Please use CMD or Powershell instead of Git Bash.
 
-### 配置编译
+### Configuring Compilation
 
-首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)`，进入 C/C++ 插件的设置界面。
+First, open a folder in VS Code, and then press <kbd>F1</kbd>, type `C/C++: Edit configurations (UI)` and enter the configuration page of C/C++ extension.
 
 ![vscode-3](images/vscode-3.png)
 
-在“编译器路径”中选择 G++ 或 Clang 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
+Choose the path where G++ or Clang located in Compiler Path. Check again whether the path of compiler has been added to `PATH` environment variable if there is nothing to choose from.
 
-### 配置 IntelliSense
+### Configuring IntelliSense
 
-用于调整 VS Code 的智能补全。
+This section is talking about adjusting smart auto-completion of VS Code.
 
-如果你使用 Clang 编译器，在“IntelliSense 模式”中选择 `clang-x64` 而非默认的 `msvc-x64`；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到“IntelliSense 模式 msvc-x64 与编译器路径不兼容。”的错误。
+If you are using Clang or G++ as compiler, remember to choose `clang-x64` (`gcc-x64` for G++) instead of default `msvc-x64` to enable features like auto-completion. Otherwise you will encounter an error saying "Intellisense mode msvc-x64 is incompatible with compiler path".
 
 ![](images/vscode-4.png)
 
-### 配置 GDB/LLDB 调试器
+### Configure GDB/LLDB Debuggers
 
-在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了“选择环境”的提示，选择“C++ (GDB/LLDB)”。在“选择配置”中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
+To enter debugging mode, create a new C++ file in VS Code and write something in C++ grammar, press <kbd>F5</kbd> after saving file. If a **choose environment** dialog pops up, select **C++ (GDB/LLDB)** and choose **g++ - Build and debug active file** for G++ users, or **clang++ - Build and debug active file** for Clang users.
 
 ???+ warning
-    配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
+    The configuration name is customizable. It may differ in different operating systems.
 
-完成后，VS Code 将自动完成初始化操作并弹出一个 `launch.json` 配置文件。关闭它。
+Then, VS Code will finish initialization automatically and open a `launch.json` configuration file. Ignore and close it.
 
-至此，所有的配置流程已经完毕。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
+At this point, all configuration processes have been completed. Press <kbd>F5</kbd> again and you will see debugging informations.
 
-若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内。若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）。
+All files needed to be compiled and debugged are required to be saved in this folder in the future. If you need to compile and debug codes in other folders, you need to perform above steps again, or copy `.vscode` sub-folder in original folder to the new one.
 
-### 开始调试代码
+### Debugging Code
 
-使用 VS Code 打开一份代码，将鼠标悬停在行数左侧的空白区域，并单击出现的红点即可为该行代码设置断点。再次单击可取消设置断点。
+To set a breakpoint on a certain line, open a code in VS Code, hover the cursor over the blank space to the left of the row number, and click the appeared red point. Re-click it will cancel the breakpoint.
 
-![](images/vscode-5.gif)
+![](images/vscode-5.apng)
 
-按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue`,`next`,`step` 和 `until`：
+Press <kbd>F5</kbd> to enter debug mode, where a debug toolbar will appear on the upper of editor. The four blue buttons represent `continue`, `next`, `step` and `until` in GDB from left to right.
 
 ![](images/vscode-6.png)
 
-如果编辑器未自动跳转，点击左侧工具栏中的“调试”图标进入调试窗口，即可在左侧看到变量的值。
+In case that the editor did not jump automatically, you can enter debugging window by clicking `Run and Debug` in the left toolbar. Then the values of variables will appear.
 
-在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
+
+In debugging mode, the code editor will display codes that will be executed next in yellow background.
+
+## Configure clangd
+
+???+ warning
+    Because of conflict, IntelliSense from C/C++ extension will be automatically disabled after installing clangd extension, while some features like debugging still use C/C++ extension. If encountered problems of clangd's features, you may want to check whether IntelliSense from C/C++ is disabled.
+
+### Introduction
+
+From LLVM official site
+
+> Clangd is an implementation of the Language Server Protocol leveraging Clang. Clangd’s goal is to provide language“smartness”features like code completion, find references, etc. for clients such as C/C++ Editors.
+
+In short, clangd provides some smart features like project-wide indexing, cross-references, variable renaming, faster auto-completion, errors and warnings and formatting. Though is is officially described as an implementation of LSP protocol, its functions are rather more similar to a language server than a protocol itself.
+
+VS Code's C/C++ extension also has features like auto-completion. However, comparing with clangd, it is inferior in accuracy of the legibility of the prompt information, etc. Therefore, we may sometimes use clangd instead of the C/C++ plugin to implement features such as code auto-completion.
+
+### Installation
+
+Linux users can use package manager to install clangd. Detailed operations are similar.
+
+```bash
+# Ubuntu/Debian
+sudo apt install clangd 
+```
+
+For some distribution, it only requires clang as it is included.
+
+```bash
+# Arch/Manjaro
+sudo pacman -S clang
+```
+
+MacOS users are required to install LLVM via Homebrew, as LLVM from built-in XcodeCommandLineTools doesn't include clangd. 
+
+```bash
+brew install llvm
+```
+
+Windows users can obtain binary installer from [LLVM Download Page](https://releases.llvm.org/download.html).
+
+### VS Code Extension
+
+Open VS Code extension market, type `clang` in search bar and install it.
+
+![](images/vscode-8.png)
+
+Now, enjoy coding with features like auto-completion from clangd!
