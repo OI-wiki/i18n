@@ -28,4 +28,4 @@ After using the block linked list, except for the single-node modification which
 
   ETT does not support root replacement operation. For chain (interval) modification, there are two cases. One is that the contribution is the same (such as xor), which is allowed; and the other is that the contribution is different (such as $\operatorname{sum}$ ) , which is not. After all, the current mainstream approach is LCT and ETT take more operations. But if the previous operations can be avoided, it would be a good approach.
 
-Note: The standard ETT implemented with [Euler circuit(https://en.wikipedia.org/wiki/Eulerian_path#Definition) instead of DFS bracket sequence supports root replacement, but its implementation is more complicated.
+Note: The standard ETT implemented with [Euler circuit](https://en.wikipedia.org/wiki/Eulerian_path#Definition) instead of DFS bracket sequence supports root replacement, but its implementation is more complicated.
